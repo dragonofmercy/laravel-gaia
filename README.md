@@ -1,6 +1,37 @@
 # laravel-gaia
 Gaia package for Laravel
 
+## Usage
+
+In your composer.json
+
+````json
+{
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/dragonofmercy/laravel-gaia.git"
+    }],
+    "require": {
+        "dragonofmercy/gaia": "dev-main"
+    }
+}
+````
+
+In your providers.php
+
+````php
+return [
+    \Demeter\Providers\DemeterServiceProvider::class,
+    \Gui\Providers\GuiServiceProvider::class
+];
+````
+
+Don't forget to publish assets
+
+````bash
+php artisan vendor:publish 
+````
+
 This is a home package no support will be provided!  
 If this project help to increase your productivity, you can give me a cup of coffee :) 
 
