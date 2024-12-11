@@ -1,0 +1,44 @@
+.gui-control-lines {
+
+    .input-group-text {
+        align-items: start;
+        padding-left: $input-group-addon-padding-x * .6;
+        padding-right: $input-group-addon-padding-x * .6;
+        color: $gray-500;
+        text-align: right;
+        user-select: none;
+    }
+
+    textarea {
+        white-space: pre;
+        padding-left: $input-padding-x * .5;
+    }
+
+    &:not(.autosize){
+        .input-group-text {
+            overflow: hidden;
+            position: relative;
+
+            .whitespace {
+                visibility: hidden;
+            }
+
+            .lines {
+                position: absolute;
+            }
+        }
+    }
+
+    &.autosize {
+        .input-group-text {
+            .whitespace {
+                display: none;
+            }
+        }
+
+        textarea {
+            resize: none;
+            overflow-y: hidden;
+        }
+    }
+}

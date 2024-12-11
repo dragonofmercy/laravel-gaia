@@ -1,0 +1,19 @@
+form-group.has-error {
+    .invalid-feedback {
+        display: flex;
+        align-items: center;
+        line-height: 1rem;
+        margin-top: $spacer * .5;
+        gap: $spacer * .25;
+        font-size: #{$gui-form-validation-font-size};
+
+        &:before {
+            font-family: '#{ $fa-style-family }';
+            font-size: #{$gui-form-validation-icon-size};
+            font-weight: #{$gui-form-validation-icon-weight};
+            content: fa-content($gui-form-validation-icon);
+            text-align: center;
+            width: 1rem;
+        }
+    }
+}

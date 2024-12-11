@@ -1,0 +1,1 @@
+!function(t){"use strict";let e=function(e){let n=this;t(e).on("click",(function(e){e.preventDefault();n.requestChange(t(this).attr("data-theme"))}))};e.prototype.requestChange=function(t){Cookies.set("dark-mode",(t==="dark").toString(),{expires:365});location.reload()};t.fn.GUIThemeSwitcher=function(){t.each(this,(function(){new e(this)}))}}(jQuery);

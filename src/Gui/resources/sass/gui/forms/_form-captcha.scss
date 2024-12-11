@@ -1,0 +1,26 @@
+.gui-captcha {
+    overflow:hidden;
+    border: $border-width solid $border-color;
+    @include border-radius(.25rem);
+    @include content-loading('bars');
+}
+
+.h-captcha,
+.g-recaptcha {
+    width:298px;
+    height:74px;
+
+    iframe {
+        display: flex;
+        margin:-1px 0px 0px -2px;
+    }
+}
+
+.cf-turnstile {
+    width:298px;
+    height:65px;
+
+    &>div {
+        transform: translateX(-$border-width) translateY(-$border-width);
+    }
+}

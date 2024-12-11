@@ -1,0 +1,106 @@
+.avatar {
+    --#{$prefix}avatar-bg: var(--#{$prefix}gray-300);
+    --#{$prefix}avatar-color: var(--#{$prefix}gray-500);
+    --#{$prefix}avatar-size: 3rem;
+    --#{$prefix}avatar-font-size: 1.05rem;
+    --#{$prefix}avatar-border-width: #{$border-width * 2};
+    --#{$prefix}avatar-padding: .45rem;
+
+    flex-shrink: 0;
+    font-size: var(--#{$prefix}avatar-font-size);
+    position: relative;
+    display: inline-flex;
+    min-width: var(--#{$prefix}avatar-size);
+    height: var(--#{$prefix}avatar-size);
+}
+
+.avatar-img,
+.avatar-title {
+    user-select: none;
+}
+
+.avatar-img {
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.avatar-title {
+    align-items: center;
+    background-color: var(--#{$prefix}avatar-bg);
+    color: var(--#{$prefix}avatar-color);
+    display: flex;
+    font-weight: 700;
+    height: 100%;
+    justify-content: center;
+    text-transform: uppercase;
+    min-width: 100%;
+    padding-right: var(--#{$prefix}avatar-padding);
+    padding-left: var(--#{$prefix}avatar-padding);
+}
+
+.avatar-group {
+    display: inline-flex;
+    align-items: center;
+
+    .avatar {
+        .avatar-img, .avatar-title {
+            border: var(--#{$prefix}avatar-border-width) solid var(--#{$prefix}card-bg);
+        }
+
+        &+.avatar {
+            margin-left: -1em;
+        }
+
+        &:hover {
+            z-index: 10;
+        }
+    }
+}
+
+.avatar-online:before {
+    background-color: var(--#{$prefix}success-text-emphasis);
+}
+
+.avatar-busy:before {
+    background-color: var(--#{$prefix}danger-text-emphasis);
+}
+
+.avatar-away:before {
+    background-color: var(--#{$prefix}warning-text-emphasis);
+}
+
+.avatar-offline:before {
+    background-color: var(--#{$prefix}gray-500);
+}
+
+.avatar-away,
+.avatar-busy,
+.avatar-offline,
+.avatar-online {
+    &:before {
+        border: var(--#{$prefix}avatar-border-width) solid var(--#{$prefix}card-bg);
+        border-radius: 50%;
+        bottom: 0;
+        content: "";
+        height: 30%;
+        position: absolute;
+        right: 0;
+        width: 30%;
+    }
+}
+
+.avatar-circle {
+    .avatar-img,
+    .avatar-title {
+        border-radius: var(--#{$prefix}avatar-size);
+    }
+}
+
+@each $name, $size in $gui-avatars-sizes {
+    .avatar-#{$name} {
+        --#{$prefix}avatar-size: #{$size};
+        --#{$prefix}avatar-font-size: #{$size - ($size * .65)};
+        --#{$prefix}avatar-padding: #{$size - ($size * .85)};
+    }
+}

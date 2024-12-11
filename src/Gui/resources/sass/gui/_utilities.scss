@@ -1,0 +1,55 @@
+$utilities: map-merge($utilities, (
+    "cursor": (
+        property: cursor,
+        values: auto default none help pointer progress wait cell crosshair text vertical-text alias copy move no-drop not-allowed grab grabbing col-resize row-resize
+    ),
+    "overflow": (
+        property: overflow,
+        values: auto hidden visible scroll,
+    ),
+    "overflow-x": (
+        property: overflow-x,
+        values: auto hidden visible scroll,
+    ),
+    "overflow-y": (
+        property: overflow-y,
+        values: auto hidden visible scroll,
+    ),
+    "border-color": map-merge(map-get($utilities, "border-color"),(
+            values: map-merge($utilities-border-colors, (
+                "light": var(--#{$prefix}light-border-color)
+            ))
+        )
+    ),
+    "row-gap": (
+        responsive: true,
+        property: row-gap,
+        class: row-gap,
+        values: $spacers
+    ),
+    "column-gap": (
+        responsive: true,
+        property: column-gap,
+        class: column-gap,
+        values: $spacers
+    ),
+    "font-size": (
+        responsive: true,
+        property: font-size,
+        class: fs,
+        values: $font-sizes
+    ),
+    "line-height": (
+        responsive: true,
+        property: line-height,
+        class: lh,
+        values: (
+            1: 1,
+            sm: 1.25,
+            md: 1.5,
+            lg: 1.75,
+            xl: 2,
+            xxl: 2.25,
+        )
+    ),
+));

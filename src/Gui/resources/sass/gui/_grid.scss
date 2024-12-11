@@ -1,0 +1,19 @@
+.row {
+    &:not([class*="gx-"]):not([class*="g-"]){
+        --#{$prefix}gutter-x: #{$grid-gutter-width * .5};
+    }
+
+    &.g-0 {
+        --#{$prefix}gutter-x: 0;
+        --#{$prefix}gutter-y: 0;
+    }
+
+    &.gy-0 {
+        --#{$prefix}gutter-x: #{$grid-gutter-width * .5};
+        --#{$prefix}gutter-y: 0;
+    }
+
+    &.gx-0 {
+        --#{$prefix}gutter-x: 0;
+    }
+}

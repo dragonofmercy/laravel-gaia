@@ -1,0 +1,171 @@
+.form-check-input {
+    &[readonly] {
+        @extend :disabled;
+    }
+}
+
+.form-check {
+    display: flex;
+    align-items: start;
+    line-height: $form-check-input-width;
+    padding: 0;
+    margin: 0;
+
+    .form-check-input {
+        flex-shrink: 0;
+        float: none;
+        margin: 0;
+    }
+
+    .form-check-label {
+        user-select: none;
+        padding-left: $spacer * .5;
+    }
+
+    .form-check-input,
+    .form-check-label {
+        cursor: pointer;
+
+    }
+}
+
+.form-switch {
+    align-items: center;
+
+    .form-check-input {
+        height: $form-switch-height;
+    }
+}
+
+.gui-form-switch {
+    .form-switch {
+        @include media-breakpoint-up($gui-form-breakpoint) {
+            margin: $form-switch-margin-top 0;
+        }
+    }
+}
+
+.gui-form-toggle {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+
+    .slider {
+        transition: margin-left 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        background-color: $gui-form-toggle-unchecked-bg;
+        height: calc(100% - #{$gui-form-toggle-margin * 2}px);
+        width: calc(50% - #{$gui-form-toggle-margin * 2}px);
+        margin: #{$gui-form-toggle-margin}px;
+        position: absolute;
+        z-index: 4;
+
+        @include border-radius(calc(#{$input-border-radius} - #{$gui-form-toggle-margin}px));
+    }
+
+    .choice {
+        flex: 1 1 0px;
+        min-width: 0;
+        z-index: 5;
+        cursor: pointer;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        user-select: none;
+        transition: color 0.2s ease-in-out;
+        padding: $input-padding-y $input-padding-x;
+    }
+
+    input {
+        display: none;
+
+        &[readonly],
+        &:disabled {
+            &+.slider {
+                opacity: $form-check-label-disabled-opacity;
+
+                &~.choice {
+                    color: $input-disabled-color;
+                }
+            }
+        }
+
+        &:checked {
+            &+.slider {
+                background-color: $gui-form-toggle-checked-bg;
+                margin-left: calc(50% + #{$gui-form-toggle-margin}px);
+
+                &+.choice+.choice {
+                    color: $gui-form-toggle-checked-color;
+                }
+            }
+        }
+
+        &:not(:checked) {
+            &+.slider {
+                &+.choice {
+                    color: $gui-form-toggle-unchecked-color;
+                }
+            }
+        }
+    }
+}
+
+.gui-form-radio,
+.gui-form-checkbox {
+    display: flex;
+    flex-wrap: wrap;
+
+    &:not(.inline){
+        flex-direction: column;
+        gap: $spacer * .5;
+    }
+
+    &.inline {
+        gap: $spacer;
+        row-gap: $spacer * .5;
+    }
+
+    &:not(.no-margin){
+        margin: .66666em 0;
+    }
+}
+
+.gui-control-checklist {
+    overflow: hidden;
+    border: $gui-form-checklist-border-width solid $gui-form-checklist-border-color;
+
+    @include border-radius($input-border-radius);
+
+    .checklist-heading {
+        border-bottom: $gui-form-checklist-border-width solid $gui-form-checklist-border-color;
+        padding: ($tooltip-padding-y * 1.5) $tooltip-padding-x;
+        background-color: $gui-form-checklist-heading-bg;
+        line-height: 1.2em;
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        .vr,
+        .vr+* {
+            margin-left: $spacer * .5;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .checklist-content {
+        padding: $spacer * .75;
+
+        .gui-form-checkbox {
+            margin: 0;
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(var(--#{$prefix}form-checklist-items), auto);
+        }
+    }
+}

@@ -1,0 +1,51 @@
+.form-select {
+    --#{$prefix}select-option-font-size: #{$gui-form-select-option-font-size};
+
+    --#{$prefix}select-bg: #{$form-select-bg};
+    --#{$prefix}select-color: #{$form-select-color};
+    --#{$prefix}select-border-color: #{$form-select-border-color};
+
+    --#{$prefix}select-focus-border-color: #{$form-select-focus-border-color};
+    --#{$prefix}select-focus-bg: #{$form-select-focus-bg};
+
+    --#{$prefix}select-disabled-bg: #{$form-select-disabled-bg};
+    --#{$prefix}select-disabled-color: #{$form-select-disabled-color};
+    --#{$prefix}select-disabled-border-color: #{$form-select-disabled-border-color};
+
+    background-position: right 0.5rem center;
+
+    color: var(--#{$prefix}select-color);
+    background-color: var(--#{$prefix}select-bg);
+    border-color: var(--#{$prefix}select-border-color);
+
+    &:focus {
+        border-color: var(--#{$prefix}select-focus-border-color);
+        background-color: var(--#{$prefix}select-focus-bg);
+    }
+
+    &:disabled {
+        color: var(--#{$prefix}select-disabled-color);
+        background-color: var(--#{$prefix}select-disabled-bg);
+        border-color: var(--#{$prefix}select-disabled-border-color);
+    }
+
+    option, optgroup {
+        background-color: $form-select-bg;
+    }
+
+    &:not([multiple]){
+        optgroup,
+        option {
+            font-size: var(--#{$prefix}select-option-font-size);
+        }
+    }
+
+    option[disabled]{
+        color: $input-disabled-color;
+    }
+
+    &[readonly]{
+        @extend :disabled;
+        pointer-events: none;
+    }
+}

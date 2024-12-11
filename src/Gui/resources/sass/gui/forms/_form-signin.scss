@@ -1,0 +1,73 @@
+.form-signin {
+    margin: ($grid-gutter-width * 4) auto 0 auto;
+
+    @include media-breakpoint-down('md') {
+        margin-top: $grid-gutter-width * 1.5;
+    }
+
+    .card-primary-bg {
+        background-image: linear-gradient(-45deg, $primary, lighten($primary, 20%));
+        background-position: center;
+    }
+
+    .card {
+        overflow: hidden;
+    }
+
+    .card-body {
+        padding: 0;
+
+        .title {
+            display: flex;
+            align-items: center;
+            margin-bottom: $spacer * 1.5;
+
+            hr {
+                flex-grow: 1;
+            }
+
+            h1 {
+                margin: 0;
+                padding: 0 ($spacer * .5);
+                font-size: 1.5rem;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+        }
+
+        .signin-form {
+            margin-bottom: $spacer * 1.5;
+            font-size: $font-size-lg;
+
+            form-group {
+                --gui-form-group-border-style: none;
+                --gui-form-group-spacer-y: .5rem;
+            }
+
+            .form-bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: $spacer;
+            }
+
+            .form-control,
+            .form-select {
+                font-size: $input-font-size-lg;
+            }
+
+            .control-label {
+                font-size: $input-font-size-lg;
+
+                label {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+
+    .btn-lg {
+        font-size: calc(#{$font-size-lg} * 1.2);
+    }
+}
+

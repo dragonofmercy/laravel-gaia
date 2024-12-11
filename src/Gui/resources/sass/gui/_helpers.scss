@@ -1,0 +1,17 @@
+@import "helpers/hidden";
+@import "helpers/transparency";
+@import "helpers/vr";
+@import "helpers/heading-control";
+@import "helpers/kbd";
+@import "helpers/pre-block";
+@import "helpers/no-elements";
+
+.gui-hidden-without-modal {
+    display: none;
+}
+
+.modal {
+    .gui-hidden-without-modal {
+        display: block;
+    }
+}

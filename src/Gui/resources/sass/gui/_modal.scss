@@ -1,0 +1,83 @@
+.modal {
+    --#{$prefix}modal-title-line-height: #{$modal-title-line-height};
+    --#{$prefix}modal-title-font-weight: #{$modal-title-font-weight};
+    --#{$prefix}modal-title-font-size:   #{$modal-title-font-size};
+    --#{$prefix}modal-header-padding-y:  #{$modal-header-padding-y};
+    --#{$prefix}modal-header-padding-x:  #{$modal-header-padding-x};
+}
+
+.modal-dialog {
+    &.loading {
+        .modal-content {
+            @include content-loading('circle', true, 6rem);
+            .loading {
+                margin: 6rem auto;
+            }
+        }
+    }
+}
+
+.modal-header {
+    margin: 0 var(--#{$prefix}modal-header-padding-x);
+    padding: calc(var(--#{$prefix}modal-header-padding-y) * .75) 0 calc(var(--#{$prefix}modal-header-padding-y) * .5) 0;
+    align-items: center;
+
+    &>.heading-control {
+        .dropdown-menu {
+            --#{$prefix}dropdown-spacer: calc(var(--#{$prefix}modal-header-padding-y));
+        }
+    }
+}
+
+.modal-title {
+    color: var(--#{$prefix}featured-text-color);
+    font-size: $modal-title-font-size;
+    font-weight: bold;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.gui-modal-confirm {
+    .modal-body {
+        --#{$prefix}modal-padding: #{$modal-inner-padding * 2};
+
+        text-align: center;
+
+        h5 {
+            font-size: 1.5em;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .modal-footer {
+        --#{$prefix}modal-footer-bg: var(--#{$prefix}modal-bg);
+
+        flex-wrap: nowrap;
+        padding: 0;
+
+        .btn-link {
+            flex-grow: 1;
+            text-decoration: none;
+            font-size: 1.25em;
+        }
+
+        .btn-link:first-child {
+            --#{$prefix}btn-color: var(--#{$prefix}link-inverted-color);
+            --#{$prefix}btn-hover-color: var(--#{$prefix}link-inverted-hover-color);
+        }
+
+        .btn-link:last-child {
+            --#{$prefix}btn-hover-color: #{$link-hover-color};
+            font-weight: bold;
+        }
+
+        .vr {
+            margin-top: $spacer * .5;
+            margin-bottom: $spacer * .5;
+        }
+    }
+}

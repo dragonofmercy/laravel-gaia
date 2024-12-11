@@ -1,0 +1,51 @@
+@mixin no-elements(){
+    --#{$prefix}no-element-icon-color: inherit;
+    --#{$prefix}no-element-icon-size: 5rem;
+    --#{$prefix}no-element-padding-x: #{$spacer * 2};
+
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: var(--#{$prefix}no-element-padding-x) !important;
+    padding-bottom: var(--#{$prefix}no-element-padding-x) !important;
+
+    i {
+        font-size: var(--#{$prefix}no-element-icon-size);
+        color: var(--#{$prefix}no-element-icon-color);
+        display: block;
+        margin-bottom: $spacer * .5;
+    }
+}
+
+@mixin content-loading($type: 'circle', $included: false, $width: 2rem){
+    --#{$prefix}loading-width: #{$width};
+
+    @if $included == false {
+        min-width: var(--#{$prefix}loading-width);
+        min-height: var(--#{$prefix}loading-width);
+        background-image: get-loading-image($type);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: var(--#{$prefix}loading-width);
+    } @else {
+        --#{$prefix}loading-bg: #{$card-bg};
+        --#{$prefix}loading-border-radius: #{subtract($card-border-radius, $border-width)};
+
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+            content: " ";
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background-image: get-loading-image($type);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: var(--#{$prefix}loading-width);
+            background-color: var(--#{$prefix}loading-bg);
+            z-index: 50;
+
+            @include border-radius(var(--#{$prefix}loading-border-radius));
+        }
+    }
+}

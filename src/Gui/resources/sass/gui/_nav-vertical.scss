@@ -1,0 +1,91 @@
+.nav-vertical {
+    font-size: .938rem;
+    flex-direction: column;
+    gap: $spacer * .5;
+
+    &>.nav-item {
+
+        &>.nav-toggle {
+            --#{$prefix}link-color-rgb: --#{$prefix}nav-link-color-rgb;
+            --#{$prefix}link-hover-color: --#{$prefix}nav-link-hover-color;
+
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .25rem 0;
+
+            .icon-flex {
+                --#{$prefix}icon-flex-align: start;
+            }
+
+            &:hover {
+                color: var(--#{$prefix}primary-text-emphasis);
+            }
+
+            &:after {
+                font: var(--#{$fa-css-prefix}-font-solid);
+                font-size: var(--#{$prefix}body-font-size);
+                content: fa-content($fa-var-angle-up);
+                display: inline;
+                padding-top: calc((1rem - 1em) / 2);
+            }
+
+            &.collapsed:after {
+                content: fa-content($fa-var-angle-down);
+            }
+        }
+
+        &>.nav {
+            --#{$prefix}nav-link-padding-y: .25rem;
+            --#{$prefix}nav-link-padding-x: 1.625rem;
+            --#{$prefix}nav-link-hover-color: var(--#{$prefix}link-inverted-hover-color);
+
+            flex-wrap: nowrap;
+            flex-direction: column;
+
+            .nav-link {
+                &.active {
+                    color: var(--#{$prefix}nav-link-hover-color);
+                }
+            }
+        }
+    }
+
+    &.dots {
+        --#{$prefix}nav-dot-width: .438rem;
+
+        &>.nav-item>.nav>.nav-item {
+            position: relative;
+
+            &:not(:first-child):before {
+                background-color: var(--#{$prefix}border-color);
+                content: "";
+                height: .625rem;
+                left: calc((var(--#{$prefix}nav-link-padding-x) * .25) + (var(--#{$prefix}nav-dot-width) * .5) - var(--#{$prefix}border-width));
+                position: absolute;
+                opacity: .5;
+                top: 0;
+                transform: translateY(-50%);
+                width: calc(var(--#{$prefix}border-width) * 2);
+            }
+
+            &>.nav-link {
+                &:before {
+                    content: "";
+                    background-color: var(--#{$prefix}border-color);
+                    border-radius: var(--#{$prefix}nav-dot-width);
+                    height: var(--#{$prefix}nav-dot-width);
+                    width: var(--#{$prefix}nav-dot-width);
+                    left: calc(var(--#{$prefix}nav-link-padding-x) * .25);
+                    position: absolute;
+                    top: calc((100% * .5) - (var(--#{$prefix}nav-dot-width) * .5));
+                }
+
+                &.active:before {
+                    background-color: var(--#{$prefix}nav-link-hover-color);
+                }
+            }
+        }
+    }
+}

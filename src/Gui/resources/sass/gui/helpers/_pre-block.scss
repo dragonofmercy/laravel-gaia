@@ -1,0 +1,6 @@
+.pre-block {
+    border: $border-width $border-style $border-color;
+    background-color: $gui-panel-footer-bg;
+    padding: $spacer;
+    @include border-radius($border-radius);
+}

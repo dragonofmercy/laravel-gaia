@@ -1,0 +1,20 @@
+:root {
+    --#{$prefix}rgb-primary: #{to-rgb($primary)};
+    --#{$prefix}rgb-success: #{to-rgb($success)};
+    --#{$prefix}rgb-warning: #{to-rgb($warning)};
+    --#{$prefix}rgb-danger: #{to-rgb($danger)};
+    --#{$prefix}rgb-info: #{to-rgb($info)};
+
+    --#{$prefix}link-inverted-color: #{$link-inverted-color};
+    --#{$prefix}link-inverted-hover-color: #{$link-inverted-hover-color};
+    --#{$prefix}featured-text-color: #{$gui-featured-text-color};
+    --#{$prefix}text-white: #{$gui-text-white};
+    --#{$prefix}light-border-color: #{$gui-inner-border-color};
+    --#{$prefix}card-bg: #{$card-bg};
+    --#{$prefix}spacer: #{$spacer};
+    --#{$prefix}line-height-size: #{$font-size-base * $line-height-base};
+
+    @each $color, $value in $theme-colors-text {
+        --#{$prefix}#{$color}-text-emphasis-rgb: #{to-rgb($value)};
+    }
+}

@@ -1,0 +1,16 @@
+.gui-loading {
+
+    display: inline-block;
+
+    &.circle {
+        @include content-loading('circle');
+    }
+
+    &.infinite {
+        @include content-loading('infinite');
+    }
+
+    &.bars {
+        @include content-loading('bars');
+    }
+}

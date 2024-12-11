@@ -1,0 +1,11 @@
+.table {
+    --#{$prefix}table-header-border-color: #{$table-header-border-color};
+
+    thead {
+        tr {
+            th {
+                border-color: var(--#{$prefix}table-header-border-color);
+            }
+        }
+    }
+}

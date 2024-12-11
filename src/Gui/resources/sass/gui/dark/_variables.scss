@@ -1,0 +1,115 @@
+$gui-outer-border-color: #383f49 !default;
+$gui-inner-border-color: #2f353c !default;
+$gui-featured-text-color: #d5dbdb !default;
+$gui-text-color: #9da9bb !default;
+$gui-panel-bg: #242930 !default;
+$gui-panel-footer-bg: #20262e !default;
+$gui-theme: dark !default;
+
+$primary: #1a5276 !default;
+$success: #0a5240 !default;
+$info: #2c81ba !default;
+$warning: #a96801 !default;
+$danger: #890e01 !default;
+
+$primary-text-emphasis:     lighten($primary, 25%) !default;
+$success-text-emphasis:     lighten($success, 17%) !default;
+$info-text-emphasis:        lighten($info, 25%) !default;
+$warning-text-emphasis:     lighten($warning, 25%) !default;
+$danger-text-emphasis:      lighten($danger, 15%) !default;
+
+$primary-bg-subtle:         darken($primary, 15%) !default;
+$success-bg-subtle:         darken($success, 3%) !default;
+$info-bg-subtle:            darken($info, 15%) !default;
+$warning-bg-subtle:         darken($warning, 10%) !default;
+$danger-bg-subtle:          darken($danger, 8%) !default;
+
+$primary-border-subtle:     darken($primary, 10%) !default;
+$success-border-subtle:     darken($success, 1%) !default;
+$info-border-subtle:        darken($info, 5%) !default;
+$warning-border-subtle:     darken($warning, 5%) !default;
+$danger-border-subtle:      darken($danger, 5%) !default;
+
+$btn-hover-border-shade-amount:   0% !default;
+$btn-active-bg-shade-amount:      20% !default;
+$btn-active-border-shade-amount:  0% !default;
+
+$gray-100:  #344050 !default;
+$gray-200:  #4d5969 !default;
+$gray-300:  #5e6e82 !default;
+$gray-400:  #748194 !default;
+$gray-500:  #9da9bb !default;
+$gray-600:  #b6c1d2 !default;
+$gray-700:  #d8e2ef !default;
+$gray-800:  #edf2f9 !default;
+$gray-900:  #f9fafd !default;
+
+$body-bg: #181e25 !default;
+$body-color: #95a5a6 !default;
+
+$body-secondary-bg: $gui-inner-border-color !default;
+
+$link-color: #08A6F6 !default;
+$link-hover-color: #ecf0f1 !default;
+$link-inverted-hover-color: #ecf0f1 !default;
+$link-shade-percentage: 1% !default;
+
+$navbar-dark-bg: #1f2937 !default;
+$navbar-dark-color: darken($body-color, 10%) !default;
+$navbar-dark-hover-color: lighten($body-color, 10%) !default;
+
+$navbar-light-hover-color: lighten($body-color, 10%) !default;
+
+$pagination-focus-box-shadow: none !default;
+
+$alert-bg-scale: 0 !default;
+$alert-border-scale: 0 !default;
+
+$dropdown-link-hover-color: $link-hover-color !default;
+$dropdown-link-hover-bg: darken($gui-panel-bg, 3%) !default;
+$dropdown-link-disabled-color: #4a5758 !default;
+$dropdown-bg: $gui-panel-footer-bg !default;
+
+$list-group-disabled-color: darken($body-color, 20%) !default;
+
+$input-bg: #20262e !default;
+$input-color: $body-color !default;
+$input-border-color: #3a4048 !default;
+$input-group-addon-bg: #1C232D !default;
+$input-placeholder-color: #7c8088 !default;
+$input-disabled-bg: $input-bg !default;
+$input-disabled-color: darken($input-color, 30%) !default;
+$input-focus-bg: $body-bg !default;
+$input-focus-box-shadow: none !default;
+$input-placeholder-color: $input-color !default;
+
+$input-btn-focus-color-opacity: .75 !default;
+
+$modal-content-border-color: $gui-inner-border-color !default;
+
+$form-select-focus-box-shadow: none !default;
+
+$form-range-track-bg: #181e25 !default;
+$form-range-thumb-disabled-bg: $input-bg !default;
+
+$table-striped-bg: lighten($gui-panel-bg, 1%) !default;
+
+$popover-header-bg: $navbar-dark-bg !default;
+
+$kbd-bg: #181e25 !default;
+
+//
+// Gui components
+//
+
+$gui-form-checklist-border-color: $input-border-color !default;
+$gui-form-checklist-heading-bg: shade-color($gui-panel-bg, 6%) !default;
+
+$gui-dp-link-outer-color: lighten($dropdown-link-disabled-color, 15%) !default;
+
+$gui-datatable-headers-icon-color: #6c757d !default;
+$gui-datatable-headers-color: darken($body-color, 10%) !default;
+$gui-datatable-responsive-headers-color: #6c757d !default;
+$gui-datatable-search-bg: rgba(0,0,50, .1) !default;
+$gui-datatable-search-border-color: $input-border-color !default;
+$gui-datatable-column-sorting-color: lighten($table-striped-bg, 1%) !default;

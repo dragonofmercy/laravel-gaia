@@ -1,0 +1,11 @@
+.autocomplete {
+    display: flex;
+    flex-direction: column;
+    margin-top: $dropdown-spacer;
+    z-index: $zindex-popover;
+
+    .dropdown-item {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

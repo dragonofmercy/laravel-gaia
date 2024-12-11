@@ -1,0 +1,42 @@
+.data-list {
+    margin: 0;
+    padding: 0;
+
+    &.even {
+        max-width: 31rem;
+    }
+
+    &>.line {
+        display: flex;
+
+        &>div, &>span {
+            display: flex;
+            flex-grow: 1;
+            border-bottom: 1px solid var(--#{$prefix}light-border-color);
+            position: relative;
+            padding: calc(var(--#{$prefix}spacer) * .15) calc(var(--#{$prefix}spacer) * .5);
+
+            &:first-child {
+                max-width: 12rem;
+                min-width: 12rem;
+                align-items: end;
+                flex-shrink: 0;
+                color: var(--#{$prefix}gray-500);
+            }
+
+            &:not(:first-child) {
+                flex-direction: column;
+                justify-content: end;
+            }
+
+            &:before {
+                position: absolute;
+                border-left: 1px solid var(--#{$prefix}light-border-color);
+                height: .65rem;
+                bottom: 0;
+                left: 0;
+                content: "";
+            }
+        }
+    }
+}

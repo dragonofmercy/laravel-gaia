@@ -1,0 +1,156 @@
+.tokenize-container {
+    --#{$prefix}spacer: #{$spacer * .188};
+    --#{$prefix}token-border-color: #{shift-color($input-border-color, if($gui-theme == light, -50, 10))};
+
+    min-height: 2rem;
+    display: flex;
+    gap: var(--#{$prefix}spacer);
+    padding: var(--#{$prefix}spacer);
+
+    &:focus-within {
+        @extend .form-control:focus;
+    }
+
+    &>input {
+        flex: 1 1 0px;
+        border: none;
+        min-width: 0;
+        background-color: transparent;
+        padding: ($input-btn-padding-y * .5) ($input-btn-padding-x * .75);
+        color: $input-color;
+
+        &::placeholder {
+            @extend .form-control::placeholder;
+        }
+    }
+
+    &>.token {
+        cursor: default;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        &>span {
+            flex-shrink: 1;
+            padding: var(--#{$prefix}spacer) $input-btn-padding-x * .5;
+        }
+
+        &>.vr {
+            background-color: var(--#{$prefix}token-border-color);
+            opacity: 1;
+        }
+
+        &>a {
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &>i {
+                font-size: 1em;
+                line-height: 1px;
+            }
+        }
+    }
+
+    &.layout-row {
+        --#{$prefix}token-border-color: #{shift-color($component-active-bg, if($gui-theme == light, 25, -10))};
+
+        align-items: flex-start;
+        flex-flow: wrap;
+
+        &>.token {
+            color: $component-active-color;
+            background-color: $component-active-bg;
+            border: $border-width solid var(--#{$prefix}token-border-color);
+
+            @include border-radius(.15rem);
+
+            &>a {
+                padding-left: ($input-btn-padding-x * .5);
+                padding-right: ($input-btn-padding-x * .5);
+
+                &:hover {
+                    background-color: shift-color($component-active-bg, if($gui-theme == light, 10, -5));
+                }
+            }
+
+            &>span {
+                padding-top: calc(var(--#{$prefix}spacer) - var(--gui-border-width));
+                padding-bottom: calc(var(--#{$prefix}spacer) - var(--gui-border-width));
+            }
+
+            &.await {
+                --#{$prefix}token-border-color: #{shift-color($warning, if($gui-theme == light, 20, -25))};
+
+                background-color: $warning;
+
+                &>a:hover {
+                    background-color: shift-color($warning, if($gui-theme == light, 5, 5));
+                }
+            }
+
+            &+input {
+                padding-left: ($input-btn-padding-x * .25);
+            }
+        }
+    }
+
+    &.layout-column {
+        flex-direction: column;
+
+        &>.token {
+            padding-bottom: var(--#{$prefix}spacer);
+            border-bottom: $border-width solid var(--#{$prefix}token-border-color);
+
+            &>span {
+                flex-grow: 1;
+            }
+
+            &>a {
+                padding-left: ($input-btn-padding-x * .75);
+                padding-right: ($input-btn-padding-x * .75);
+
+                &:hover {
+                    opacity: .7;
+                }
+            }
+
+            &>.vr {
+                margin: 2px 0;
+            }
+
+            &.await {
+                color: $warning;
+            }
+
+            &+input {
+                padding-left: ($input-btn-padding-x * .5);
+                padding-bottom: calc(var(--#{$prefix}spacer) - #{$border-width});
+                padding-top: calc(var(--#{$prefix}spacer) - #{$border-width});
+            }
+
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    &.sortable {
+        &>.token {
+            &>span {
+                cursor: grab;
+            }
+        }
+    }
+
+    &.disabled {
+        background-color: $input-disabled-bg;
+
+        &>.token {
+            opacity: .5;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "name": "dragonofmercy/gaia",
+    "version": "1.0.0",
+    "description": "Gaia package for laravel",
+    "require": {
+        "ext-fileinfo": "*",
+        "ext-openssl": "*",
+        "laravel/framework": "^11.0",
+        "laminas/laminas-escaper": ">=2.13",
+        "petercoles/multilingual-country-list": ">=1.2.11",
+        "rct567/dom-query": ">=1.1"
+    },
+    "autoload": {
+        "files": [
+            "src/Gui/Helpers/tags.php",
+            "src/Gui/Helpers/javascript.php",
+            "src/Gui/Helpers/jquery.php",
+            "src/Gui/Helpers/localization.php",
+            "src/Gui/Helpers/url.php",
+            "src/Gui/Helpers/gui.php"
+        ],
+        "psr-4": {
+            "Demeter\\": "src/Demeter/",
+            "Minerva\\": "src/Minerva/",
+            "Gui\\": "src/Gui/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false,
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "petercoles/multilingual-country-list"
+            ]
+        }
+    }
+}

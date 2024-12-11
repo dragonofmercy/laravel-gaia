@@ -1,0 +1,24 @@
+.btn-primary {
+    --#{$prefix}btn-border-color: #{lighten($primary, 5%)};
+}
+
+.btn-success {
+    --#{$prefix}btn-border-color: #{lighten($success, 3%)};
+}
+
+.btn-danger {
+    --#{$prefix}btn-border-color: #{lighten($danger, 5%)};
+}
+
+.btn-warning {
+    --#{$prefix}btn-border-color: #{lighten($warning, 6%)};
+}
+
+.btn-info {
+    --#{$prefix}btn-border-color: #{lighten($info, 5%)};
+}
+
+.btn-default {
+    --#{$prefix}btn-hover-border-color: #{lighten($primary, 5%)};
+    --#{$prefix}btn-active-border-color: #{lighten($primary, 3%)};
+}

@@ -1,0 +1,4 @@
+.gui-no-elements {
+    @include no-elements();
+    --#{$prefix}no-element-icon-color: #{$gui-datatable-headers-icon-color};
+}

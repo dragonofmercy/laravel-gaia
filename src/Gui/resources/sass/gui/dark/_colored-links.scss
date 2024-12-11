@@ -1,0 +1,10 @@
+@each $color, $value in $theme-colors-text {
+    .link-#{$color} {
+        color: $value !important;
+
+        &:hover,
+        &:focus {
+            color: lighten($value, 15%) !important;
+        }
+    }
+}

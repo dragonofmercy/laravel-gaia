@@ -1,0 +1,28 @@
+@for $i from 1 through 16 {
+    $v: $i * 8;
+    .icon#{$v}{
+        width: #{$v}px;
+        height: #{$v}px;
+    }
+}
+
+.icon-flex {
+    --#{$prefix}icon-flex-align: center;
+
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    gap: $spacer * .375;
+
+    &.icon-img {
+        gap: $spacer * .5;
+    }
+
+    i {
+        display: flex;
+        align-items: center;
+        justify-content: var(--#{$prefix}icon-flex-align);
+        width: 1.25em;
+        min-height: 1.125rem;
+    }
+}

@@ -1,0 +1,17 @@
+.heading-control {
+    display: flex;
+    align-items: center;
+    gap: $btn-padding-x;
+    margin-left: auto;
+
+    a:not(.dropdown-item){
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--#{$prefix}link-inverted-color);
+        white-space: nowrap;
+
+        &:hover {
+            color: var(--#{$prefix}link-inverted-hover-color);
+        }
+    }
+}
