@@ -36,7 +36,7 @@ class MultiFieldsValidator extends AbstractValidator
             $fieldCount = count($v[$fields[0]]);
             for($i = 0; $i < $fieldCount; $i++){
                 $item = [];
-                foreach ($fields as $field) {
+                foreach($fields as $field) {
                     $item[$field] = $v[$field][$i];
                 }
                 $lines[] = $item;
@@ -67,8 +67,10 @@ class MultiFieldsValidator extends AbstractValidator
         $errors = [];
         $index = 0;
 
-        $v->transform(function(array $line) use (&$index, &$errors){
-            $this->getOption('validators')->map(function(AbstractValidator|string $validator, string $name) use (&$line, $index, &$errors){
+        $v = $v->transform(function(array $line) use (&$index, &$errors){
+            $flagEmpty = true;
+            $flagError = false;
+            $this->getOption('validators')->map(function(AbstractValidator|string $validator, string $name) use (&$line, $index, &$errors, &$flagEmpty, &$flagError){
                 if(!$validator instanceof AbstractValidator){
                     $validator = new $validator(['required' => $this->getOption('required')]);
                 }
@@ -78,15 +80,23 @@ class MultiFieldsValidator extends AbstractValidator
 
                 try {
                     $line[$name] = $validator->clean($line[$name] ?? null);
+                    if($line[$name] !== $validator->getEmptyValue()){
+                        $flagEmpty = false;
+                    }
                 } catch(Error $e) {
+                    $flagError = true;
                     Arr::set($errors, $index . '.' . $name, $e->getMessage());
                 }
             });
 
+            if($flagEmpty && !$flagError){
+                return null;
+            }
+
             $index++;
 
             return $line;
-        });
+        })->filter(fn($line) => null !== $line)->values();
 
         if(count($errors)){
             throw new Error($this, 'invalid', ['errors' => json_encode($errors)]);
