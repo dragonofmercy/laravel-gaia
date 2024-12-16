@@ -33,6 +33,23 @@ class Str extends \Illuminate\Support\Str
     }
 
     /**
+     * Splits a given string into a collection based on a specified separator.
+     *
+     * @param string|null $string The input string to be split, or null to return an empty collection.
+     * @param string $separator The string delimiter to use for splitting the input string.
+     * @param int $limit The maximum number of elements in the resulting collection. Defaults to PHP_INT_MAX.
+     * @return Collection A collection of the split string fragments, or an empty collection if the input string is null.
+     */
+    public static function explode(string|null $string, string $separator, int $limit = PHP_INT_MAX) : Collection
+    {
+        if(null === $string){
+            return new Collection();
+        }
+
+        return new Collection(explode($separator, $string, $limit));
+    }
+
+    /**
      * Strtr speedy method
      *
      * @param string $haystack
