@@ -4,9 +4,9 @@ namespace Gui\Contracts;
 interface Datatable
 {
     /**
-     * Render datatable
+     * Renders and returns a string representation of the datatable.
      *
-     * @return string
+     * @return string The rendered output.
      */
     public function render(): string;
 }
