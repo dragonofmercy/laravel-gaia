@@ -51,12 +51,9 @@ abstract class AbstractDecorator
     {
         $this->engine->make();
 
-        $replacements = [];
-
-        foreach($this->getComponents() as $needle => $classname)
-        {
-            $replacements[$needle] = (new $classname($this))->render();
-        }
+        $replacements = array_map(function($classname){
+            return (new $classname($this))->render();
+        }, $this->getComponents());
 
         return str_replace(array_keys($replacements), array_values($replacements), $this->layout);
     }
