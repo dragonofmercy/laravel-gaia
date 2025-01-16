@@ -17,7 +17,7 @@ class ExchangeRatesManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return strval($this->config->get('services.rates.driver') ?? 'frankfurter');
+        return strval($this->config->get('minerva.rates.driver') ?? 'frankfurter');
     }
 
     /**
@@ -50,10 +50,10 @@ class ExchangeRatesManager extends Manager
         $factory = $this->container->make(CacheFactory::class);
 
         return new CachedProvider(
-            $factory->store($this->config->get('services.rates.cache.store')),
-            $this->driver($this->config->get('services.rates.cache.driver', 'frankfurter')),
-            strval($this->config->get('services.rates.cache.key', 'cached_exchange_rates')),
-            intval($this->config->get('services.rates.cache.ttl', 900)),
+            $factory->store($this->config->get('minerva.rates.cache.store')),
+            $this->driver($this->config->get('minerva.rates.cache.driver', 'frankfurter')),
+            strval($this->config->get('minerva.rates.cache.key', 'cached_exchange_rates')),
+            intval($this->config->get('minerva.rates.cache.ttl', 900)),
         );
     }
 }
