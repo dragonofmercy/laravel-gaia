@@ -1,10 +1,7 @@
 <?php
 namespace Demeter\Providers;
 
-use Demeter\Compiler\MinifyCompiler;
-use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\DynamicComponent;
 
 class DemeterServiceProvider extends ServiceProvider
 {
@@ -14,32 +11,6 @@ class DemeterServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerFlash();
-
-        if(config('demeter.minify', false)){
-            $this->registerBladeMinify();
-        }
-    }
-
-    /**
-     * Register blade compressor
-     *
-     * @return void
-     */
-    protected function registerBladeMinify() : void
-    {
-        $this->app->singleton('blade.compiler', function(Container $app){
-            return tap(new MinifyCompiler(
-                $app['files'],
-                $app['config']['view.compiled'],
-                $app['config']->get('view.relative_hash', false) ? $app->basePath() : '',
-                $app['config']->get('view.cache', true),
-                $app['config']->get('view.compiled_extension', 'php'),
-            ), function(MinifyCompiler $blade) {
-                $blade->setIgnoredPaths(config('demeter.minify_ignore', ['Illuminate/Mail/resources/views', 'Illuminate/Notifications/resources/views']));
-                $blade->initMinifyCompiler();
-                $blade->component('dynamic-component', DynamicComponent::class);
-            });
-        });
     }
 
     /**
