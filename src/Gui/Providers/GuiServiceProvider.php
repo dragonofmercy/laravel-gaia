@@ -6,11 +6,12 @@ use Illuminate\Support\ServiceProvider;
 
 class GuiServiceProvider extends ServiceProvider
 {
-    /**
-     * @return void
-     */
     public function register(): void
     {
+        $this->registerConfig();
+        $this->registerBladeComponents();
+        $this->registerViewComposer();
+
         \Illuminate\Cookie\Middleware\EncryptCookies::except('dark-mode');
 
         $this->loadTranslationsFrom(__DIR__ . '/../Translation/lang', 'gui');
@@ -19,39 +20,36 @@ class GuiServiceProvider extends ServiceProvider
         $this->app->singleton(\Gui\Translation\Countries::class);
     }
 
-    /**
-     * @return void
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
     public function boot(): void
     {
-        $source = realpath(__DIR__ . '/../../../config/gui.php');
-
-        $this->mergeConfigFrom($source, 'gui');
-        $this->publishes([$source => $this->app->configPath('gui.php')], 'config');
-        $this->publishes([__DIR__ . '/../resources/public' => public_path('assets/gui')], 'public');
-
-        $this->registerBladeComponents();
-        $this->registerViewComposer();
+        if(app()->runningInConsole()){
+            $this->publishConfig();
+        }
     }
 
-    /**
-     * Register blade components
-     *
-     * @return void
-     */
     protected function registerBladeComponents(): void
     {
         BladeFacade::componentNamespace('Gui\\View\\Components', 'gui');
     }
 
-    /**
-     * Register view composer
-     *
-     * @return void
-     */
     protected function registerViewComposer(): void
     {
         $this->app['view']->composer(config('gui.view_composer_layout', 'gui::layout'), \Gui\View\Composer::class);
+    }
+
+    protected function registerConfig(): void
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../../../config/gui.php', 'gui');
+    }
+
+    protected function publishConfig(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../../../config/gui.php' => config_path('gui.php')
+        ], 'gui-config');
+
+        $this->publishes([
+            __DIR__ . '/../resources/public' => public_path('assets/gui')
+        ], 'public');
     }
 }
