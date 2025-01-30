@@ -16,12 +16,14 @@ class FileValidator extends AbstractValidator
         $this->addOption('max');
         $this->addOption('min');
         $this->addOption('maxSize');
+        $this->addOption('minSize');
         $this->addOption('mimeTypes');
         $this->addOption('multiple', false);
 
         $this->setMessage('min', 'gui::validation.file.min');
         $this->setMessage('max', 'gui::validation.file.max');
         $this->setMessage('maxSize', 'gui::validation.file.max_size');
+        $this->setMessage('minSize', 'gui::validation.file.min_size');
         $this->setMessage('mimeTypes', 'gui::validation.file.mime_types');
     }
 
@@ -72,6 +74,10 @@ class FileValidator extends AbstractValidator
      */
     protected function validateFile(UploadedFile $file) : UploadedFile
     {
+        if($this->hasOption('minSize') && $file->getSize() < $this->getOption('minSize')){
+            throw new Error($this, 'minSize', ['name' => $file->getClientOriginalName(), 'size' => Number::fileSize($this->getOption('minSize'))]);
+        }
+
         if($this->hasOption('maxSize') && $file->getSize() > $this->getOption('maxSize')){
             throw new Error($this, 'maxSize', ['name' => $file->getClientOriginalName(), 'size' => Number::fileSize($this->getOption('maxSize'))]);
         }

@@ -44,6 +44,7 @@ return [
         'min' => "Veuillez choisir au moins :min fichiers.",
         'max' => "Veuillez choisir au maximum :max fichiers.",
         'max_size' => "\":name\" est trop volumineux (max :size).",
+        'min_size' => "\":name\" est pas assez volumineux (min :size).",
         'mime_types' => "Le type \":mime\" n'est pas accepté pour le fichier \":name\".",
     ],
 
