@@ -74,11 +74,12 @@
     GUIControlDatePicker.prototype.show = function(){
         let $this = this;
 
+        if(null !== this.options.initialDate){
+            this.timestamp = this.timestampFormat(this.options.initialDate);
+        }
+
         if(this.$element.is('input') && this.$element.val()){
-            let tmp = this.DateTime.fromFormat(this.$element.val(), this.parsingFormat(), { locale: this.options.language });
-            if(tmp.isValid){
-                this.timestamp = this.selectedTimestamp = tmp;
-            }
+            this.timestamp = this.selectedTimestamp = this.timestampFormat(this.$element.val());
         }
 
         if(this.options.timeOnly){
@@ -102,6 +103,14 @@
         }
 
         $('.dp-menu', this.$template).css('display', 'inline-flex');
+    };
+
+    GUIControlDatePicker.prototype.timestampFormat = function(value){
+        if(null === value){
+            return null;
+        }
+        let tmp = this.DateTime.fromFormat(value, this.parsingFormat(), { locale: this.options.language });
+        return tmp.isValid ? tmp : null;
     };
 
     GUIControlDatePicker.prototype.hide = function(){
@@ -498,7 +507,7 @@
     };
 
     GUIControlDatePicker.prototype.setOption = function(name, value){
-        if(value !== null && (name == 'min' || name == 'max')){
+        if(value !== null && (name == 'min' || name == 'max' || name == 'initialDate')){
             value = this.DateTime.fromISO(value);
         }
 
@@ -510,6 +519,7 @@
         inline: false,
         min: null,
         max: null,
+        initialDate: null,
         withTime: false,
         timeOnly: false,
         dateFormat: 'yyyy-LL-dd',
