@@ -6,7 +6,7 @@ class InputEmail extends InputText
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 

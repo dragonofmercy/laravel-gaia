@@ -54,7 +54,7 @@ abstract class AbstractSearchType
      *
      * @return AbstractFilter
      */
-    public function getFilter() : AbstractFilter
+    public function getFilter(): AbstractFilter
     {
         return $this->filter;
     }
@@ -64,7 +64,7 @@ abstract class AbstractSearchType
      *
      * @return SearchComponent
      */
-    protected function getParent() : SearchComponent
+    protected function getParent(): SearchComponent
     {
         return $this->parent;
     }
@@ -74,5 +74,5 @@ abstract class AbstractSearchType
      *
      * @return string
      */
-    abstract public function render() : string;
+    abstract public function render(): string;
 }

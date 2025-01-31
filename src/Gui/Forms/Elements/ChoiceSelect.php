@@ -11,7 +11,7 @@ class ChoiceSelect extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -28,7 +28,7 @@ class ChoiceSelect extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         if($this->getOption('multiple')){
             $this->setAttribute('multiple', 'multiple');
@@ -49,7 +49,7 @@ class ChoiceSelect extends AbstractElement
      * @param mixed|null $value
      * @return string
      */
-    protected function renderOptions(Collection|array $choices = [], mixed $value = null) : string
+    protected function renderOptions(Collection|array $choices = [], mixed $value = null): string
     {
         $output = "";
         $optionsAttributes = collect($this->getOption('optionsAttributes'));
@@ -98,7 +98,7 @@ class ChoiceSelect extends AbstractElement
      *
      * @return Collection
      */
-    protected function getChoices() : Collection
+    protected function getChoices(): Collection
     {
         $options = collect($this->getOption('choices'));
         $featured = collect($this->getOption('featured'))->reverse();

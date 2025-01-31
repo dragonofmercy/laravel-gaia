@@ -8,7 +8,7 @@ class InputRange extends Input
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -28,7 +28,7 @@ class InputRange extends Input
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         $this->appendAttribute('class', 'form-range');
 
@@ -49,7 +49,7 @@ class InputRange extends Input
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $output = "";
 

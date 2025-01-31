@@ -14,7 +14,7 @@ class ReCaptcha extends HCaptcha
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 

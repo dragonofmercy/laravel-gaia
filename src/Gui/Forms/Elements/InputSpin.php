@@ -9,7 +9,7 @@ class InputSpin extends InputText
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -24,7 +24,7 @@ class InputSpin extends InputText
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -35,7 +35,7 @@ class InputSpin extends InputText
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $opt = [
             'min' => $this->getOption('min'),

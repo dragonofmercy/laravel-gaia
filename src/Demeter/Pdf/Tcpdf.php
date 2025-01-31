@@ -80,7 +80,7 @@ class Tcpdf extends \TCPDF
      * @param string|array $format
      * @return void
      */
-    public function newPage(string $orientation = self::ORIENTATION_PORTRAIT, string|array $format = "A4") : void
+    public function newPage(string $orientation = self::ORIENTATION_PORTRAIT, string|array $format = "A4"): void
     {
         $this->currentFormat = $format;
         $this->AddPage($orientation, $format);
@@ -91,7 +91,7 @@ class Tcpdf extends \TCPDF
      *
      * @return string
      */
-    public function getCurrentPageOrientation() : string
+    public function getCurrentPageOrientation(): string
     {
         return $this->CurOrientation;
     }
@@ -101,7 +101,7 @@ class Tcpdf extends \TCPDF
      *
      * @return string
      */
-    public function getCurrentPageFormat() : string
+    public function getCurrentPageFormat(): string
     {
         return $this->currentFormat;
     }
@@ -110,7 +110,7 @@ class Tcpdf extends \TCPDF
      * Get content width
      * @return float
      */
-    public function getContentWidth() : float
+    public function getContentWidth(): float
     {
         return floatval($this->getPageWidth() - $this->lMargin - $this->rMargin);
     }
@@ -120,7 +120,7 @@ class Tcpdf extends \TCPDF
      *
      * @return float
      */
-    public function getContentHeight() : float
+    public function getContentHeight(): float
     {
         return floatval($this->getPageHeight() - $this->tMargin - $this->bMargin);
     }
@@ -130,7 +130,7 @@ class Tcpdf extends \TCPDF
      *
      * @return float
      */
-    public function getFooterTop() : float
+    public function getFooterTop(): float
     {
         return floatval($this->getPageHeight() - $this->getFooterMargin());
     }
@@ -141,7 +141,7 @@ class Tcpdf extends \TCPDF
      * @param string|array $color
      * @return void
      */
-    public function textColor(string|array $color) : void
+    public function textColor(string|array $color): void
     {
         if(!is_array($color))
         {
@@ -157,7 +157,7 @@ class Tcpdf extends \TCPDF
      * @param string|array $color
      * @return void
      */
-    public function fillColor(string|array $color) : void
+    public function fillColor(string|array $color): void
     {
         if(!is_array($color))
         {
@@ -173,7 +173,7 @@ class Tcpdf extends \TCPDF
      * @param bool $v
      * @return void
      */
-    public function textBold(bool $v) : void
+    public function textBold(bool $v): void
     {
         $this->setFont($this->getFontFamily(), $v ? 'B' : '');
     }
@@ -184,7 +184,7 @@ class Tcpdf extends \TCPDF
      * @param array $args
      * @return void
      */
-    public function textBox(array $args = []) : void
+    public function textBox(array $args = []): void
     {
         $defaults = array(
             'w' => 0,
@@ -273,7 +273,7 @@ class Tcpdf extends \TCPDF
      * @param float|null $v
      * @return float|Tcpdf
      */
-    public function top(float $v = null) : float|self
+    public function top(float $v = null): float|self
     {
         if(null === $v){
             return $this->GetY();
@@ -289,7 +289,7 @@ class Tcpdf extends \TCPDF
      * @param float|null $v
      * @return float|Tcpdf
      */
-    public function left(float $v = null) : float|self
+    public function left(float $v = null): float|self
     {
         if(null === $v){
             return $this->GetX();
@@ -317,7 +317,7 @@ class Tcpdf extends \TCPDF
      * @param float $v
      * @return void
      */
-    public function moveDown(float $v) : void
+    public function moveDown(float $v): void
     {
         $this->setY($this->GetY() + $v, false);
     }
@@ -328,7 +328,7 @@ class Tcpdf extends \TCPDF
      * @param float $v
      * @return void
      */
-    public function moveLeft(float $v) : void
+    public function moveLeft(float $v): void
     {
         $this->setX($this->GetX() + $v);
     }
@@ -339,7 +339,7 @@ class Tcpdf extends \TCPDF
      * @param string $color
      * @return array
      */
-    public function hexToRgb(string $color) : array
+    public function hexToRgb(string $color): array
     {
         $hex = str_replace("#", "", $color);
 
@@ -361,7 +361,7 @@ class Tcpdf extends \TCPDF
      *
      * @return int[]
      */
-    public function getFillColor() : array
+    public function getFillColor(): array
     {
         return $this->bgcolor;
     }
@@ -372,7 +372,7 @@ class Tcpdf extends \TCPDF
      * @param callable $callable
      * @return void
      */
-    public function setHeaderCallable(callable $callable) : void
+    public function setHeaderCallable(callable $callable): void
     {
         $this->headerClosure = $callable;
     }
@@ -383,7 +383,7 @@ class Tcpdf extends \TCPDF
      * @param callable $callable
      * @return void
      */
-    public function setFooterCallable(callable $callable) : void
+    public function setFooterCallable(callable $callable): void
     {
         $this->footerClosure = $callable;
     }
@@ -393,7 +393,7 @@ class Tcpdf extends \TCPDF
      *
      * @return callable|null
      */
-    public function getHeaderCallable() : callable|null
+    public function getHeaderCallable(): callable|null
     {
         return $this->headerClosure;
     }
@@ -403,7 +403,7 @@ class Tcpdf extends \TCPDF
      *
      * @return callable|null
      */
-    public function getFooterCallable() : callable|null
+    public function getFooterCallable(): callable|null
     {
         return $this->footerClosure;
     }
@@ -413,7 +413,7 @@ class Tcpdf extends \TCPDF
      *
      * @inheritDoc
      */
-    public function Header() : void
+    public function Header(): void
     {
         if($this->print_header && null !== $this->getHeaderCallable()){
             call_user_func($this->getHeaderCallable());
@@ -425,7 +425,7 @@ class Tcpdf extends \TCPDF
      *
      * @inheritDoc
      */
-    public function Footer() : void
+    public function Footer(): void
     {
         if($this->print_footer && null !== $this->getFooterCallable()){
             call_user_func($this->getFooterCallable());
@@ -439,7 +439,7 @@ class Tcpdf extends \TCPDF
      * @param string $filename
      * @return never
      */
-    public function renderPdf(string $mode = self::DISPLAY_FULLPAGE, string $filename = '') : never
+    public function renderPdf(string $mode = self::DISPLAY_FULLPAGE, string $filename = ''): never
     {
         $filename = $this->buildFilename($filename);
 
@@ -476,7 +476,7 @@ class Tcpdf extends \TCPDF
      * @param string $filename
      * @return never
      */
-    public function downloadPdf(string $filename = "") : never
+    public function downloadPdf(string $filename = ""): never
     {
         $filename = $this->buildFilename($filename);
 
@@ -526,7 +526,7 @@ class Tcpdf extends \TCPDF
      * @param string $filename
      * @return string
      */
-    protected function buildFilename(string $filename = "") : string
+    protected function buildFilename(string $filename = ""): string
     {
         if($filename === '')
         {

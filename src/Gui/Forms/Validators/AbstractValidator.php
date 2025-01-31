@@ -51,7 +51,7 @@ abstract class AbstractValidator
      * @param mixed $v
      * @return mixed
      */
-    public function clean(mixed $v) : mixed
+    public function clean(mixed $v): mixed
     {
         if(is_string($v) && $this->options->get('trim', false)){
             $v = trim($v);
@@ -81,7 +81,7 @@ abstract class AbstractValidator
      *
      * @return void
      */
-    protected function beforeValidation() : void
+    protected function beforeValidation(): void
     {
     }
 
@@ -90,7 +90,7 @@ abstract class AbstractValidator
      *
      * @return void
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
     }
 
@@ -100,7 +100,7 @@ abstract class AbstractValidator
      * @param mixed $value
      * @return bool
      */
-    protected function isEmpty(mixed $value) : bool
+    protected function isEmpty(mixed $value): bool
     {
         return in_array($value, array(null, '', array()), true);
     }
@@ -110,7 +110,7 @@ abstract class AbstractValidator
      *
      * @return mixed
      */
-    protected function getEmptyValue() : mixed
+    protected function getEmptyValue(): mixed
     {
         return $this->getOption('emptyValue');
     }
@@ -121,5 +121,5 @@ abstract class AbstractValidator
      * @param mixed $v
      * @return mixed
      */
-    abstract protected function validate(mixed $v) : mixed;
+    abstract protected function validate(mixed $v): mixed;
 }

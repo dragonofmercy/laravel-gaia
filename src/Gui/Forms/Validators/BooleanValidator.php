@@ -6,7 +6,7 @@ class BooleanValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -21,7 +21,7 @@ class BooleanValidator extends AbstractValidator
      * @inheritDoc
      * @return boolean
      */
-    protected function validate(mixed $v) : bool
+    protected function validate(mixed $v): bool
     {
         if(in_array($v, $this->getOption('trueValues'))){
             return true;

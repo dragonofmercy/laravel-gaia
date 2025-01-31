@@ -8,7 +8,7 @@ class Textarea extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -18,7 +18,7 @@ class Textarea extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $this->setAttribute('name', $name);
 

@@ -463,7 +463,7 @@ abstract class Form implements Htmlable
      * @param string $name
      * @return AbstractValidator|null
      */
-    public function getValidator(string $name) : AbstractValidator|null
+    public function getValidator(string $name): AbstractValidator|null
     {
         return $this->validators->get($name);
     }
@@ -473,7 +473,7 @@ abstract class Form implements Htmlable
      *
      * @return Collection<string, AbstractValidator>
      */
-    public function getValidators() : Collection
+    public function getValidators(): Collection
     {
         return $this->validators;
     }
@@ -484,7 +484,7 @@ abstract class Form implements Htmlable
      * @param array<string, string> $helps
      * @return void
      */
-    public function setHelps(array $helps) : void
+    public function setHelps(array $helps): void
     {
         foreach($helps as $name => $help){
             $this->setHelp($name, $help);
@@ -498,7 +498,7 @@ abstract class Form implements Htmlable
      * @param string $help
      * @return void
      */
-    public function setHelp(string $name, string $help) : void
+    public function setHelp(string $name, string $help): void
     {
         $this->helps[$name] = $help;
     }
@@ -509,7 +509,7 @@ abstract class Form implements Htmlable
      * @param string $name
      * @return string|null
      */
-    public function getHelp(string $name) : string|null
+    public function getHelp(string $name): string|null
     {
         return $this->helps->get($name);
     }
@@ -519,7 +519,7 @@ abstract class Form implements Htmlable
      *
      * @return Collection<string, string>
      */
-    public function getHelps() : Collection
+    public function getHelps(): Collection
     {
         return $this->helps;
     }
@@ -530,7 +530,7 @@ abstract class Form implements Htmlable
      * @param array<string, mixed> $defaults
      * @return void
      */
-    public function setDefaults(array $defaults) : void
+    public function setDefaults(array $defaults): void
     {
         foreach($defaults as $name => $default){
             $this->setDefault($name, $default);
@@ -544,7 +544,7 @@ abstract class Form implements Htmlable
      * @param mixed $default
      * @return void
      */
-    public function setDefault(string $name, mixed $default) : void
+    public function setDefault(string $name, mixed $default): void
     {
         $this->defaults[$name] = $default;
     }
@@ -555,7 +555,7 @@ abstract class Form implements Htmlable
      * @param string $name
      * @return string|null
      */
-    public function getDefault(string $name) : string|null
+    public function getDefault(string $name): string|null
     {
         return $this->defaults->get($name);
     }
@@ -565,7 +565,7 @@ abstract class Form implements Htmlable
      *
      * @return Collection<string, mixed>
      */
-    public function getDefaults() : Collection
+    public function getDefaults(): Collection
     {
         return $this->defaults;
     }
@@ -576,7 +576,7 @@ abstract class Form implements Htmlable
      * @param array<string, AbstractElement> $elements
      * @return void
      */
-    public function setElements(array $elements) : void
+    public function setElements(array $elements): void
     {
         foreach($elements as $name => $element){
             $this->setElement($name, $element);
@@ -590,7 +590,7 @@ abstract class Form implements Htmlable
      * @param mixed $element
      * @return void
      */
-    public function setElement(string $name, AbstractElement $element) : void
+    public function setElement(string $name, AbstractElement $element): void
     {
         $element->setFormInstance($this);
         $element->setFieldName($name);
@@ -604,7 +604,7 @@ abstract class Form implements Htmlable
      * @param string $name
      * @return AbstractElement|null
      */
-    public function getElement(string $name) : AbstractElement|null
+    public function getElement(string $name): AbstractElement|null
     {
         return $this->elements->get($name);
     }
@@ -614,10 +614,10 @@ abstract class Form implements Htmlable
      *
      * @return Collection<string, AbstractElement>
      */
-    public function getElements() : Collection
+    public function getElements(): Collection
     {
         return $this->elements;
     }
 
-    abstract protected function configure() : void;
+    abstract protected function configure(): void;
 }

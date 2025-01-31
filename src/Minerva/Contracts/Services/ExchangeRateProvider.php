@@ -11,5 +11,5 @@ interface ExchangeRateProvider
      * @param float $amount
      * @return float
      */
-    public function getRates(string $fromCurrency, string $toCurrency, float $amount = 1.0) : float;
+    public function getRates(string $fromCurrency, string $toCurrency, float $amount = 1.0): float;
 }

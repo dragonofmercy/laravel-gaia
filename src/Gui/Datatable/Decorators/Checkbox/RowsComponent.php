@@ -14,7 +14,7 @@ class RowsComponent extends ComponentBase
     /**
      * @inheritDoc
      */
-    protected function renderCells(array|Collection $cells) : string
+    protected function renderCells(array|Collection $cells): string
     {
         if(!$cells instanceof Collection){
             $cells = collect($cells);

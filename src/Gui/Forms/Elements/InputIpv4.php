@@ -8,7 +8,7 @@ class InputIpv4 extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -18,7 +18,7 @@ class InputIpv4 extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $matrix = [null, null, null, null];
         $inputs = [];

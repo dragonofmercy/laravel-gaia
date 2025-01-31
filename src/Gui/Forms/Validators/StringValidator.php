@@ -8,7 +8,7 @@ class StringValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -27,7 +27,7 @@ class StringValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    public function clean(mixed $v) : mixed
+    public function clean(mixed $v): mixed
     {
         if(is_array($v)){
             $v = implode('', $v);
@@ -40,7 +40,7 @@ class StringValidator extends AbstractValidator
      * @inheritDoc
      * @return string
      */
-    protected function validate(mixed $v) : string
+    protected function validate(mixed $v): string
     {
         $v = Str::cleanup((string) $v, $this->getOption('trim'), $this->getOption('removeHtml'), $this->getOption('replaceWordChars'));
 

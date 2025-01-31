@@ -16,7 +16,7 @@ trait FieldName
      * @param ?string $name
      * @return void
      */
-    public function setFieldName(?string $name) : void
+    public function setFieldName(?string $name): void
     {
         $this->fieldName = $name;
     }
@@ -26,7 +26,7 @@ trait FieldName
      *
      * @return ?string
      */
-    public function getFieldName() : ?string
+    public function getFieldName(): ?string
     {
         return $this->fieldName;
     }

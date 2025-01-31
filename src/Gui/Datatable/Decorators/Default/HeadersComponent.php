@@ -57,7 +57,7 @@ class HeadersComponent extends AbstractComponent
      * @param Options $options
      * @return string
      */
-    protected function renderHeaderCell(string $column, string $label, Options $options) : string
+    protected function renderHeaderCell(string $column, string $label, Options $options): string
     {
         $datatable = $this->getParent()->getEngine();
         $attributes = [];

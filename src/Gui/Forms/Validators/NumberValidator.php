@@ -6,7 +6,7 @@ class NumberValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -24,7 +24,7 @@ class NumberValidator extends AbstractValidator
      * @inheritDoc
      * @return float
      */
-    protected function validate(mixed $v) : float
+    protected function validate(mixed $v): float
     {
         $clean = floatval($v);
 

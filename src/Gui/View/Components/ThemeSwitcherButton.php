@@ -15,7 +15,7 @@ class ThemeSwitcherButton extends Component
         public string $additionalClasses = '',
     ){}
 
-    public function render() : string
+    public function render(): string
     {
         $index = gui_darkmode() ? 1 : 0;
 

@@ -99,7 +99,7 @@ EOF;
      * @param ...$name
      * @return string
      */
-    public function formatFieldName(...$name) : string
+    public function formatFieldName(...$name): string
     {
         return vsprintf("dt_f" . str_repeat('[%s]', count($name)), $name);
     }
@@ -108,7 +108,7 @@ EOF;
      * Get if datatable has search filters
      * @return bool
      */
-    protected function hasSearchFilters() : bool
+    protected function hasSearchFilters(): bool
     {
         return $this->getParent()->getEngine()->getSearchFilters()->count() > 0;
     }
@@ -118,7 +118,7 @@ EOF;
      * @param string $key
      * @return string
      */
-    public function getJavascriptFunction(string $key) : string
+    public function getJavascriptFunction(string $key): string
     {
         if(!array_key_exists($key, static::$javascriptSearchFunctions)){
             throw new \InvalidArgumentException("Javascript function with key [$key] was not found");
@@ -132,7 +132,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderButtons() : string
+    protected function renderButtons(): string
     {
         $parent = $this->getParent();
 
@@ -152,7 +152,7 @@ EOF;
      * @param AbstractFilter $filter
      * @return string
      */
-    protected function renderSearchGroup(string $column, AbstractFilter $filter) : string
+    protected function renderSearchGroup(string $column, AbstractFilter $filter): string
     {
         $class = "";
         $replacements = [
@@ -172,7 +172,7 @@ EOF;
      * @param string $parentClass
      * @return string
      */
-    protected function renderSearchElement(string $column, AbstractFilter $filter, string &$parentClass) : string
+    protected function renderSearchElement(string $column, AbstractFilter $filter, string &$parentClass): string
     {
         $classname = $filter->getDecorator();
         return (new $classname($this, $column, $filter, $parentClass))->render();

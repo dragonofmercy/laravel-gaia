@@ -9,7 +9,7 @@ class MultiFieldsValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -27,7 +27,7 @@ class MultiFieldsValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    public function clean(mixed $v) : mixed
+    public function clean(mixed $v): mixed
     {
         $lines = new Collection();
 
@@ -51,7 +51,7 @@ class MultiFieldsValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function beforeValidation() : void
+    protected function beforeValidation(): void
     {
         parent::beforeValidation();
 
@@ -61,7 +61,7 @@ class MultiFieldsValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : array
+    protected function validate(mixed $v): array
     {
         $v = collect($v);
         $errors = [];
@@ -120,7 +120,7 @@ class MultiFieldsValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function isEmpty(mixed $value) : bool
+    protected function isEmpty(mixed $value): bool
     {
         return false;
     }

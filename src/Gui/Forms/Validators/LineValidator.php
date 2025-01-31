@@ -6,7 +6,7 @@ class LineValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -22,7 +22,7 @@ class LineValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : array
+    protected function validate(mixed $v): array
     {
         $lines = collect(preg_split('/\r?\n/', (string) $v));
         $validator = $this->getOption('validator');

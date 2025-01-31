@@ -10,7 +10,7 @@ class EloquentToken extends ChoiceToken
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -22,7 +22,7 @@ class EloquentToken extends ChoiceToken
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         if(is_array($value)){
             $value = collect($value)->map(function(mixed $v){
@@ -36,7 +36,7 @@ class EloquentToken extends ChoiceToken
     /**
      * @inheritDoc
      */
-    protected function getChoices() : Collection
+    protected function getChoices(): Collection
     {
         $choices = new Collection();
         $values = collect($this->getFormInstance()->getValue($this->getFieldName()));
@@ -69,7 +69,7 @@ class EloquentToken extends ChoiceToken
      *
      * @return string
      */
-    protected function getColumn() : string
+    protected function getColumn(): string
     {
         if($this->hasOption('column')){
             return $this->getOption('column');

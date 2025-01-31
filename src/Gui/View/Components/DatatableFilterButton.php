@@ -12,7 +12,7 @@ class DatatableFilterButton extends Component
         public bool   $responsive = true
     ){}
 
-    public function render() : string
+    public function render(): string
     {
         return '<a data-bs-toggle="collapse" href="#datagrid_search_' . $this->id . '" class="icon-flex">' . _gui_label_icon($this->label, $this->icon, $this->responsive) . '</a>';
     }

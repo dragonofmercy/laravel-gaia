@@ -25,7 +25,7 @@ class ExchangeRatesManager extends Manager
      *
      * @return FrankfurterProvider
      */
-    public function createFrankfurterDriver() : FrankfurterProvider
+    public function createFrankfurterDriver(): FrankfurterProvider
     {
         return new FrankfurterProvider($this->container->make(Factory::class));
     }
@@ -35,7 +35,7 @@ class ExchangeRatesManager extends Manager
      *
      * @return XratesProvider
      */
-    public function createXratesDriver() : XratesProvider
+    public function createXratesDriver(): XratesProvider
     {
         return new XratesProvider($this->container->make(Factory::class));
     }
@@ -45,7 +45,7 @@ class ExchangeRatesManager extends Manager
      *
      * @return CachedProvider
      */
-    public function createCachedDriver() : CachedProvider
+    public function createCachedDriver(): CachedProvider
     {
         $factory = $this->container->make(CacheFactory::class);
 

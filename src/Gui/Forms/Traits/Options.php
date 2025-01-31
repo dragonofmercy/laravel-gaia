@@ -25,7 +25,7 @@ trait Options
      * @param Collection|array $defaultOptions
      * @return void
      */
-    public function initalizeOptions(Collection|array $defaultOptions = []) : void
+    public function initalizeOptions(Collection|array $defaultOptions = []): void
     {
         $this->optionsDefinitions = new Collection();
         $this->options = collect($defaultOptions)->map(function(mixed $value, string $key){
@@ -40,7 +40,7 @@ trait Options
      * @param Collection|array $options
      * @return void
      */
-    public function validateOptions(Collection|array $options = []) : void
+    public function validateOptions(Collection|array $options = []): void
     {
         $this->options = $this->options->merge($options);
         $this->optionsDefinitions->map(function(bool $required, string $name){
@@ -62,7 +62,7 @@ trait Options
      * @param string $name
      * @return AbstractElement|Options|AbstractValidator
      */
-    public function addRequiredOption(string $name) : self
+    public function addRequiredOption(string $name): self
     {
         $this->optionsDefinitions[$name] = true;
 
@@ -76,7 +76,7 @@ trait Options
      * @param mixed|null $default
      * @return AbstractElement|Options|AbstractValidator
      */
-    public function addOption(string $name, mixed $default = null) : self
+    public function addOption(string $name, mixed $default = null): self
     {
         $this->optionsDefinitions[$name] = false;
 
@@ -94,7 +94,7 @@ trait Options
      * @param mixed $value
      * @return AbstractElement|Options|AbstractValidator
      */
-    public function setOption(string $name, mixed $value) : self
+    public function setOption(string $name, mixed $value): self
     {
         if(!$this->optionsDefinitions->has($name)){
             throw new \InvalidArgumentException("[" . get_class($this) . "] does not support option [$name]");
@@ -111,7 +111,7 @@ trait Options
      * @param string $name
      * @return AbstractElement|Options|AbstractValidator
      */
-    public function removeOptions(string $name) : self
+    public function removeOptions(string $name): self
     {
         $this->optionsDefinitions->forget($name);
         $this->options->forget($name);
@@ -125,7 +125,7 @@ trait Options
      * @param string $name
      * @return mixed
      */
-    public function getOption(string $name) : mixed
+    public function getOption(string $name): mixed
     {
         if(!$this->optionsDefinitions->has($name)){
             throw new \InvalidArgumentException("[" . get_class($this) . "] does not support option [$name]");
@@ -140,7 +140,7 @@ trait Options
      * @param string $name
      * @return bool
      */
-    public function hasOption(string $name) : bool
+    public function hasOption(string $name): bool
     {
         return null !== $this->options->get($name);
     }

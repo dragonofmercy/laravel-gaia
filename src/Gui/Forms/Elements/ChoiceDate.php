@@ -11,7 +11,7 @@ class ChoiceDate extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -30,7 +30,7 @@ class ChoiceDate extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -58,7 +58,7 @@ class ChoiceDate extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $replacements = [];
         $value = $this->convertValueToArray($value);
@@ -78,7 +78,7 @@ class ChoiceDate extends AbstractElement
      * @param mixed $value
      * @return array
      */
-    protected function convertValueToArray(mixed $value) : array
+    protected function convertValueToArray(mixed $value): array
     {
         $defaultValue = ['year' => null, 'month' => null, 'day' => null, 'hour' => null, 'minute' => null];
 
@@ -110,7 +110,7 @@ class ChoiceDate extends AbstractElement
      * @param Collection $attributes
      * @return string
      */
-    protected function renderElement(string $name, string|int|null $value = null, array $options = [], Collection $attributes = new Collection()) : string
+    protected function renderElement(string $name, string|int|null $value = null, array $options = [], Collection $attributes = new Collection()): string
     {
         $options['addEmpty'] = $this->getOption('addEmpty');
         return (new ChoiceSelect($options, $attributes))->render($name, $value);
@@ -123,7 +123,7 @@ class ChoiceDate extends AbstractElement
      * @param array $v
      * @return string
      */
-    protected function getChoicesDays(string $name, array $v) : string
+    protected function getChoicesDays(string $name, array $v): string
     {
         $choices = [];
         $definitions = $this->getOption('days');
@@ -142,7 +142,7 @@ class ChoiceDate extends AbstractElement
      * @param array $v
      * @return string
      */
-    protected function getChoicesMonths(string $name, array $v) : string
+    protected function getChoicesMonths(string $name, array $v): string
     {
         $choices = [];
         $definitions = $this->getOption('months');
@@ -161,7 +161,7 @@ class ChoiceDate extends AbstractElement
      * @param array $v
      * @return string
      */
-    protected function getChoicesYears(string $name, array $v) : string
+    protected function getChoicesYears(string $name, array $v): string
     {
         $choices = [];
         $definitions = $this->getOption('years');
@@ -180,7 +180,7 @@ class ChoiceDate extends AbstractElement
      * @param array $v
      * @return string
      */
-    protected function getChoicesHours(string $name, array $v) : string
+    protected function getChoicesHours(string $name, array $v): string
     {
         $choices = [];
         $definitions = $this->getOption('hours');
@@ -199,7 +199,7 @@ class ChoiceDate extends AbstractElement
      * @param array $v
      * @return string
      */
-    protected function getChoicesMinutes(string $name, array $v) : string
+    protected function getChoicesMinutes(string $name, array $v): string
     {
         $choices = [];
         $definitions = $this->getOption('minutes');

@@ -17,7 +17,7 @@ trait Attributes
      * @param Collection|array $attributes
      * @return void
      */
-    public function initalizeAttributes(Collection|array $attributes = []) : void
+    public function initalizeAttributes(Collection|array $attributes = []): void
     {
         $this->attributes = new Collection($attributes);
     }
@@ -29,7 +29,7 @@ trait Attributes
      * @param string $value
      * @return void
      */
-    public function setAttribute(string $name, mixed $value) : void
+    public function setAttribute(string $name, mixed $value): void
     {
         $this->attributes[$name] = $value;
     }
@@ -41,7 +41,7 @@ trait Attributes
      * @param mixed|null $default
      * @return mixed
      */
-    public function getAttribute(string $name, mixed $default = null) : mixed
+    public function getAttribute(string $name, mixed $default = null): mixed
     {
         return $this->attributes->get($name, $default);
     }
@@ -52,7 +52,7 @@ trait Attributes
      * @param string $name
      * @return bool
      */
-    public function hasAttribute(string $name) : bool
+    public function hasAttribute(string $name): bool
     {
         return $this->attributes->get($name) !== null;
     }
@@ -64,7 +64,7 @@ trait Attributes
      * @param array $default
      * @return array
      */
-    public function getAttributeArray(string $name, array $default = []) : array
+    public function getAttributeArray(string $name, array $default = []): array
     {
         if(!$this->attributes->has($name)){
             return $default;
@@ -80,7 +80,7 @@ trait Attributes
      * @param string $value
      * @return void
      */
-    public function appendAttribute(string $name, string $value) : void
+    public function appendAttribute(string $name, string $value): void
     {
         $attributes = $this->getAttributeArray($name);
         $attributes[] = $value;
@@ -95,7 +95,7 @@ trait Attributes
      * @param string $value
      * @return void
      */
-    public function shiftAttribute(string $name, string $value) : void
+    public function shiftAttribute(string $name, string $value): void
     {
         $this->attributes[$name] = implode(" ", array_filter($this->getAttributeArray($name), function(string $filter) use ($value){
             return $filter != $value;
@@ -108,7 +108,7 @@ trait Attributes
      * @param string $name
      * @return void
      */
-    public function removeAttribute(string $name) : void
+    public function removeAttribute(string $name): void
     {
         $this->attributes->forget($name);
     }
@@ -118,7 +118,7 @@ trait Attributes
      *
      * @return Collection
      */
-    public function getAttributes() : Collection
+    public function getAttributes(): Collection
     {
         return $this->attributes;
     }

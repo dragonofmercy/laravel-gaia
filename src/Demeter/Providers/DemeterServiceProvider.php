@@ -20,12 +20,12 @@ class DemeterServiceProvider extends ServiceProvider
         $this->extendHashToOpenSSL();
     }
 
-    protected function registerFlash() : void
+    protected function registerFlash(): void
     {
         $this->app->singleton(\Demeter\Support\Flash::class);
     }
 
-    protected function extendHashToOpenSSL() : void
+    protected function extendHashToOpenSSL(): void
     {
         $this->app->make('hash')->extend('demeter.openssl', function(){
             return new \Demeter\Hashing\Openssl();

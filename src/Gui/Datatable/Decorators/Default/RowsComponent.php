@@ -41,7 +41,7 @@ class RowsComponent extends AbstractComponent
      *
      * @return string
      */
-    protected function renderEmpty() : string
+    protected function renderEmpty(): string
     {
         return content_tag('td', str_replace('{content}', trans($this->emptyRowContent), $this->layoutEmptyRow), ['class' => $this->classEmptyRow, 'colspan' => $this->getParent()->getEngine()->columnsCount()]);
     }
@@ -52,7 +52,7 @@ class RowsComponent extends AbstractComponent
      * @param Collection $rows
      * @return string
      */
-    protected function renderRows(Collection $rows) : string
+    protected function renderRows(Collection $rows): string
     {
         $color = true;
         return $rows->map(function($cells) use (&$color){
@@ -67,7 +67,7 @@ class RowsComponent extends AbstractComponent
      * @param Collection|array $cells
      * @return string
      */
-    protected function renderCells(Collection|array $cells) : string
+    protected function renderCells(Collection|array $cells): string
     {
         if(!$cells instanceof Collection){
             $cells = collect($cells);

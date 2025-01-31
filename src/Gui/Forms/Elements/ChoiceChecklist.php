@@ -8,7 +8,7 @@ class ChoiceChecklist extends ChoiceCheckbox
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -18,7 +18,7 @@ class ChoiceChecklist extends ChoiceCheckbox
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         if((int) $this->getOption('columns') === 0){
             throw new \InvalidArgumentException("Cannot set [0] to [columns] option");

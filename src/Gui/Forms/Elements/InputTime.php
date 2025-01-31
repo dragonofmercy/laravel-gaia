@@ -6,14 +6,14 @@ class InputTime extends InputDate
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         $this->addOption('icon', 'fa-regular fa-clock');
 
         parent::initialize();
     }
 
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 

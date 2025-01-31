@@ -13,7 +13,7 @@ class Datatable extends Component
         public string $class = ''
     ){}
 
-    public function render() : string
+    public function render(): string
     {
         $remote = remote_function(gui_datatable_redirect($this->id, $this->url));
         return content_tag('div', javascript_tag_deferred($remote), ['id' => $this->id, 'class' => Str::join('gui-datatable', ['datatable-expand-' . $this->breakpoint, $this->class])]);

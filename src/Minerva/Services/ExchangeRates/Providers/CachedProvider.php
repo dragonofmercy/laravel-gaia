@@ -13,7 +13,7 @@ readonly class CachedProvider implements ExchangeRateProvider
         private int $ttl
     ){}
 
-    public function getRates(string $fromCurrency, string $toCurrency, float $amount = 1.0) : float
+    public function getRates(string $fromCurrency, string $toCurrency, float $amount = 1.0): float
     {
         $data = $this->cache->remember(
             "$this->key:$fromCurrency:$toCurrency",

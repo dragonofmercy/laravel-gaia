@@ -12,7 +12,7 @@ class ChoiceRadio extends ChoiceCheckbox
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         $this->addOption('class', 'gui-form-radio');
 
@@ -22,7 +22,7 @@ class ChoiceRadio extends ChoiceCheckbox
     /**
      * @inheritDoc
      */
-    protected function getInputName(string $name, int $count) : string
+    protected function getInputName(string $name, int $count): string
     {
         return $name;
     }
@@ -30,7 +30,7 @@ class ChoiceRadio extends ChoiceCheckbox
     /**
      * @inheritDoc
      */
-    public function generateId(string $name, mixed $value = null) : string
+    public function generateId(string $name, mixed $value = null): string
     {
         return parent::generateId($name . '[]', $value);
     }

@@ -17,7 +17,7 @@ class CompareValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -31,7 +31,7 @@ class CompareValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function beforeValidation() : void
+    protected function beforeValidation(): void
     {
         parent::beforeValidation();
         
@@ -44,7 +44,7 @@ class CompareValidator extends AbstractValidator
      * @inheritDoc
      * @return array
      */
-    protected function validate(mixed $v) : Collection
+    protected function validate(mixed $v): Collection
     {
         if(!$v instanceof Collection){
             throw new \RuntimeException("You must pass a [" . Collection::class . "] to the [validate] method in [" . get_class($this) . "]");

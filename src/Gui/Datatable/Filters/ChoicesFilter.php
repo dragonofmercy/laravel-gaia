@@ -19,12 +19,12 @@ class ChoicesFilter extends AbstractFilter
      * @param array|Collection|null $choices
      * @return ChoicesFilter|array
      */
-    public function choices(array|Collection|null $choices = null) : self|array
+    public function choices(array|Collection|null $choices = null): self|array
     {
         if(null === $choices){
             return $this->options->get('choices', []);
         } else {
-            $this->options['choices'] = $choices instanceof Collection ? $choices->toArray() : $choices;
+            $this->options['choices'] = $choices instanceof Collection ? $choices->toArray(): $choices;
             return $this;
         }
     }
@@ -35,7 +35,7 @@ class ChoicesFilter extends AbstractFilter
      * @param string|null $v
      * @return string|$this|self
      */
-    public function addEmpty(string|null $v = null) : self|string
+    public function addEmpty(string|null $v = null): self|string
     {
         if(null === $v){
             return $this->options->get('add_empty', "");
@@ -51,7 +51,7 @@ class ChoicesFilter extends AbstractFilter
      * @param bool|null $v
      * @return bool|$this|self
      */
-    public function multiple(bool|null $v = null) : self|bool
+    public function multiple(bool|null $v = null): self|bool
     {
         if(null === $v){
             return $this->options->get('multiple', false);
@@ -64,7 +64,7 @@ class ChoicesFilter extends AbstractFilter
     /**
      * @inheritDoc
      */
-    public function filter(mixed $value) : void
+    public function filter(mixed $value): void
     {
         if($this->engine instanceof EloquentEngine){
             if($this->multiple()){

@@ -15,7 +15,7 @@ class ChoiceCheckbox extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -32,7 +32,7 @@ class ChoiceCheckbox extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -50,7 +50,7 @@ class ChoiceCheckbox extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         return content_tag('div', $this->formatChoices($name, $value), $this->attributes);
     }
@@ -62,7 +62,7 @@ class ChoiceCheckbox extends AbstractElement
      * @param mixed $value
      * @return string
      */
-    protected function formatChoices(string $name, mixed $value) : string
+    protected function formatChoices(string $name, mixed $value): string
     {
         $choices = collect($this->getOption('choices'));
         $name = $this->getInputName($name, $choices->count());
@@ -111,7 +111,7 @@ class ChoiceCheckbox extends AbstractElement
      * @param int $count
      * @return string
      */
-    protected function getInputName(string $name, int $count) : string
+    protected function getInputName(string $name, int $count): string
     {
         if(Str::contains($name, '[') && $count > 1){
             $name.= '[]';

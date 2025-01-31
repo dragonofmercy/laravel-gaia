@@ -9,7 +9,7 @@ class EloquentSuggest extends InputAutocomplete
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -22,7 +22,7 @@ class EloquentSuggest extends InputAutocomplete
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $displayField = new InputText(attributes: $this->getAttributes());
 
@@ -46,7 +46,7 @@ class EloquentSuggest extends InputAutocomplete
     /**
      * @inheritDoc
      */
-    protected function getJavascript(string $id, string $hiddenId = "") : string
+    protected function getJavascript(string $id, string $hiddenId = ""): string
     {
         return parent::getJavascript($id) . '$("#' . $id . '").on("gui.validate",function(_,v,t){$("#' . $hiddenId . '").val(v).trigger("change")}).on("keyup",function(){if($(this).val().length<1){$("#' . $hiddenId . '").val("").trigger("change")}})';
     }
@@ -57,7 +57,7 @@ class EloquentSuggest extends InputAutocomplete
      * @param mixed $v
      * @return mixed
      */
-    protected function getValue(mixed $v) : mixed
+    protected function getValue(mixed $v): mixed
     {
         if(!empty($v)){
             /** @var Builder $query */
@@ -81,7 +81,7 @@ class EloquentSuggest extends InputAutocomplete
      *
      * @return string
      */
-    protected function getColumn() : string
+    protected function getColumn(): string
     {
         if($this->hasOption('column')){
             return $this->getOption('column');

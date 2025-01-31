@@ -8,7 +8,7 @@ class ChoiceSwitch extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -18,7 +18,7 @@ class ChoiceSwitch extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -30,7 +30,7 @@ class ChoiceSwitch extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $this->setAttribute('class', 'form-check-input');
         $this->setAttribute('name', $name);

@@ -8,7 +8,7 @@ class UrlValidator extends StringValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -20,7 +20,7 @@ class UrlValidator extends StringValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : string
+    protected function validate(mixed $v): string
     {
         $v = parent::validate($v);
 

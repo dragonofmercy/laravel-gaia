@@ -48,7 +48,7 @@ class Iterator implements IteratorContract
      *
      * @return void
      */
-    public function next() : void
+    public function next(): void
     {
         $this->_index++;
     }
@@ -58,7 +58,7 @@ class Iterator implements IteratorContract
      *
      * @return void
      */
-    public function prev() : void
+    public function prev(): void
     {
         $this->_index--;
     }
@@ -68,7 +68,7 @@ class Iterator implements IteratorContract
      *
      * @return bool
      */
-    public function hasNext() : bool
+    public function hasNext(): bool
     {
         $this->next();
         $ret = $this->valid();
@@ -82,7 +82,7 @@ class Iterator implements IteratorContract
      *
      * @return string|int
      */
-    public function key() : string|int
+    public function key(): string|int
     {
         $k = array_keys($this->_array);
         return $k[$this->_index];
@@ -93,7 +93,7 @@ class Iterator implements IteratorContract
      *
      * @return bool
      */
-    public function valid() : bool
+    public function valid(): bool
     {
         $k = array_keys($this->_array);
         return isset($k[$this->_index]);
@@ -104,7 +104,7 @@ class Iterator implements IteratorContract
      *
      * @return void
      */
-    public function rewind() : void
+    public function rewind(): void
     {
         $this->_index = 0;
     }

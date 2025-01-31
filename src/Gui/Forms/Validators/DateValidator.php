@@ -9,7 +9,7 @@ class DateValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -25,7 +25,7 @@ class DateValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : string
+    protected function validate(mixed $v): string
     {
         $outputFormat = $this->getOption('format');
         $errorFormat = $this->hasOption('errorFormat') ? $this->getOption('errorFormat') : $this->getOption('format');
@@ -66,7 +66,7 @@ class DateValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function isEmpty(mixed $value) : bool
+    protected function isEmpty(mixed $value): bool
     {
         if(is_array($value)){
             $value = implode('', $value);

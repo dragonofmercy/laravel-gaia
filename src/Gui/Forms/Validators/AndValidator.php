@@ -13,7 +13,7 @@ class AndValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         $this->validators = new Collection();
 
@@ -25,7 +25,7 @@ class AndValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function beforeValidation() : void
+    protected function beforeValidation(): void
     {
         parent::beforeValidation();
 
@@ -41,7 +41,7 @@ class AndValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : mixed
+    protected function validate(mixed $v): mixed
     {
         $this->validators->map(function(AbstractValidator $validator) use (&$v){
             $validator->setFormInstance($this->getFormInstance());

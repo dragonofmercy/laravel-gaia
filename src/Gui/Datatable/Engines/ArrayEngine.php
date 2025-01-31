@@ -29,7 +29,7 @@ class ArrayEngine extends AbstractEngine
      * @param callable $callable
      * @return void
      */
-    public function filterCollection(callable $callable) : void
+    public function filterCollection(callable $callable): void
     {
         $this->collection = $this->collection->filter($callable);
     }
@@ -37,7 +37,7 @@ class ArrayEngine extends AbstractEngine
     /**
      * @inheritDoc
      */
-    protected function initPaginator() : void
+    protected function initPaginator(): void
     {
         if($this->getLimit() > 0){
             $items = $this->collection->forPage($this->currentPage, $this->getLimit());
@@ -65,7 +65,7 @@ class ArrayEngine extends AbstractEngine
     /**
      * @inheritDoc
      */
-    protected function getRowColumnValues(string $column) : Collection
+    protected function getRowColumnValues(string $column): Collection
     {
         $collection = clone $this->collection;
         return $collection->transform(function(mixed $value) use ($column){

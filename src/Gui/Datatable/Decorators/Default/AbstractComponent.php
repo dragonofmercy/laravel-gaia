@@ -27,7 +27,7 @@ abstract class AbstractComponent
      *
      * @return AbstractDecorator
      */
-    public function getParent() : AbstractDecorator
+    public function getParent(): AbstractDecorator
     {
         return $this->parent;
     }
@@ -37,5 +37,5 @@ abstract class AbstractComponent
      *
      * @return string
      */
-    public abstract function render() : string;
+    public abstract function render(): string;
 }

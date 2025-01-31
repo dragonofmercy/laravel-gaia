@@ -18,7 +18,7 @@ abstract class Input extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $this->setAttribute('name', $name);
         $this->setAttribute('value', $value);

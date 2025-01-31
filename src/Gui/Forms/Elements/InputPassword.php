@@ -9,7 +9,7 @@ class InputPassword extends InputText
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -28,7 +28,7 @@ class InputPassword extends InputText
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -41,7 +41,7 @@ class InputPassword extends InputText
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $output = parent::render($name, $this->getOption('alwaysRenderEmpty') ? null : $value, $error);
 
@@ -89,7 +89,7 @@ class InputPassword extends InputText
      *
      * @return string
      */
-    protected function getGeneratorTemplate() : string
+    protected function getGeneratorTemplate(): string
     {
         return <<<EOF
 <div class="gui-password-generator-template">

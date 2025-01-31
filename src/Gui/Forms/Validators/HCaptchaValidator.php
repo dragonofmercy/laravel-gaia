@@ -15,7 +15,7 @@ class HCaptchaValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -27,7 +27,7 @@ class HCaptchaValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    public function clean(mixed $v) : mixed
+    public function clean(mixed $v): mixed
     {
         return parent::clean($this->getResponse());
     }
@@ -37,7 +37,7 @@ class HCaptchaValidator extends AbstractValidator
      *
      * @return string|null
      */
-    protected function getResponse() : string|null
+    protected function getResponse(): string|null
     {
         return RequestFacade::get('h-captcha-response');
     }
@@ -45,7 +45,7 @@ class HCaptchaValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : bool
+    protected function validate(mixed $v): bool
     {
         $response = Http::asForm()->post($this->apiUrl, [
             'secret' => $this->getOption('secret'),

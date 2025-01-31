@@ -14,7 +14,7 @@ class ReCaptchaValidator extends HCaptchaValidator
     /**
      * @inheritDoc
      */
-    protected function getResponse() : string|null
+    protected function getResponse(): string|null
     {
         return RequestFacade::get('g-recaptcha-response');
     }

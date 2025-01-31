@@ -6,7 +6,7 @@ class IpValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -17,7 +17,7 @@ class IpValidator extends AbstractValidator
      * @inheritDoc
      * @return string
      */
-    protected function validate(mixed $v) : string
+    protected function validate(mixed $v): string
     {
         if(is_array($v)){
             $v = $this->convertArrayToString($v);
@@ -47,7 +47,7 @@ class IpValidator extends AbstractValidator
      * @param string $value
      * @return bool
      */
-    protected function isEmptyIp(string $value) : bool
+    protected function isEmptyIp(string $value): bool
     {
         $test = str_replace('.', '', $value);
         return empty($test);
@@ -59,7 +59,7 @@ class IpValidator extends AbstractValidator
      * @param array $haystack
      * @return string
      */
-    protected function convertArrayToString(array $haystack) : string
+    protected function convertArrayToString(array $haystack): string
     {
         return collect($haystack)->transform(function(mixed $v){
             return null === $v ? "" : $v;

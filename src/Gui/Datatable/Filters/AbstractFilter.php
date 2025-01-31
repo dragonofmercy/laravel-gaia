@@ -44,7 +44,7 @@ abstract class AbstractFilter
      *
      * @return static
      */
-    public static function make() : static
+    public static function make(): static
     {
         return (new static);
     }
@@ -62,7 +62,7 @@ abstract class AbstractFilter
      *
      * @return string
      */
-    public function getDecorator() : string
+    public function getDecorator(): string
     {
         if(!is_subclass_of($this->decorator, AbstractSearchType::class)){
             throw new \RuntimeException("Decorator class is not a subclass of [" . AbstractSearchType::class . "]");
@@ -77,7 +77,7 @@ abstract class AbstractFilter
      * @param AbstractEngine $engine
      * @return void
      */
-    public function setEngine(AbstractEngine $engine) : void
+    public function setEngine(AbstractEngine $engine): void
     {
         $this->engine = $engine;
     }
@@ -88,7 +88,7 @@ abstract class AbstractFilter
      * @param string $column
      * @return void
      */
-    public function setColumn(string $column) : void
+    public function setColumn(string $column): void
     {
         $this->column = $column;
     }
@@ -98,7 +98,7 @@ abstract class AbstractFilter
      *
      * @return bool
      */
-    public function usingPgsql() : bool
+    public function usingPgsql(): bool
     {
         return config("database.connections." . config('database.default') . ".driver") === 'pgsql';
     }
@@ -109,7 +109,7 @@ abstract class AbstractFilter
      * @param string|null $label
      * @return string|$this|self
      */
-    public function label(string|null $label = null) : self|string
+    public function label(string|null $label = null): self|string
     {
         if(null === $label){
             if($this->options->has('label')){
@@ -133,7 +133,7 @@ abstract class AbstractFilter
      * @param string|null $operator
      * @return string|self
      */
-    public function operator(string|null $operator = null) : self|string
+    public function operator(string|null $operator = null): self|string
     {
         if(null === $operator){
             return $this->options->get('operator', $this->defaultOperator);
@@ -148,7 +148,7 @@ abstract class AbstractFilter
      *
      * @return $this
      */
-    public function prepare() : self
+    public function prepare(): self
     {
         if(!$this->options->has('operator')){
             $this->options['operator'] = $this->defaultOperator;
@@ -169,5 +169,5 @@ abstract class AbstractFilter
      * @param mixed $value
      * @return void
      */
-    abstract public function filter(mixed $value) : void;
+    abstract public function filter(mixed $value): void;
 }

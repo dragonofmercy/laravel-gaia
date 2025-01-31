@@ -6,7 +6,7 @@ class ConcatenateValidator extends StringValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -19,7 +19,7 @@ class ConcatenateValidator extends StringValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : string
+    protected function validate(mixed $v): string
     {
         $clean = parent::validate($v);
 
@@ -56,7 +56,7 @@ class ConcatenateValidator extends StringValidator
      * @param string $type
      * @return AbstractValidator
      */
-    protected function makeValidator(string $type) : AbstractValidator
+    protected function makeValidator(string $type): AbstractValidator
     {
         $validator = $this->getOption($type);
 
@@ -70,7 +70,7 @@ class ConcatenateValidator extends StringValidator
     /**
      * @inheritDoc
      */
-    public function isEmpty(mixed $value) : bool
+    public function isEmpty(mixed $value): bool
     {
         if(parent::isEmpty($value)){
             return true;
@@ -94,7 +94,7 @@ class ConcatenateValidator extends StringValidator
      * @param mixed $value
      * @return string
      */
-    protected function cleanUp(string $position, mixed $value) : string
+    protected function cleanUp(string $position, mixed $value): string
     {
         $option = $this->getOption($position);
         if(is_array($option)){

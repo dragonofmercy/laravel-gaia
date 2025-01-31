@@ -68,7 +68,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderCount() : string
+    protected function renderCount(): string
     {
         $count = $this->getParent()->getEngine()->getPagination()->total();
         return sprintf('%d %s', $count, trans_choice($this->stringRecords, $count));
@@ -79,7 +79,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderPosition() : string
+    protected function renderPosition(): string
     {
         $datatable = $this->getParent()->getEngine();
         return sprintf(trans($this->stringPosition), $datatable->getPagination()->currentPage(), $datatable->getPagination()->lastPage());
@@ -90,7 +90,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderPaginationFirst() : string
+    protected function renderPaginationFirst(): string
     {
         $pagination = $this->getParent()->getEngine()->getPagination();
         if($pagination->hasPages() && $pagination->currentPage() > 1 && $pagination->lastPage() > 5){
@@ -104,7 +104,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderPaginationPrevious() : string
+    protected function renderPaginationPrevious(): string
     {
         $pagination = $this->getParent()->getEngine()->getPagination();
         if($pagination->hasPages() && $pagination->currentPage() > 1){
@@ -118,7 +118,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderPaginationPages() : string
+    protected function renderPaginationPages(): string
     {
         $output = "";
         $pagination = $this->getParent()->getEngine()->getPagination();
@@ -135,7 +135,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderPaginationNext() : string
+    protected function renderPaginationNext(): string
     {
         $pagination = $this->getParent()->getEngine()->getPagination();
         if($pagination->hasPages() && $pagination->currentPage() < $pagination->lastPage()){
@@ -149,7 +149,7 @@ EOF;
      *
      * @return string
      */
-    protected function renderPaginationLast() : string
+    protected function renderPaginationLast(): string
     {
         $pagination = $this->getParent()->getEngine()->getPagination();
         if($pagination->hasPages() && $pagination->currentPage() < $pagination->lastPage() && $pagination->lastPage() > 5){
@@ -166,7 +166,7 @@ EOF;
      * @param array $attributes
      * @return string
      */
-    protected function renderPaginationLink(string $label, string $url, array $attributes = []) : string
+    protected function renderPaginationLink(string $label, string $url, array $attributes = []): string
     {
         $engine = $this->getParent()->getEngine();
         if(isset($attributes['class'])){

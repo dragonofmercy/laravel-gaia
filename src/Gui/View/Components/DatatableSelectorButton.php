@@ -23,7 +23,7 @@ class DatatableSelectorButton extends Component
         public array  $attr = []
     ){}
 
-    public function render() : string
+    public function render(): string
     {
         $attributes = collect($this->attr);
 

@@ -193,7 +193,7 @@ if(!function_exists('gui_button_link_remote')){
      * @param array|Collection $options
      * @return string
      */
-    function gui_button_link_remote(string $label, string $url, string $update, string $icon, array|Collection $attributes = new Collection(), array|Collection $options = new Collection()) : string
+    function gui_button_link_remote(string $label, string $url, string $update, string $icon, array|Collection $attributes = new Collection(), array|Collection $options = new Collection()): string
     {
         return lr(_gui_label_icon($label, $icon), $url, $update, _gui_button_attributes($attributes), $options);
     }
@@ -209,7 +209,7 @@ if(!function_exists('gui_button_submit')){
      * @param array|Collection $attributes
      * @return string
      */
-    function gui_button_submit(string $label, string $icon, string|null $action = null, array|Collection $attributes = new Collection()) : string
+    function gui_button_submit(string $label, string $icon, string|null $action = null, array|Collection $attributes = new Collection()): string
     {
         if(!$attributes instanceof Collection){
             $attributes = collect($attributes);
@@ -234,7 +234,7 @@ if(!function_exists('gui_button_popup')){
      * @param array|Collection $attributes
      * @return string
      */
-    function gui_button_popup(string $label, string $target, string $icon, array|Collection $options = new Collection(), array|Collection $attributes = new Collection()) : string
+    function gui_button_popup(string $label, string $target, string $icon, array|Collection $options = new Collection(), array|Collection $attributes = new Collection()): string
     {
         return gui_popup(_gui_label_icon($label, $icon), $target, $options, _gui_button_attributes($attributes));
     }
@@ -250,7 +250,7 @@ if(!function_exists('gui_popup')){
      * @param array|Collection $attributes
      * @return string
      */
-    function gui_popup(string $name, string $uri = '#', array|Collection $options = new Collection(), array|Collection $attributes = new Collection()) : string
+    function gui_popup(string $name, string $uri = '#', array|Collection $options = new Collection(), array|Collection $attributes = new Collection()): string
     {
         if(!$options instanceof Collection){
             $options = collect($options);
@@ -298,7 +298,7 @@ if(!function_exists('gui_fa')){
      * @param string $weight
      * @return string
      */
-    function gui_fa(string $icon, string $weight = 'fa-solid') : string
+    function gui_fa(string $icon, string $weight = 'fa-solid'): string
     {
         return gui_icon($weight . ' ' . $icon);
     }
@@ -311,7 +311,7 @@ if(!function_exists('gui_icon')){
      * @param string $icon
      * @return string
      */
-    function gui_icon(string $icon) : string
+    function gui_icon(string $icon): string
     {
         return content_tag('i', '', array('class' => $icon));
     }
@@ -324,7 +324,7 @@ if(!function_exists('gui_image_base64')){
      * @param string $filename
      * @return string
      */
-    function gui_image_base64(string $filename) : string
+    function gui_image_base64(string $filename): string
     {
         return 'data:' . mime_content_type($filename) . ';base64,' . base64_encode(file_get_contents($filename));
     }
@@ -336,7 +336,7 @@ if(!function_exists('gui_darkmode')){
      *
      * @return bool
      */
-    function gui_darkmode() : bool
+    function gui_darkmode(): bool
     {
         if(config('gui.darkmode_force')){
             return true;
@@ -357,7 +357,7 @@ if(!function_exists('gui_render_flash')){
      * @param string $additionalClasses
      * @return string
      */
-    function gui_render_flash(string $name, bool $dismissible = true, int $autoHide = 0, string $additionalClasses = '') : string
+    function gui_render_flash(string $name, bool $dismissible = true, int $autoHide = 0, string $additionalClasses = ''): string
     {
         $flashContent = '';
 
@@ -384,7 +384,7 @@ if(!function_exists('gui_datatable_redirect')){
      * @param string $url
      * @return array
      */
-    function gui_datatable_redirect(string $id, string $url) : array
+    function gui_datatable_redirect(string $id, string $url): array
     {
         return [
             'update' => '#' . $id,

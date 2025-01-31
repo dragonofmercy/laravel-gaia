@@ -132,7 +132,7 @@ abstract class AbstractEngine
      *
      * @return int
      */
-    public function columnsCount() : int
+    public function columnsCount(): int
     {
         return $this->columns->count();
     }
@@ -144,7 +144,7 @@ abstract class AbstractEngine
      * @param bool $reset
      * @return void
      */
-    public function setColumns(Collection|array $columns, bool $reset = false) : void
+    public function setColumns(Collection|array $columns, bool $reset = false): void
     {
         if($reset){
             $this->columns = new Collection();
@@ -162,7 +162,7 @@ abstract class AbstractEngine
      * @param string $label
      * @return void
      */
-    public function setColumn(string $column, string $label) : void
+    public function setColumn(string $column, string $label): void
     {
         $this->columns[$column] = $label;
     }
@@ -172,7 +172,7 @@ abstract class AbstractEngine
      *
      * @return Collection
      */
-    public function getColumns() : Collection
+    public function getColumns(): Collection
     {
         return $this->columns;
     }
@@ -183,7 +183,7 @@ abstract class AbstractEngine
      * @param string $column
      * @return string
      */
-    public function getColumn(string $column) : string
+    public function getColumn(string $column): string
     {
         if($this->columns->has($column)){
             return $this->columns->get($column);
@@ -198,7 +198,7 @@ abstract class AbstractEngine
      * @param Collection|array $options
      * @return void
      */
-    public function setColumnsOptions(Collection|array $options) : void
+    public function setColumnsOptions(Collection|array $options): void
     {
         foreach($options as $column => $option){
             $this->setColumnOptions($column, $option);
@@ -212,7 +212,7 @@ abstract class AbstractEngine
      * @param Options $options
      * @return void
      */
-    public function setColumnOptions(string $column, Options $options) : void
+    public function setColumnOptions(string $column, Options $options): void
     {
         $this->columnsOptions[$column] = $options;
     }
@@ -222,7 +222,7 @@ abstract class AbstractEngine
      *
      * @return Collection<string, Options>
      */
-    public function getColumnsOptions() : Collection
+    public function getColumnsOptions(): Collection
     {
         return $this->columnsOptions;
     }
@@ -233,7 +233,7 @@ abstract class AbstractEngine
      * @param string $column
      * @return Options
      */
-    public function getColumnOptions(string $column) : Options
+    public function getColumnOptions(string $column): Options
     {
         return $this->columnsOptions[$column] ?? Options::make();
     }
@@ -243,7 +243,7 @@ abstract class AbstractEngine
      *
      * @return string
      */
-    public function getUid() : string
+    public function getUid(): string
     {
         return $this->uid;
     }
@@ -254,7 +254,7 @@ abstract class AbstractEngine
      * @param int $rowLimit
      * @return void
      */
-    public function setLimit(int $rowLimit) : void
+    public function setLimit(int $rowLimit): void
     {
         $this->options['row_limit'] = $rowLimit;
     }
@@ -264,7 +264,7 @@ abstract class AbstractEngine
      *
      * @return int
      */
-    public function getLimit() : int
+    public function getLimit(): int
     {
         return (int) $this->options->get('row_limit', 25);
     }
@@ -275,7 +275,7 @@ abstract class AbstractEngine
      * @param callable $callable
      * @return void
      */
-    public function setRowFormat(callable $callable) : void
+    public function setRowFormat(callable $callable): void
     {
         $this->rowFormat = $callable(...);
     }
@@ -287,7 +287,7 @@ abstract class AbstractEngine
      * @param string $sortOrder
      * @return void
      */
-    public function setDefaultSorting(string $sortBy, string $sortOrder) : void
+    public function setDefaultSorting(string $sortBy, string $sortOrder): void
     {
         if(!$this->columns->has($sortBy)){
             throw new \InvalidArgumentException("The column [$sortBy] was not found");
@@ -302,7 +302,7 @@ abstract class AbstractEngine
      *
      * @return string|null
      */
-    public function getSortBy() : string|null
+    public function getSortBy(): string|null
     {
         return $this->sortBy;
     }
@@ -313,7 +313,7 @@ abstract class AbstractEngine
      * @param bool $value
      * @return void
      */
-    public function setDisplaySearch(bool $value) : void
+    public function setDisplaySearch(bool $value): void
     {
         $this->options['display_search'] = $value;
     }
@@ -333,7 +333,7 @@ abstract class AbstractEngine
      *
      * @return string
      */
-    public function getSortDirection() : string
+    public function getSortDirection(): string
     {
         return $this->sortDirection ?? self::SORT_DIRECTION_ASC;
     }
@@ -343,7 +343,7 @@ abstract class AbstractEngine
      *
      * @return $this
      */
-    public function make() : AbstractEngine
+    public function make(): AbstractEngine
     {
         $this->persistant();
 
@@ -387,7 +387,7 @@ abstract class AbstractEngine
      * @param string $key
      * @return mixed
      */
-    public function columnValue(mixed $value, string $key) : mixed
+    public function columnValue(mixed $value, string $key): mixed
     {
         if($value instanceof Arrayable || is_array($value)){
             return $value[$key] ?? "";
@@ -403,7 +403,7 @@ abstract class AbstractEngine
      *
      * @return Collection
      */
-    public function getPaginationCollection() : Collection
+    public function getPaginationCollection(): Collection
     {
         if(!$this->built){
             $this->make();
@@ -417,7 +417,7 @@ abstract class AbstractEngine
      *
      * @return int
      */
-    public function getCurrentPage() : int
+    public function getCurrentPage(): int
     {
         return $this->currentPage;
     }
@@ -427,7 +427,7 @@ abstract class AbstractEngine
      *
      * @return LengthAwarePaginator
      */
-    public function getPagination() : LengthAwarePaginator
+    public function getPagination(): LengthAwarePaginator
     {
         return $this->paginator;
     }
@@ -438,7 +438,7 @@ abstract class AbstractEngine
      * @param bool $clear
      * @return void
      */
-    protected function persistant(bool $clear = false) : void
+    protected function persistant(bool $clear = false): void
     {
         $items = $this->getDatatableAttributes();
 
@@ -470,7 +470,7 @@ abstract class AbstractEngine
      *
      * @return Collection
      */
-    protected function getDatatableAttributes() : Collection
+    protected function getDatatableAttributes(): Collection
     {
         $persistant = collect(session(self::SESSION_STORAGE_KEY, []));
         return collect($persistant->get($this->getUid(), []));
@@ -482,7 +482,7 @@ abstract class AbstractEngine
      * @param array $value
      * @return void
      */
-    protected function setDatatableAttributes(array $value) : void
+    protected function setDatatableAttributes(array $value): void
     {
         $persistant = collect(session(self::SESSION_STORAGE_KEY, []));
         $persistant[$this->getUid()] = $value;
@@ -495,7 +495,7 @@ abstract class AbstractEngine
      * @param array<string, AbstractFilter> $searchFilters
      * @return void
      */
-    public function setSearchFilters(array $searchFilters) : void
+    public function setSearchFilters(array $searchFilters): void
     {
         foreach($searchFilters as $column => $filter){
             $this->setSearchFilter($column, $filter);
@@ -509,7 +509,7 @@ abstract class AbstractEngine
      * @param AbstractFilter $filter
      * @return void
      */
-    public function setSearchFilter(string $column, AbstractFilter $filter) : void
+    public function setSearchFilter(string $column, AbstractFilter $filter): void
     {
         $filter->setEngine($this);
         $filter->setColumn($column);
@@ -522,7 +522,7 @@ abstract class AbstractEngine
      * @param string|null $column
      * @return AbstractFilter|Collection<string, AbstractFilter>|null
      */
-    public function getSearchFilters(string|null $column = null) : AbstractFilter|Collection|null
+    public function getSearchFilters(string|null $column = null): AbstractFilter|Collection|null
     {
         if(null === $column){
             return $this->searchFilters;
@@ -540,7 +540,7 @@ abstract class AbstractEngine
      *
      * @return bool
      */
-    public function hasSearch() : bool
+    public function hasSearch(): bool
     {
         if($this->searchValues->count()){
             foreach($this->searchValues as $value){
@@ -559,7 +559,7 @@ abstract class AbstractEngine
      * @param string|null $column
      * @return Collection|array|string|null
      */
-    public function getSearchValues(string|null $column = null) : mixed
+    public function getSearchValues(string|null $column = null): mixed
     {
         if(null === $column){
             return $this->searchValues;
@@ -574,7 +574,7 @@ abstract class AbstractEngine
      * @param string|null $decorator
      * @return AbstractDecorator
      */
-    public function getDecorator(string|null $decorator = null) : AbstractDecorator
+    public function getDecorator(string|null $decorator = null): AbstractDecorator
     {
         if(null === $decorator){
             return new static::$defaultDecorator($this);
@@ -593,7 +593,7 @@ abstract class AbstractEngine
      * @param string $decorator
      * @return void
      */
-    public function setDecorator(string $decorator) : void
+    public function setDecorator(string $decorator): void
     {
         $this->decorator = $decorator;
     }
@@ -603,7 +603,7 @@ abstract class AbstractEngine
      * @param Closure|null $formatCallback
      * @return Collection<string, mixed>
      */
-    public function getColumnValues(string $column, Closure|null $formatCallback = null) : Collection
+    public function getColumnValues(string $column, Closure|null $formatCallback = null): Collection
     {
         if(null === $formatCallback){
             $formatCallback = function(mixed $v){ return $v; };
@@ -619,7 +619,7 @@ abstract class AbstractEngine
      *
      * @return void
      */
-    protected function filter() : void
+    protected function filter(): void
     {
         $this->searchValues->map(function(mixed $value, string $column){
             if($this->columns->has($column) && null !== $value && $value !== "" && (!is_array($value) || count(array_filter($value)) != 0)){
@@ -636,7 +636,7 @@ abstract class AbstractEngine
      *
      * @return void
      */
-    protected function initializeSearchValues() : void
+    protected function initializeSearchValues(): void
     {
         collect(RequestFacade::post('dt_f'))->map(function(mixed $value, string $name){
             if(is_string($value)){
@@ -654,14 +654,14 @@ abstract class AbstractEngine
      *
      * @return void
      */
-    protected abstract function initPaginator() : void;
+    protected abstract function initPaginator(): void;
 
     /**
      * Sort values
      *
      * @return void
      */
-    protected abstract function sort() : void;
+    protected abstract function sort(): void;
 
     /**
      * Get all datas of column
@@ -669,5 +669,5 @@ abstract class AbstractEngine
      * @param string $column
      * @return Collection<string, mixed>
      */
-    protected abstract function getRowColumnValues(string $column) : Collection;
+    protected abstract function getRowColumnValues(string $column): Collection;
 }

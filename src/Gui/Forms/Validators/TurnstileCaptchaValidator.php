@@ -16,7 +16,7 @@ class TurnstileCaptchaValidator extends HCaptchaValidator
      *
      * @return string|null
      */
-    protected function getResponse() : string|null
+    protected function getResponse(): string|null
     {
         return RequestFacade::get('cf-turnstile-response');
     }

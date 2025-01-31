@@ -8,7 +8,7 @@ class ChoiceValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -26,7 +26,7 @@ class ChoiceValidator extends AbstractValidator
      * @inheritDoc
      * @return mixed
      */
-    protected function validate(mixed $v) : mixed
+    protected function validate(mixed $v): mixed
     {
         if($this->getOption('multiple') === true){
             return $this->validateMultiple($v, collect($this->getOption('choices')));
@@ -42,7 +42,7 @@ class ChoiceValidator extends AbstractValidator
      * @param Collection $choices
      * @return array
      */
-    protected function validateMultiple(mixed $values, Collection $choices) : array
+    protected function validateMultiple(mixed $values, Collection $choices): array
     {
         $values = collect($values);
 
@@ -73,7 +73,7 @@ class ChoiceValidator extends AbstractValidator
      * @param Collection $choices
      * @return bool
      */
-    protected function inChoices(mixed $value, Collection $choices) : bool
+    protected function inChoices(mixed $value, Collection $choices): bool
     {
         foreach($choices as $index => $choice){
             if(is_array($choice)){

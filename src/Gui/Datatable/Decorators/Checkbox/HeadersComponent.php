@@ -8,7 +8,7 @@ class HeadersComponent extends ComponentBase
     /**
      * @inheritDoc
      */
-    public function render() : string
+    public function render(): string
     {
         $output = parent::render();
 

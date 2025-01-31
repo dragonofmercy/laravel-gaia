@@ -47,7 +47,7 @@ class Flash
      * @param string $name
      * @return bool
      */
-    public function has(string $name) : bool
+    public function has(string $name): bool
     {
         return SessionFacade::has($this->getStorePath($name));
     }
@@ -58,7 +58,7 @@ class Flash
      * @param string $name
      * @return string
      */
-    protected function getStorePath(string $name) : string
+    protected function getStorePath(string $name): string
     {
         return self::STORE_PATH . '.' . $name;
     }

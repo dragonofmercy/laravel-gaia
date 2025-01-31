@@ -28,7 +28,7 @@ EOF;
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -48,7 +48,7 @@ EOF;
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -80,7 +80,7 @@ EOF;
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $this->setAttribute('id', $this->generateId($name));
         $this->setAttribute('name', $name);
@@ -106,7 +106,7 @@ EOF;
      *
      * @return string
      */
-    protected function getHeading() : string
+    protected function getHeading(): string
     {
         /** @var Collection $columnsAttributes */
         $columnsAttributes = $this->getOption('columnsAttributes');
@@ -126,7 +126,7 @@ EOF;
      * @param Error|null $error
      * @return string
      */
-    protected function getRows(Collection $rows, ?Error $error) : string
+    protected function getRows(Collection $rows, ?Error $error): string
     {
         if($rows->count() < 1){
             $rows->add($this->getOption('fields')->keys()->flip()->transform(function(){
@@ -192,7 +192,7 @@ EOF;
      * @param Error|null $error
      * @return string
      */
-    protected function getInvalidFeedback(?Error $error = null) : string
+    protected function getInvalidFeedback(?Error $error = null): string
     {
         if(null !== $error && $error->getCode() != 'invalid'){
             return Str::replace('{error}', $error->getMessage(), $this->getFormInstance()->getDecorator()->getErrorFormat());
@@ -207,7 +207,7 @@ EOF;
      * @param mixed $v
      * @return Collection<int, mixed>
      */
-    protected function formatValues(mixed $v) : Collection
+    protected function formatValues(mixed $v): Collection
     {
         if(is_array($v))
         {

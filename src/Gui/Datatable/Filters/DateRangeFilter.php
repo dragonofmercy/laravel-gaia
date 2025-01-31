@@ -17,7 +17,7 @@ class DateRangeFilter extends DateFilter
     /**
      * @inheritDoc
      */
-    public function filter(mixed $value) : void
+    public function filter(mixed $value): void
     {
         $v = collect($value);
         $format = $this->withTime() ? 'Y-m-d H:i:s' : 'Y-m-d';

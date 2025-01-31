@@ -95,7 +95,7 @@ EOF;
      *
      * @return string
      */
-    public function getErrorFormat() : string
+    public function getErrorFormat(): string
     {
         return $this->layoutError;
     }
@@ -105,7 +105,7 @@ EOF;
      *
      * @return Form
      */
-    public function getFormInstance() : Form
+    public function getFormInstance(): Form
     {
         return $this->form;
     }
@@ -115,7 +115,7 @@ EOF;
      *
      * @return string
      */
-    public function render() : string
+    public function render(): string
     {
         return Str::strtr($this->layout, [
             '{global_errors}' => $this->renderGlobalErrors(),
@@ -129,7 +129,7 @@ EOF;
      *
      * @return string
      */
-    public function renderHiddenFields() : string
+    public function renderHiddenFields(): string
     {
         $output = "";
 
@@ -158,7 +158,7 @@ EOF;
      * @param ?array $onlyRows
      * @return string
      */
-    public function renderRows(?array $onlyRows = null) : string
+    public function renderRows(?array $onlyRows = null): string
     {
         $rows = "";
 
@@ -179,7 +179,7 @@ EOF;
      * @param string $name
      * @return string
      */
-    public function renderRow(string $name) : string
+    public function renderRow(string $name): string
     {
         $prefix = "";
 
@@ -211,7 +211,7 @@ EOF;
      * @param bool $hasError
      * @return string
      */
-    protected function addErrorClass(string $line, bool $hasError = false) : string
+    protected function addErrorClass(string $line, bool $hasError = false): string
     {
         if(false === $hasError){
             return $line;
@@ -230,7 +230,7 @@ EOF;
      * @param string $name
      * @return string
      */
-    public function renderLabel(string $name) : string
+    public function renderLabel(string $name): string
     {
         $label = $this->getFormInstance()->getLabel($name);
 
@@ -250,7 +250,7 @@ EOF;
      * @param string $name
      * @return string
      */
-    public function renderElement(string $name) : string
+    public function renderElement(string $name): string
     {
         $element = $this->getFormInstance()->getElement($name);
 
@@ -271,7 +271,7 @@ EOF;
      * @param string $name
      * @return string
      */
-    public function renderSeparator(string $name) : string
+    public function renderSeparator(string $name): string
     {
         $separator = $this->getFormInstance()->getSeparator($name);
         
@@ -287,7 +287,7 @@ EOF;
      * @param string $name
      * @return string
      */
-    public function generateName(string $name) : string
+    public function generateName(string $name): string
     {
         return sprintf($this->nameFormat, $this->getFormInstance()->getName(), $name);
     }
@@ -298,7 +298,7 @@ EOF;
      * @param string $name
      * @return string
      */
-    public function renderHelp(string $name) : string
+    public function renderHelp(string $name): string
     {
         if(null === $this->getFormInstance()->getHelp($name)){
             return "";
@@ -314,7 +314,7 @@ EOF;
      *
      * @return string
      */
-    public function renderGlobalErrors() : string
+    public function renderGlobalErrors(): string
     {
         $output = '';
 
@@ -335,7 +335,7 @@ EOF;
      * @param string $name
      * @return string
      */
-    public function renderError(string $name) : string
+    public function renderError(string $name): string
     {
         $error = $this->getFormInstance()->getError($name);
 

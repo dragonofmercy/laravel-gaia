@@ -17,7 +17,7 @@ trait Flags
      * @param Collection|array $flags
      * @return void
      */
-    public function initalizeFlags(Collection|array $flags = []) : void
+    public function initalizeFlags(Collection|array $flags = []): void
     {
         $this->flags = collect($flags);
     }
@@ -29,7 +29,7 @@ trait Flags
      * @param string $value
      * @return void
      */
-    public function setFlag(string $name, mixed $value = true) : void
+    public function setFlag(string $name, mixed $value = true): void
     {
         $this->flags[$name] = $value;
     }
@@ -40,7 +40,7 @@ trait Flags
      * @param string $name
      * @return bool
      */
-    public function hasFlag(string $name) : bool
+    public function hasFlag(string $name): bool
     {
         return $this->flags->has($name);
     }
@@ -51,7 +51,7 @@ trait Flags
      * @param string $name
      * @return mixed
      */
-    public function getFlag(string $name) : mixed
+    public function getFlag(string $name): mixed
     {
         return $this->flags->get($name);
     }

@@ -13,13 +13,13 @@ readonly class FrankfurterProvider implements ExchangeRateProvider
         private string  $baseUrl = 'https://api.frankfurter.app'
     ){}
 
-    public function getRates(string $fromCurrency, string $toCurrency, float $amount = 1.0) : float
+    public function getRates(string $fromCurrency, string $toCurrency, float $amount = 1.0): float
     {
         $data = $this->makeRequest($fromCurrency, $toCurrency);
         return $data['rates'][$toCurrency] * $amount;
     }
 
-    private function makeRequest(string $fromCurrency, string $toCurrency) : Collection
+    private function makeRequest(string $fromCurrency, string $toCurrency): Collection
     {
         return $this->client()
             ->get('/latest', [
@@ -30,7 +30,7 @@ readonly class FrankfurterProvider implements ExchangeRateProvider
             ->collect();
     }
 
-    private function client() : Factory|PendingRequest
+    private function client(): Factory|PendingRequest
     {
         return $this->client
             ->baseUrl($this->baseUrl)

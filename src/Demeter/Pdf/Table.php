@@ -126,7 +126,7 @@ class Table
      * @param array|Collection $columns
      * @return void
      */
-    public function setHeading(array|Collection $columns) : void
+    public function setHeading(array|Collection $columns): void
     {
         foreach($columns as $column => $definition){
             $def = [];
@@ -144,7 +144,7 @@ class Table
      * @param array|Collection $columns
      * @return void
      */
-    public function setColumns(array|Collection $columns) : void
+    public function setColumns(array|Collection $columns): void
     {
         foreach($columns as $column => $definition){
             $def = [];
@@ -162,7 +162,7 @@ class Table
      * @param array|Collection $row
      * @return void
      */
-    public function addRow(array|Collection $row) : void
+    public function addRow(array|Collection $row): void
     {
         $line = [];
 
@@ -179,7 +179,7 @@ class Table
      * @param float $v
      * @return void
      */
-    public function setLineWidth(float $v) : void
+    public function setLineWidth(float $v): void
     {
         $this->lineWidth = $v;
     }
@@ -190,7 +190,7 @@ class Table
      * @param string|array $color
      * @return void
      */
-    public function setFillColor(string|array $color) : void
+    public function setFillColor(string|array $color): void
     {
         if(!is_array($color)){
             $color = $this->handle->hexToRgb($color);
@@ -205,7 +205,7 @@ class Table
      * @param string|array $color
      * @return void
      */
-    public function setStripColor(string|array $color) : void
+    public function setStripColor(string|array $color): void
     {
         if(!is_array($color)){
             $color = $this->handle->hexToRgb($color);
@@ -220,7 +220,7 @@ class Table
      * @param string|array $color
      * @return void
      */
-    public function setDrawColor(string|array $color) : void
+    public function setDrawColor(string|array $color): void
     {
         if(!is_array($color)){
             $color = $this->handle->hexToRgb($color);
@@ -238,7 +238,7 @@ class Table
      * @param float $bottom
      * @return void
      */
-    public function setCellPadding(float $left, float $top, float $right, float $bottom) : void
+    public function setCellPadding(float $left, float $top, float $right, float $bottom): void
     {
         $this->cellPadding = [$left, $top, $right, $bottom];
     }
@@ -249,7 +249,7 @@ class Table
      * @param bool $v
      * @return void
      */
-    public function setRepeatHeadingAfterBreak(bool $v) : void
+    public function setRepeatHeadingAfterBreak(bool $v): void
     {
         $this->repeatHeadingAfterBreak = $v;
     }
@@ -260,7 +260,7 @@ class Table
      * @param bool $v
      * @return void
      */
-    public function setStripped(bool $v) : void
+    public function setStripped(bool $v): void
     {
         $this->stripped = $v;
     }
@@ -270,7 +270,7 @@ class Table
      *
      * @return void
      */
-    public function make() : void
+    public function make(): void
     {
         $this->updateWidths();
 
@@ -330,7 +330,7 @@ class Table
      *
      * @return bool
      */
-    protected function hasHeading() : bool
+    protected function hasHeading(): bool
     {
         return count($this->heading) > 0;
     }
@@ -342,7 +342,7 @@ class Table
      * @param bool $heading
      * @return float
      */
-    protected function calculateRowHeight(array $columns, bool $heading = false) : float
+    protected function calculateRowHeight(array $columns, bool $heading = false): float
     {
         $height = 0;
 
@@ -381,7 +381,7 @@ class Table
      *
      * @retrun void
      */
-    protected function updateWidths() : void
+    protected function updateWidths(): void
     {
         $columnsDefinitions = [];
         $autoColumns = [];
@@ -437,7 +437,7 @@ class Table
      * @param bool $stripState
      * @return void
      */
-    protected function makeColumn(array $definition, bool $stripState) : void
+    protected function makeColumn(array $definition, bool $stripState): void
     {
         $originalFillColor = $this->handle->getFillColor();
         $originalFontSize = $this->handle->getFontSizePt();
@@ -473,7 +473,7 @@ class Table
      *
      * @return void
      */
-    protected function makeHeadings() : void
+    protected function makeHeadings(): void
     {
         $headingLine = [];
 

@@ -10,7 +10,7 @@ class EloquentUniqueValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -24,7 +24,7 @@ class EloquentUniqueValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : mixed
+    protected function validate(mixed $v): mixed
     {
         $originalValues = $v;
         $columns = is_array($this->getOption('column')) ? $this->getOption('column') : [$this->getOption('column')];
@@ -60,7 +60,7 @@ class EloquentUniqueValidator extends AbstractValidator
      * @param Collection $v
      * @return bool
      */
-    protected function isUpdate(Model $model, Collection $v) : bool
+    protected function isUpdate(Model $model, Collection $v): bool
     {
         $primaryKey = $this->getPrimaryKey();
         return isset($v[$primaryKey]) && $model->$primaryKey == $v[$primaryKey];
@@ -71,7 +71,7 @@ class EloquentUniqueValidator extends AbstractValidator
      *
      * @return string
      */
-    protected function getPrimaryKey() : string
+    protected function getPrimaryKey(): string
     {
         if($this->hasOption('primaryKey')){
             return $this->getOption('primaryKey');

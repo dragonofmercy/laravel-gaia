@@ -64,7 +64,7 @@ class Openssl extends AbstractHasher implements HasherContract
      *
      * @return string
      */
-    protected function getPassphrase() : string
+    protected function getPassphrase(): string
     {
         return config('demeter.openssl_passphrase');
     }

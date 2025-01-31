@@ -25,7 +25,7 @@ trait Messages
      *
      * @return void
      */
-    public function initalizeMessages() : void
+    public function initalizeMessages(): void
     {
         $this->messages = collect(self::$defaultMessages);
     }
@@ -36,7 +36,7 @@ trait Messages
      * @param Collection|array $messages
      * @return void
      */
-    public function validateMessages(Collection|array $messages = []) : void
+    public function validateMessages(Collection|array $messages = []): void
     {
         collect($messages)->map(function(mixed $value, string $name){
             if(!$this->messages->has($name)){
@@ -54,7 +54,7 @@ trait Messages
      * @param string $value
      * @return void
      */
-    public function setMessage(string $name, string $value) : void
+    public function setMessage(string $name, string $value): void
     {
         $this->messages[$name] = $value;
     }
@@ -65,7 +65,7 @@ trait Messages
      * @param string $name
      * @return mixed
      */
-    public function getMessage(string $name) : string
+    public function getMessage(string $name): string
     {
         return $this->messages->get($name, $name);
     }
@@ -75,7 +75,7 @@ trait Messages
      *
      * @return Collection
      */
-    public function getMessages() : Collection
+    public function getMessages(): Collection
     {
         return $this->messages;
     }
@@ -87,7 +87,7 @@ trait Messages
      * @param string $message
      * @return void
      */
-    public static function setDefaultMessage(string $name, string $message) : void
+    public static function setDefaultMessage(string $name, string $message): void
     {
         self::$defaultMessages[$name] = $message;
     }

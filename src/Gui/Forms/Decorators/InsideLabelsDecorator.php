@@ -11,7 +11,7 @@ EOF;
 <form-group class="vertical inside"><div class="control-field">{help}<div class="{data_size}">{field}</div>{error}</div></form-group>
 EOF;
 
-    public function renderElement(string $name) : string
+    public function renderElement(string $name): string
     {
         $this->getFormInstance()->getElement($name)->setAttribute('placeholder', $this->getFormInstance()->getLabel($name));
 

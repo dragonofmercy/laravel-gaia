@@ -44,7 +44,7 @@ class Error extends ValueError
      *
      * @return AbstractValidator
      */
-    public function getValidator() : AbstractValidator
+    public function getValidator(): AbstractValidator
     {
         return $this->validator;
     }
@@ -54,7 +54,7 @@ class Error extends ValueError
      *
      * @return Collection
      */
-    public function getArguments() : Collection
+    public function getArguments(): Collection
     {
         return $this->arguments;
     }
@@ -64,7 +64,7 @@ class Error extends ValueError
      *
      * @return array<string, string>
      */
-    protected function getReplacements() : array
+    protected function getReplacements(): array
     {
         $replacements = [];
 

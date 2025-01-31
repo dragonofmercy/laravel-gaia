@@ -20,7 +20,7 @@ class DateFilter extends AbstractFilter
      * @param bool|null $v
      * @return bool|DateFilter
      */
-    public function withTime(bool|null $v = null) : self|bool
+    public function withTime(bool|null $v = null): self|bool
     {
         if(null === $v){
             return $this->options->get('with_time', false);
@@ -33,7 +33,7 @@ class DateFilter extends AbstractFilter
     /**
      * @inheritDoc
      */
-    public function filter(mixed $value) : void
+    public function filter(mixed $value): void
     {
         try {
             $format = $this->withTime() ? 'Y-m-d H:i:s' : 'Y-m-d';

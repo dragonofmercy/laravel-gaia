@@ -8,7 +8,7 @@ class InputCode extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -22,7 +22,7 @@ class InputCode extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -36,7 +36,7 @@ class InputCode extends AbstractElement
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $this->setAttribute('name', $name);
 
@@ -54,7 +54,7 @@ class InputCode extends AbstractElement
      * @param string $name
      * @return string
      */
-    protected function build(string $name) : string
+    protected function build(string $name): string
     {
         $output = "";
         $separatorOption = $this->getOption('separator');

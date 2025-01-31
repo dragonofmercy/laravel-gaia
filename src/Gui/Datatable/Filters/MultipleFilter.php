@@ -14,7 +14,7 @@ class MultipleFilter extends TextFilter
      * @param array|null $columns
      * @return array|MultipleFilter
      */
-    public function columns(array|null $columns = null) : self|array
+    public function columns(array|null $columns = null): self|array
     {
         if(null === $columns){
             return $this->options->get('columns', []);
@@ -27,7 +27,7 @@ class MultipleFilter extends TextFilter
     /**
      * @inheritDoc
      */
-    public function filter(mixed $value) : void
+    public function filter(mixed $value): void
     {
         $searchItems = explode(' ', (string) $value);
 

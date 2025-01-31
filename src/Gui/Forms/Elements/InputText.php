@@ -6,7 +6,7 @@ class InputText extends Input
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 

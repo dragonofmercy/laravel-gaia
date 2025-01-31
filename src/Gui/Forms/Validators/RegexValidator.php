@@ -6,7 +6,7 @@ class RegexValidator extends StringValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -17,7 +17,7 @@ class RegexValidator extends StringValidator
      * @inheritDoc
      * @return string
      */
-    protected function validate(mixed $v) : string
+    protected function validate(mixed $v): string
     {
         $clean = parent::validate($v);
 

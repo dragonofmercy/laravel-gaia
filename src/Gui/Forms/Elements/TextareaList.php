@@ -8,7 +8,7 @@ class TextareaList extends Textarea
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -19,7 +19,7 @@ class TextareaList extends Textarea
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         if(is_array($value)){
             $nbLines = count($value);

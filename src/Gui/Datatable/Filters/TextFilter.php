@@ -16,7 +16,7 @@ class TextFilter extends AbstractFilter
     /**
      * @inheritDoc
      */
-    public function filter(mixed $value) : void
+    public function filter(mixed $value): void
     {
         if($this->engine instanceof EloquentEngine){
             if(in_array($this->operator(), ['LIKE', 'ILIKE'])){

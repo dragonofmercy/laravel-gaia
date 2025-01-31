@@ -40,7 +40,7 @@ class Str extends \Illuminate\Support\Str
      * @param int $limit The maximum number of elements in the resulting collection. Defaults to PHP_INT_MAX.
      * @return Collection A collection of the split string fragments, or an empty collection if the input string is null.
      */
-    public static function explode(string|null $string, string $separator, int $limit = PHP_INT_MAX) : Collection
+    public static function explode(string|null $string, string $separator, int $limit = PHP_INT_MAX): Collection
     {
         if(null === $string){
             return new Collection();
@@ -56,7 +56,7 @@ class Str extends \Illuminate\Support\Str
      * @param array|Collection $needles
      * @return string
      */
-    public static function strtr(string $haystack, array|Collection $needles = []) : string
+    public static function strtr(string $haystack, array|Collection $needles = []): string
     {
         return str_replace(array_keys($needles), array_values($needles), $haystack);
     }
@@ -70,7 +70,7 @@ class Str extends \Illuminate\Support\Str
      * @param bool $stripWordChars
      * @return string
      */
-    public static function cleanup(string $string, bool $trim = true, bool|array|Collection $stripTags = true, bool $stripWordChars = true) : string
+    public static function cleanup(string $string, bool $trim = true, bool|array|Collection $stripTags = true, bool $stripWordChars = true): string
     {
         $string = str_replace("\xE2\x80\x8B\xA0", '', $string);
 

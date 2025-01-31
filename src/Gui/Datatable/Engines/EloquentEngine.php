@@ -46,7 +46,7 @@ class EloquentEngine extends AbstractEngine
      *
      * @return Builder
      */
-    public function getQuery() : Builder
+    public function getQuery(): Builder
     {
         return $this->query;
     }
@@ -54,7 +54,7 @@ class EloquentEngine extends AbstractEngine
     /**
      * @inheritDoc
      */
-    protected function getRowColumnValues(string $column) : Collection
+    protected function getRowColumnValues(string $column): Collection
     {
         $query = clone $this->getQuery();
         return $query->get($column)->transform(function($value) use ($column){

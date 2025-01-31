@@ -14,7 +14,7 @@ class DatatableResetButton extends Component
         public bool   $responsive = true
     ){}
 
-    public function render() : string
+    public function render(): string
     {
         $attributes = [
             'class' => 'icon-flex'

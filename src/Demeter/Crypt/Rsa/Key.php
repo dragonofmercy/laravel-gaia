@@ -27,7 +27,7 @@ abstract class Key implements Countable
      *
      * @return OpenSSLAsymmetricKey The OpenSSL asymmetric key resource.
      */
-    public function getKeyResource() : OpenSSLAsymmetricKey
+    public function getKeyResource(): OpenSSLAsymmetricKey
     {
         return $this->keyResource;
     }

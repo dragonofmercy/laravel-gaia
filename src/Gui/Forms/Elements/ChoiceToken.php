@@ -9,7 +9,7 @@ class ChoiceToken extends ChoiceSelect
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -31,7 +31,7 @@ class ChoiceToken extends ChoiceSelect
         $this->addOption('layoutDirection', 'row');
     }
 
-    public function validateOptions(array|Collection $options = []) : void
+    public function validateOptions(array|Collection $options = []): void
     {
         if(isset($options['provider']) && $options['provider'] !== 'select'){
             $options['choices'] = [];
@@ -40,7 +40,7 @@ class ChoiceToken extends ChoiceSelect
         parent::validateOptions($options);
     }
 
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -55,7 +55,7 @@ class ChoiceToken extends ChoiceSelect
         $this->setAttribute('class', 'd-none');
     }
 
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         $opt = [];
 

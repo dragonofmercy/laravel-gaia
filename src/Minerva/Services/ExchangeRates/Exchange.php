@@ -17,7 +17,7 @@ readonly class Exchange
      * @param float $amount
      * @return float
      */
-    public function get(string $fromCurrency, string $toCurrency, float $amount = 1.0) : float
+    public function get(string $fromCurrency, string $toCurrency, float $amount = 1.0): float
     {
         return $this->provider->getRates($fromCurrency, $toCurrency, $amount);
     }

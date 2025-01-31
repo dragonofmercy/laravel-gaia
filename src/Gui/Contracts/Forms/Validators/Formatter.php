@@ -9,5 +9,5 @@ interface Formatter
      * @param mixed $v The value to be formatted.
      * @return mixed The formatted value.
      */
-    public function format(mixed $v) : mixed;
+    public function format(mixed $v): mixed;
 }

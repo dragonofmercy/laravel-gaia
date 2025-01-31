@@ -12,7 +12,7 @@ class Partial extends Component
         public array $params = []
     ){}
 
-    public function render() : string|View
+    public function render(): string|View
     {
         if(is_array($this->route)){
             list($controllerClass, $method) = $this->route;

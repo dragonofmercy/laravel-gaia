@@ -23,7 +23,7 @@ class CheckboxDecorator extends DefaultDecorator
      * @param mixed|null $value null to disable, false to not set a value and gui-selector-hidden to hide
      * @return string
      */
-    public function getCheckbox(mixed $value = null) : string
+    public function getCheckbox(mixed $value = null): string
     {
         if($value == 'gui-selector-hidden'){
             return "";

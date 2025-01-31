@@ -8,7 +8,7 @@ class EloquentChoiceValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -27,7 +27,7 @@ class EloquentChoiceValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function validate(mixed $v) : mixed
+    protected function validate(mixed $v): mixed
     {
         if($this->hasOption('query') && $this->getOption('query') instanceof Builder){
             /** @var Builder $query */
@@ -73,7 +73,7 @@ class EloquentChoiceValidator extends AbstractValidator
      *
      * @return string
      */
-    protected function getColumn() : string
+    protected function getColumn(): string
     {
         if($this->hasOption('column')){
             return $this->getOption('column');

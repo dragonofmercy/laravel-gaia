@@ -9,7 +9,7 @@ class FileValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -30,7 +30,7 @@ class FileValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function getEmptyValue() : ?array
+    protected function getEmptyValue(): ?array
     {
         return $this->getOption('multiple') ? [] : null;
     }
@@ -39,7 +39,7 @@ class FileValidator extends AbstractValidator
      * @inheritDoc
      * @return UploadedFile|array<int,UploadedFile>
      */
-    protected function validate(mixed $v) : UploadedFile|array|null
+    protected function validate(mixed $v): UploadedFile|array|null
     {
         if(null === $v || is_string($v)){
             return $this->getEmptyValue();
@@ -72,7 +72,7 @@ class FileValidator extends AbstractValidator
      * @param UploadedFile $file
      * @return UploadedFile
      */
-    protected function validateFile(UploadedFile $file) : UploadedFile
+    protected function validateFile(UploadedFile $file): UploadedFile
     {
         if($this->hasOption('minSize') && $file->getSize() < $this->getOption('minSize')){
             throw new Error($this, 'minSize', ['name' => $file->getClientOriginalName(), 'size' => Number::fileSize($this->getOption('minSize'))]);

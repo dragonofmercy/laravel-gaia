@@ -8,7 +8,7 @@ class InputAutocomplete extends InputText
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -22,7 +22,7 @@ class InputAutocomplete extends InputText
     /**
      * @inheritDoc
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
         parent::beforeRender();
 
@@ -32,7 +32,7 @@ class InputAutocomplete extends InputText
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         return parent::render($name, $value, $error) . javascript_tag_deferred($this->getJavascript($this->generateId($name)));
     }
@@ -43,7 +43,7 @@ class InputAutocomplete extends InputText
      * @param string $id
      * @return string
      */
-    protected function getJavascript(string $id) : string
+    protected function getJavascript(string $id): string
     {
         $opt = [
             'url' => url($this->getOption('url')),

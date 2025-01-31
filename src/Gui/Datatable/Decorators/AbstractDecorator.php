@@ -47,7 +47,7 @@ abstract class AbstractDecorator
      *
      * @return string
      */
-    public function render() : string
+    public function render(): string
     {
         $this->engine->make();
 
@@ -64,7 +64,7 @@ abstract class AbstractDecorator
      * @param string $filter
      * @return array
      */
-    protected function getHttpQuery(string $filter = 'dt_') : array
+    protected function getHttpQuery(string $filter = 'dt_'): array
     {
         return collect(RequestFacade::all())->filter(function(mixed $value, string $key) use ($filter){
             return !Str::startsWith($key, $filter);
@@ -79,7 +79,7 @@ abstract class AbstractDecorator
      * @param string|null $sortDirection
      * @return string
      */
-    public function url(int|null $page = null, string|null $sortBy = null, string|null $sortDirection = null) : string
+    public function url(int|null $page = null, string|null $sortBy = null, string|null $sortDirection = null): string
     {
         $engine = $this->getEngine();
         $httpQuery = $this->getHttpQuery();
@@ -98,7 +98,7 @@ abstract class AbstractDecorator
      * @param bool $detachSearchOnly
      * @return string
      */
-    public function resetUrl(bool $detachSearchOnly = false) : string
+    public function resetUrl(bool $detachSearchOnly = false): string
     {
         $httpQuery = $this->getHttpQuery($detachSearchOnly ? 'dt_f' : 'dt_');
         $httpQuery['dt_u'] = $this->getEngine()->getUid();
@@ -112,5 +112,5 @@ abstract class AbstractDecorator
      *
      * @return array
      */
-    abstract protected function getComponents() : array;
+    abstract protected function getComponents(): array;
 }

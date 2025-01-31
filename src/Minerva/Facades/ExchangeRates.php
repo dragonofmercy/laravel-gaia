@@ -6,7 +6,7 @@ namespace Minerva\Facades;
  */
 class ExchangeRates extends \Illuminate\Support\Facades\Facade
 {
-    protected static function getFacadeAccessor() : string
+    protected static function getFacadeAccessor(): string
     {
         return 'exchange.rates';
     }

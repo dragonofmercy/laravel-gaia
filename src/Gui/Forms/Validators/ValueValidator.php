@@ -6,7 +6,7 @@ class ValueValidator extends AbstractValidator
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -18,7 +18,7 @@ class ValueValidator extends AbstractValidator
      * @inheritDoc
      * @return mixed
      */
-    protected function validate(mixed $v) : mixed
+    protected function validate(mixed $v): mixed
     {
         if($this->getOption('displayError')){
             if((string) $v != (string) $this->getOption('value')){

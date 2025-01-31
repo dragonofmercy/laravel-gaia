@@ -9,7 +9,7 @@ class InputFile extends Input
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -27,7 +27,7 @@ class InputFile extends Input
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         if($this->getOption('multiple')){
             $this->setAttribute('multiple', 'multiple');

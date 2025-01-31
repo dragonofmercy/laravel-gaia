@@ -9,7 +9,7 @@ class InputGroup extends InputText
     /**
      * @inheritDoc
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         parent::initialize();
 
@@ -22,7 +22,7 @@ class InputGroup extends InputText
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null) : string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         if($this->hasOption('prefix') === false && $this->hasOption('suffix') === false){
             return parent::render($name, $value, $error);
@@ -51,7 +51,7 @@ class InputGroup extends InputText
      * @param string $position
      * @return string
      */
-    protected function renderAddon(string &$name, mixed &$value, string $position) : string
+    protected function renderAddon(string &$name, mixed &$value, string $position): string
     {
         $option = $this->getOption($position);
         $value = $value ?? '';

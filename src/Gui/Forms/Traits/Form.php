@@ -19,7 +19,7 @@ trait Form
      * @param BaseForm $form
      * @return void
      */
-    public function setFormInstance(BaseForm $form) : void
+    public function setFormInstance(BaseForm $form): void
     {
         $this->form = $form;
     }
@@ -29,7 +29,7 @@ trait Form
      *
      * @return BaseForm|EloquentForm
      */
-    public function getFormInstance() : BaseForm|EloquentForm
+    public function getFormInstance(): BaseForm|EloquentForm
     {
         return $this->form;
     }

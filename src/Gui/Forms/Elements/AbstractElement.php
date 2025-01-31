@@ -37,7 +37,7 @@ abstract class AbstractElement
      *
      * @return void
      */
-    protected function beforeRender() : void
+    protected function beforeRender(): void
     {
     }
 
@@ -46,7 +46,7 @@ abstract class AbstractElement
      *
      * @return void
      */
-    protected function initialize() : void
+    protected function initialize(): void
     {
         $this->addOption('isHidden', false);
     }
@@ -57,7 +57,7 @@ abstract class AbstractElement
      * @param Collection $attributes
      * @return Collection
      */
-    public function finalizeAttributes(Collection $attributes) : Collection
+    public function finalizeAttributes(Collection $attributes): Collection
     {
         if($attributes->has('name')){
             $attributes['id'] = $this->generateId($attributes->get('name'));
@@ -71,7 +71,7 @@ abstract class AbstractElement
      *
      * @return bool
      */
-    public function isHidden() : bool
+    public function isHidden(): bool
     {
         return (bool) $this->options->get('isHidden', false);
     }
@@ -81,7 +81,7 @@ abstract class AbstractElement
      *
      * @return bool
      */
-    public function isDisabled() : bool
+    public function isDisabled(): bool
     {
         return $this->getAttribute('disabled', false) || $this->getAttribute('readonly', false);
     }
@@ -93,7 +93,7 @@ abstract class AbstractElement
      * @param mixed|null $value
      * @return string
      */
-    public function generateId(string $name, mixed $value = null) : string
+    public function generateId(string $name, mixed $value = null): string
     {
         if(Str::contains($name, '[')){
             $name = str_replace(['[]', '][', '[', ']'], [(null !== $value ? '_' . Str::lower($value) : ''), '_', '_', ''], $name);
@@ -109,7 +109,7 @@ abstract class AbstractElement
      * @param Collection|array $attributes
      * @return string
      */
-    public function renderTag(string $tag, Collection|array $attributes = new Collection()) : string
+    public function renderTag(string $tag, Collection|array $attributes = new Collection()): string
     {
         if(!$attributes instanceof Collection){
             $attributes = collect($attributes);
@@ -126,7 +126,7 @@ abstract class AbstractElement
      * @param Collection|array $attributes
      * @return string
      */
-    public function renderContentTag(string $tag, string $content = "", Collection|array $attributes = new Collection()) : string
+    public function renderContentTag(string $tag, string $content = "", Collection|array $attributes = new Collection()): string
     {
         if(!$attributes instanceof Collection){
             $attributes = collect($attributes);
@@ -141,7 +141,7 @@ abstract class AbstractElement
      * @param array $needles
      * @return string
      */
-    protected function replace(string $haystack, array $needles = []) : string
+    protected function replace(string $haystack, array $needles = []): string
     {
         return str_replace(array_keys($needles), array_values($needles), $haystack);
     }
@@ -154,5 +154,5 @@ abstract class AbstractElement
      * @param Error|null $error
      * @return string
      */
-    abstract public function render(string $name, mixed $value = null, ?Error $error = null) : string;
+    abstract public function render(string $name, mixed $value = null, ?Error $error = null): string;
 }

@@ -27,7 +27,7 @@ class BooleanFilter extends ChoicesFilter
     /**
      * @inheritDoc
      */
-    public function filter(mixed $value) : void
+    public function filter(mixed $value): void
     {
         if($this->engine instanceof EloquentEngine){
             $this->engine->getQuery()->where($this->column, "=", $value);
