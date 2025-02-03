@@ -44,8 +44,12 @@ return [
         'min' => "Veuillez choisir au moins :min fichiers.",
         'max' => "Veuillez choisir au maximum :max fichiers.",
         'max_size' => "\":name\" est trop volumineux (max :size).",
-        'min_size' => "\":name\" est pas assez volumineux (min :size).",
+        'min_size' => "\":name\" n'est pas assez volumineux (min :size).",
         'mime_types' => "Le type \":mime\" n'est pas accepté pour le fichier \":name\".",
+        'max_width' => "\":name\" est trop large (max :width).",
+        'min_width' => "\":name\" n'est pas large (min :width).",
+        'max_height' => "\":name\" est trop haute (max :height).",
+        'min_height' => "\":name\" n'est pas assez haute (min :height).",
     ],
 
     'captcha' => [

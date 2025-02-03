@@ -10,6 +10,9 @@
         "petercoles/multilingual-country-list": ">=1.2.11",
         "rct567/dom-query": ">=1.1"
     },
+    "suggest" : {
+        "intervention/image" : "Require to use image manipulation functions"
+    },
     "autoload": {
         "files": [
             "src/Gui/Helpers/tags.php",

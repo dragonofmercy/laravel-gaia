@@ -46,6 +46,10 @@ return [
         'max_size' => "\":name\" is too large (max :size).",
         'min_size' => "\":name\" is too small (min :size).",
         'mime_types' => "Invalid mime type \":mime\" for \":name\".",
+        'max_width' => "\":name\" is too wide (max :width).",
+        'min_width' => "\":name\" is not enought wide (min :width).",
+        'max_height' => "\":name\" is too tall (max :height).",
+        'min_height' => "\":name\" is not enought tall (min :height).",
     ],
 
     'captcha' => [
