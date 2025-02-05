@@ -102,7 +102,7 @@ abstract class AbstractValidator
      */
     protected function isEmpty(mixed $value): bool
     {
-        return in_array($value, array(null, '', array()), true);
+        return in_array($value, [null, '', array()], true);
     }
 
     /**

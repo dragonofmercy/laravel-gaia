@@ -313,7 +313,7 @@ if(!function_exists('gui_icon')){
      */
     function gui_icon(string $icon): string
     {
-        return content_tag('i', '', array('class' => $icon));
+        return content_tag('i', '', ['class' => $icon]);
     }
 }
 

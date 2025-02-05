@@ -49,12 +49,12 @@ class Tcpdf extends \TCPDF
         $this->setCellPaddings(0, 0, 0, 0);
         $this->setJPEGQuality(100);
         $this->setImageScale(4);
-        $this->setLanguageArray(array(
+        $this->setLanguageArray([
             'a_meta_charset' => $encoding,
             'a_meta_dir' => $this->getRTL() ? 'rtl' : 'ltr',
             'a_meta_language' => app()->currentLocale(),
             'w_page' => 'page'
-        ));
+        ]);
     }
 
     /**
@@ -186,7 +186,7 @@ class Tcpdf extends \TCPDF
      */
     public function textBox(array $args = []): void
     {
-        $defaults = array(
+        $defaults = [
             'w' => 0,
             'h' => 0,
             'txt' => '',
@@ -203,7 +203,7 @@ class Tcpdf extends \TCPDF
             'maxh' => 0,
             'valign' => null,
             'fitcell' => false
-        );
+        ];
 
         $options = new Collection();
 
@@ -247,7 +247,7 @@ class Tcpdf extends \TCPDF
             'hidden' => false,
             'fitonpage' => false,
             'alt' => false,
-            'altimgs' => array()
+            'altimgs' => []
         ];
 
         $options = new Collection();
@@ -353,7 +353,7 @@ class Tcpdf extends \TCPDF
             $b = hexdec(substr($hex,4,2));
         }
 
-        return array($r, $g, $b);
+        return [$r, $g, $b];
     }
 
     /**

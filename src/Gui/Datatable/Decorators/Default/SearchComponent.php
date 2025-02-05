@@ -12,10 +12,10 @@ class SearchComponent extends AbstractComponent
      * Javascript functions map
      * @var array<string, string>
      */
-    public static array $javascriptSearchFunctions = array(
+    public static array $javascriptSearchFunctions = [
         self::SEARCH_FUNCTION => "gui.datagridSearch('%s', '%s', %s)",
         self::SEARCH_FUNCTION_KEYDOWN => "gui.datagridSearchKeydown('%s', '%s', event)",
-    );
+    ];
 
     /**
      * Form UID format
@@ -84,11 +84,11 @@ EOF;
             $this->layout = preg_replace('/(class=".*)(collapse)/iU', '$1collapse show', $this->layout);
         }
 
-        $replacements = array(
+        $replacements = [
             '{search_id}' => sprintf($this->formUid, $this->getParent()->getEngine()->getUid()),
             '{buttons}' => $this->renderButtons(),
             '{content}' => $output
-        );
+        ];
 
         return str_replace(array_keys($replacements), array_values($replacements), $this->layout);
     }
@@ -136,11 +136,11 @@ EOF;
     {
         $parent = $this->getParent();
 
-        $replacements = array(
-            '{button_search}' => content_tag('button', content_tag('i', '', array('class' => 'fa-solid fa-magnifying-glass')) . trans('gui::messages.datatable.search'), array('class' => 'btn btn-default btn-icon inline', 'data-search' => 1, 'data-loading-text' => trans('gui::messages.generic.loading'), 'onclick' => sprintf(static::$javascriptSearchFunctions[self::SEARCH_FUNCTION], $parent->getEngine()->getUid(), url($parent->url(1)), 'false'))),
-            '{button_reset}' => content_tag('button', content_tag('i', '', array('class' => 'fa-solid fa-eraser')) . trans('gui::messages.datatable.clear'), array('class' => 'btn btn-default btn-icon inline', 'data-loading-text' => trans('gui::messages.generic.loading'), 'onclick' => sprintf(static::$javascriptSearchFunctions[self::SEARCH_FUNCTION], $parent->getEngine()->getUid(), url($parent->url()), 'true'))),
-            '{button_clear}' => gui_button_link_remote('gui::messages.datatable.close', $parent->resetUrl(true), $parent->getEngine()->getUid(), 'fa-solid fa-xmark', array('class' => 'btn btn-default btn-icon inline pull-right', 'data-loading-text' => trans('gui::messages.generic.loading')), ['method' => \Illuminate\Http\Request::METHOD_POST])
-        );
+        $replacements = [
+            '{button_search}' => content_tag('button', content_tag('i', '', ['class' => 'fa-solid fa-magnifying-glass']) . trans('gui::messages.datatable.search'), ['class' => 'btn btn-default btn-icon inline', 'data-search' => 1, 'data-loading-text' => trans('gui::messages.generic.loading'), 'onclick' => sprintf(static::$javascriptSearchFunctions[self::SEARCH_FUNCTION], $parent->getEngine()->getUid(), url($parent->url(1)), 'false')]),
+            '{button_reset}' => content_tag('button', content_tag('i', '', ['class' => 'fa-solid fa-eraser']) . trans('gui::messages.datatable.clear'), ['class' => 'btn btn-default btn-icon inline', 'data-loading-text' => trans('gui::messages.generic.loading'), 'onclick' => sprintf(static::$javascriptSearchFunctions[self::SEARCH_FUNCTION], $parent->getEngine()->getUid(), url($parent->url()), 'true')]),
+            '{button_clear}' => gui_button_link_remote('gui::messages.datatable.close', $parent->resetUrl(true), $parent->getEngine()->getUid(), 'fa-solid fa-xmark', ['class' => 'btn btn-default btn-icon inline pull-right', 'data-loading-text' => trans('gui::messages.generic.loading')], ['method' => \Illuminate\Http\Request::METHOD_POST])
+        ];
 
         return str_replace(array_keys($replacements), array_values($replacements), $this->layoutSearchButtons);
     }
