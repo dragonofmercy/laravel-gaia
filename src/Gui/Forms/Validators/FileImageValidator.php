@@ -1,26 +1,11 @@
 <?php
 namespace Gui\Forms\Validators;
 
+use Gui\Dto\ImageDimensions;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Collection;
-use Intervention\Image\ImageManager;
-use Throwable;
-use RuntimeException;
 
 class FileImageValidator extends FileValidator
 {
-    /**
-     * @inheritDoc
-     */
-    public function __construct(array|Collection $options = [], array|Collection $messages = [], array|Collection $flags = [])
-    {
-        if(!class_exists('Intervention\Image\ImageManager')){
-            throw new RuntimeException('The Intervention Image library is not installed. Please run "composer require intervention/image" to install it.');
-        }
-
-        parent::__construct($options, $messages, $flags);
-    }
-
     /**
      * @inheritDoc
      */
@@ -52,19 +37,19 @@ class FileImageValidator extends FileValidator
 
         $dimensions = $this->getImageDimensions($file);
 
-        if($this->hasOption('maxWidth') && $dimensions[0] > $this->getOption('maxWidth')){
+        if($this->hasOption('maxWidth') && $dimensions->width > $this->getOption('maxWidth')){
             throw new Error($this, 'maxWidth', ['name' => $file->getClientOriginalName(), 'width' => $this->getOption('maxWidth') . 'px']);
         }
 
-        if($this->hasOption('minWidth') && $dimensions[0] < $this->getOption('minWidth')){
+        if($this->hasOption('minWidth') && $dimensions->width < $this->getOption('minWidth')){
             throw new Error($this, 'minWidth', ['name' => $file->getClientOriginalName(), 'width' => $this->getOption('minWidth') . 'px']);
         }
 
-        if($this->hasOption('maxHeight') && $dimensions[1] > $this->getOption('maxHeight')){
+        if($this->hasOption('maxHeight') && $dimensions->height > $this->getOption('maxHeight')){
             throw new Error($this, 'maxHeight', ['name' => $file->getClientOriginalName(), 'height' => $this->getOption('maxHeight') . 'px']);
         }
 
-        if($this->hasOption('minHeight') && $dimensions[1] < $this->getOption('minHeight')){
+        if($this->hasOption('minHeight') && $dimensions->height < $this->getOption('minHeight')){
             throw new Error($this, 'minHeight', ['name' => $file->getClientOriginalName(), 'height' => $this->getOption('minHeight') . 'px']);
         }
 
@@ -72,19 +57,37 @@ class FileImageValidator extends FileValidator
     }
 
     /**
-     * Retrieves the dimensions of the given image file.
+     * Retrieves the width and height dimensions of the given uploaded image file.
      *
-     * @param UploadedFile $file The uploaded image file for which dimensions will be determined.
-     * @return array<int, int> An array containing the width and height of the image, respectively.
+     * @param UploadedFile $file The uploaded file whose image dimensions need to be extracted.
+     * @return ImageDimensions An object containing the width and height of the image. If the dimensions
+     *                         cannot be determined, the object will contain default values (e.g., 0).
      */
-    protected function getImageDimensions(UploadedFile $file): array
+    protected function getImageDimensions(UploadedFile $file): ImageDimensions
     {
-        try {
-            $image = (extension_loaded('imagick') ? ImageManager::imagick() : ImageManager::gd())->read($file->getRealPath());
-            return [$image->width(), $image->height()];
-        } catch(Throwable){
-            return [0, 0];
+        $imageDimensions = new ImageDimensions();
+
+        if(extension_loaded('imagick')){
+            try {
+                $image = new \Imagick($file->getRealPath());
+                $imageDimensions->width = $image->getImageWidth();
+                $imageDimensions->height = $image->getImageHeight();
+                return $imageDimensions;
+            } catch(\ImagickException $e){
+                report($e);
+            }
         }
+
+        $imageSize = @getimagesize($file->getRealPath());
+
+        if(false === $imageSize){
+            return $imageDimensions;
+        }
+
+        $imageDimensions->width = $imageSize[0];
+        $imageDimensions->height = $imageSize[1];
+
+        return $imageDimensions;
     }
 
     /**
