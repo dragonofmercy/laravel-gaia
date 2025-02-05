@@ -1,6 +1,5 @@
 {
     "name": "dragonofmercy/gaia",
-    "version": "1.0.0",
     "description": "Gaia package for laravel",
     "require": {
         "ext-fileinfo": "*",
