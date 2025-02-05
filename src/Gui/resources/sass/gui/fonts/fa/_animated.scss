@@ -80,22 +80,24 @@
 // if agent or operating system prefers reduced motion, disable animations
 // see: https://www.smashingmagazine.com/2020/09/design-reduced-motion-sensitivities/
 // see: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
-@media (prefers-reduced-motion: reduce) {
-  .#{$fa-css-prefix}-beat,
-  .#{$fa-css-prefix}-bounce,
-  .#{$fa-css-prefix}-fade,
-  .#{$fa-css-prefix}-beat-fade,
-  .#{$fa-css-prefix}-flip,
-  .#{$fa-css-prefix}-pulse,
-  .#{$fa-css-prefix}-shake,
-  .#{$fa-css-prefix}-spin,
-  .#{$fa-css-prefix}-spin-pulse {
-    animation-delay: -1ms;
-    animation-duration: 1ms;
-    animation-iteration-count: 1;
-    transition-delay: 0s;
-    transition-duration: 0s;
-  }
+@if $enable-reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        .#{$fa-css-prefix}-beat,
+        .#{$fa-css-prefix}-bounce,
+        .#{$fa-css-prefix}-fade,
+        .#{$fa-css-prefix}-beat-fade,
+        .#{$fa-css-prefix}-flip,
+        .#{$fa-css-prefix}-pulse,
+        .#{$fa-css-prefix}-shake,
+        .#{$fa-css-prefix}-spin,
+        .#{$fa-css-prefix}-spin-pulse {
+            animation-delay: -1ms;
+            animation-duration: 1ms;
+            animation-iteration-count: 1;
+            transition-delay: 0s;
+            transition-duration: 0s;
+        }
+    }
 }
 
 @keyframes #{$fa-css-prefix}-beat {
