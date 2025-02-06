@@ -3,18 +3,10 @@ Gaia package for Laravel
 
 ## Usage
 
-In your composer.json
+Install
 
-````json
-{
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/dragonofmercy/laravel-gaia.git"
-    }],
-    "require": {
-        "dragonofmercy/gaia": "dev-main"
-    }
-}
+````bash
+composer require dragonofmercy/laravel-gaia
 ````
 
 In your providers.php
