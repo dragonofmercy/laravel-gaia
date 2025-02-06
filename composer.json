@@ -1,6 +1,13 @@
 {
     "name": "dragonofmercy/gaia",
     "description": "Gaia package for laravel",
+    "authors" : [{
+        "name" : "DragonOfMercy",
+        "email" : "dragonofmercy@gmail.com",
+        "role" : "Developer"
+    }],
+    "homepage" : "https://github.com/dragonofmercy/laravel-gaia",
+    "license" : "MIT",
     "require": {
         "ext-fileinfo": "*",
         "ext-openssl": "*",
