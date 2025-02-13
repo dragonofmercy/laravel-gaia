@@ -1,7 +1,7 @@
 form-group.has-error {
     .invalid-feedback {
         display: flex;
-        align-items: center;
+        align-items: start;
         line-height: 1rem;
         margin-top: $spacer * .5;
         gap: $spacer * .25;
