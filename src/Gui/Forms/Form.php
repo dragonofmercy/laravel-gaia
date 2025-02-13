@@ -6,6 +6,7 @@ use Gui\Forms\Decorators\DefaultDecorator;
 use Gui\Forms\Elements\AbstractElement;
 use Gui\Forms\Validators\Error;
 use Gui\Forms\Validators\AbstractValidator;
+use Gui\Forms\Validators\RuleValidator;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Request as RequestFacade;
@@ -109,7 +110,10 @@ abstract class Form implements Htmlable
         $this->defaults = collect($defaults);
 
         $this->setName((new \ReflectionClass($this))->getShortName());
+
         $this->configure();
+
+        $this->createValidatorsFromRules();
     }
 
     /**
@@ -617,6 +621,40 @@ abstract class Form implements Htmlable
     public function getElements(): Collection
     {
         return $this->elements;
+    }
+
+    /**
+     * Creates validators based on defined rules and assigns them to the respective elements.
+     *
+     * @return void
+     */
+    protected function createValidatorsFromRules(): void
+    {
+        $messages = collect($this->messages());
+
+        collect($this->rules())->map(function($rule, $name) use ($messages){
+            $this->setValidator($name, new RuleValidator(['rule' => $rule, 'errorMessages' => $messages->get($name)]));
+        });
+    }
+
+    /**
+     * Defines laravel validation rules.
+     *
+     * @return array The set of validation rules.
+     */
+    protected function rules(): array
+    {
+        return [];
+    }
+
+    /**
+     * Retrieves laravel validation messages.
+     *
+     * @return array An array of validation messages.
+     */
+    protected function messages(): array
+    {
+        return [];
     }
 
     abstract protected function configure(): void;
