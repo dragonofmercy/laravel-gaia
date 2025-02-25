@@ -11,7 +11,7 @@
     "require": {
         "ext-fileinfo": "*",
         "ext-openssl": "*",
-        "laravel/framework": "^11.0",
+        "laravel/framework": ">=11.0",
         "laminas/laminas-escaper": ">=2.13",
         "petercoles/multilingual-country-list": ">=1.2.11",
         "rct567/dom-query": ">=1.1"
