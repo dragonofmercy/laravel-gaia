@@ -15,7 +15,8 @@
     },
     "suggest" : {
         "ext-imagick": "*",
-        "intervention/image" : "Require to use image manipulation functions"
+        "intervention/image" : "Require to use image manipulation functions",
+        "tecnickcom/tcpdf" : "PDF Library"
     },
     "autoload": {
         "psr-4": {
