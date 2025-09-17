@@ -1,9 +1,0 @@
-@function get-loading-image($type: 'circle'){
-    @if($type == 'circle') {
-        @return escape-svg($gui-loading-circle);
-    } @else if($type == 'bars') {
-        @return escape-svg($gui-loading-bars);
-    } @else {
-        @return escape-svg($gui-loading-infinite);
-    }
-}

@@ -1,0 +1,22 @@
+.container {
+    @each $variation, $size in $container-variations {
+        &-#{$variation} {
+            @include make-container();
+            max-width: $size;
+        }
+    }
+}
+
+.row {
+    --#{$prefix}gutter-x: #{$grid-gutter-width * .5};
+}
+
+.row-cards {
+    --#{$prefix}gutter-x: #{$cards-grid-gap};
+    --#{$prefix}gutter-y: #{$cards-grid-gap};
+    min-width: 0;
+
+    .row-cards {
+        flex: 1;
+    }
+}

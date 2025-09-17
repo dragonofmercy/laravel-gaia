@@ -1,0 +1,83 @@
+@use 'sass:map';
+
+.avatar {
+    --#{$prefix}avatar-bg: var(--#{$prefix}bg-surface-tertiary);
+
+    --#{$prefix}avatar-size: #{map.get($avatar-sizes, 'lg')};
+    --#{$prefix}avatar-font-size: #{map.get($avatar-sizes, 'lg') - (map.get($avatar-sizes, 'lg') * .65)};
+    --#{$prefix}avatar-padding: #{map.get($avatar-sizes, 'lg') - (map.get($avatar-sizes, 'lg') * .85)};
+    --#{$prefix}avatar-icon-size: #{map.get($avatar-sizes, 'lg') - (map.get($avatar-sizes, 'lg') * .4)};
+    --#{$prefix}avatar-box-shadow-color: var(--#{$prefix}border-color-translucent);
+    --#{$prefix}avatar-box-shadow: inset 0 0 0 var(--#{$prefix}border-width) var(--#{$prefix}avatar-box-shadow-color);
+    --#{$prefix}avatar-default-bg: var(--#{$prefix}card-bg, var(--#{$prefix}modal-bg), var(--#{$prefix}body-bg));
+
+    width: var(--#{$prefix}avatar-size);
+    height: var(--#{$prefix}avatar-size);
+    font-size: var(--#{$prefix}avatar-font-size);
+    font-weight: var(--#{$prefix}font-weight-bold);
+    color: var(--#{$prefix}secondary);
+    background-color: var(--#{$prefix}avatar-bg);
+
+    flex-shrink: 0;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    text-transform: uppercase;
+    vertical-align: bottom;
+    line-height: 1;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    border-radius: var(--#{$prefix}border-radius);
+    box-shadow: var(--#{$prefix}avatar-box-shadow);
+
+    .icon {
+        --#{$prefix}icon-size: var(--#{$prefix}avatar-icon-size);
+    }
+
+    .badge {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-radius: var(--#{$prefix}border-radius-pill);
+        box-shadow: 0 0 0 1px var(--#{$prefix}avatar-default-bg);
+    }
+
+    &.circle {
+        --#{$prefix}border-radius: var(--#{$prefix}border-radius-pill);
+    }
+
+    &.square {
+        --#{$prefix}border-radius: 0;
+    }
+}
+
+@each $name, $size in $avatar-sizes {
+    .avatar-#{$name} {
+        --#{$prefix}avatar-size: #{$size};
+        --#{$prefix}avatar-font-size: #{$size - ($size * .65)};
+        --#{$prefix}avatar-padding: #{$size - ($size * .85)};
+        --#{$prefix}avatar-icon-size: #{$size - ($size * .4)};
+    }
+}
+
+.avatar-group {
+    display: inline-flex;
+    align-items: center;
+
+    .avatar {
+        box-shadow: var(--#{$prefix}avatar-box-shadow), 0 0 0 2px var(--#{$prefix}avatar-default-bg);
+
+        &+.avatar {
+            margin-left: -1rem;
+        }
+
+        &:hover {
+            z-index: 10;
+        }
+    }
+}

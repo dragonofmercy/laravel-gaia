@@ -1,7 +1,0 @@
-jQuery: 3.7.1
-Luxon: 3.2.0
-Cropper: v1.5.13
-Cookie: 3.0.1
-Sortable: 1.15.2
-Bootstrap: 5.3.2
-Sifter: 0.5.3

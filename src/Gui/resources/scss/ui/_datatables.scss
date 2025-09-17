@@ -1,0 +1,120 @@
+.datatable {
+    .table {
+        th {
+            a {
+                --#{$prefix}link-color: currentColor;
+                --#{$prefix}icon-size: 1rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-shrink: 0;
+                flex-grow: 0;
+                gap: var(--#{$prefix}spacer-2);
+            }
+        }
+
+        thead {
+            .gui-selector {
+                width: var(--#{$prefix}spacer);
+            }
+        }
+
+        tbody {
+            .gui-selector {
+                &>input {
+                    margin-top: 2px;
+                }
+            }
+        }
+    }
+
+    &>.loading-container {
+        min-height: 12rem;
+
+        &:before {
+            @include loader-circle(map-get($loader-sizes, 'xl'), var(--#{$prefix}primary));
+        }
+    }
+
+    .alert + .table,
+    .alert + .collapse:not(.show) + .table {
+        border-top: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color-lt);
+    }
+}
+
+.datatable-search {
+    padding: var(--#{$prefix}spacer);
+    border-bottom: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color-lt);
+
+    .search-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--#{$prefix}spacer);
+    }
+
+    .search-groups {
+        flex-grow: 1;
+        width: 100%;
+
+        form-group {
+            --#{$prefix}form-group-spacer-y: var(--#{$prefix}spacer-1);
+        }
+    }
+
+    .search-buttons {
+        display: flex;
+        gap: var(--#{$prefix}spacer);
+    }
+}
+
+.datatable-responsive {
+    @each $breakpoint, $breakpoint-max-widthin in $grid-breakpoints {
+        &#{breakpoint-infix($breakpoint)} {
+            @include media-breakpoint-up($breakpoint) {
+                .datatable-search {
+                    .search-container {
+                        flex-direction: row;
+                        align-items: end;
+                    }
+
+                    .search-buttons {
+                        flex-grow: 1;
+                    }
+
+                    .search-groups {
+                        max-width: 25rem;
+                    }
+                }
+
+                td.sorting {
+                    background-color: var(--#{$prefix}table-striped-bg);
+                }
+            }
+
+            @include media-breakpoint-down($breakpoint) {
+                .datatable-search>div {
+                    .search-buttons>button {
+                        flex: 1 1 0px;
+                    }
+                }
+            }
+
+            table {
+                @extend .table-responsive-#{$breakpoint} !optional;
+
+                @include media-breakpoint-down($breakpoint) {
+                    thead {
+                        display: block !important;
+
+                        th {
+                            width: auto !important;
+                            min-width: auto !important;
+                            text-align: left !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

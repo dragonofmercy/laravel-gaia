@@ -1,0 +1,21 @@
+.form-range {
+    margin: .3125rem 0;
+
+    &::-moz-range-thumb {
+        cursor: pointer;
+    }
+
+    &.with-progress {
+        --range: calc(var(--max) - var(--min));
+        --ratio: calc((var(--value) - var(--min)) / var(--range));
+        --sx: calc(0.5 * 2em + var(--ratio) * (100% - 2em));
+
+        &::-webkit-slider-runnable-track {
+            background: linear-gradient(#{$form-range-thumb-bg},#{$form-range-thumb-bg}) 0/var(--sx) 100% no-repeat, #{$form-range-track-bg};
+        }
+
+        &::-moz-range-track {
+            background: linear-gradient(#{$form-range-thumb-bg},#{$form-range-thumb-bg}) 0/var(--sx) 100% no-repeat, #{$form-range-track-bg};
+        }
+    }
+}

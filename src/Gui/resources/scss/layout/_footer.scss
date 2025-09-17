@@ -1,0 +1,12 @@
+.footer {
+    --#{$prefix}footer-bg: #{$footer-bg};
+    --#{$prefix}footer-color: #{$footer-color};
+    --#{$prefix}footer-padding-y: #{$footer-padding-y};
+    --#{$prefix}footer-border-color: #{$footer-border-color};
+
+    padding: var(--#{$prefix}footer-padding-y) 0;
+    background: var(--#{$prefix}footer-bg);
+    border-top: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}footer-border-color);
+    color: var(--#{$prefix}footer-color);
+    margin-top: auto;
+}

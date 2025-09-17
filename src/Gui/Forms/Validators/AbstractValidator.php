@@ -1,16 +1,19 @@
 <?php
 namespace Gui\Forms\Validators;
 
-use Gui\Forms\Traits\FieldName;
-use Gui\Forms\Traits\Flags;
-use Gui\Forms\Traits\Messages;
-use Gui\Forms\Traits\Options;
-use Gui\Forms\Traits\Form;
+use InvalidArgumentException;
 use Illuminate\Support\Collection;
+
+use Gui\Forms\Traits\HasFieldName;
+use Gui\Forms\Traits\HasFlags;
+use Gui\Forms\Traits\HasMessages;
+use Gui\Forms\Traits\HasOptions;
+use Gui\Forms\Traits\HasFormInstance;
+use Gui\Interfaces\ValidatorFormatterInterface;
 
 abstract class AbstractValidator
 {
-    use Options, Messages, Flags, Form, FieldName;
+    use HasOptions, HasMessages, HasFlags, HasFormInstance, HasFieldName;
 
     const FLAG_GLOBAL = 'global';
     const FLAG_FIELD = 'field';
@@ -69,7 +72,13 @@ abstract class AbstractValidator
 
         if($this->hasOption('formatter')){
             $formatterClass = $this->options->get('formatter');
-            $v = (new $formatterClass)->format($v);
+            $formatterObject = new $formatterClass;
+
+            if(!$formatterObject instanceof ValidatorFormatterInterface){
+                throw new InvalidArgumentException('Formatter option must be an instance of ' . ValidatorFormatterInterface::class);
+            }
+
+            $v = $formatterObject->format($v);
         }
 
         return $v;

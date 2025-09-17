@@ -14,7 +14,7 @@ class MultipleFilter extends TextFilter
      * @param array|null $columns
      * @return array|MultipleFilter
      */
-    public function columns(array|null $columns = null): self|array
+    public function columns(array|null $columns = null): static|array
     {
         if(null === $columns){
             return $this->options->get('columns', []);

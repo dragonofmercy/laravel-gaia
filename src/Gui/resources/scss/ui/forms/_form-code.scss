@@ -1,0 +1,16 @@
+.gui-control-code {
+    display: flex;
+    align-items: center;
+    gap: var(--#{$prefix}spacer-2);
+
+    .gap {
+        width: var(--#{$prefix}spacer-4);
+    }
+
+    .form-control {
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 2rem;
+        text-align: center;
+    }
+}

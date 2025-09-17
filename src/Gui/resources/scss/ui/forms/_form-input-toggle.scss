@@ -1,0 +1,60 @@
+.gui-control-toggle {
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    background-color: $input-bg;
+    padding: .125rem;
+
+    input {
+        display: none;
+
+        &:not(:checked) {
+            &~.slider {
+                margin-left: 0;
+                background-color: $input-danger-bg;
+            }
+
+            &~.choice:nth-of-type(2) {
+                color: $component-active-color;
+            }
+        }
+
+        &:checked {
+            &~.slider {
+                margin-left: 50%;
+                background-color: $input-primary-bg;
+            }
+
+            &~.choice:nth-of-type(3) {
+                color: $component-active-color;
+            }
+        }
+    }
+
+    label {
+        display: flex;
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .slider {
+        transition: margin-left 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        z-index: 4;
+        border-radius: calc(#{$input-border-radius} - .125rem);
+    }
+
+    .choice {
+        z-index: 5;
+        flex-grow: 1;
+        flex-shrink: 0;
+        user-select: none;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        transition: color 0.2s ease-in-out;
+        padding: calc(#{$input-padding-y} - .125rem) $input-padding-x;
+    }
+}

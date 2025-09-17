@@ -1,15 +1,19 @@
 <?php
 namespace Gui\Forms\Elements;
 
-use Gui\Forms\Validators\Error;
+use InvalidArgumentException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\View\ComponentAttributeBag;
+
+use Gui\Forms\Validators\Error;
 
 class EloquentSuggest extends InputAutocomplete
 {
     /**
      * @inheritDoc
      */
-    protected function initialize(): void
+    public function initialize(): void
     {
         parent::initialize();
 
@@ -17,38 +21,33 @@ class EloquentSuggest extends InputAutocomplete
         $this->addOption('method', '__toString');
         $this->addOption('externalField');
         $this->addOption('column');
+
+        $this->setAttribute('type', 'hidden');
     }
 
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null): string
+    protected function getView(): string
     {
-        $displayField = new InputText(attributes: $this->getAttributes());
-
-        if($this->hasOption('externalField')){
-            $hiddenFieldId = $this->generateId(preg_replace('/\[([a-zA-Z0-9_-]*)]$/', '[' . $this->getOption('externalField') . ']', $name));
-            $displayFieldId = $this->generateId($name);
-
-            $output = $displayField->render($name, $value);
-        } else {
-            $hiddenFieldId = $this->generateId($name);
-            $displayFieldId = $this->generateId($name) . '_display';
-
-            $hiddenField = new InputText(attributes: ['type' => 'hidden']);
-
-            $output = $hiddenField->render($name, $value) . $displayField->render(preg_replace('/]$/', '_display]', $name), $this->getValue($value));
-        }
-
-        return $output . javascript_tag_deferred($this->getJavascript($displayFieldId, $hiddenFieldId));
+        return 'gui::forms.elements.input-autocomplete-eloquent';
     }
 
     /**
      * @inheritDoc
      */
-    protected function getJavascript(string $id, string $hiddenId = ""): string
+    public function render(string $name, mixed $value = null, ?Error $error = null): string|View
     {
-        return parent::getJavascript($id) . '$("#' . $id . '").on("gui.validate",function(_,v,t){$("#' . $hiddenId . '").val(v).trigger("change")}).on("keyup",function(){if($(this).val().length<1){$("#' . $hiddenId . '").val("").trigger("change")}})';
+        $displayAttributes = $this->getAttributes()->except('type', 'id', 'name');
+        $displayAttributes['id'] = $this->generateId($name . '_display');
+        $displayAttributes['value'] = $this->getValue($value);
+        $displayAttributes['type'] = 'text';
+
+        $this->setViewVar('displayAttributes', new ComponentAttributeBag($displayAttributes->toArray()));
+
+        $this->attributes->forget($this->attributes->except('type', 'id')->keys());
+
+        return parent::render($name, $value, $error);
     }
 
     /**
@@ -68,7 +67,7 @@ class EloquentSuggest extends InputAutocomplete
                 if(method_exists($model, $method)){
                     return $model->{$method}();
                 } else {
-                    throw new \InvalidArgumentException("The method [$method] doesn't exists for [" . get_class($model) . "]");
+                    throw new InvalidArgumentException("The method [$method] doesn't exists for [" . get_class($model) . "]");
                 }
             }
         }

@@ -1,0 +1,64 @@
+.gui-control-mf {
+    .mf-content {
+        border: $input-border-width solid $input-border-color;
+        border-radius: $input-border-radius;
+        overflow: hidden;
+    }
+
+    .control {
+        width: 1%;
+        white-space: nowrap;
+        user-select: none;
+    }
+
+    [data-trigger=add]{
+        margin-top: var(--#{$prefix}spacer-4);
+    }
+
+    &.table-striped table tbody tr:nth-of-type(even){
+        background-color: $table-striped-bg;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+            background-color: var(--#{$prefix}tertiary-bg);
+            border-bottom: $input-border-width solid $input-border-color;
+
+            th {
+                padding: $input-padding-y $input-padding-x;
+                vertical-align: middle;
+                font-weight: normal;
+            }
+        }
+
+        tbody tr {
+            &:not(:last-of-type){
+                td {
+                    border-bottom: $input-border-width solid var(--#{$prefix}border-color-lt);
+                }
+            }
+
+            td {
+                padding: var(--#{$prefix}spacer-2) var(--#{$prefix}spacer-1);
+                vertical-align: top;
+
+                &:first-child,
+                &:first-of-type,
+                &.d-none + :not(.d-none) {
+                    padding-left: var(--#{$prefix}spacer-2);
+                }
+
+                &:last-child {
+                    padding-right: var(--#{$prefix}spacer-2);
+                }
+
+                &.control {
+                    padding-top: calc(var(--#{$prefix}spacer-2) + 1px);
+                }
+            }
+        }
+    }
+}

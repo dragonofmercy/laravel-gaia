@@ -1,7 +1,7 @@
 <?php
 namespace Gui\Forms\Validators;
 
-use Demeter\Support\Str;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 

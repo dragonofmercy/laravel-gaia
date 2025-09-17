@@ -1,0 +1,10 @@
+.gui-control-file {
+    input[type=file] {
+        display: none;
+    }
+
+    input[readonly] {
+        background-color: #{$input-bg};
+        color: #{$input-color};
+    }
+}

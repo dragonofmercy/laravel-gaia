@@ -1,0 +1,37 @@
+.gui-captcha {
+    overflow: hidden;
+    border: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
+    border-radius: var(--#{$prefix}border-radius);
+    position: relative;
+
+    &:before {
+        content: " ";
+        @include loader-bars(2rem, var(--#{$prefix}primary));
+        position: absolute;
+        left: calc(50% - 1rem);
+        top: calc(50% - 1rem);
+        z-index: 0;
+    }
+}
+
+.h-captcha,
+.g-recaptcha {
+    width: 298px;
+    height: 74px;
+
+    iframe {
+        position: absolute;
+        display: flex;
+        margin: -1px 0px 0px -2px;
+        z-index: 10;
+    }
+}
+
+.cf-turnstile {
+    width: 298px;
+    height: 65px;
+
+    &>div {
+        transform: translateX(calc(var(--#{$prefix}border-width) * -1)) translateY(calc(var(--#{$prefix}border-width) * -1));
+    }
+}

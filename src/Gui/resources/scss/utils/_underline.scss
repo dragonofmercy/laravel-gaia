@@ -1,0 +1,17 @@
+.link-underline {
+    --#{$prefix}text-decoration: underline;
+    --#{$prefix}text-decoration-hover: underline;
+}
+
+.link-underline-hover {
+    --#{$prefix}text-decoration-hover: underline;
+
+    &.show {
+        --#{$prefix}text-decoration: underline;
+    }
+}
+
+.link-underline-0 {
+    --#{$prefix}text-decoration: none;
+    --#{$prefix}text-decoration-hover: none;
+}

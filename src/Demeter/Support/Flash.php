@@ -1,65 +1,26 @@
 <?php
 namespace Demeter\Support;
 
-use Demeter\User\FlashMessage as UserFlash;
-use Demeter\User\FlashMessageType;
-use Illuminate\Support\Facades\Session as SessionFacade;
+use InvalidArgumentException;
+use Gui\View\Components\Flash as FlashComponent;
 
 class Flash
 {
-    const STORE_PATH = "gui.flash";
-
     /**
-     * Set flash message
+     * Registers a flash message to be displayed in the session.
      *
-     * @param string $name
-     * @param string $message
-     * @param FlashMessageType $flag
-     * @param bool $persistant
+     * @param string $name The name/key for the flash message entry.
+     * @param string $message The content of the flash message.
+     * @param string $type The type of the flash message (e.g., success, error). Defaults to `FlashComponent::TYPE_SUCCESS`.
      * @return void
+     * @throws InvalidArgumentException If the provided type is not valid.
      */
-    public function set(string $name, string $message, FlashMessageType $flag = FlashMessageType::SUCCESS, bool $persistant = true): void
+    public static function registerFlash(string $name, string $message, string $type = FlashComponent::TYPE_SUCCESS): void
     {
-        $toStore = ['message' => $message, 'flag' => $flag->value];
-        $method = $persistant ? 'flash' : 'now';
-
-        SessionFacade::{$method}($this->getStorePath($name), $toStore);
-    }
-
-    /**
-     * Get flash if exists
-     *
-     * @param string $name
-     * @return UserFlash|null
-     */
-    public function get(string $name): UserFlash|null
-    {
-        if($this->has($name)){
-            return UserFlash::fromArray(SessionFacade::get($this->getStorePath($name)));
+        if(!in_array($type, FlashComponent::VALID_TYPES)){
+            throw new InvalidArgumentException('Type "' . $type . '" is not valid. Valid types are: ' . implode(', ', FlashComponent::VALID_TYPES));
         }
 
-        return null;
-    }
-
-    /**
-     * Get if flash exists
-     *
-     * @param string $name
-     * @return bool
-     */
-    public function has(string $name): bool
-    {
-        return SessionFacade::has($this->getStorePath($name));
-    }
-
-    /**
-     * Get store path
-     *
-     * @param string $name
-     * @return string
-     */
-    protected function getStorePath(string $name): string
-    {
-        return self::STORE_PATH . '.' . $name;
+        session()->flash($name, ['message' => $message, 'type' => $type]);
     }
 }

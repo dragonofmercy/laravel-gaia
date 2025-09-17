@@ -81,7 +81,7 @@ class Options
     public function sort(bool|null $bool = null): self|bool
     {
         if(null === $bool){
-            return $this->options->get('sort');
+            return boolval($this->options->get('sort'));
         }
         $this->options['sort'] = $bool;
         return $this;

@@ -1,0 +1,1 @@
+<div class="form-hint">{{ $decorator->generateHint($name) }}</div>

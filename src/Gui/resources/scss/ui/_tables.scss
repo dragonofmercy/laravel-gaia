@@ -1,0 +1,106 @@
+.table {
+    thead {
+        th {
+            background: var(--#{$prefix}bg-surface-secondary);
+            @include subheader;
+            font-size: var(--#{$prefix}font-size-sm);
+            @media print {
+                background: transparent;
+            }
+        }
+    }
+}
+
+.table-transparent {
+    thead {
+        th {
+            background: transparent;
+        }
+    }
+}
+
+.table-nowrap {
+    > :not(caption) > * > * {
+        white-space: nowrap;
+    }
+}
+
+.table-vcenter {
+    > :not(caption) > * > * {
+        vertical-align: middle;
+    }
+}
+
+.table-center {
+    > :not(caption) > * > * {
+        text-align: center;
+    }
+}
+
+.table-responsive {
+    @each $breakpoint, $breakpoint-max-widthin in $grid-breakpoints {
+        &#{breakpoint-infix($breakpoint)} {
+            @include media-breakpoint-down($breakpoint) {
+
+                &, thead, tbody, tr, th {
+                    display: block;
+                }
+
+                thead,
+                tbody {
+                    tr {
+                        overflow: hidden;
+                        margin-left: var(--#{$prefix}spacer);
+                        margin-right: var(--#{$prefix}spacer);
+                        margin-bottom: var(--#{$prefix}spacer);
+                        border-width: $table-border-width $table-border-width 0 $table-border-width;
+
+                        @include border-radius($card-border-radius);
+
+                        th, td {
+                            padding: $table-cell-padding-x $table-cell-padding-y !important;
+                        }
+
+                        &:first-child {
+                            margin-top: var(--#{$prefix}spacer);
+                        }
+                    }
+                }
+
+                thead {
+                    display: none;
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            display: flex;
+
+                            &:not(.empty-cell):before {
+                                display: inline-block;
+                                content: attr(data-column-name);
+                                color: var(--#{$prefix}tertiary);
+                                border-right: 1px solid var(--#{$prefix}table-border-color);
+                                padding-right: var(--#{$prefix}spacer-2);
+                                margin-right: var(--#{$prefix}spacer-2);
+                                text-align: right;
+                                max-width: 30% !important;
+                                min-width: 30% !important;
+                                width: 30% !important;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                        }
+
+                        &:last-child {
+                            td {
+                                border-bottom-width: $table-border-width;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -31,8 +31,8 @@ return [
     ],
 
     'date' => [
-        'min' => "La date doit être plus supérieure à \":min\".",
-        'max' => "La date doit être plus inférieur à \":max\".",
+        'min' => "La date doit être plus supérieure à <b>:min</b>.",
+        'max' => "La date doit être plus inférieur à <b>:max</b>.",
     ],
 
     'line' => [
@@ -43,13 +43,13 @@ return [
     'file' => [
         'min' => "Veuillez choisir au moins :min fichiers.",
         'max' => "Veuillez choisir au maximum :max fichiers.",
-        'max_size' => "\":name\" est trop volumineux (max :size).",
-        'min_size' => "\":name\" n'est pas assez volumineux (min :size).",
-        'mime_types' => "Le type \":mime\" n'est pas accepté pour le fichier \":name\".",
-        'max_width' => "\":name\" est trop large (max :width).",
-        'min_width' => "\":name\" n'est pas large (min :width).",
-        'max_height' => "\":name\" est trop haute (max :height).",
-        'min_height' => "\":name\" n'est pas assez haute (min :height).",
+        'max_size' => "<b>:name</b> est trop volumineux (max :size).",
+        'min_size' => "<b>:name</b> n'est pas assez volumineux (min :size).",
+        'mime_types' => "Le fichier <b>:name</b> a un type <b>:mime</b> non autorisé.",
+        'max_width' => "<b>:name</b> est trop large (max :width).",
+        'min_width' => "<b>:name</b> n'est pas large (min :width).",
+        'max_height' => "<b>:name</b> est trop haute (max :height).",
+        'min_height' => "<b>:name</b> n'est pas assez haute (min :height).",
     ],
 
     'captcha' => [

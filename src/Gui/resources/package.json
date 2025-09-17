@@ -1,0 +1,21 @@
+{
+    "name": "@gui/core",
+    "type": "module",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "vite build"
+    },
+    "module": "./js/gui.js",
+    "dependencies": {
+        "@orchidjs/sifter": "^1.1.0",
+        "@popperjs/core": "^2.11.8",
+        "bootstrap": "5.3.6",
+        "cropperjs": "^1.6.2",
+        "escape-html": "^1.0.3",
+        "imask": "^7.6.1",
+        "jquery": "^3.7.1",
+        "luxon": "^3.7.1",
+        "lz-string": "^1.5.0",
+        "sortablejs": "^1.15.6"
+    }
+}

@@ -31,8 +31,8 @@ return [
     ],
 
     'date' => [
-        'min' => "The date must be greather than \":min\".",
-        'max' => "The date must be earlier than \":max\".",
+        'min' => "The date must be greather than <b>:min</b>.",
+        'max' => "The date must be earlier than <b>:max</b>.",
     ],
 
     'line' => [
@@ -43,13 +43,13 @@ return [
     'file' => [
         'min' => "Please choose at least :min files.",
         'max' => "Please choose at most :max files.",
-        'max_size' => "\":name\" is too large (max :size).",
-        'min_size' => "\":name\" is too small (min :size).",
-        'mime_types' => "Invalid mime type \":mime\" for \":name\".",
-        'max_width' => "\":name\" is too wide (max :width).",
-        'min_width' => "\":name\" is not enought wide (min :width).",
-        'max_height' => "\":name\" is too tall (max :height).",
-        'min_height' => "\":name\" is not enought tall (min :height).",
+        'max_size' => "<b>:name</b> is too large (max :size).",
+        'min_size' => "<b>:name</b> is too small (min :size).",
+        'mime_types' => "Invalid mime type <b>:mime</b> for <b>:name</b>.",
+        'max_width' => "<b>:name</b> is too wide (max :width).",
+        'min_width' => "<b>:name</b> is not enought wide (min :width).",
+        'max_height' => "<b>:name</b> is too tall (max :height).",
+        'min_height' => "<b>:name</b> is not enought tall (min :height).",
     ],
 
     'captcha' => [

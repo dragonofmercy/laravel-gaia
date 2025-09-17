@@ -2,12 +2,16 @@
 namespace Gui\Forms\Elements;
 
 use Carbon\Carbon;
-use Demeter\Support\Str;
-use Gui\Forms\Validators\Error;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\View\ComponentAttributeBag;
+
+use Gui\Forms\Validators\Error;
 
 class ChoiceDate extends AbstractElement
 {
+    const FORMAT_TOKENS = ['days', 'months', 'years', 'hours', 'minutes'];
+
     /**
      * @inheritDoc
      */
@@ -16,7 +20,7 @@ class ChoiceDate extends AbstractElement
         parent::initialize();
 
         $this->addOption('class', 'form-date');
-        $this->addOption('format', '{days}{months}{years}');
+        $this->addOption('format', '{years}{months}{days}');
         $this->addOption('locale', app()->currentLocale());
         $this->addOption('monthIsoFormat', 'MMMM');
         $this->addOption('days', [1, 31]);
@@ -25,6 +29,14 @@ class ChoiceDate extends AbstractElement
         $this->addOption('hours', [0, 23]);
         $this->addOption('minutes', [0, 59]);
         $this->addOption('addEmpty', false);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getView(): string
+    {
+        return 'gui::forms.elements.choice-date';
     }
 
     /**
@@ -53,23 +65,67 @@ class ChoiceDate extends AbstractElement
         if(!is_array($this->getOption('minutes')) || count($this->getOption('minutes')) !== 2){
             throw new \InvalidArgumentException("Option [minutes] must be an array with [first minute, last minute]");
         }
+
+        $this->appendAttribute('class', $this->getOption('class'));
+    }
+
+    /**
+     * Prepares elements such as selectors, selectors attributes, and options attributes
+     * based on the given field name and selected values.
+     *
+     * @param string $fieldName The name of the field that is mapped to the selectors.
+     * @param array|null $selectedValues The selected values for corresponding selectors, if any.
+     * @return void
+     */
+    protected function prepareElement(string $fieldName, array|null $selectedValues): void
+    {
+        $selectors = new Collection();
+        $selectorsAttributes = new Collection();
+        $optionsAttributes = new Collection();
+
+        if(preg_match_all('/{(' . implode('|', self::FORMAT_TOKENS) . ')}/', $this->getOption('format'), $matches)){
+            collect($matches[1])->map(function($name) use ($selectors, $selectorsAttributes, $optionsAttributes, $fieldName, $selectedValues){
+                $selectName = substr($name, 0, -1);
+                $fieldName = $fieldName . '[' . $selectName . ']';
+                $selectorsAttributes[$selectName] = new ComponentAttributeBag([
+                    'class' => 'form-select',
+                    'name' => $fieldName,
+                    'id' => $this->generateId($fieldName, $selectName)
+                ]);
+
+                $selectors[$selectName] = $this->getChoices($name)->mapWithKeys(function($label, $value) use ($selectName, $optionsAttributes, $selectedValues){
+                    if(!$optionsAttributes->has($selectName)){
+                        $optionsAttributes[$selectName] = new Collection();
+                    }
+
+                    $attributes = [];
+                    $attributes['value'] = $value;
+
+                    if(null !== $selectedValues && array_key_exists($selectName, $selectedValues) && $selectedValues[$selectName] == $value){
+                        $attributes['selected'] = 'selected';
+                    }
+
+                    $optionsAttributes[$selectName][$value] = new ComponentAttributeBag($attributes);
+
+                    return [$value => $label];
+                });
+            });
+        }
+
+        $this->setViewVar('selectors', $selectors);
+        $this->setViewVar('selectorsAttributes', $selectorsAttributes);
+        $this->setViewVar('optionsAttributes', $optionsAttributes);
     }
 
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null): string
+    protected function render(string $name, mixed $value = null, ?Error $error = null): string|View
     {
-        $replacements = [];
         $value = $this->convertValueToArray($value);
+        $this->prepareElement($name, $value);
 
-        if(preg_match_all('/{(days|months|years|hours|minutes)}/', $this->getOption('format'), $matches)){
-            for($i = 0; $i < count($matches[0]); $i++){
-                $replacements[$matches[0][$i]] = $this->{"getChoices" . ucfirst($matches[1][$i])}($name, $value);
-            }
-        }
-
-        return content_tag('div', Str::strtr($this->getOption('format'), $replacements), ['class' => $this->getOption('class')]);
+        return parent::render($name, $value, $error);
     }
 
     /**
@@ -88,6 +144,7 @@ class ChoiceDate extends AbstractElement
             if(null === $value){
                 return $defaultValue;
             }
+
             $c = Carbon::parse($value);
             $value = array_merge($defaultValue, [
                 'year' => $c->format('Y'),
@@ -102,112 +159,41 @@ class ChoiceDate extends AbstractElement
     }
 
     /**
-     * Render element
+     * Get choices for a specific type (days, months, years, hours, minutes)
      *
-     * @param string $name
-     * @param string|int|null $value
-     * @param array $options
-     * @param Collection $attributes
-     * @return string
+     * @param string $type Type of choices to generate
+     * @return Collection
      */
-    protected function renderElement(string $name, string|int|null $value = null, array $options = [], Collection $attributes = new Collection()): string
+    protected function getChoices(string $type): Collection
     {
-        $options['addEmpty'] = $this->getOption('addEmpty');
-        return (new ChoiceSelect($options, $attributes))->render($name, $value);
-    }
-
-    /**
-     * Get days combobox
-     *
-     * @param string $name
-     * @param array $v
-     * @return string
-     */
-    protected function getChoicesDays(string $name, array $v): string
-    {
-        $choices = [];
-        $definitions = $this->getOption('days');
+        $choices = new Collection();
+        $optionKey = $type;
+        $definitions = $this->getOption($optionKey);
 
         for($i = $definitions[0]; $i <= $definitions[1]; $i++){
-            $choices[sprintf('%02d', $i)] = sprintf('%02d', $i);
+            switch($type){
+                case 'months':
+                    $key = sprintf('%02d', $i);
+                    $value = Carbon::parse('1970-' . $i . '-01')
+                        ->locale($this->getOption('locale'))
+                        ->isoFormat($this->getOption('monthIsoFormat'));
+                    break;
+
+                case 'years':
+                    $key = $i;
+                    $value = $i;
+                    break;
+
+                default: // days, hours, minutes
+                    $key = sprintf('%02d', $i);
+                    $value = sprintf('%02d', $i);
+                    break;
+            }
+
+            $choices[$key] = $value;
         }
 
-        return $this->renderElement($name . '[day]', $v['day'], ['choices' => $choices]);
+        return $choices;
     }
 
-    /**
-     * Get months combobox
-     *
-     * @param string $name
-     * @param array $v
-     * @return string
-     */
-    protected function getChoicesMonths(string $name, array $v): string
-    {
-        $choices = [];
-        $definitions = $this->getOption('months');
-
-        for($i = $definitions[0]; $i <= $definitions[1]; $i++){
-            $choices[sprintf('%02d', $i)] = Carbon::parse('1970-' . $i . '-01')->locale($this->getOption('locale'))->isoFormat($this->getOption('monthIsoFormat'));
-        }
-
-        return $this->renderElement($name . '[month]', $v['month'], ['choices' => $choices]);
-    }
-
-    /**
-     * Get years combobox
-     *
-     * @param string $name
-     * @param array $v
-     * @return string
-     */
-    protected function getChoicesYears(string $name, array $v): string
-    {
-        $choices = [];
-        $definitions = $this->getOption('years');
-
-        for($i = $definitions[0]; $i <= $definitions[1]; $i++){
-            $choices[$i] = $i;
-        }
-
-        return $this->renderElement($name . '[year]', $v['year'], ['choices' => $choices]);
-    }
-
-    /**
-     * Get years combobox
-     *
-     * @param string $name
-     * @param array $v
-     * @return string
-     */
-    protected function getChoicesHours(string $name, array $v): string
-    {
-        $choices = [];
-        $definitions = $this->getOption('hours');
-
-        for($i = $definitions[0]; $i <= $definitions[1]; $i++){
-            $choices[sprintf('%02d', $i)] = sprintf('%02d', $i);
-        }
-
-        return $this->renderElement($name . '[hour]', $v['hour'], ['choices' => $choices]);
-    }
-
-    /**
-     * Get years combobox
-     *
-     * @param string $name
-     * @param array $v
-     * @return string
-     */
-    protected function getChoicesMinutes(string $name, array $v): string
-    {
-        $choices = [];
-        $definitions = $this->getOption('minutes');
-
-        for($i = $definitions[0]; $i <= $definitions[1]; $i++){
-            $choices[sprintf('%02d', $i)] = sprintf('%02d', $i);
-        }
-
-        return $this->renderElement($name . '[minute]', $v['minute'], ['choices' => $choices]);
-    }
 }

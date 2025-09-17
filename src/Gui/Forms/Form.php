@@ -1,26 +1,23 @@
 <?php
 namespace Gui\Forms;
 
-use Gui\Forms\Decorators\AbstractDecorator;
-use Gui\Forms\Decorators\DefaultDecorator;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Request as RequestFacade;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
+
 use Gui\Forms\Elements\AbstractElement;
 use Gui\Forms\Validators\Error;
 use Gui\Forms\Validators\AbstractValidator;
 use Gui\Forms\Validators\RuleValidator;
-use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Request as RequestFacade;
-use Illuminate\Support\Str;
 
 abstract class Form implements Htmlable
 {
-    const GLOBAL_ERROR_FLAG = 'gui_global_error';
-
     /**
-     * Default decorator classname
-     * @var string
+     * @var string|null
      */
-    public static string $defaultDecorator = DefaultDecorator::class;
+    protected string|null $decoratorView = null;
 
     /**
      * @var Collection<string, mixed>
@@ -43,17 +40,17 @@ abstract class Form implements Htmlable
     protected Collection $globalValidators;
 
     /**
-     * @var Collection<string, string>
+     * @var Collection<string, HtmlString|string>
      */
     protected Collection $labels;
 
     /**
-     * @var Collection<string, string>
+     * @var Collection<string, HtmlString|string>
      */
     protected Collection $helps;
 
     /**
-     * @var Collection<string, string>
+     * @var Collection<string, Collection<string, HtmlString>>
      */
     protected Collection $separators;
 
@@ -72,19 +69,6 @@ abstract class Form implements Htmlable
      * @var string
      */
     protected string $name;
-
-    /**
-     * Decorator name
-     * @var string|null
-     */
-    protected ?string $decorator = null;
-
-    /**
-     * Decorator instance
-     *
-     * @var AbstractDecorator|null
-     */
-    protected ?AbstractDecorator $decoratorInstance = null;
 
     /**
      * Flag if form has been binded
@@ -117,14 +101,28 @@ abstract class Form implements Htmlable
     }
 
     /**
-     * Set decorator
+     * Set decorator view
      *
-     * @param string $decorator
+     * @param string $viewName
      * @return void
      */
-    public function setDecorator(string $decorator): void
+    public function setDecoratorView(string $viewName): void
     {
-        $this->decorator = $decorator;
+        $this->decoratorView = $viewName;
+    }
+
+    /**
+     * Get decorator view
+     *
+     * @return string
+     */
+    public function getDecoratorView(): string
+    {
+        if(null === $this->decoratorView){
+            $this->decoratorView = config('gui.default_form_decorator_view', 'gui::forms.decorators.grid');
+        }
+
+        return $this->decoratorView;
     }
 
     /**
@@ -218,44 +216,14 @@ abstract class Form implements Htmlable
     }
 
     /**
-     * Render form
-     *
-     * @return mixed
-     */
-    public function __toString(): string
-    {
-        return $this->getDecorator()->render();
-    }
-
-    /**
      * Get content as a string of HTML.
      * This allow the usage of {{ $form }} instead of {!! $form !!} in blade views
      *
-     * @return mixed|string
+     * @return \Illuminate\Contracts\View\View|\Illuminate\View\View
      */
-    public function toHtml()
+    public function toHtml(): \Illuminate\Contracts\View\View|\Illuminate\View\View
     {
-        return $this->__toString();
-    }
-
-    /**
-     * Get form decorator
-     *
-     * @return AbstractDecorator
-     */
-    public function getDecorator(): AbstractDecorator
-    {
-        if(null !== $this->decoratorInstance){
-            return $this->decoratorInstance;
-        }
-
-        if(null === $this->decorator){
-            $this->decorator = static::$defaultDecorator;
-        }
-
-        $this->decoratorInstance = new $this->decorator($this);
-
-        return $this->decoratorInstance;
+        return (new Decorator($this))->render();
     }
 
     /**
@@ -314,29 +282,29 @@ abstract class Form implements Htmlable
      * Set label
      *
      * @param string $name
-     * @param string|bool $label
+     * @param string $label
      * @return void
      */
-    public function setLabel(string $name, string|bool $label): void
+    public function setLabel(string $name, string $label): void
     {
-        $this->labels[$name] = $label;
+        $this->labels[$name] = new HtmlString(trans($label));
     }
 
     /**
      * Get label
      *
      * @param string $name
-     * @return string|bool
+     * @return HtmlString|null
      */
-    public function getLabel(string $name): string|bool
+    public function getLabel(string $name): HtmlString|null
     {
-        return trans($this->labels->get($name, $name));
+        return $this->labels->get($name);
     }
 
     /**
      * Get labels
      *
-     * @return Collection<string, string|bool>
+     * @return Collection<string, HtmlString|bool>
      */
     public function getLabels(): Collection
     {
@@ -415,8 +383,8 @@ abstract class Form implements Htmlable
     public function setSeparator(string $before, string $title, string|null $help = null): void
     {
         $separator = new Collection([
-            'title' => $title,
-            'help' => $help
+            'title' => new HtmlString(trans($title)),
+            'help' => new HtmlString(trans($help))
         ]);
 
         $this->separators[$before] = $separator;
@@ -504,18 +472,24 @@ abstract class Form implements Htmlable
      */
     public function setHelp(string $name, string $help): void
     {
-        $this->helps[$name] = $help;
+        $this->helps[$name] = new HtmlString(trans($help));
     }
 
     /**
      * Get help
      *
      * @param string $name
-     * @return string|null
+     * @return HtmlString|null
      */
-    public function getHelp(string $name): string|null
+    public function getHelp(string $name): HtmlString|null
     {
-        return $this->helps->get($name);
+        $help = $this->helps->get($name);
+
+        if(null !== $help){
+            return $help;
+        }
+
+        return null;
     }
 
     /**

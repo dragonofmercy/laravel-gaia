@@ -12,7 +12,7 @@ class DateFilter extends AbstractFilter
      * Decorator classname
      * @var string
      */
-    protected string $decorator = \Gui\Datatable\Decorators\Default\SearchTypes\DateSearchType::class;
+    protected string $decorator = \Gui\Datatable\Filters\Decorators\DateDecorator::class;
 
     /**
      * Set or get with time
@@ -20,7 +20,7 @@ class DateFilter extends AbstractFilter
      * @param bool|null $v
      * @return bool|DateFilter
      */
-    public function withTime(bool|null $v = null): self|bool
+    public function withTime(bool|null $v = null): static|bool
     {
         if(null === $v){
             return $this->options->get('with_time', false);

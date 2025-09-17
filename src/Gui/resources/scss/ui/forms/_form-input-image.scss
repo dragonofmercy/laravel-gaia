@@ -1,0 +1,72 @@
+.gui-control-image {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--#{$prefix}spacer-1);
+
+    .thumbnail {
+        border: #{$input-border-width} solid #{$input-border-color};
+        border-radius: #{$input-border-radius};
+        overflow: hidden;
+        position: relative;
+
+        background-color: var(--#{$prefix}bg-surface-secondary);
+        background-position: center center;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+
+        padding: var(--#{$prefix}spacer-2);
+
+        &.loading-active {
+            pointer-events: none;
+
+            &:before {
+                content: " ";
+                @include loader-comet(4rem, var(--#{$prefix}primary));
+                position: absolute;
+                left: calc(50% - 2rem);
+                top: calc(50% - 2rem);
+                z-index: 0;
+            }
+        }
+    }
+
+    .control {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .size {
+        color: var(--#{$prefix}tertiary);
+        font-size: var(--#{$prefix}font-size-sm);
+    }
+}
+
+.cropper-modal-loading {
+    &:before {
+        content: " ";
+        @include loader-circle(4rem, var(--#{$prefix}primary));
+        position: absolute;
+        left: calc(50% - 2rem);
+        top: calc(50% - 2rem);
+        z-index: 0;
+    }
+}
+
+.cropper-container {
+    overflow: hidden;
+}
+
+.cropper-crop-container {
+    position: relative;
+    z-index: 20;
+}
+
+.gui-cropper-image {
+    max-width: 100%;
+    max-height: calc(100vh - 225px);
+    display: block;
+    visibility: hidden;
+}

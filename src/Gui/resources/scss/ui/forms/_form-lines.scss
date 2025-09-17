@@ -1,0 +1,39 @@
+.gui-control-lines {
+    .input-group-text {
+        position: relative;
+        align-items: start;
+        color: var(--#{$prefix}tertiary);
+        text-align: right;
+        user-select: none;
+    }
+
+    textarea {
+        white-space: pre;
+        padding-left: #{$input-padding-y};
+    }
+
+    &:not(.autosize){
+        .input-group-text {
+            overflow: hidden;
+        }
+
+        .width-placeholder {
+            visibility: hidden;
+        }
+
+        .lines {
+            position: absolute;
+        }
+    }
+
+    &.autosize {
+        .width-placeholder {
+            display: none;
+        }
+
+        textarea {
+            resize: none;
+            overflow-y: hidden;
+        }
+    }
+}

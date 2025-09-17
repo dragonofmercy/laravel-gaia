@@ -8,10 +8,9 @@ use Gui\Datatable\Engines\EloquentEngine;
 class TextFilter extends AbstractFilter
 {
     /**
-     * Decorator classname
-     * @var string
+     * @inheritDoc
      */
-    protected string $decorator = \Gui\Datatable\Decorators\Default\SearchTypes\TextSearchType::class;
+    protected string $decorator = \Gui\Datatable\Filters\Decorators\TextDecorator::class;
 
     /**
      * @inheritDoc

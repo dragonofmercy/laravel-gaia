@@ -1,0 +1,18 @@
+.form-separator {
+    padding: var(--#{$prefix}spacer) 0;
+    flex-direction: column;
+
+    .separator-title {
+        display: flex;
+        font-weight: var(--#{$prefix}font-weight-bold);
+    }
+
+    .separator-help {
+        color: var(--#{$prefix}secondary);
+    }
+
+    .icon {
+        margin-right: var(--#{$prefix}spacer-2);
+        align-self: center;
+    }
+}

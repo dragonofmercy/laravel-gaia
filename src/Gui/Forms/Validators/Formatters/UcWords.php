@@ -1,10 +1,10 @@
 <?php
 namespace Gui\Forms\Validators\Formatters;
 
-use Demeter\Support\Str;
-use Gui\Contracts\Forms\Validators\Formatter;
+use Illuminate\Support\Str;
+use Gui\Interfaces\ValidatorFormatterInterface;
 
-class UcWords implements Formatter
+class UcWords implements ValidatorFormatterInterface
 {
     public function format(mixed $v): string
     {

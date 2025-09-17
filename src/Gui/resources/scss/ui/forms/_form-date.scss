@@ -1,0 +1,142 @@
+.form-date {
+    display: flex;
+    gap: var(--#{$prefix}spacer-2);
+}
+
+.gui-calendar {
+    --#{$prefix}dp-item-width: 2rem;
+    --#{$prefix}dp-line-height: 1rem;
+    --#{$prefix}dp-grid-columns: 7;
+    --#{$prefix}dp-grid-gap: 0;
+
+    --#{$prefix}dp-link-color: #{$dropdown-color};
+    --#{$prefix}dp-link-hover-bg: #{$dropdown-link-hover-bg};
+    --#{$prefix}dp-link-hover-color: #{$dropdown-link-hover-color};
+    --#{$prefix}dp-link-outer-color: color-mix(in oklab, var(--#{$prefix}tertiary) 85%, light-dark(#fff, #000));
+    --#{$prefix}dp-link-disabled-color: #{$dropdown-link-disabled-color};
+    --#{$prefix}dp-link-active-bg: #{$component-active-bg};
+    --#{$prefix}dp-link-active-color: #{$component-active-color};
+    --#{$prefix}dp-today-indicator-size: .188rem;
+    --#{$prefix}dp-today-indicator-margin: .25rem;
+
+    --#{$prefix}icon-size: 1rem;
+
+    a {
+        position: relative;
+        padding: calc(var(--#{$prefix}dp-item-width) * .25) 0;
+        max-height: var(--#{$prefix}dp-item-width);
+        color: var(--#{$prefix}dropdown-color);
+        @include border-radius(var(--#{$prefix}dropdown-border-radius));
+
+        &.disabled {
+            pointer-events: none;
+            color: var(--#{$prefix}dp-link-disabled-color);
+        }
+
+        &:hover {
+            color: var(--#{$prefix}dp-link-hover-color);
+            background-color: var(--#{$prefix}dp-link-hover-bg);
+            cursor: pointer;
+        }
+
+        &.next:not(.disabled),
+        &.prev:not(.disabled) {
+            color: var(--#{$prefix}dp-link-outer-color);
+        }
+
+        &.active {
+            &:not(.next):not(.prev){
+                color: var(--#{$prefix}dp-link-active-color);
+                background-color: var(--#{$prefix}dp-link-active-bg);
+            }
+        }
+
+        &.today:after {
+            content: "";
+            position: absolute;
+            border-left: var(--#{$prefix}dp-today-indicator-size) solid transparent;
+            border-top: var(--#{$prefix}dp-today-indicator-size) solid transparent;
+            border-right: var(--#{$prefix}dp-today-indicator-size) solid currentColor;
+            border-bottom: var(--#{$prefix}dp-today-indicator-size) solid currentColor;
+            right: var(--#{$prefix}dp-today-indicator-margin);
+            bottom: var(--#{$prefix}dp-today-indicator-margin);
+            border-bottom-right-radius: calc(var(--#{$prefix}dropdown-border-radius) - var(--#{$prefix}dp-today-indicator-margin));
+        }
+    }
+
+    .dp-menu {
+        @extend .dropdown-menu;
+        text-align: center;
+        user-select: none;
+        padding: var(--#{$prefix}spacer-2);
+        line-height: var(--#{$prefix}dp-line-height);
+
+        &.inline {
+            position: relative;
+            box-shadow: none;
+            display: inline-block;
+            z-index: 0;
+        }
+    }
+
+    .dp-heading {
+        display: flex;
+        align-items: center;
+
+        .dp-title {
+            text-align: center;
+        }
+
+        .dp-next,
+        .dp-prev {
+            width: var(--#{$prefix}dp-item-width);
+
+            i {
+                line-height: var(--#{$prefix}dp-line-height);
+            }
+        }
+
+        .dp-title {
+            flex-grow: 1;
+            font-weight: bold;
+        }
+    }
+
+    .dp-footer {
+        display: flex;
+
+        .dp-today,
+        .dp-clear {
+            font-weight: bold;
+            flex: 1 1 0px;
+        }
+    }
+
+    .dp-content {
+        width: calc(var(--#{$prefix}dp-item-width) * 7);
+
+        &>div {
+            display: grid;
+            grid-template-columns: repeat(var(--#{$prefix}dp-grid-columns), 1fr);
+            grid-gap: var(--#{$prefix}dp-grid-gap);
+
+            &.hours,
+            &.minutes {
+                --#{$prefix}dp-grid-columns: 4;
+            }
+
+            &.years {
+                --#{$prefix}dp-grid-columns: 5;
+            }
+
+            &.months {
+                --#{$prefix}dp-grid-columns: 3;
+            }
+        }
+
+        .weekdays {
+            font-weight: bold;
+            padding: calc(var(--#{$prefix}dp-item-width) * .25) 0;
+        }
+    }
+}

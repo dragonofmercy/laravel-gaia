@@ -1,0 +1,422 @@
+@use 'sass:map';
+
+$prefix: "gui-" !default;
+
+// Base config
+$enable-shadows: true !default;
+$enable-dark-mode: true !default;
+$enable-negative-margins: true !default;
+$enable-rfs: false !default;
+$enable-cssgrid: true !default;
+$enable-validation-icons: false !default;
+
+// Fonts
+$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif !default;
+$font-family-monospace: Monaco, Consolas, Liberation Mono, Courier New, monospace !default;
+
+$font-size-base: 0.875rem !default;
+$line-height-base: divide(1.25rem, $font-size-base) !default;
+$headings-font-weight: var(--#{$prefix}font-weight-bold) !default;
+
+$font-sizes: (
+   xxl: 1.5rem,
+    xl: 1.25rem,
+    lg: 1rem,
+    md: $font-size-base,
+    sm: 0.75rem,
+    xs: 0.625rem
+) !default;
+
+$h1-font-size: map.get($font-sizes, xxl) !default;
+$h2-font-size: map.get($font-sizes, xl) !default;
+$h3-font-size: map.get($font-sizes, lg) !default;
+$h4-font-size: map.get($font-sizes, md) !default;
+$h5-font-size: map.get($font-sizes, sm) !default;
+$h6-font-size: map.get($font-sizes, xs) !default;
+
+$line-heights: (
+    xxl: 2rem,
+    xl: 1.75rem,
+    lg: 1.5rem,
+    md: 1.25rem,
+    sm: 1rem,
+    xs: 1rem
+) !default;
+
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 600 !default;
+$font-weight-black: 700 !default;
+
+$font-weights: (
+    'light': $font-weight-light,
+    'normal': $font-weight-normal,
+    'medium': $font-weight-medium,
+    'bold': $font-weight-bold,
+    'black': $font-weight-black,
+    'headings': $headings-font-weight,
+) !default;
+
+$font-size-reative-xs: .71428571em !default;
+$font-size-reative-sm: .85714285em !default;
+$font-size-reative-md: 1em !default;
+
+$display-font-sizes: (
+    1: 5rem,
+    2: 4.5rem,
+    3: 4rem,
+    4: 3.5rem,
+    5: 3rem,
+    6: 3.5rem,
+    7: 4rem,
+    8: 4.5rem,
+    9: 5rem,
+    10: 5.5rem,
+    11: 6rem,
+    12: 6.5rem
+) !default;
+
+// Colors
+$white:    #fff !default;
+$gray-50:  #f9fafd !default;
+$gray-100: #f3f4f6 !default;
+$gray-150: #eceef0 !default;
+$gray-200: #e5e7eb !default;
+$gray-250: #dbdee6 !default;
+$gray-300: #d1d5db !default;
+$gray-350: #b6bcc5 !default;
+$gray-400: #9ca3af !default;
+$gray-450: #838d97 !default;
+$gray-500: #6b7280 !default;
+$gray-550: #5b6471 !default;
+$gray-600: #4b5563 !default;
+$gray-650: #414b5a !default;
+$gray-700: #374151 !default;
+$gray-750: #2b3544 !default;
+$gray-800: #1f2937 !default;
+$gray-850: #18202f !default;
+$gray-900: #111827 !default;
+$gray-925: #0a121c !default;
+$gray-950: #030712 !default;
+
+$gray-colors: (
+    'gray-50':  $gray-50,
+    'gray-100': $gray-100,
+    'gray-150': $gray-150,
+    'gray-200': $gray-200,
+    'gray-250': $gray-250,
+    'gray-300': $gray-300,
+    'gray-350': $gray-350,
+    'gray-400': $gray-400,
+    'gray-450': $gray-450,
+    'gray-500': $gray-500,
+    'gray-550': $gray-550,
+    'gray-600': $gray-600,
+    'gray-650': $gray-650,
+    'gray-700': $gray-700,
+    'gray-750': $gray-750,
+    'gray-800': $gray-800,
+    'gray-850': $gray-850,
+    'gray-900': $gray-900,
+    'gray-925': $gray-925,
+    'gray-950': $gray-950,
+) !default;
+
+$blue:     #066fd1 !default;
+$azure:    #4299e1 !default;
+$indigo:   #4263eb !default;
+$purple:   #ae3ec9 !default;
+$pink:     #d6336c !default;
+$red:      #d63939 !default;
+$orange:   #f76707 !default;
+$yellow:   #f59f00 !default;
+$lime:     #74b816 !default;
+$green:    #2fb344 !default;
+$teal:     #0ca678 !default;
+$cyan:     #17a2b8 !default;
+
+$min-contrast-ratio: 1.5 !default;
+$text-secondary: $gray-500 !default;
+
+$primary: $blue !default;
+$secondary: $text-secondary !default;
+$success: $green !default;
+$info: $azure !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$dark: #0e2238 !default;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "dark": $dark,
+) !default;
+
+$extra-colors: (
+    "blue": $blue,
+    "azure": $azure,
+    "indigo": $indigo,
+    "purple": $purple,
+    "pink": $pink,
+    "red": $red,
+    "orange": $orange,
+    "yellow": $yellow,
+    "lime": $lime,
+    "green": $green,
+    "teal": $teal,
+    "cyan": $cyan,
+) !default;
+
+$theme-colors: map.merge($theme-colors, map.merge($extra-colors, ()));
+
+$link-color: $primary !default;
+$link-shade-percentage: 40% !default;
+
+$border-color: var(--#{$prefix}gray-250) !default;
+$border-color-lt: var(--#{$prefix}gray-150) !default;
+$border-color-translucent: rgba(4, 32, 69, 0.1) !default;
+
+$body-bg: $gray-50 !default;
+$body-bg-dark: $gray-900 !default;
+$body-color: $gray-650 !default;
+$body-color-dark: $gray-350 !default;
+
+$primary-text-emphasis:   tint-color($primary, 90%) !default;
+$secondary-text-emphasis: tint-color($secondary, 90%) !default;
+$success-text-emphasis:   tint-color($success, 90%) !default;
+$info-text-emphasis:      tint-color($info, 90%) !default;
+$warning-text-emphasis:   tint-color($warning, 90%) !default;
+$danger-text-emphasis:    tint-color($danger, 90%) !default;
+
+$component-active-color:  $white !default;
+$component-active-bg:     $primary !default;
+
+// Focus ring
+$focus-ring-width:      .25rem !default;
+$focus-ring-opacity:    .25 !default;
+$focus-ring-color:      rgba($primary, $focus-ring-opacity) !default;
+$focus-ring-blur:       0 !default;
+$focus-ring-box-shadow: 0 0 $focus-ring-blur $focus-ring-width $focus-ring-color !default;
+
+// Grid
+$grid-gutter-width: 2rem !default;
+$container-variations: (
+    slim: 16rem,
+    tight: 30rem,
+    cozy: 45rem,
+    narrow: 61.875rem,
+) !default;
+
+// Avatars
+$avatar-sizes: (
+    "xl":  5rem,
+    "lg":  3rem,
+    "md":  2.5rem,
+    "sm":  2rem,
+    "xs":  1.25rem
+) !default;
+
+// Icons
+$icon-stroke-width: 1.5 !default;
+$icon-sizes: $avatar-sizes !default;
+
+// Buttons
+$btn-icon-min-width: 5rem !default;
+$btn-icon-size: 2.375rem !default;
+$btn-icon-gap: 0 !default;
+
+// Datagrid
+$datagrid-padding: 1.5rem !default;
+$datagrid-item-width: 15rem !default;
+
+// Navbar
+$navbar-bg: var(--#{$prefix}bg-surface) !default;
+$navbar-border-width: var(--#{$prefix}border-width) !default;
+$navbar-border-color: var(--#{$prefix}border-color) !default;
+$navbar-padding-y: .375rem !default;
+$navbar-toggler-font-size: 1rem !default;
+$navbar-toggler-padding-x: 0 !default;
+$navbar-toggler-padding-y: 0 !default;
+$navbar-toggler-animation-time: 0.2s !default;
+$navbar-toggler-focus-width: 0 !default;
+$navbar-brand-height: 2rem !default;
+$navbar-brand-padding-y: 0 !default;
+$navbar-brand-padding-x: 0 !default;
+
+// Nav
+$nav-link-color: var(--#{$prefix}gray-500) !default;
+$nav-link-hover-bg: var(--#{$prefix}hover-bg) !default;
+$nav-link-hover-color: var(--#{$prefix}active-color) !default;
+$nav-link-transition: none !default;
+
+// Alerts
+$alert-padding-x: 1rem !default;
+$alert-padding-y: 0.75rem !default;
+$alert-link-font-weight: var(--#{$prefix}font-weight-bold) !default;
+$alert-border-width: var(--#{$prefix}border-width) !default;
+$alert-border-color: var(--#{$prefix}border-color-translucent) !default;
+$alert-shadow: rgba($dark, 0.04) 0 2px 4px 0 !default;
+
+// Cards
+$card-bg: var(--#{$prefix}bg-surface) !default;
+$card-border-color: var(--#{$prefix}border-color) !default;
+$card-cap-bg: color-mix(in srgb, var(--#{$prefix}bg-surface) var(--#{$prefix}cap-color-mix), #000) !default;
+$card-cap-padding-y: var(--#{$prefix}spacer) !default;
+$card-cap-border-color: var(--#{$prefix}border-color-lt) !default;
+$cards-grid-gap: var(--#{$prefix}spacer) !default;
+
+// Caret
+$caret-width: .30rem !default;
+$caret-spacing: .375rem !default;
+$caret-vertical-align: middle !default;
+
+// Footer
+$footer-padding-y: 1rem !default;
+$footer-bg: var(--#{$prefix}bg-surface) !default;
+$footer-border-color: var(--#{$prefix}border-color) !default;
+$footer-color: var(--#{$prefix}gray-500) !default;
+
+// Table
+$table-th-font-weight: var(--#{$prefix}font-weight-medium) !default;
+$table-bg: var(--#{$prefix}bg-surface) !default;
+$table-color: var(--#{$prefix}body-color) !default;
+$table-border-color: var(--#{$prefix}border-color-lt) !default;
+$table-striped-bg-factor: .015 !default;
+$table-striped-order: even !default;
+
+// Form group
+$form-text-margin-top: .5rem !default;
+
+$form-group-border-width: var(--#{$prefix}border-width) !default;
+$form-group-border-style: var(--#{$prefix}border-style) !default;
+$form-group-border-color: var(--#{$prefix}border-color-lt) !default;
+$form-group-label-font-weight: var(--#{$prefix}font-weight-medium) !default;
+$form-group-field-sizes: (
+    1: 5rem,
+    2: 10rem,
+    3: 15rem,
+    4: 20rem,
+    5: 25rem,
+    6: 30rem,
+    7: 35rem,
+    8: 40rem,
+    9: 45rem,
+    10: 50rem,
+    11: 55rem,
+    12: 100%
+) !default;
+
+// Form label
+$form-required-label-icon: "*" !default;
+$form-required-label-color: var(--#{$prefix}danger) !default;
+$form-required-label-font-size: 1.125rem !default;
+
+// Form input
+$input-bg: var(--#{$prefix}bg-forms) !default;
+$input-color: var(--#{$prefix}body-color) !default;
+$input-border-color: var(--#{$prefix}border-color) !default;
+$input-border-radius: var(--#{$prefix}border-radius) !default;
+$input-focus-border-color: var(--#{$prefix}border-color-darken) !default;
+$input-placeholder-color: var(--#{$prefix}tertiary) !default;
+$input-box-shadow: 0 0 0 0 !default;
+
+$input-primary-bg: color-mix(in srgb, var(--#{$prefix}primary) var(--#{$prefix}button-color-mix), #000) !default;
+$input-danger-bg: color-mix(in srgb, var(--#{$prefix}danger) var(--#{$prefix}button-color-mix), #000) !default;
+
+$input-disabled-bg: var(--#{$prefix}bg-surface-tertiary) !default;
+$input-disabled-color: var(--#{$prefix}tertiary) !default;
+$input-disabled-border-color: $input-border-color !default;
+
+$form-check-input-width: 1rem !default;
+$form-check-min-height: $form-check-input-width !default;
+$form-check-padding-start: 0 !default;
+$form-check-margin-bottom: 0 !default;
+
+$form-switch-width: 2rem !default;
+$form-switch-height: 1.25rem !default;
+$form-switch-padding-start: 0 !default;
+$form-switch-focus-color: tint-color($component-active-bg, 50%) !default;
+
+$form-range-track-bg: light-dark(var(--#{$prefix}bg-surface-tertiary), var(--#{$prefix}bg-surface-secondary)) !default;
+$form-range-thumb-active-bg: tint-color($primary, 20%) !default;
+$form-range-thumb-focus-box-shadow: $focus-ring-box-shadow !default;
+
+// Form select
+$form-select-box-shadow: $input-box-shadow !default;
+$form-select-bg-size: 12px 12px !default;
+$form-select-indicator-color: $gray-800 !default;
+$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='#{$form-select-indicator-color}' d='M4.22 6.53a.75.75 0 0 0 1.06 0L8 3.81l2.72 2.72a.75.75 0 1 0 1.06-1.06L8.53 2.22a.75.75 0 0 0-1.06 0L4.22 5.47a.75.75 0 0 0 0 1.06m0 2.94a.75.75 0 0 1 1.06 0L8 12.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0l-3.25-3.25a.75.75 0 0 1 0-1.06' /></svg>") !default;
+$form-select-indicator-color-dark: $gray-300 !default;
+$form-select-indicator-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='#{$form-select-indicator-color-dark}' d='M4.22 6.53a.75.75 0 0 0 1.06 0L8 3.81l2.72 2.72a.75.75 0 1 0 1.06-1.06L8.53 2.22a.75.75 0 0 0-1.06 0L4.22 5.47a.75.75 0 0 0 0 1.06m0 2.94a.75.75 0 0 1 1.06 0L8 12.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0l-3.25-3.25a.75.75 0 0 1 0-1.06' /></svg>") !default;
+
+// Dropdown
+$dropdown-min-width: 12rem !default;
+$dropdown-bg: var(--#{$prefix}bg-surface) !default;
+$dropdown-padding-x: var(--#{$prefix}spacer-2) !default;
+$dropdown-padding-y: var(--#{$prefix}spacer-2) !default;
+$dropdown-item-padding-x: var(--#{$prefix}spacer-3) !default;
+$dropdown-item-padding-y: var(--#{$prefix}spacer-2) !default;
+$dropdown-link-hover-bg: var(--#{$prefix}hover-bg) !default;
+$dropdown-link-active-bg: var(--#{$prefix}active-bg) !default;
+$dropdown-link-active-color: var(--#{$prefix}white) !default;
+$dropdown-border-color: var(--#{$prefix}border-color) !default;
+$dropdown-padding-y: .5rem !default;
+
+// Modals
+$modal-content-border-color: light-dark(transparent, var(--#{$prefix}border-color-lt)) !default;
+$modal-content-bg: var(--#{$prefix}bg-surface) !default;
+$modal-footer-bg: color-mix(in srgb, var(--#{$prefix}bg-surface) var(--#{$prefix}cap-color-mix), #000) !default;
+$modal-header-border-color: var(--#{$prefix}border-color-lt) !default;
+$modal-footer-border-color: var(--#{$prefix}border-color-lt) !default;
+$modal-backdrop-bg: transparent !default;
+$modal-backdrop-opacity: 1 !default;
+$modal-backdrop-filter: blur(16px) brightness(80%) !default;
+$modal-scale-transform: scale(1) !default;
+
+// Pagination
+$pagination-padding-y: 0.25rem !default;
+$pagination-padding-x: 0.25rem !default;
+$pagination-bg: var(--#{$prefix}bg-surface) !default;
+$pagination-color: var(--#{$prefix}secondary) !default;
+$pagination-border-color: transparent !default;
+$pagination-hover-bg: $nav-link-hover-bg !default;
+$pagination-hover-border-color: transparent !default;
+$pagination-disabled-bg: transparent !default;
+$pagination-disabled-border-color: $pagination-border-color !default;
+$pagination-disabled-color: var(--#{$prefix}tertiary) !default;
+
+// Ribbons
+$ribbon-margin: .25rem !default;
+$ribbon-border-radius: var(--#{$prefix}border-radius) !default;
+$ribbon-font-size: var(--#{$prefix}font-size-xs) !default;
+
+// Popover
+$popover-bg: var(--#{$prefix}bg-surface) !default;
+
+// Tooltips
+$tooltip-opacity: 1 !default;
+
+// Transitions
+$transition-time: 0.3s !default;
+
+// Kbd
+$kbd-bg: light-dark(var(--#{$prefix}gray-100), var(--#{$prefix}gray-900)) !default;
+$kbd-color: var(--#{$prefix}secondary) !default;
+
+// Code, Pre
+$pre-color: #292d3e !default;
+$pre-border-color: light-dark(transparent, var(--#{$prefix}border-color)) !default;
+
+// Loaders
+$loader-sizes: (
+    "xl":  5rem,
+    "lg":  4rem,
+    "md":  3rem,
+    "sm":  2rem,
+    "xs":  1.25rem
+) !default;

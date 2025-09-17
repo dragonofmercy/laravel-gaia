@@ -1,6 +1,7 @@
 <?php
 namespace Gui\Forms\Elements;
 
+use Illuminate\Contracts\View\View;
 use Gui\Forms\Validators\Error;
 
 abstract class Input extends AbstractElement
@@ -8,25 +9,31 @@ abstract class Input extends AbstractElement
     /**
      * @inheritDoc
      */
-    protected function initialize(): void
+    protected function getView(): string
     {
-        parent::initialize();
-
-        $this->addRequiredOption('type');
+        return 'gui::forms.elements.input';
     }
 
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null): string
+    protected function beforeRender(): void
+    {
+        parent::beforeRender();
+
+        if(!$this->hasAttribute('autocomplete') && in_array($this->getAttribute('type'), ['text', 'email', 'password'])){
+            $this->setAttribute('autocomplete', 'off');
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function render(string $name, mixed $value = null, ?Error $error = null): string|View
     {
         $this->setAttribute('name', $name);
         $this->setAttribute('value', $value);
 
-        if(!$this->hasAttribute('type')){
-            $this->setAttribute('type', $this->getOption('type'));
-        }
-
-        return $this->renderTag('input', $this->attributes);
+        return parent::render($name, $value, $error);
     }
 }

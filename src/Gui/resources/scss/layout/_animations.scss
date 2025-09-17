@@ -1,0 +1,20 @@
+@keyframes rotate-360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes up-down-bars {
+    25% { background-size: var(--#{$prefix}loader-stroke) 10% , var(--#{$prefix}loader-stroke) 50%, var(--#{$prefix}loader-stroke) 50% }
+    50% { background-size: var(--#{$prefix}loader-stroke) 50%, var(--#{$prefix}loader-stroke) 10% , var(--#{$prefix}loader-stroke) 50% }
+    75% { background-size: var(--#{$prefix}loader-stroke) 50%, var(--#{$prefix}loader-stroke) 50%, var(--#{$prefix}loader-stroke) 10%  }
+}

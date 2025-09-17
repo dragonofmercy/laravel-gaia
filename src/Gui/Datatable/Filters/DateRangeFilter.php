@@ -12,7 +12,7 @@ class DateRangeFilter extends DateFilter
      * Decorator classname
      * @var string
      */
-    protected string $decorator = \Gui\Datatable\Decorators\Default\SearchTypes\DateRangeSearchType::class;
+    protected string $decorator = \Gui\Datatable\Filters\Decorators\DateRangeDecorator::class;
 
     /**
      * @inheritDoc

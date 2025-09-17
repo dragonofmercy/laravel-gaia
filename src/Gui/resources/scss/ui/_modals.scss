@@ -1,0 +1,44 @@
+.modal {
+    &.loading-active {
+        .modal-content {
+            min-height: 10rem;
+
+            &:before {
+                content: "";
+                margin: 3rem auto;
+                @include loader-comet(8rem, var(--#{$prefix}primary));
+            }
+        }
+    }
+}
+
+.modal-header {
+    &>.btn-close {
+        margin: 0 0 0 auto;
+    }
+}
+
+.modal-title {
+    font-size: var(--#{$prefix}font-size-md);
+    font-weight: var(--#{$prefix}font-weight-bold);
+    line-height: var(--#{$prefix}line-height-md);
+}
+
+.modal-body {
+    position: relative;
+
+    &>:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.modal-footer {
+    justify-content: space-between;
+}
+
+.modal-error-frame {
+    display: block;
+    vertical-align: bottom;
+    width: 100%;
+    height: 70vh;
+}

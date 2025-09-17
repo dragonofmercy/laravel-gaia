@@ -1,0 +1,55 @@
+@use "sass:map";
+
+@mixin loader-comet($size: map.get($loader-sizes, 'md'), $color: currentColor){
+    --#{$prefix}loader-size: #{$size};
+    --#{$prefix}loader-stroke: calc(var(--#{$prefix}loader-size) * .14);
+    --#{$prefix}loader-color: #{$color};
+
+    width: var(--#{$prefix}loader-size);
+    height: var(--#{$prefix}loader-size);
+    padding: var(--#{$prefix}loader-stroke);
+    background:
+            radial-gradient(farthest-side, var(--#{$prefix}loader-color) 94%,#0000) top/var(--#{$prefix}loader-stroke) var(--#{$prefix}loader-stroke) no-repeat,
+            conic-gradient(#0000 20%, var(--#{$prefix}loader-color));
+    mask: radial-gradient(farthest-side, #0000 calc(100% - var(--#{$prefix}loader-stroke)), #000 0);
+    border-radius: 50%;
+    animation: spinner .85s infinite linear;
+    position: relative;
+    display: block;
+}
+
+@mixin loader-circle($size: map.get($loader-sizes, 'md'), $color: currentColor){
+    --#{$prefix}loader-size: #{$size};
+    --#{$prefix}loader-color: #{$color};
+    --#{$prefix}loader-stroke: calc(var(--#{$prefix}loader-size) * .16);
+    --#{$prefix}loader-bg-color: var(--#{$prefix}border-color-translucent);
+
+    width: var(--#{$prefix}loader-size);
+    height: var(--#{$prefix}loader-size);
+
+    border-radius: 50%;
+    border: var(--#{$prefix}loader-stroke) solid;
+    border-color: var(--#{$prefix}loader-bg-color);
+    border-right-color: var(--#{$prefix}loader-color);
+    animation: spinner 1s infinite linear;
+    position: relative;
+    display: block;
+}
+
+@mixin loader-bars($size: map.get($loader-sizes, 'md'), $color: currentColor){
+    --#{$prefix}loader-size: #{$size};
+    --#{$prefix}loader-color: #{$color};
+    --#{$prefix}loader-stroke: calc(var(--#{$prefix}loader-size) * .12);
+    --#{$prefix}loader-gradient: no-repeat linear-gradient(var(--#{$prefix}loader-color), var(--#{$prefix}loader-color));
+
+    width: var(--#{$prefix}loader-size);
+    height: var(--#{$prefix}loader-size);
+    background:
+            var(--#{$prefix}loader-gradient) 20% 50%,
+            var(--#{$prefix}loader-gradient) 50% 50%,
+            var(--#{$prefix}loader-gradient) 80% 50%;
+    background-size: var(--#{$prefix}loader-stroke) 50%;
+    animation: up-down-bars 1s infinite linear;
+    position: relative;
+    display: block;
+}

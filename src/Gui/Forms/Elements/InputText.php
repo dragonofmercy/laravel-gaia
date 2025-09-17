@@ -11,6 +11,6 @@ class InputText extends Input
         parent::initialize();
 
         $this->appendAttribute('class', 'form-control');
-        $this->setOption('type', 'text');
+        $this->setAttribute('type', 'text');
     }
 }

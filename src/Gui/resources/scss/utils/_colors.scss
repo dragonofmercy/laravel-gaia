@@ -1,0 +1,66 @@
+@each $color, $value in $theme-colors {
+    .bg-#{$color} {
+        background-color: $value !important;
+    }
+
+    .bg-#{$color}-lt {
+        background-color: var(--#{$prefix}#{$color}-lt) !important;
+    }
+
+    .border-#{$color} {
+        border-color: var(--#{$prefix}#{$color}) !important;
+    }
+
+    .text-bg-#{$color} {
+        color: color-contrast($value) !important;
+        background-color: var(--#{$prefix}#{$color}) !important;
+    }
+
+    .text-bg-#{$color}-lt {
+        color: var(--#{$prefix}#{$color}) !important;
+        background-color: var(--#{$prefix}#{$color}-lt) !important;
+    }
+
+    .link-#{"" + $color} {
+        --#{$prefix}link-color: var(--#{$prefix}link-#{$color}-color) !important;
+        --#{$prefix}link-hover-color: var(--#{$prefix}link-#{$color}-hover-color) !important;
+    }
+
+    .text-#{$color} {
+        color: var(--#{$prefix}#{$color}) !important;
+    }
+
+    .text-#{$color}-fg {
+        color: var(--#{$prefix}#{$color}-fg) !important;
+    }
+}
+
+@each $color, $value in $gray-colors {
+    .bg-#{$color} {
+        background-color: var(--#{$prefix}#{$color}) !important;
+    }
+
+    .text-#{$color}-fg {
+        color: var(--#{$prefix}#{$color}-fg) !important;
+    }
+}
+
+.border-light {
+    border-color: var(--#{$prefix}border-color-lt) !important;
+}
+
+.bg-inverted {
+    background-color: var(--#{$prefix}bg-surface-inverted) !important;
+}
+
+.bg-surface {
+    background-color: var(--#{$prefix}bg-surface) !important;
+}
+
+.bg-surface-secondary {
+    background-color: var(--#{$prefix}bg-surface-secondary) !important;
+}
+
+.bg-surface-tertiary {
+    background-color: var(--#{$prefix}bg-surface-tertiary) !important;
+}

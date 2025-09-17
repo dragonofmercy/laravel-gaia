@@ -1,8 +1,8 @@
 <?php
 namespace Gui\Forms\Validators;
 
-use Gui\Dto\ImageDimensions;
 use Illuminate\Http\UploadedFile;
+use Gui\Dto\ImageDimensions;
 
 class FileImageValidator extends FileValidator
 {
@@ -57,37 +57,50 @@ class FileImageValidator extends FileValidator
     }
 
     /**
-     * Retrieves the width and height dimensions of the given uploaded image file.
+     * Retrieves the dimensions of an uploaded image file.
      *
-     * @param UploadedFile $file The uploaded file whose image dimensions need to be extracted.
-     * @return ImageDimensions An object containing the width and height of the image. If the dimensions
-     *                         cannot be determined, the object will contain default values (e.g., 0).
+     * @param UploadedFile $file The uploaded file whose dimensions need to be determined.
+     * @return ImageDimensions The dimensions of the image as an ImageDimensions object.
      */
     protected function getImageDimensions(UploadedFile $file): ImageDimensions
     {
-        $imageDimensions = new ImageDimensions();
+        $filePath = $file->getRealPath();
 
-        if(extension_loaded('imagick')){
-            try {
-                $image = new \Imagick($file->getRealPath());
-                $imageDimensions->width = $image->getImageWidth();
-                $imageDimensions->height = $image->getImageHeight();
-                return $imageDimensions;
-            } catch(\ImagickException $e){
-                report($e);
-            }
+        return match (true) {
+            extension_loaded('imagick') => $this->tryWithImagick($filePath),
+            default => $this->tryWithGd($filePath)
+        } ?? new ImageDimensions();
+    }
+
+    /**
+     * Attempts to retrieve image dimensions using the Imagick library.
+     *
+     * @param string $filePath The file path of the image to analyze.
+     * @return ImageDimensions|null An instance of ImageDimensions containing the width and height of the image,
+     *                              or null if the operation fails.
+     */
+    protected function tryWithImagick(string $filePath): ImageDimensions|null
+    {
+        try {
+            $image = new \Imagick($filePath);
+            return new ImageDimensions($image->getImageWidth(), $image->getImageHeight());
+        } catch (\ImagickException $e) {
+            report($e);
+            return null;
         }
+    }
 
-        $imageSize = @getimagesize($file->getRealPath());
-
-        if(false === $imageSize){
-            return $imageDimensions;
-        }
-
-        $imageDimensions->width = $imageSize[0];
-        $imageDimensions->height = $imageSize[1];
-
-        return $imageDimensions;
+    /**
+     * Attempts to retrieve the dimensions of an image using the GD library.
+     *
+     * @param string $filePath The path to the image file.
+     * @return ImageDimensions|null An instance of ImageDimensions containing the width and height of the image,
+     *                              or null if the dimensions could not be retrieved.
+     */
+    protected function tryWithGd(string $filePath): ImageDimensions|null
+    {
+        $imageSize = @getimagesize($filePath);
+        return $imageSize ? new ImageDimensions($imageSize[0], $imageSize[1]) : null;
     }
 
     /**

@@ -1,0 +1,74 @@
+form-group {
+    --#{$prefix}form-group-border-width: #{$form-group-border-width};
+    --#{$prefix}form-group-border-style: #{$form-group-border-style};
+    --#{$prefix}form-group-border-color: #{$form-group-border-color};
+
+    --#{$prefix}form-group-spacer-y: #{$grid-gutter-width * .25};
+    --#{$prefix}form-group-spacer-x: 0;
+
+    --#{$prefix}form-group-label-font-weight: #{$form-group-label-font-weight};
+    --#{$prefix}form-group-label-margin: 0 0 .219rem 0;
+    --#{$prefix}form-group-label-width: 100%;
+    --#{$prefix}form-group-label-text-align: left;
+
+    padding: var(--#{$prefix}form-group-spacer-y) 0;
+    display: flex;
+    flex-direction: column;
+
+    &:first-of-type {
+        padding-top: 0;
+    }
+
+    &:last-of-type {
+        padding-bottom: 0;
+    }
+
+    .control-label {
+        width: var(--#{$prefix}form-group-label-width);
+        text-align: var(--#{$prefix}form-group-label-text-align);
+
+        label {
+            font-weight: var(--#{$prefix}form-group-label-font-weight);
+            margin: var(--#{$prefix}form-group-label-margin);
+
+            &.required:after {
+                color: #{$form-required-label-color};
+                font-size: #{$form-required-label-font-size};
+                content: "#{$form-required-label-icon}";
+
+                position: absolute;
+                line-height: 0;
+                margin-top: .5rem;
+                margin-left: .1rem;
+            }
+        }
+    }
+
+    @each $num, $size in $form-group-field-sizes {
+        [data-size="#{$num}"]{
+            position: relative;
+            width: 100%;
+            max-width: $size;
+        }
+    }
+}
+
+.form-hint {
+    display: block;
+    text-align: left;
+    font-size: var(--#{$prefix}font-size-sm);
+    color: var(--#{$prefix}secondary);
+    margin-top: #{$form-text-margin-top};
+}
+
+.invalid-feedback + .form-hint {
+    border-top: var(--#{$prefix}form-group-border-width) dashed var(--#{$prefix}form-group-border-color);
+    margin-top: var(--#{$prefix}spacer-1);
+    padding-top: var(--#{$prefix}spacer-1);
+}
+
+.has-error {
+    .invalid-feedback {
+        display: block;
+    }
+}

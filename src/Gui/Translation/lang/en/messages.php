@@ -11,10 +11,11 @@ return [
 
     'datatable' => [
         'page_of_page' => "Page %d of %d",
-        'no_elements' => "No element for the moment",
-        'selection_no_elements' => "You have to select one item in the datatable before pressing this button",
-        'selection_single' => "You can select only one element in the datatable",
-        'records' => "record|records",
+        'empty' => "There is not record for the moment.",
+        'empty_search' => "Your search did not return any record.",
+        'selection_no_elements' => "You have to select one item in the datatable before pressing this button!",
+        'selection_single' => "You can select only one element in the datatable!",
+        'records' => "Showing results <b>:first</b> to <b>:last</b> (out of :total)",
         'search' => "Search",
         'clear' => "Clear",
         'close' => "Close",
@@ -25,7 +26,6 @@ return [
     'component' => [
 
         'theme' => [
-            'dark_mode' => "Dark mode",
             'light' => "Lumos!",
             'dark' => "Nox!",
         ],
@@ -37,7 +37,7 @@ return [
             'format' => [
                 'date_format' => 'Y-m-d',
                 'time_format' => 'H:i',
-                'picker_date_format' => 'yyyy-LL-dd',
+                'picker_date_format' => 'yyyy-MM-dd',
                 'picker_time_format' => 'HH:mm'
             ]
         ],
@@ -61,7 +61,7 @@ return [
 
         'file' => [
             'browse' => "Browse",
-            'multiple' => "%d files selected",
+            'selected' => "%d files selected",
             'empty' => "No file chosen",
         ],
 

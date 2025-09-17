@@ -1,8 +1,9 @@
 <?php
 namespace Gui\Forms\Elements;
 
-use Demeter\Support\Str;
+use Illuminate\Contracts\View\View;
 use Gui\Forms\Validators\Error;
+use Illuminate\Support\HtmlString;
 
 class InputGroup extends InputText
 {
@@ -15,80 +16,77 @@ class InputGroup extends InputText
 
         $this->addOption('prefix');
         $this->addOption('suffix');
-        $this->addOption('prefixClass', 'input-group-text');
-        $this->addOption('suffixClass', 'input-group-text');
+        $this->addOption('stripValue', true);
+        $this->addOption('flat', true);
     }
 
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null): string
+    protected function getView(): string
     {
-        if($this->hasOption('prefix') === false && $this->hasOption('suffix') === false){
-            return parent::render($name, $value, $error);
-        }
-
-        $output = "";
-
-        if($this->hasOption('prefix')){
-            $output.= $this->renderAddon($name, $value, 'prefix');
-        }
-
-        $output.= '{field}';
-
-        if($this->hasOption('suffix')){
-            $output.= $this->renderAddon($name, $value, 'suffix');
-        }
-
-        return content_tag('div', Str::replace('{field}', parent::render($name, $value, $error), $output), ['class' => 'input-group no-borders']);
+        return 'gui::forms.elements.input-group';
     }
 
     /**
-     * Render form addon
-     *
-     * @param string $name
-     * @param mixed $value
-     * @param string $position
-     * @return string
+     * @inheritDoc
      */
-    protected function renderAddon(string &$name, mixed &$value, string $position): string
+    protected function beforeRender(): void
     {
-        $option = $this->getOption($position);
+        parent::beforeRender();
+
+        $this->setViewVar('flat', $this->getOption('flat'));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function render(string $name, mixed $value = null, ?Error $error = null): string|View
+    {
+        return parent::render($name, $this->prepareValue($value), $error);
+    }
+
+    /**
+     * Prepares the given value based on the configured options.
+     *
+     * @param mixed $value The value to be prepared.
+     * @return mixed The processed value after applying the prefix, suffix, and optional stripping logic.
+     */
+    protected function prepareValue(mixed $value): mixed
+    {
         $value = $value ?? '';
 
-        if(!is_array($option)){
-            $value = match ($position){
-                'prefix' => preg_replace('/^' . preg_quote($option, '/') . '/', '', $value),
-                'suffix' => preg_replace('/' . preg_quote($option, '/') . '$/', '', $value),
-            };
-            return content_tag('div', $option, ['class' => $this->getOption($position . 'Class')]);
-        } else {
-            $selectedChoice = null;
-            if(is_array($value)){
-                $selectedChoice = $value['prefix'] ?? ($value['suffix'] ?? null);
-                $value = $value['value'];
-            } else {
-                foreach($option as $choice){
-                    if($position === 'prefix'){
-                        $pattern = '/^' . preg_quote($choice, '/') . '/';
-                    } else {
-                        $pattern = '/' . preg_quote($choice, '/') . '$/';
-                    }
-                    if(preg_match($pattern, $value, $matches)){
-                        $value = preg_replace($pattern, '', $value);
-                        $selectedChoice = $matches[0];
-                        break;
-                    }
-                }
-            }
+        $this->setViewVar('prefix', null !== $this->getOption('prefix') ? new HtmlString($this->getOption('prefix')) : null);
+        $this->setViewVar('suffix', null !== $this->getOption('suffix') ? new HtmlString($this->getOption('suffix')) : null);
 
-            if(!Str::contains($name, '[value]')){
-                $name = $name . '[value]';
-            }
-
-            $choiceName = Str::replace('[value]', '[' . $position . "]", $name);
-
-            return (new ChoiceSelect(['choices' => $option]))->render($choiceName, $selectedChoice);
+        if(!$this->getOption('stripValue')){
+            return $value;
         }
+
+        if($this->getOption('prefix')){
+            $value = $this->cleanValueBasedOnPosition($value, $this->getOption('prefix'), 'prefix');
+        }
+
+        if($this->getOption('suffix')){
+            $value = $this->cleanValueBasedOnPosition($value, $this->getOption('suffix'), 'suffix');
+        }
+
+        return $value;
+    }
+
+    /**
+     * Cleans a given value by removing the specified addon based on its position (prefix or suffix).
+     *
+     * @param string $value The original value to be cleaned.
+     * @param string $addon The string that should be removed from the value.
+     * @param string $position The position of the addon in the value. Can be 'prefix' or 'suffix'. Defaults to 'prefix'.
+     * @return string The cleaned value with the addon removed based on the specified position.
+     */
+    protected function cleanValueBasedOnPosition(string $value, string $addon, string $position = 'prefix'): string
+    {
+        return match ($position){
+            'prefix' => preg_replace('/^' . preg_quote($addon, '/') . '/', '', $value),
+            'suffix' => preg_replace('/' . preg_quote($addon, '/') . '$/', '', $value),
+        };
     }
 }

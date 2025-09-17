@@ -1,0 +1,39 @@
+form-group.layout-grid {
+    --#{$prefix}form-group-spacer-y: #{$grid-gutter-width * .5};
+    --#{$prefix}form-group-spacer-x: #{$grid-gutter-width * .5};
+
+    &+form-group {
+        border-top: var(--#{$prefix}form-group-border-width) var(--#{$prefix}form-group-border-style) var(--#{$prefix}form-group-border-color);
+    }
+}
+
+@each $breakpoint, $size in $grid-breakpoints {
+    @include media-breakpoint-up($breakpoint){
+        form[data-breakpoint="#{$breakpoint}"] form-group.layout-grid {
+            --#{$prefix}form-group-label-margin: .438rem 0 .219rem 0;
+            --#{$prefix}form-group-label-width: 14rem;
+            --#{$prefix}form-group-label-text-align: right;
+
+            flex-direction: row;
+
+            .control-field {
+                flex-grow: 1;
+                padding-left: var(--#{$prefix}form-group-spacer-x);
+                border-left: var(--#{$prefix}form-group-border-width) var(--#{$prefix}form-group-border-style) var(--#{$prefix}form-group-border-color);
+            }
+
+            .control-label {
+                flex-shrink: 0;
+                padding-right: calc(var(--#{$prefix}form-group-spacer-x) + .25rem);
+            }
+        }
+    }
+
+    @include media-breakpoint-down($breakpoint){
+        form[data-breakpoint="#{$breakpoint}"] form-group.layout-grid {
+            [data-size] {
+                max-width: none;
+            }
+        }
+    }
+}

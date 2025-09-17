@@ -1,0 +1,96 @@
+.token-container {
+    --#{$prefix}token-container-padding: .25rem;
+
+    min-height: $input-height;
+    display: flex;
+    gap: var(--#{$prefix}token-container-padding);
+    padding: var(--#{$prefix}token-container-padding);
+
+    &:focus-within {
+        box-shadow: $input-focus-box-shadow;
+        border-radius: $input-border-radius;
+        border-color: $input-focus-border-color;
+    }
+
+    .search {
+        flex: 1 1 0px;
+        background-color: transparent;
+        appearance: none;
+        border: 0;
+    }
+
+    .token {
+        cursor: default;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        &>a {
+            --#{$prefix}btn-close-size: .825rem;
+        }
+    }
+
+    &.sortable {
+        &>.token {
+            &>span {
+                cursor: grab;
+            }
+        }
+    }
+
+    &.layout-row {
+        align-items: flex-start;
+        flex-flow: wrap;
+
+        .search {
+            padding: calc(#{$input-padding-y} - var(--#{$prefix}token-container-padding)) 0;
+
+            &:first-child {
+                padding-left: #{$input-padding-x - ($input-padding-y * .75)};
+            }
+        }
+
+        .token {
+            @extend .bg-primary-lt;
+
+            display: flex;
+            gap: var(--#{$prefix}spacer-1);
+            align-items: center;
+
+            border: var(--#{$prefix}border-width) solid var(--#{$prefix}primary-200);
+            padding: calc(#{$input-padding-y} - var(--#{$prefix}token-container-padding) - var(--#{$prefix}border-width)) calc(#{$input-padding-x} - var(--#{$prefix}token-container-padding) - var(--#{$prefix}border-width));
+            line-height: $input-line-height;
+
+            @include border-radius(calc(#{$input-border-radius} - var(--#{$prefix}token-container-padding)));
+
+            &.await {
+                @extend .bg-danger-lt;
+            }
+        }
+    }
+
+    &.layout-column {
+        flex-direction: column;
+
+        .token, .search {
+            width: 100%;
+            padding-left: #{$input-padding-x - ($input-padding-y * .75)};
+            padding-right: #{$input-padding-x - ($input-padding-y * .75)};
+        }
+
+        .token {
+            border-bottom: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color-lt);
+            padding-top: calc(#{$input-padding-y} - var(--#{$prefix}token-container-padding));
+            padding-bottom: calc(#{$input-padding-y} - var(--#{$prefix}token-container-padding));
+
+            &>span {
+                flex-grow: 1;
+            }
+
+            &.await {
+                @extend .text-danger;
+            }
+        }
+    }
+}

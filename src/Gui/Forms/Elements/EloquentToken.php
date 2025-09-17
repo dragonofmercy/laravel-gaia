@@ -22,6 +22,15 @@ class EloquentToken extends ChoiceToken
     /**
      * @inheritDoc
      */
+    public function validateOptions(array|Collection $options = []): void
+    {
+        $this->setOption('choices', []);
+        parent::validateOptions($options);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function render(string $name, mixed $value = null, ?Error $error = null): string
     {
         if(is_array($value)){
@@ -36,32 +45,35 @@ class EloquentToken extends ChoiceToken
     /**
      * @inheritDoc
      */
-    protected function getChoices(): Collection
+    protected function beforeRender(): void
     {
-        $choices = new Collection();
-        $values = collect($this->getFormInstance()->getValue($this->getFieldName()));
+        parent::beforeRender();
+        $this->loadChoices();
+    }
 
-        if(empty($values)){
-            return $choices;
-        }
-
-        $values = $values->map(function(mixed $v){
-            return is_array($v) ? $v[$this->getColumn()] : $v;
-        });
-
+    /**
+     * Load and prepare choices based on the defined method and model.
+     *
+     * @return void
+     */
+    protected function loadChoices()
+    {
         $method = $this->getOption('method');
 
         /** @var Builder $query */
         $query = $this->getOption('model')::query();
-        $query->whereIn($this->getColumn(), $values)->get()->map(function(mixed $model) use (&$choices, $method){
+        $column = $this->getColumn();
+        $choices = new Collection();
+
+        $query->get()->map(function(mixed $model) use ($method, $column, &$choices){
             if(method_exists($model, $method)){
-                $choices[$model->{$this->getColumn()}] = $model->{$this->getOption('method')}();
+                $choices->put($model->$column, $model->{$this->getOption('method')}());
             } else {
                 throw new \InvalidArgumentException("The method [$method] doesn't exists for [" . get_class($model) . "]");
             }
         });
 
-        return $choices;
+        $this->setOption('choices', $choices);
     }
 
     /**

@@ -1,7 +1,6 @@
 <?php
 namespace Gui\Datatable\Engines;
 
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class ArrayEngine extends AbstractEngine
@@ -51,7 +50,7 @@ class ArrayEngine extends AbstractEngine
             }
         }
 
-        $this->paginator = new LengthAwarePaginator($items, $this->collection->count(), $perPage, $this->currentPage);
+        $this->paginator = $this->buildPaginator($items, $this->collection->count(), $perPage, $this->currentPage, []);
     }
 
     /**

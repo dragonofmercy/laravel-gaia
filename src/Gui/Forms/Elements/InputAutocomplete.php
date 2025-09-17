@@ -1,8 +1,6 @@
 <?php
 namespace Gui\Forms\Elements;
 
-use Gui\Forms\Validators\Error;
-
 class InputAutocomplete extends InputText
 {
     /**
@@ -17,6 +15,15 @@ class InputAutocomplete extends InputText
         $this->addOption('valueField', 'value');
         $this->addOption('textField', 'text');
         $this->addOption('limit', 10);
+        $this->addOption('reference', 'self');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getView(): string
+    {
+        return 'gui::forms.elements.input-autocomplete';
     }
 
     /**
@@ -26,33 +33,16 @@ class InputAutocomplete extends InputText
     {
         parent::beforeRender();
 
-        $this->setAttribute('autocomplete', 'off');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function render(string $name, mixed $value = null, ?Error $error = null): string
-    {
-        return parent::render($name, $value, $error) . javascript_tag_deferred($this->getJavascript($this->generateId($name)));
-    }
-
-    /**
-     * Get javascript for autocomplete
-     *
-     * @param string $id
-     * @return string
-     */
-    protected function getJavascript(string $id): string
-    {
-        $opt = [
-            'url' => url($this->getOption('url')),
+        $componentConfig = [
+            'provider' => url($this->getOption('url')),
             'minLength' => $this->getOption('minLength'),
             'valueField' => $this->getOption('valueField'),
             'textField' => $this->getOption('textField'),
-            'limit' => $this->getOption('limit')
+            'limit' => $this->getOption('limit'),
+            'reference' => $this->getOption('reference')
         ];
 
-        return '$("#' . $id . '").GUIControlAutocomplete(' . _javascript_php_to_object($opt) . ');';
+        $this->setViewVar('componentConfig', json_encode($componentConfig));
+        $this->setAttribute('autocomplete', 'off');
     }
 }

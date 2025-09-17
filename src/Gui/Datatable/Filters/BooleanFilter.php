@@ -10,7 +10,7 @@ class BooleanFilter extends ChoicesFilter
      * Decorator classname
      * @var string
      */
-    protected string $decorator = \Gui\Datatable\Decorators\Default\SearchTypes\ChoicesSearchType::class;
+    protected string $decorator = \Gui\Datatable\Filters\Decorators\ChoicesDecorator::class;
 
     /**
      * @inheritDoc

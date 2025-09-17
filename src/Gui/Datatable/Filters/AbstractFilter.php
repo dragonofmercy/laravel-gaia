@@ -1,10 +1,11 @@
 <?php
 namespace Gui\Datatable\Filters;
 
-use Gui\Datatable\Decorators\Default\SearchTypes\AbstractSearchType;
+use Illuminate\Support\Collection;
+
 use Gui\Datatable\Engines\AbstractEngine;
 use Gui\Datatable\Engines\EloquentEngine;
-use Illuminate\Support\Collection;
+use Gui\Datatable\Filters\Decorators\AbstractDecorator;
 
 abstract class AbstractFilter
 {
@@ -62,10 +63,10 @@ abstract class AbstractFilter
      *
      * @return string
      */
-    public function getDecorator(): string
+    public function getDecoratorClass(): string
     {
-        if(!is_subclass_of($this->decorator, AbstractSearchType::class)){
-            throw new \RuntimeException("Decorator class is not a subclass of [" . AbstractSearchType::class . "]");
+        if(!is_subclass_of($this->decorator, AbstractDecorator::class)){
+            throw new \RuntimeException("Decorator class is not a subclass of [" . AbstractDecorator::class . "]");
         }
 
         return $this->decorator;
@@ -80,6 +81,16 @@ abstract class AbstractFilter
     public function setEngine(AbstractEngine $engine): void
     {
         $this->engine = $engine;
+    }
+
+    /**
+     * Retrieve the engine
+     *
+     * @return AbstractEngine
+     */
+    public function getEngine(): AbstractEngine
+    {
+        return $this->engine;
     }
 
     /**
@@ -107,9 +118,9 @@ abstract class AbstractFilter
      * Set or get label
      *
      * @param string|null $label
-     * @return string|$this|self
+     * @return string|static
      */
-    public function label(string|null $label = null): self|string
+    public function label(string|null $label = null): static|string
     {
         if(null === $label){
             if($this->options->has('label')){
@@ -131,9 +142,9 @@ abstract class AbstractFilter
      * Set or get operator
      *
      * @param string|null $operator
-     * @return string|self
+     * @return string|static
      */
-    public function operator(string|null $operator = null): self|string
+    public function operator(string|null $operator = null): static|string
     {
         if(null === $operator){
             return $this->options->get('operator', $this->defaultOperator);
@@ -148,7 +159,7 @@ abstract class AbstractFilter
      *
      * @return $this
      */
-    public function prepare(): self
+    public function prepare(): static
     {
         if(!$this->options->has('operator')){
             $this->options['operator'] = $this->defaultOperator;

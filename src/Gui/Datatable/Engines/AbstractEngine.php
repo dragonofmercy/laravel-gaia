@@ -2,27 +2,33 @@
 namespace Gui\Datatable\Engines;
 
 use Closure;
-use Demeter\Support\Str;
-use Gui\Datatable\Decorators\AbstractDecorator;
-use Gui\Datatable\Decorators\DefaultDecorator;
-use Gui\Datatable\Filters\AbstractFilter;
-use Gui\Datatable\Options;
+
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Request as RequestFacade;
+use Illuminate\View\ComponentAttributeBag;
+
+use Demeter\Support\Str;
+use Gui\Datatable\Decorator;
+use Gui\Datatable\Filters\AbstractFilter;
+use Gui\Datatable\Options;
 
 abstract class AbstractEngine
 {
     const SORT_DIRECTION_ASC = 'asc';
     const SORT_DIRECTION_DESC = 'desc';
-    const SESSION_STORAGE_KEY = "datatables.persistance";
+    const SESSION_STORAGE_KEY = "_gui.datatables";
+    const SELECTOR_COLUMN_NAME = "gui-selector";
 
-    /**
-     * Default datatable decorator
-     * @var string
-     */
-    public static string $defaultDecorator = DefaultDecorator::class;
+    const PARAM_UID = "dt_u";
+    const PARAM_SEARCH = "dt_f";
+    const PARAM_CLEAR = "dt_c";
+    const PARAM_PAGE = "dt_p";
+    const PARAM_SORT_BY = "dt_s";
+    const PARAM_SORT_DIRECTION = "dt_o";
 
     /**
      * Datatable UID
@@ -62,10 +68,9 @@ abstract class AbstractEngine
     protected Collection $options;
 
     /**
-     * Decorator classname
-     * @var string
+     * @var string|null
      */
-    protected string $decorator;
+    protected string|null $decoratorView = null;
 
     /**
      * Current page
@@ -113,16 +118,18 @@ abstract class AbstractEngine
         $this->searchFilters = new Collection();
         $this->searchValues = new Collection();
         $this->options = new Collection([
-            'display_search' => false,
+            'search_always_visible' => false,
+            'selector' => false,
+            'selector_type' => 'checkbox',
             'default_sort_by' => null,
             'default_sort_order' => 'null',
             'row_limit' => 25,
         ]);
 
-        $this->uid = RequestFacade::get('dt_u');
-        $this->currentPage = RequestFacade::get('dt_p', 1);
-        $this->sortBy = RequestFacade::get('dt_s');
-        $this->sortDirection = RequestFacade::get('dt_o');
+        $this->uid = RequestFacade::get(self::PARAM_UID);
+        $this->currentPage = RequestFacade::get(self::PARAM_PAGE, 1);
+        $this->sortBy = RequestFacade::get(self::PARAM_SORT_BY);
+        $this->sortDirection = RequestFacade::get(self::PARAM_SORT_DIRECTION);
 
         $this->initializeSearchValues();
     }
@@ -308,24 +315,19 @@ abstract class AbstractEngine
     }
 
     /**
-     * Set display search
+     * Determines if the search is always visible or sets its visibility.
      *
-     * @param bool $value
-     * @return void
+     * @param bool|null $value The desired visibility state or null to retrieve the current state.
+     * @return bool|static Returns the current visibility state if $value is null, or the current instance when setting the state.
      */
-    public function setDisplaySearch(bool $value): void
+    public function isSearchAlwaysVisible(bool|null $value = null): bool|static
     {
-        $this->options['display_search'] = $value;
-    }
+        if(null === $value){
+            return $this->options->get('search_always_visible', false);
+        }
 
-    /**
-     * Get display search option
-     *
-     * @return bool
-     */
-    public function getDisplaySearch(): bool
-    {
-        return (bool) $this->options->get('display_search', false);
+        $this->options['search_always_visible'] = $value;
+        return $this;
     }
 
     /**
@@ -336,6 +338,24 @@ abstract class AbstractEngine
     public function getSortDirection(): string
     {
         return $this->sortDirection ?? self::SORT_DIRECTION_ASC;
+    }
+
+    /**
+     * Generate a selector input element with specific attributes.
+     *
+     * @param mixed $value The value attribute for the input element. Defaults to null.
+     * @return string The generated input element as a string.
+     */
+    public function getSelectorInput($value = null): string
+    {
+        $attributes = new ComponentAttributeBag([
+            'name' => $this->getUid() . '_selector',
+            'type' => $this->options->get('selector_type'),
+            'class' => 'form-check-input',
+            'value' => $value
+        ]);
+
+        return '<input ' . $attributes . '/>';
     }
 
     /**
@@ -373,6 +393,16 @@ abstract class AbstractEngine
                 return $this->columns->map(function($v, $k) use($item){
                     return $this->columnValue($item, $k);
                 });
+            });
+        }
+
+        if($this->options->get('selector', false)){
+            $this->columns->prepend($this->options->get('selector_type') === 'checkbox' ? $this->getSelectorInput() : 'gui::messages.generic.empty', self::SELECTOR_COLUMN_NAME);
+            $this->columnsOptions->prepend(Options::make()->css(self::SELECTOR_COLUMN_NAME)->sort(false), self::SELECTOR_COLUMN_NAME);
+
+            $this->paginator->getCollection()->transform(function($item){
+                $item[self::SELECTOR_COLUMN_NAME] = $this->getSelectorInput($item[self::SELECTOR_COLUMN_NAME]);
+                return $item;
             });
         }
 
@@ -433,6 +463,30 @@ abstract class AbstractEngine
     }
 
     /**
+     * Set the selector to checkbox type
+     *
+     * @return static
+     */
+    public function checkboxes()
+    {
+        $this->options['selector'] = true;
+        $this->options['selector_type'] = 'checkbox';
+        return $this;
+    }
+
+    /**
+     * Set the selector to radio type
+     *
+     * @return static
+     */
+    public function radio()
+    {
+        $this->options['selector'] = true;
+        $this->options['selector_type'] = 'radio';
+        return $this;
+    }
+
+    /**
      * Update and save persistant data
      *
      * @param bool $clear
@@ -442,7 +496,7 @@ abstract class AbstractEngine
     {
         $items = $this->getDatatableAttributes();
 
-        if(RequestFacade::get('dt_c') || $clear){
+        if(RequestFacade::get(self::PARAM_CLEAR) || $clear){
             $this->setDatatableAttributes([]);
             return;
         }
@@ -569,33 +623,28 @@ abstract class AbstractEngine
     }
 
     /**
-     * Get the datatable decorator
+     * Set decorator view
      *
-     * @param string|null $decorator
-     * @return AbstractDecorator
+     * @param string $viewName
+     * @return void
      */
-    public function getDecorator(string|null $decorator = null): AbstractDecorator
+    public function setDecoratorView(string $viewName): void
     {
-        if(null === $decorator){
-            return new static::$defaultDecorator($this);
-        } else {
-            if(class_exists($decorator)){
-                return new $decorator($this);
-            } else {
-                throw new \InvalidArgumentException(sprintf('The decorator [%s] was not found.', $decorator));
-            }
-        }
+        $this->decoratorView = $viewName;
     }
 
     /**
-     * Set decorator class
+     * Get decorator view
      *
-     * @param string $decorator
-     * @return void
+     * @return string
      */
-    public function setDecorator(string $decorator): void
+    public function getDecoratorView(): string
     {
-        $this->decorator = $decorator;
+        if(null === $this->decoratorView){
+            $this->decoratorView = config('gui.default_datatable_decorator_view', 'gui::datatables.default');
+        }
+
+        return $this->decoratorView;
     }
 
     /**
@@ -612,6 +661,49 @@ abstract class AbstractEngine
         return $this->getRowColumnValues($column)->flip()->map(function(mixed $v, mixed $k) use (&$collection, $formatCallback){
             return $formatCallback($k);
         })->sort();
+    }
+
+    /**
+     * Render the object to an HTML view.
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\View\View
+     */
+    public function toHtml(): \Illuminate\Contracts\View\View|\Illuminate\View\View
+    {
+        return (new Decorator($this))->render();
+    }
+
+    /**
+     * Build HTTP query
+     *
+     * @param int|null $page The page number to include in the query. Defaults to the current page if null.
+     * @param string|null $sortBy The sorting column to include in the query. Defaults to the current sorting column if null.
+     * @param string|null $sortDirection The sorting direction to include in the query. Defaults to the current sorting direction if null.
+     * @return array The constructed HTTP query as an associative array.
+     */
+    public function buildHttpQuery(int|null $page = null, string|null $sortBy = null, string|null $sortDirection = null): array
+    {
+        $httpQuery = $this->filterCurrentQuery();
+
+        $httpQuery[self::PARAM_UID] = $this->getUid();
+        $httpQuery[self::PARAM_PAGE] = $page ?? $this->getCurrentPage();
+        $httpQuery[self::PARAM_SORT_BY] = $sortBy ?? $this->getSortBy();
+        $httpQuery[self::PARAM_SORT_DIRECTION] = $sortDirection ?? $this->getSortDirection();
+
+        return $httpQuery;
+    }
+
+    /**
+     * Get clean http query
+     *
+     * @param string $filter
+     * @return array
+     */
+    protected function filterCurrentQuery(string $filter = 'dt_'): array
+    {
+        return collect(RequestFacade::all())->filter(function(mixed $value, string $key) use ($filter){
+            return !Str::startsWith($key, $filter);
+        })->toArray();
     }
 
     /**
@@ -638,7 +730,7 @@ abstract class AbstractEngine
      */
     protected function initializeSearchValues(): void
     {
-        collect(RequestFacade::post('dt_f'))->map(function(mixed $value, string $name){
+        collect(RequestFacade::post(self::PARAM_SEARCH))->map(function(mixed $value, string $name){
             if(is_string($value)){
                 $value = Str::cleanup($value);
                 if(!Str::length($value)){
@@ -647,6 +739,49 @@ abstract class AbstractEngine
             }
             $this->searchValues[$name] = $value;
         });
+    }
+
+    /**
+     * Build a paginator instance.
+     *
+     * @param mixed $items
+     * @param int $total
+     * @param int $perPage
+     * @param int $currentPage
+     * @param array $options
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    protected function buildPaginator($items, $total, $perPage, $currentPage, $options)
+    {
+        $options = array_merge([
+            'path' => RequestFacade::url(),
+            'pageName' => self::PARAM_PAGE,
+            'query' => $this->buildHttpQuery($currentPage)
+        ], $options);
+
+        return Container::getInstance()->makeWith(LengthAwarePaginator::class, compact(
+            'items', 'total', 'perPage', 'currentPage', 'options'
+        ));
+    }
+
+    /**
+     * Redirects to a specified URL with an optional UID. If the UID is not provided, it will attempt to retrieve it from the request.
+     *
+     * @param string $url The URL to redirect to.
+     * @param string|null $uid Optional unique identifier for the redirect. If null, it is retrieved from the current request.
+     * @return string
+     */
+    public static function redirect(string $url, string|null $uid = null): string
+    {
+        if(null === $uid){
+            if(!request()->has(self::PARAM_UID)){
+                throw new \InvalidArgumentException("The uid was not found in the current request");
+            }
+
+            $uid = request()->get(self::PARAM_UID);
+        }
+
+        return Blade::render("<x-gui::datatable-redirector id=\"$uid\" url=\"$url\" />", [], true);
     }
 
     /**

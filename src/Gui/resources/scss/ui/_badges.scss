@@ -1,0 +1,80 @@
+.badge {
+    --#{$prefix}badge-font-size: .625rem;
+    --#{$prefix}badge-padding-x: .65em;
+    --#{$prefix}badge-padding-y: .35em;
+    --#{$prefix}badge-line-height: 1;
+    --#{$prefix}badge-font-weight: var(--#{$prefix}font-weight-bold);
+    --#{$prefix}badge-border-radius: var(--#{$prefix}border-radius);
+    --#{$prefix}badge-empty-size: .75rem;
+    --#{$prefix}badge-color: var(--#{$prefix}secondary);
+    --#{$prefix}badge-bg: var(--#{$prefix}bg-surface-secondary);
+    --#{$prefix}badge-border-color: var(--#{$prefix}border-color);
+    --#{$prefix}badge-box-shadow-color: transparent;
+    --#{$prefix}badge-box-shadow: 0 0 0 2px var(--#{$prefix}badge-box-shadow-color);
+
+    --#{$prefix}icon-size: 1em;
+    --#{$prefix}icon-stroke-width: 2;
+
+    padding: var(--#{$prefix}badge-padding-y) var(--#{$prefix}badge-padding-x);
+    font-size: var(--#{$prefix}badge-font-size);
+    font-weight: var(--#{$prefix}badge-font-weight);
+    line-height: var(--#{$prefix}badge-line-height);
+    border-radius: var(--#{$prefix}badge-border-radius);
+    border: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}badge-border-color);
+    background-color: var(--#{$prefix}badge-bg);
+    color: var(--#{$prefix}badge-color);
+    box-shadow: var(--#{$prefix}badge-box-shadow);
+
+    display: inline-flex;
+    text-align: center;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.04em;
+    vertical-align: bottom;
+    overflow: hidden;
+    user-select: none;
+    gap: .25rem;
+
+    @at-root a#{&} {
+        background: var(--#{$prefix}bg-surface-secondary);
+    }
+}
+
+.badge-outline {
+    background-color: transparent;
+    border-color: color-mix(in oklab, currentColor 40%, transparent);
+}
+
+.badge-notification {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    transform: translate(50%, -50%);
+    z-index: 1;
+}
+
+.badge:empty,
+.badge-dot {
+    --#{$prefix}badge-border-radius: var(--#{$prefix}border-radius-pill);
+    --#{$prefix}badge-padding-x: .25rem;
+    --#{$prefix}badge-padding-y: .25rem;
+
+    display: inline-block;
+    min-width: 0;
+    min-height: auto;
+}
+
+@each $color, $value in $theme-colors {
+    .badge-#{$color} {
+        --#{$prefix}badge-bg: color-mix(in oklab, var(--#{$prefix}#{$color}) var(--#{$prefix}theme-color-mix, 100%), #000);
+        --#{$prefix}badge-color: var(--#{$prefix}#{$color}-fg);
+        --#{$prefix}badge-border-color: color-mix(in oklab, var(--#{$prefix}#{$color}) var(--#{$prefix}theme-color-mix, 100%), #000);
+    }
+
+    .badge-#{$color}-lt {
+        --#{$prefix}badge-bg: var(--#{$prefix}#{$color}-lt);
+        --#{$prefix}badge-color: var(--#{$prefix}#{$color});
+        --#{$prefix}badge-border-color: var(--#{$prefix}#{$color}-200);
+    }
+}

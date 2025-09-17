@@ -10,6 +10,6 @@ class InputEmail extends InputText
     {
         parent::initialize();
 
-        $this->setOption('type', 'email');
+        $this->setAttribute('type', 'email');
     }
 }

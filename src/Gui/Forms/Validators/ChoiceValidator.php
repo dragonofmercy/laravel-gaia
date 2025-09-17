@@ -30,6 +30,10 @@ class ChoiceValidator extends AbstractValidator
     {
         if($this->getOption('multiple') === true){
             return $this->validateMultiple($v, collect($this->getOption('choices')));
+        } else {
+            if(!$this->inChoices($v, collect($this->getOption('choices')))){
+                throw new Error($this, 'invalid', ['value' => $v]);
+            }
         }
 
         return $v;
@@ -76,7 +80,7 @@ class ChoiceValidator extends AbstractValidator
     protected function inChoices(mixed $value, Collection $choices): bool
     {
         foreach($choices as $index => $choice){
-            if(is_array($choice)){
+            if(is_iterable($choice)){
                 if($this->inChoices($value, collect($choice))){
                     return true;
                 }

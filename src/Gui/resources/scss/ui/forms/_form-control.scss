@@ -1,0 +1,14 @@
+.form-control,
+.form-select {
+    --#{$prefix}form-control-disabled-bg: #{$input-disabled-bg};
+    --#{$prefix}form-control-disabled-color: #{$input-disabled-color};
+    --#{$prefix}form-control-disabled-border-color: #{$input-disabled-border-color};
+
+    transition: none;
+
+    &:disabled, &[readonly] {
+        color: var(--#{$prefix}form-control-disabled-color);
+        background-color: var(--#{$prefix}form-control-disabled-bg);
+        border-color: var(--#{$prefix}form-control-disabled-border-color);
+    }
+}

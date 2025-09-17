@@ -1,0 +1,20 @@
+.icon {
+    width: var(--#{$prefix}icon-size);
+    height: var(--#{$prefix}icon-size);
+    font-size: var(--#{$prefix}icon-size);
+    stroke-width: var(--#{$prefix}icon-stroke-width);
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    vertical-align: bottom;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+@each $name, $size in $icon-sizes {
+    .icon-#{$name} {
+        --#{$prefix}icon-size: #{$size};
+    }
+}

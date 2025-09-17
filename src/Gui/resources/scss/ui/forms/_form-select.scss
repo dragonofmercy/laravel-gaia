@@ -1,0 +1,24 @@
+.form-select {
+
+    option:hover, option:focus {
+        background-color: #{$dropdown-link-hover-bg};
+        color: #{$dropdown-link-hover-color};
+    }
+
+    option[disabled] {
+        color: var(--#{$prefix}form-control-disabled-color);
+    }
+
+    optgroup {
+        font-weight: var(--#{$prefix}font-weight-bold);
+        font-style: normal;
+    }
+
+    &:not([multiple]) {
+        cursor: pointer;
+    }
+
+    &[multiple] {
+        overflow: auto;
+    }
+}

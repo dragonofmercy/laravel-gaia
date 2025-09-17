@@ -1,0 +1,35 @@
+.swap {
+    position: relative;
+    display: inline-grid;
+    user-select: none;
+    place-content: center;
+    cursor: pointer;
+
+    color: var(--#{$prefix}link-color);
+
+    &:hover {
+        color: var(--#{$prefix}link-hover-color);
+    }
+
+    .swap-on {
+        opacity: 0;
+    }
+
+    input {
+        appearance: none;
+
+        &:checked ~ .swap-on {
+            opacity: 1;
+        }
+
+        &:checked ~ .swap-off {
+            opacity: 0;
+        }
+    }
+
+    & > * {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1), opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+}

@@ -1,7 +1,0 @@
-.alert-danger {
-    --#{$prefix}alert-color: #{lighten($danger-text-emphasis, 25%)};
-}
-
-.alert-success {
-    --#{$prefix}alert-color: #{lighten($success-text-emphasis, 10%)};
-}

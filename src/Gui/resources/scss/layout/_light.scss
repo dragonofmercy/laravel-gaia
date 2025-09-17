@@ -1,0 +1,30 @@
+:root, :host, [data-bs-theme="light"] {
+    color-scheme: light;
+
+    --#{$prefix}bg-surface: var(--#{$prefix}white);
+    --#{$prefix}bg-surface-secondary: var(--#{$prefix}gray-50);
+    --#{$prefix}bg-surface-tertiary: var(--#{$prefix}gray-100);
+    --#{$prefix}bg-forms: var(--#{$prefix}bg-surface);
+    --#{$prefix}tertiary: var(--#{$prefix}gray-400);
+
+    --#{$prefix}hover-bg: rgba(var(--#{$prefix}primary-rgb),.06);
+    --#{$prefix}active-bg: rgba(var(--#{$prefix}primary-rgb),1);
+    --#{$prefix}active-color: var(--#{$prefix}primary);
+
+    --#{$prefix}border-color: #{$border-color};
+    --#{$prefix}border-color-lt: #{$border-color-lt};
+    --#{$prefix}border-color-darken: var(--#{$prefix}gray-400);
+    --#{$prefix}border-color-darker: var(--#{$prefix}gray-500);
+    --#{$prefix}border-color-translucent: #{$border-color-translucent};
+
+    --#{$prefix}theme-color-mix: 100%;
+    --#{$prefix}button-color-mix: 100%;
+    --#{$prefix}cap-color-mix: 99%;
+
+    @each $name, $color in $theme-colors {
+        --#{$prefix}link-#{$name}-color: var(--#{$prefix}#{$name});
+        --#{$prefix}link-#{$name}-hover-color: shade-color($color, $link-shade-percentage);
+        --#{$prefix}#{$name}-lt: color-mix(in oklab, var(--#{$prefix}#{$name}) 15%, #fff);
+        --#{$prefix}#{$name}-200: color-mix(in oklab, var(--#{$prefix}#{$name}) 20%, #fff);
+    }
+}

@@ -1,0 +1,17 @@
+.pagination {
+    display: flex;
+}
+
+.page-item {
+    text-align: center;
+}
+
+.page-text {
+    padding: $pagination-padding-y $pagination-padding-x;
+}
+
+.page-link {
+    @include border-radius(var(--#{$prefix}pagination-border-radius));
+    min-width: 2rem;
+    transition: none;
+}

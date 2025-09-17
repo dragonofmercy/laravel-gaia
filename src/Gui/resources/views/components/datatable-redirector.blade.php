@@ -1,0 +1,1 @@
+<x-gui::javascript-ready>GuiDatatable.browse("{{ $url }}", "#{{ $id }}");</x-gui::javascript-ready>

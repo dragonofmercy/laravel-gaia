@@ -10,7 +10,7 @@ class InputHidden extends Input
     {
         parent::initialize();
 
+        $this->setAttribute('type', 'hidden');
         $this->setOption('isHidden', true);
-        $this->setOption('type', 'hidden');
     }
 }

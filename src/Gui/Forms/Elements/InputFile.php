@@ -1,11 +1,19 @@
 <?php
 namespace Gui\Forms\Elements;
 
-use Demeter\Support\Str;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
+use Illuminate\View\ComponentAttributeBag;
+
 use Gui\Forms\Validators\Error;
 
-class InputFile extends Input
+class InputFile extends InputGroup
 {
+    public static string $stringSelectedFiles = 'gui::messages.component.file.selected';
+    public static string $stringBrowse = 'gui::messages.component.file.browse';
+    public static string $stringEmpty = 'gui::messages.component.file.empty';
+
     /**
      * @inheritDoc
      */
@@ -13,21 +21,40 @@ class InputFile extends Input
     {
         parent::initialize();
 
-        $this->appendAttribute('class', 'form-control');
-
         $this->addOption('multiple', false);
-        $this->addOption('button', 'gui::messages.component.file.browse');
-        $this->addOption('icon', 'fa-regular fa-folder-open');
-        $this->addOption('layout', '{button}{input}');
-        $this->addOption('display');
+        $this->addOption('folder', false);
 
-        $this->setOption('type', 'file');
+        $this->setAttribute('type', 'file');
     }
 
     /**
      * @inheritDoc
      */
-    public function render(string $name, mixed $value = null, ?Error $error = null): string
+    protected function getView(): string
+    {
+        return 'gui::forms.elements.input-file';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function beforeRender(): void
+    {
+        parent::beforeRender();
+
+        if($this->getOption('folder')){
+            $this->setAttribute('webkitdirectory', '');
+            $this->setAttribute('mozdirectory', '');
+        }
+
+        $this->setViewVar('stringSelectedFiles', trans(self::$stringSelectedFiles));
+        $this->setOption('prefix', Blade::render('<a class="link-secondary" data-trigger="browse" title="' . trans(self::$stringBrowse) .'" data-bs-placement="top" data-bs-toggle="tooltip"><x-gui::tabler-icon name="folder-open" /></a>'));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function render(string $name, mixed $value = null, ?Error $error = null): string|View
     {
         if($this->getOption('multiple')){
             $this->setAttribute('multiple', 'multiple');
@@ -36,26 +63,15 @@ class InputFile extends Input
             }
         }
 
-        $output = parent::render($name, null, $error);
+        $inputAttributes = [
+            'type' => 'text',
+            'class' => 'form-control',
+            'readonly' => 'readonly',
+            'placeholder' => $this->getAttribute('placeholder') ?? trans(self::$stringEmpty)
+        ];
 
-        $buttonClass = 'btn btn-addon';
-        $buttonLabel = trans($this->getOption('button'));
+        $this->setViewVar('inputAttributes', new ComponentAttributeBag($inputAttributes));
 
-        if($this->getOption('icon') !== null){
-            $buttonLabel = content_tag('i', '', ['class' => $this->getOption('icon')]) . $buttonLabel;
-            $buttonClass = Str::join($buttonClass, ['btn-icon', 'inline']);
-        }
-
-        $button = content_tag('button', $buttonLabel, ['type' => 'button', 'class' => $buttonClass]);
-        $input = tag('input', ['type' => 'text', 'class' => 'form-control', 'readonly' => 'readonly']);
-
-        $output.= content_tag('div', Str::strtr($this->getOption('layout'), ['{button}' => $button, '{input}' => $input]), ['class' => 'input-group']);
-
-        $opt = [];
-        $opt['filenameDisplay'] = $this->getOption('display');
-        $opt['strings'] = '{ multiple: "' . trans('gui::messages.component.file.multiple') . '", empty: "' . trans('gui::messages.component.file.empty') . '" }';
-
-        return content_tag('div', $output, ['class' => 'gui-control-file']) .
-            javascript_tag_deferred('$("#' . $this->generateId($name) . '").GUIControlFile(' . _javascript_php_to_object($opt) . ')');
+        return parent::render($name, null, $error);
     }
 }

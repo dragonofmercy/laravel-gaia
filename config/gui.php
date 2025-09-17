@@ -3,147 +3,36 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Translation loader configuration
+    | Default form field size
     |--------------------------------------------------------------------------
     |
-    | Here you can configure the loading of the translations files like
-    | countries list.
+    | Set the default size of a form field when it is not specified.
+    | Value must be an integer from 1 to 12.
     |
     */
 
-    "translations" => [
-        'path' => [
-            'countries' => '/vendor/petercoles/multilingual-country-list/data/{locale}.php'
-        ]
-    ],
+    'default_element_size' => 5,
 
     /*
     |--------------------------------------------------------------------------
-    | Default view composer layout configuration
+    | Default form decorator view
     |--------------------------------------------------------------------------
     |
-    | This option is used for the default composer layout.
+    | Set the default form decorator view.
     |
     */
 
-    'view_composer_layout' => 'gui::layout',
+    'default_form_decorator_view' => 'gui::forms.decorators.grid',
 
     /*
     |--------------------------------------------------------------------------
-    | Forms field default size configuration
+    | Default datatable decorator view
     |--------------------------------------------------------------------------
     |
-    | This option is used to define the default form size used when gui-size is
-    | not setted in form config.
-    |
-    | See sass source option $gui-form-field-sizes.
+    | Set the default datatable decorator view.
     |
     */
 
-    'form_field_default_size' => 5,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Page title configuration
-    |--------------------------------------------------------------------------
-    |
-    | This option is the default page title.
-    |
-    */
-
-    'title' => "Laravel",
-
-    /*
-    |--------------------------------------------------------------------------
-    | Metas tags configuration
-    |--------------------------------------------------------------------------
-    |
-    | Use this array to define default meta tags.
-    |
-    */
-
-    'metas' => [
-        'charset' => "utf-8",
-        'viewport' => "width=device-width, initial-scale=1, shrink-to-fit=no"
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Metas properties configuration
-    |--------------------------------------------------------------------------
-    |
-    | Use this array to define default meta properties.
-    |
-    */
-
-    'metas_properties' => [
-        'og:type' => "website",
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Metas http configuration
-    |--------------------------------------------------------------------------
-    |
-    | Use this array to define default meta http.
-    |
-    */
-
-    'metas_http' => [
-        'Content-Language' => 'en',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Links configuration
-    |--------------------------------------------------------------------------
-    |
-    | Use this array to define default links (e.g. css include href).
-    |
-    */
-
-    'links' => [
-        '/assets/gui/gui.css'
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Scripts include configuration
-    |--------------------------------------------------------------------------
-    |
-    | Use this array to define default include script.
-    |
-    */
-
-    'scripts' => [],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Deferred scripts include configuration
-    |--------------------------------------------------------------------------
-    |
-    | Use this array to define default deferred include script, these includes
-    | are placed at the end of the page.
-    |
-    */
-
-    'deferred_script' => [
-        '/assets/gui/gui.js'
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Dark mode configuration
-    |--------------------------------------------------------------------------
-    |
-    | Use theses options to configure dark mode such as replacements or force
-    | color.
-    |
-    */
-
-    'darkmode_force' => false,
-    'darkmode_replacements' => [
-        '/assets/gui/gui.css' => '/assets/gui/gui.dark.css'
-    ],
+    'default_datatable_decorator_view' => "gui::datatables.default"
 
 ];

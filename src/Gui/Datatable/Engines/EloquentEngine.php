@@ -30,7 +30,9 @@ class EloquentEngine extends AbstractEngine
     {
         $total = $this->query->count();
         $perPage = $this->getLimit() == 0 ? $total : $this->getLimit();
-        $this->paginator = $this->query->paginate($perPage, ['*'], 'page', $this->currentPage, $total);
+        $results = $total ? $this->query->forPage($this->currentPage, $perPage)->get(['*']) : new Collection;
+
+        $this->paginator = $this->buildPaginator($results, $total, $perPage, $this->currentPage, []);
     }
 
     /**

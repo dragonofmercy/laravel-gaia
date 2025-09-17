@@ -8,7 +8,6 @@ class DemeterServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerConfig();
-        $this->registerFlash();
     }
 
     public function boot(): void
@@ -18,11 +17,6 @@ class DemeterServiceProvider extends ServiceProvider
         }
 
         $this->extendHashToOpenSSL();
-    }
-
-    protected function registerFlash(): void
-    {
-        $this->app->singleton(\Demeter\Support\Flash::class);
     }
 
     protected function extendHashToOpenSSL(): void

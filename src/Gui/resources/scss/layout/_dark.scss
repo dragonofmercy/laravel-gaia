@@ -1,0 +1,37 @@
+@include color-mode(dark, true) {
+    color-scheme: dark;
+
+    --#{$prefix}secondary: var(--#{$prefix}gray-500);
+    --#{$prefix}tertiary: var(--#{$prefix}gray-600);
+
+    --#{$prefix}bg-surface: var(--#{$prefix}gray-800);
+    --#{$prefix}bg-surface-secondary: var(--#{$prefix}gray-850);
+    --#{$prefix}bg-surface-tertiary: var(--#{$prefix}gray-900);
+    --#{$prefix}bg-forms: var(--#{$prefix}bg-surface-secondary);
+
+    --#{$prefix}hover-bg: rgba(var(--#{$prefix}secondary-rgb),.1);
+    --#{$prefix}active-bg: rgba(var(--#{$prefix}primary-rgb),.2);
+    --#{$prefix}active-color: var(--#{$prefix}white);
+
+    --#{$prefix}border-color: var(--#{$prefix}gray-700);
+    --#{$prefix}border-color-darken: var(--#{$prefix}gray-600);
+    --#{$prefix}border-color-darker: var(--#{$prefix}gray-500);
+    --#{$prefix}border-color-lt: var(--#{$prefix}gray-750);
+
+    --#{$prefix}form-invalid-border-color: var(--#{$prefix}danger);
+
+    --#{$prefix}theme-color-mix: 70%;
+    --#{$prefix}button-color-mix: 60%;
+    --#{$prefix}cap-color-mix: 90%;
+
+    @each $name, $color in $theme-colors {
+        --#{$prefix}link-#{$name}-color: var(--#{$prefix}#{$name});
+        --#{$prefix}link-#{$name}-hover-color: tint-color($color, $link-shade-percentage);
+        --#{$prefix}#{$name}-lt: color-mix(in oklab, var(--#{$prefix}#{$name}) 40%, #000);
+        --#{$prefix}#{$name}-200: color-mix(in oklab, var(--#{$prefix}#{$name}) 70%, #000);
+    }
+}
+
+body[data-bs-theme=dark] [data-bs-theme=light] {
+    @extend [data-bs-theme=dark];
+}

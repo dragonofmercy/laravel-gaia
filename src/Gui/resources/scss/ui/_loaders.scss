@@ -1,0 +1,28 @@
+.loader-comet {
+    @include loader-comet();
+}
+
+.loader-bars {
+    @include loader-bars();
+}
+
+.loader-circle {
+    @include loader-circle();
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before {
+        content: "";
+    }
+}
+
+@each $name, $size in $loader-sizes {
+    .loader-#{$name} {
+        --#{$prefix}loader-size: #{$size};
+    }
+}
+

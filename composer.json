@@ -9,25 +9,15 @@
     "homepage" : "https://github.com/dragonofmercy/laravel-gaia",
     "license" : "MIT",
     "require": {
-        "ext-fileinfo": "*",
         "ext-openssl": "*",
-        "laravel/framework": ">=11.0",
-        "laminas/laminas-escaper": ">=2.13",
-        "petercoles/multilingual-country-list": ">=1.2.11",
-        "rct567/dom-query": ">=1.1"
+        "laravel/framework": "^12.0",
+        "petercoles/multilingual-country-list": ">=1.2.11"
     },
     "suggest" : {
+        "ext-imagick": "*",
         "intervention/image" : "Require to use image manipulation functions"
     },
     "autoload": {
-        "files": [
-            "src/Gui/Helpers/tags.php",
-            "src/Gui/Helpers/javascript.php",
-            "src/Gui/Helpers/jquery.php",
-            "src/Gui/Helpers/localization.php",
-            "src/Gui/Helpers/url.php",
-            "src/Gui/Helpers/gui.php"
-        ],
         "psr-4": {
             "Demeter\\": "src/Demeter/",
             "Minerva\\": "src/Minerva/",

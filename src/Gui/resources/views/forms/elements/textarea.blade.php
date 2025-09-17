@@ -1,0 +1,1 @@
+<textarea {{ $attr }}>{{ $value }}</textarea>

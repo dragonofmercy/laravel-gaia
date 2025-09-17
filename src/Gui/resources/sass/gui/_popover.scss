@@ -1,7 +1,0 @@
-.popover {
-    &[data-popper-placement=bottom] {
-        .popover-arrow::after {
-            --#{$prefix}popover-bg: var(--#{$prefix}popover-header-bg);
-        }
-    }
-}

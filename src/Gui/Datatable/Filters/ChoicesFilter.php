@@ -11,7 +11,7 @@ class ChoicesFilter extends AbstractFilter
      * Decorator classname
      * @var string
      */
-    protected string $decorator = \Gui\Datatable\Decorators\Default\SearchTypes\ChoicesSearchType::class;
+    protected string $decorator = \Gui\Datatable\Filters\Decorators\ChoicesDecorator::class;
 
     /**
      * Set or get choices
@@ -19,7 +19,7 @@ class ChoicesFilter extends AbstractFilter
      * @param array|Collection|null $choices
      * @return ChoicesFilter|array
      */
-    public function choices(array|Collection|null $choices = null): self|array
+    public function choices(array|Collection|null $choices = null): static|array
     {
         if(null === $choices){
             return $this->options->get('choices', []);
@@ -33,9 +33,9 @@ class ChoicesFilter extends AbstractFilter
      * Set or get add_empty
      *
      * @param string|null $v
-     * @return string|$this|self
+     * @return string|static
      */
-    public function addEmpty(string|null $v = null): self|string
+    public function addEmpty(string|null $v = null): static|string
     {
         if(null === $v){
             return $this->options->get('add_empty', "");
@@ -49,9 +49,9 @@ class ChoicesFilter extends AbstractFilter
      * Set or get multiple
      *
      * @param bool|null $v
-     * @return bool|$this|self
+     * @return bool|static
      */
-    public function multiple(bool|null $v = null): self|bool
+    public function multiple(bool|null $v = null): static|bool
     {
         if(null === $v){
             return $this->options->get('multiple', false);

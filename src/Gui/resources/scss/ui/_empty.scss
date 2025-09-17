@@ -1,0 +1,20 @@
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 100%;
+    padding: var(--#{$prefix}spacer);
+    text-align: center;
+    gap: var(--#{$prefix}spacer-2);
+
+    @include media-breakpoint-up(md){
+        padding: 3rem;
+    }
+}
+
+.empty-icon {
+    --#{$prefix}icon-size: 6rem;
+    --#{$prefix}icon-stroke-width: 1;
+}

@@ -1,0 +1,70 @@
+.form-check {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.form-check-input {
+    margin-top: 0;
+
+    &[readonly] {
+        @extend :disabled;
+    }
+}
+
+.form-check-label {
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.form-check-input,
+.form-check-label {
+    cursor: pointer;
+}
+
+.form-check-input + .form-check-label {
+    padding-left: var(--#{$prefix}spacer-2);
+}
+
+.gui-control-check {
+    display: flex;
+    margin: calc($input-padding-y + $input-border-width) 0;
+    gap: var(--#{$prefix}spacer);
+    row-gap: var(--#{$prefix}spacer-1);
+    flex-direction: column;
+
+    &.inline {
+        flex-direction: row;
+    }
+}
+
+.form-switch {
+    .form-check-input {
+        height: $form-switch-height;
+    }
+}
+
+.form-checklist {
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    overflow: hidden;
+
+    .checklist-header {
+        display: flex;
+        align-items: center;
+        padding: $input-padding-y $input-padding-x;
+        gap: var(--#{$prefix}spacer-3);
+        border-bottom: $input-border-width solid $input-border-color;
+        user-select: none;
+        background-color: var(--#{$prefix}bg-surface-secondary);
+    }
+
+    .checklist-content>div {
+        padding: var(--#{$prefix}spacer-2);
+        margin: 0;
+        display: grid;
+        column-gap: var(--#{$prefix}spacer-2);
+        grid-auto-flow: column;
+        grid-template-rows: repeat(var(--items-per-column), auto);
+    }
+}

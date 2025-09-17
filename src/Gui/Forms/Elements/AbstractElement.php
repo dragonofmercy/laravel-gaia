@@ -1,44 +1,50 @@
 <?php
 namespace Gui\Forms\Elements;
 
-use Gui\Forms\Traits\FieldName;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Illuminate\View\ComponentAttributeBag;
 
-use Gui\Forms\Traits\Form;
-use Gui\Forms\Traits\Options;
-use Gui\Forms\Traits\Attributes;
+use Gui\Forms\Traits\HasFieldName;
+use Gui\Forms\Traits\HasFormInstance;
+use Gui\Forms\Traits\HasOptions;
+use Gui\Forms\Traits\HasAttributes;
 use Gui\Forms\Validators\Error;
 
 abstract class AbstractElement
 {
-    use Options, Attributes, Form, FieldName;
+    use HasOptions, HasAttributes, HasFormInstance, HasFieldName;
+
+    /**
+     * View vars
+     * @var array
+     */
+    protected array $viewVars = [];
+
+    /**
+     * Element size
+     * @var int
+     */
+    protected int $size;
 
     /**
      * Constructor.
      *
      * @param Collection|array $options
      * @param Collection|array $attributes
+     * @param int|null $size
      */
-    public function __construct(Collection|array $options = [], Collection|array $attributes = [])
+    public function __construct(Collection|array $options = [], Collection|array $attributes = [], int|null $size = null)
     {
+        $this->size = $size ?? config('gui.default_element_size', 12);
+
         $this->initalizeOptions();
         $this->initalizeAttributes($attributes);
 
         $this->initialize();
-
         $this->validateOptions($options);
-        $this->beforeRender();
-    }
-
-    /**
-     * Function called just before render, options passed with
-     * constructor are accessible at this level
-     *
-     * @return void
-     */
-    protected function beforeRender(): void
-    {
     }
 
     /**
@@ -52,28 +58,23 @@ abstract class AbstractElement
     }
 
     /**
-     * Finalize attributes
-     *
-     * @param Collection $attributes
-     * @return Collection
-     */
-    public function finalizeAttributes(Collection $attributes): Collection
-    {
-        if($attributes->has('name')){
-            $attributes['id'] = $this->generateId($attributes->get('name'));
-        }
-
-        return $attributes;
-    }
-
-    /**
      * Check if element is hidden
      *
      * @return bool
      */
     public function isHidden(): bool
     {
-        return (bool) $this->options->get('isHidden', false);
+        return $this->getOption('isHidden');
+    }
+
+    /**
+     * Get the size value
+     *
+     * @return int The size value
+     */
+    public function getSize(): int
+    {
+        return $this->size;
     }
 
     /**
@@ -99,60 +100,94 @@ abstract class AbstractElement
             $name = str_replace(['[]', '][', '[', ']'], [(null !== $value ? '_' . Str::lower($value) : ''), '_', '_', ''], $name);
         }
 
-        return preg_replace(['/^[^A-Za-z]+/', '/[^A-Za-z0-9:_.\-]/'], ['', '_'], $name);
+        return Str::snake($name);
     }
 
     /**
-     * Render html tag
+     * Convert form field to an HTML string
      *
-     * @param string $tag
-     * @param Collection|array $attributes
-     * @return string
+     * @param string $name The name attribute of the field
+     * @param mixed|null $value The value of the field
+     * @param Error|null $error Optional error associated with the field
+     * @param bool $autoId Whether to automatically generate an id for the field
+     * @return HtmlString The rendered HTML string of the form field
      */
-    public function renderTag(string $tag, Collection|array $attributes = new Collection()): string
+    public function toHtml(string $name, mixed $value = null, ?Error $error = null, bool $autoId = true): HtmlString
     {
-        if(!$attributes instanceof Collection){
-            $attributes = collect($attributes);
+        if($autoId){
+            $this->setAttribute('id', $this->generateId($name));
         }
 
-        return tag($tag, $this->finalizeAttributes($attributes));
+        $this->beforeRender();
+        return new HtmlString($this->render($name, $value, $error));
     }
 
     /**
-     * Render html content tag
+     * Renders the view for the specified form element.
      *
-     * @param string $tag
-     * @param string $content
-     * @param Collection|array $attributes
-     * @return string
+     * @param string $name The name of the form element.
+     * @param mixed|null $value The value of the form element.
+     * @param Error|null $error An optional error object associated with the form element.
+     * @return string|View The rendered view or string representation of the form element.
      */
-    public function renderContentTag(string $tag, string $content = "", Collection|array $attributes = new Collection()): string
+    protected function render(string $name, mixed $value = null, ?Error $error = null): string|View
     {
-        if(!$attributes instanceof Collection){
-            $attributes = collect($attributes);
+        return view($this->getView(), [
+                'attr' => new ComponentAttributeBag($this->attributes->toArray()),
+                ...$this->getViewVars()
+            ]
+        );
+    }
+
+    /**
+     * Retrieves the view variables.
+     *
+     * @return array An associative array containing the view variables.
+     */
+    protected function getViewVars(): array
+    {
+        return $this->viewVars;
+    }
+
+    /**
+     * Set view variables
+     *
+     * @param array|Collection $viewVars An array or collection containing key-value pairs for view variables
+     * @return void
+     */
+    protected function setViewVars(array|Collection $viewVars): void
+    {
+        foreach($viewVars as $k => $v){
+            $this->setViewVar($k, $v);
         }
-
-        return content_tag($tag, $content, $this->finalizeAttributes($attributes));
     }
 
     /**
+     * Sets a single view variable with the specified name and value.
      *
-     * @param string $haystack
-     * @param array $needles
-     * @return string
+     * @param string $name The name of the variable to set.
+     * @param mixed $value The value to be assigned to the variable.
+     * @return void
      */
-    protected function replace(string $haystack, array $needles = []): string
+    protected function setViewVar(string $name, mixed $value): void
     {
-        return str_replace(array_keys($needles), array_values($needles), $haystack);
+        $this->viewVars[$name] = $value;
     }
 
     /**
-     * Render element
+     * Function called just before render, options passed with
+     * constructor are accessible at this level
      *
-     * @param string $name
-     * @param mixed|null $value
-     * @param Error|null $error
+     * @return void
+     */
+    protected function beforeRender(): void
+    {
+    }
+
+    /**
+     * Retrieve the view name
+     *
      * @return string
      */
-    abstract public function render(string $name, mixed $value = null, ?Error $error = null): string;
+    abstract protected function getView(): string;
 }

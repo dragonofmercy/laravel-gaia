@@ -1,0 +1,72 @@
+.alert {
+    --#{$prefix}alert-base-color: var(--#{$prefix}body-color);
+    --#{$prefix}alert-color: var(--#{$prefix}body-color);
+    --#{$prefix}alert-icon-color: var(--#{$prefix}alert-base-color);
+    --#{$prefix}alert-bg: #{color-transparent(var(--#{$prefix}alert-base-color), .2)};
+    --#{$prefix}alert-padding-x: #{$alert-padding-x};
+    --#{$prefix}alert-padding-y: #{$alert-padding-y};
+    --#{$prefix}alert-margin-bottom: #{$alert-margin-bottom};
+    --#{$prefix}alert-border-color: #{color-transparent(var(--#{$prefix}alert-base-color), .2)};
+    --#{$prefix}alert-border: var(--#{$prefix}border-width) solid var(--#{$prefix}alert-border-color);
+    --#{$prefix}alert-border-radius: var(--#{$prefix}border-radius);
+    --#{$prefix}alert-link-color: inherit;
+    --#{$prefix}alert-link-font-weight: var(--#{$prefix}font-weight-bold);
+    --#{$prefix}alert-heading-font-weight: var(--#{$prefix}font-weight-bold);
+
+    position: relative;
+    padding: var(--#{$prefix}alert-padding-y) var(--#{$prefix}alert-padding-x);
+    margin-bottom: var(--#{$prefix}alert-margin-bottom);
+    background-color: color-mix(in srgb, var(--#{$prefix}alert-bg), var(--#{$prefix}bg-surface));
+    border-radius: var(--#{$prefix}alert-border-radius);
+    border: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}alert-border-color);
+    color: var(--#{$prefix}alert-color);
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+
+    .icon {
+        color: var(--#{$prefix}alert-icon-color);
+    }
+
+    .btn-close {
+        margin-left: auto;
+        align-self: center;
+    }
+}
+
+.alert-icon {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    margin: calc(var(--#{$prefix}alert-padding-y) * -1) calc(var(--#{$prefix}alert-padding-x) * -1);
+    margin-right: calc(var(--#{$prefix}alert-padding-x) * -.25);
+    padding: var(--#{$prefix}alert-padding-y) calc(var(--#{$prefix}alert-padding-x) * .75);
+    border-right: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}alert-border-color);
+    background-color: #{color-transparent(var(--#{$prefix}alert-base-color), .075)};
+}
+
+.alert-heading {
+    font-weight: var(--#{$prefix}alert-heading-font-weight);
+    margin-bottom: 0;
+}
+
+.alert-description {
+    color: var(--#{$prefix}secondary);
+
+    &:is(ol,ul){
+        margin-bottom: 0;
+    }
+}
+
+.alert-link {
+    font-weight: var(--#{$prefix}alert-link-font-weight);
+    color: var(--#{$prefix}alert-link-color);
+}
+
+@each $name, $color in $theme-colors {
+    .alert-#{$name} {
+        --#{$prefix}alert-base-color: var(--#{$prefix}#{$name});
+    }
+}
