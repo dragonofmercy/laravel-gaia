@@ -13,8 +13,10 @@ In your providers.php
 
 ````php
 return [
-    \Demeter\Providers\DemeterServiceProvider::class,
-    \Gui\Providers\GuiServiceProvider::class
+    Demeter\Providers\DemeterServiceProvider::class,
+    Gui\Providers\GuiServiceProvider::class,
+    Minerva\Providers\MinervaServiceProvider::class,
+    ...
 ];
 ````
 
