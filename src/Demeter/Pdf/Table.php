@@ -1,7 +1,6 @@
 <?php
 namespace Demeter\Pdf;
 
-use Demeter\Support\Iterator;
 use Demeter\Support\Str;
 use Illuminate\Support\Collection;
 
@@ -283,22 +282,16 @@ class Table
             $this->makeHeadings();
         }
 
-        $it = new Iterator($this->rows);
-        $it->rewind();
-
+        $collection = collect($this->rows);
         $stripState = false;
 
-        while($it->valid()){
-            $columns = $it->current();
+        $collection->each(function($columns, $index) use ($collection, &$stripState){
             $rowHeight = $this->calculateRowHeight($columns);
 
-            if($it->hasNext()){
+            if($collection->has($index + 1)){
                 $y = $this->handle->top();
                 $bottomMargin = $this->handle->getFooterMargin();
-
-                $it->next();
-                $height = $this->calculateRowHeight($it->current());
-                $it->prev();
+                $height = $this->calculateRowHeight((array) $collection->get($index + 1, []));
 
                 if($y + $height + $bottomMargin > $this->handle->getPageHeight()){
                     $this->handle->newPage($this->handle->getCurrentPageOrientation(), $this->handle->getCurrentPageFormat());
@@ -311,7 +304,7 @@ class Table
                 }
             }
 
-            foreach($columns as $column => $txt){
+            foreach ($columns as $column => $txt){
                 $definition = $this->columns[$column];
                 $definition['h'] = $rowHeight;
                 $definition['txt'] = $txt;
@@ -321,8 +314,7 @@ class Table
 
             $this->handle->Ln();
             $stripState = !$stripState;
-            $it->next();
-        }
+        });
     }
 
     /**
@@ -475,11 +467,9 @@ class Table
      */
     protected function makeHeadings(): void
     {
-        $headingLine = [];
-
-        foreach($this->heading as $column => $definition){
-            $headingLine[$column] = array_key_exists('txt', $definition) ? (string) $definition['txt'] : PHP_EOL;
-        }
+        $headingLine = array_map(function($definition){
+            return array_key_exists('txt', $definition) ? (string) $definition['txt'] : PHP_EOL;
+        }, $this->heading);
 
         $this->calculateRowHeight($headingLine, true);
 
