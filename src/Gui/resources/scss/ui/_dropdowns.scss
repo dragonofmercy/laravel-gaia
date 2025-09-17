@@ -48,6 +48,22 @@
     }
 }
 
+.dropdown-center,
+.dropup-center {
+    .dropdown-menu-arrow:before {
+        right: 50%;
+        left: auto;
+    }
+}
+
+.dropup {
+    .dropdown-menu-arrow:before {
+        top: auto;
+        bottom: -.25rem;
+        transform: rotate(-135deg);
+    }
+}
+
 .dropdown-header {
     color: var(--#{$prefix}secondary);
     font-weight: var(--#{$prefix}font-weight-bold);
