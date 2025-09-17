@@ -18,7 +18,7 @@ return [
         'cache' => [
             'store' => env('RATES_CACHE_STORE'),
             'driver' => env('RATES_CACHE_DRIVER', 'frankfurter'),
-            'key' => env('RATES_CACHE_KEY', 'cached_exchange_rates'),
+            'key' => env('RATES_CACHE_KEY', 'exchange_rates'),
             'ttl' => env('RATES_CACHE_TTL', 900),
         ]
     ]
