@@ -1,5 +1,5 @@
 <?php
-namespace Minerva\Services;
+namespace Minerva\Support;
 
 use Exception;
 use Illuminate\Support\Collection;
