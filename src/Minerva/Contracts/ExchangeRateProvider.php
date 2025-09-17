@@ -1,5 +1,5 @@
 <?php
-namespace Minerva\Contracts\Services;
+namespace Minerva\Contracts;
 
 interface ExchangeRateProvider
 {

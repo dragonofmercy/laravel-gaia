@@ -4,7 +4,7 @@ namespace Minerva\Services\ExchangeRates\Providers;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Collection;
-use Minerva\Contracts\Services\ExchangeRateProvider;
+use Minerva\Contracts\ExchangeRateProvider;
 
 readonly class FrankfurterProvider implements ExchangeRateProvider
 {

@@ -2,7 +2,7 @@
 namespace Minerva\Services\ExchangeRates\Providers;
 
 use Illuminate\Cache\Repository;
-use Minerva\Contracts\Services\ExchangeRateProvider;
+use Minerva\Contracts\ExchangeRateProvider;
 
 readonly class CachedProvider implements ExchangeRateProvider
 {
@@ -18,7 +18,7 @@ readonly class CachedProvider implements ExchangeRateProvider
         $data = $this->cache->remember(
             "$this->key:$fromCurrency:$toCurrency",
             $this->ttl,
-            fn() => $this->driver->getRates($fromCurrency, $toCurrency, $amount)
+            fn() => $this->driver->getRates($fromCurrency, $toCurrency)
         );
 
         return $data * $amount;

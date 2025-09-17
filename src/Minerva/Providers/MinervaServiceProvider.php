@@ -9,7 +9,7 @@ class MinervaServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $this->app->singleton('exchange.rates', \Minerva\Services\ExchangeRates\Exchange::class);
         $this->app->bind(
-            \Minerva\Contracts\Services\ExchangeRateProvider::class,
+            \Minerva\Contracts\ExchangeRateProvider::class,
             fn(\Illuminate\Contracts\Foundation\Application $app) => (new \Minerva\Services\ExchangeRates\ExchangeRatesManager($app))->driver()
         );
     }

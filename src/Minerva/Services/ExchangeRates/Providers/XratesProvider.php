@@ -3,8 +3,7 @@ namespace Minerva\Services\ExchangeRates\Providers;
 
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
-use Minerva\Contracts\Services\ExchangeRateProvider;
-use Rct567\DomQuery\DomQuery;
+use Minerva\Contracts\ExchangeRateProvider;
 
 readonly class XratesProvider implements ExchangeRateProvider
 {
@@ -30,7 +29,11 @@ readonly class XratesProvider implements ExchangeRateProvider
             ->getBody()
             ->getContents();
 
-        return floatval(preg_match('/^[0-9.]+/', (new DomQuery($html))->find('.ccOutputRslt')->text(), $matches) ? $matches[0] : 1);
+        if(preg_match('/class="ccOutputRslt">([0-9]+(?:\.[0-9]+)?)</', $html, $matches)){
+            return floatval($matches[1]);
+        }
+
+        return 1.0;
     }
 
     private function client(): Factory|PendingRequest

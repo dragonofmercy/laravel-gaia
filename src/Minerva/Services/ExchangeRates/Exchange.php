@@ -1,7 +1,7 @@
 <?php
 namespace Minerva\Services\ExchangeRates;
 
-use Minerva\Contracts\Services\ExchangeRateProvider;
+use Minerva\Contracts\ExchangeRateProvider;
 
 readonly class Exchange
 {
