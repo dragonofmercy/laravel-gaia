@@ -1,5 +1,5 @@
 # laravel-gaia
-Gaia package for Laravel
+Gaia package for Laravel 12
 
 ## Usage
 
