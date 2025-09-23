@@ -50,10 +50,10 @@ export class GuiThemeToggle {
 
     _updateTheme(){
         if(this._isDarkMode()){
-            document.body.setAttribute('data-bs-theme', 'dark');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
             this.tooltip.setContent({'.tooltip-inner': this.tooltipTitle[1]});
         } else {
-            document.body.removeAttribute('data-bs-theme');
+            document.documentElement.removeAttribute('data-bs-theme');
             this.tooltip.setContent({'.tooltip-inner': this.tooltipTitle[0]});
         }
     }
