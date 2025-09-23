@@ -8,7 +8,21 @@
 }
 
 .row {
-    --#{$prefix}gutter-x: #{$grid-gutter-width * .5};
+    &>* {
+        min-width: 0;
+    }
+}
+
+.row-deck {
+    > .col,
+    > [class*="col-"] {
+        display: flex;
+        align-items: stretch;
+
+        .card {
+            flex: 1 1 auto;
+        }
+    }
 }
 
 .row-cards {
