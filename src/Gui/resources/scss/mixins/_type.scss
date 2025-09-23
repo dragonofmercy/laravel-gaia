@@ -1,7 +1,8 @@
 @mixin subheader($include-color: true, $include-line-height: true) {
-    font-size: var(--#{$prefix}font-size-md);
+    font-size: var(--#{$prefix}font-size-sm);
     font-weight: var(--#{$prefix}font-weight-bold);
     text-transform: uppercase;
+    letter-spacing: .04em;
 
     @if $include-line-height {
         line-height: var(--#{$prefix}line-height-sm);
