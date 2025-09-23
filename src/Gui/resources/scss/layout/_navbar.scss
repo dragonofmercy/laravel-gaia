@@ -1,4 +1,81 @@
 @use 'sass:map';
+@mixin navbar-vertical-nav {
+    .navbar-collapse {
+        flex-direction: column;
+
+        [class^="container"] {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .navbar-nav {
+            margin-left: 0;
+            margin-right: 0;
+            flex-direction: column;
+
+            .nav-link {
+                padding: .5rem;
+                justify-content: flex-start;
+                border-radius: 0;
+            }
+        }
+
+        .dropdown-menu-columns {
+            flex-direction: column;
+        }
+
+        .dropdown-menu {
+            padding: 0;
+            background: transparent;
+            position: static;
+            color: inherit;
+            box-shadow: none;
+            border: none;
+            min-width: 0;
+            margin: 0;
+
+            &.dropdown-menu-arrow:before {
+                display: none;
+            }
+
+            .dropdown-item {
+                min-width: 0;
+                display: flex;
+                width: auto;
+                padding-left: add(.5rem, 1.75rem);
+                color: inherit;
+
+                &.disabled {
+                    color: var(--#{$prefix}disabled-color);
+                    pointer-events: none;
+                    background-color: transparent;
+                }
+
+                &.active,
+                &:active {
+                    background: var(--#{$prefix}dropdown-link-active-bg);
+                    color: var(--#{$prefix}dropdown-link-active-color);
+                }
+            }
+
+            .dropdown-menu-columns {
+                gap: 0;
+            }
+
+            .dropdown-menu .dropdown-item {
+                padding-left: add(calc(#{$container-padding-x} / 2), 3.25rem);
+            }
+
+            .dropdown-menu .dropdown-menu .dropdown-item {
+                padding-left: add(calc(#{$container-padding-x} / 2), 4.75rem);
+            }
+        }
+
+        .dropdown-toggle:after {
+            margin-left: auto;
+        }
+    }
+}
 
 .navbar {
     --#{$prefix}navbar-border-width: #{$navbar-border-width};
@@ -18,6 +95,10 @@
     .navbar-collapse & {
         flex-grow: 1;
     }
+
+    .dropdown-menu {
+        position: absolute;
+    }
 }
 
 .navbar-expand {
@@ -30,6 +111,13 @@
                 @include navbar-vertical-nav();
                 [class^="container"], .navbar-collapse [class^="container"] {
                     --#{$prefix}gutter-x: var(--#{$prefix}spacer-2);
+                }
+
+                .navbar-brand {
+                    --#{$prefix}navbar-brand-margin-end: 0;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
             }
 
@@ -62,6 +150,7 @@
     margin: 0;
     padding: 0;
     align-items: stretch;
+    flex-direction: row;
 
     .nav-item {
         display: flex;
@@ -75,6 +164,13 @@
         min-width: 2.5rem;
         min-height: 2.5rem;
         border-radius: var(--#{$prefix}border-radius);
+
+        .badge {
+            position: absolute;
+            top: 0.375rem;
+            right: 0.375rem;
+            transform: translate(50%, -50%);
+        }
     }
 }
 
