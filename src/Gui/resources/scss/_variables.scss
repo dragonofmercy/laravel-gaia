@@ -390,6 +390,9 @@ $pagination-disabled-bg: transparent !default;
 $pagination-disabled-border-color: $pagination-border-color !default;
 $pagination-disabled-color: var(--#{$prefix}tertiary) !default;
 
+// Progress
+$progress-bg: light-dark(var(--#{$prefix}bg-surface-tertiary), var(--#{$prefix}bg-surface-secondary)) !default;
+
 // Ribbons
 $ribbon-margin: .25rem !default;
 $ribbon-border-radius: var(--#{$prefix}border-radius) !default;
@@ -399,6 +402,8 @@ $ribbon-font-size: var(--#{$prefix}font-size-xs) !default;
 $popover-bg: var(--#{$prefix}bg-surface) !default;
 
 // Tooltips
+$tooltip-color: light-dark(var(--#{$prefix}gray-100), var(--#{$prefix}gray-300)) !default;
+$tooltip-bg: light-dark(var(--#{$prefix}gray-700), var(--#{$prefix}gray-950)) !default;
 $tooltip-opacity: 1 !default;
 
 // Transitions

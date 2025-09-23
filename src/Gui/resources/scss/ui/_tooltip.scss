@@ -1,9 +1,0 @@
-.tooltip {
-    --#{$prefix}tooltip-bg: var(--#{$prefix}gray-700);
-}
-
-[data-bs-theme=dark]{
-    .tooltip {
-        --#{$prefix}tooltip-bg: var(--#{$prefix}gray-400);
-    }
-}
