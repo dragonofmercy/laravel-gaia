@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { Collapse } from 'bootstrap';
+import { Collapse, Tooltip } from 'bootstrap';
 import { Keycodes } from "./lib/keycodes.js";
 
 export class GuiDatatable {
