@@ -156,7 +156,8 @@ export class Gui {
      * @return {void}
      */
     _initModal(context){
-        $('[data-gui-behavior="modal"]:not(.disabled):not(:disabled)', context).on('click.gui.modal', function(){
+        $('[data-gui-behavior="modal"]:not(.disabled):not(:disabled)', context).on('click.gui.modal', function(e){
+            e.preventDefault();
             $(this).GuiModal().data('gui.modal').show();
         });
     }
