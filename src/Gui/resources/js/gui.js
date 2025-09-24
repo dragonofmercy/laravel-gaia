@@ -144,6 +144,7 @@ export class Gui {
      */
     _initButtonLoading(context){
         $('[data-loading-text]:not(.disabled):not(:disabled)', context).on('click.gui.button', function(){
+            Tooltip.getInstance(this)?.hide();
             $(this).GuiLoadingButton('loading');
         });
     }
@@ -158,6 +159,7 @@ export class Gui {
     _initModal(context){
         $('[data-gui-behavior="modal"]:not(.disabled):not(:disabled)', context).on('click.gui.modal', function(e){
             e.preventDefault();
+            Tooltip.getInstance(this)?.hide();
             $(this).GuiModal().data('gui.modal').show();
         });
     }
