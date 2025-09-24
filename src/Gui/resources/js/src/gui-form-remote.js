@@ -22,6 +22,9 @@ export class GuiFormRemote {
             error: (xhr) => {
                 gui.printError(xhr.responseText, $target)
             },
+            complete: () => {
+                gui.init($target);
+            }
         })
     }
 }
