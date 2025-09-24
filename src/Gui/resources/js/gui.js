@@ -15,6 +15,7 @@ import './src/gui-control-password.js';
 import './src/gui-control-token.js';
 import './src/gui-copy.js';
 import './src/gui-loading-button.js';
+import './src/gui-form-remote.js';
 import './src/gui-modal.js';
 import './src/gui-tabs.js';
 import './src/gui-theme-toggle.js';
@@ -42,6 +43,7 @@ export class Gui {
     init(context = document){
         this._initBootstrap(context);
         this._initDatatables(context);
+        this._initFormRemote(context);
         this._initRange(context);
         this._initTabs(context);
         this._initButtonLoading(context);
@@ -101,6 +103,16 @@ export class Gui {
         $('[data-gui-behavior="datatable-reset"]', context).each((_, e) => {
             GuiDatatable.reset(e)
         })
+    }
+
+    /**
+     * Initializes all form elements with the "form-remote" behavior within the provided context using the GuiFormRemote plugin.
+     *
+     * @param {Object} context - The DOM context in which the form elements with "form-remote" behavior should be initialized.
+     * @return {void} This method does not return a value.
+     */
+    _initFormRemote(context){
+        $('[data-gui-behavior="form-remote"]', context).GuiFormRemote();
     }
 
     /**
