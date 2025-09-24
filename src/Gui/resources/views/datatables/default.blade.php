@@ -71,7 +71,7 @@
 
 <div class="card-body">
     <div class="d-flex flex-column gap-3 flex-lg-row justify-content-between align-items-center">
-        <div>@lang('gui::messages.datatable.records', ['first' => $decorator->getPagination()->firstItem(), 'last' => $decorator->getPagination()->lastItem(), 'total' => $decorator->getPagination()->total()])</div>
+        <div>@lang('gui::messages.datatable.records', ['first' => $decorator->getPagination()->firstItem() ?? 0, 'last' => $decorator->getPagination()->lastItem() ?? 0, 'total' => $decorator->getPagination()->total() ?? 0])</div>
         @if($decorator->getPagination()->hasPages())
             {{ $decorator->getPagination()->onEachSide(2)->links('gui::datatables.default-pagination') }}
         @endif
