@@ -77,6 +77,7 @@ export class GuiDatatable {
 
         $element.on('click', e => {
             e.preventDefault();
+            Tooltip.getInstance(target)?.hide();
             $element.blur();
             const $map = $('.gui-selector input[value]:checked', '#' + $element.data('target'));
 
@@ -110,6 +111,7 @@ export class GuiDatatable {
 
         $element.on('click', e => {
             e.preventDefault();
+            Tooltip.getInstance(target)?.hide();
             $element.blur();
             GuiDatatable.browse($element.data('url'), "#" + $element.data('target'), ['dt_c=1']);
         })
