@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { Dropdown, Tooltip, Popover, Toast } from 'bootstrap';
+import { Dropdown, Tooltip, Popover, Toast, Modal } from 'bootstrap';
 
 import './src/gui-calendar.js';
 import './src/gui-control-autocomplete.js';
@@ -30,7 +30,7 @@ window.jQuery = $;
 window.$ = $;
 
 window.GuiDatatable = GuiDatatable;
-window.bootstrap = { Dropdown, Tooltip, Popover, Toast };
+window.bootstrap = { Dropdown, Tooltip, Popover, Toast, Modal };
 
 export class Gui {
 
