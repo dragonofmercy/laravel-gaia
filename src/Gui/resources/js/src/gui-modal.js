@@ -43,6 +43,8 @@ export class GuiModal {
             backdrop: this.options.backdrop,
             focus: this.options.focus
         });
+
+        this.$modalElement.data('bs.modal', this._modal);
     }
 
     _addEventListeners(){
