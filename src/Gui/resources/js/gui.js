@@ -99,7 +99,7 @@ export class Gui {
      * @return {void} This method does not return a value.
      */
     remote(url, target, data = [], method = 'POST'){
-        const $container = $(target);
+        const $target = $(target);
 
         $.ajax({
             url: url,
@@ -107,16 +107,32 @@ export class Gui {
             type: method,
             dataType: 'text',
             success: data => {
-                $container.html(data);
+                $target.html(data);
             },
             error: e => {
-                gui.printError(e, $container);
+                gui.printError(e, $target);
             },
             complete: () => {
-                gui.init($container);
-                $container.trigger('loaded.gui');
+                gui.init($target);
+                $target.trigger('loaded.gui');
             }
         });
+    }
+
+    /**
+     * Opens a modal dialog with the specified URL and size.
+     *
+     * @param {string} url - The URL to load in the modal dialog.
+     * @param {string} [size='modal-md'] - The size of the modal dialog. Defaults to 'modal-md'.
+     * @return {void} This method does not return a value.
+     */
+    openModal(url, size = 'modal-md'){
+        const $attr = {
+            "data-size": size,
+            "href": url
+        }
+
+        $('<a />').attr($attr).GuiModal().data('gui.modal').show();
     }
 
     /**
