@@ -90,6 +90,36 @@ export class Gui {
     }
 
     /**
+     * Sends an AJAX request to a specified URL and processes the response.
+     *
+     * @param {string} url - The URL to send the AJAX request to.
+     * @param {string} target - The CSS selector of the target container where the response will be rendered.
+     * @param {Array} [data=[]] - An optional array of data to send with the request, which will be joined into a query string.
+     * @param {string} [method='POST'] - The HTTP method to use for the request (e.g., 'POST', 'GET').
+     * @return {void} This method does not return a value.
+     */
+    remote(url, target, data = [], method = 'POST'){
+        const $container = $(target);
+
+        $.ajax({
+            url: url,
+            data: data.join('&'),
+            type: method,
+            dataType: 'text',
+            success: data => {
+                $container.html(data);
+            },
+            error: e => {
+                gui.printError(e, $container);
+            },
+            complete: () => {
+                gui.init($container);
+                $container.trigger('loaded.gui');
+            }
+        });
+    }
+
+    /**
      * Initializes datatable components within a given context.
      *
      * @param {HTMLElement|jQuery} context The DOM element or jQuery object that contains the elements to initialize as datatables.
