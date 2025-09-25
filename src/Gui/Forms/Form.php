@@ -384,7 +384,7 @@ abstract class Form implements Htmlable
     {
         $separator = new Collection([
             'title' => new HtmlString(trans($title)),
-            'help' => new HtmlString(trans($help))
+            'help' => null === $help ? null : new HtmlString(trans($help))
         ]);
 
         $this->separators[$before] = $separator;
