@@ -10,9 +10,10 @@ class DatatableSelector extends Component
     public function __construct(
         public string $id,
         public string $url,
-        public string $method = Request::METHOD_GET,
+        public string $method = Request::METHOD_POST,
+        public string $modalSize = 'modal-md',
         public string|null $confirm = null,
-        public bool $remote = true,
+        public string $type = 'remote',
         public string $query = 'ids'
     ){}
 
@@ -24,7 +25,8 @@ class DatatableSelector extends Component
             $attributes['data-url'] = $this->url;
             $attributes['data-target'] = $this->id;
             $attributes['data-query'] = $this->query;
-            $attributes['data-remote'] = $this->remote;
+            $attributes['data-type'] = $this->type;
+            $attributes['data-modal-size'] = $this->modalSize;
             $attributes['data-method'] = $this->method;
             $attributes['data-gui-behavior'] = 'datatable-selector';
 

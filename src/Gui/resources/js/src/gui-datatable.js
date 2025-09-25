@@ -72,7 +72,8 @@ export class GuiDatatable {
         gui.hideAttribute($element, 'data-target');
         gui.hideAttribute($element, 'data-url');
         gui.hideAttribute($element, 'data-query');
-        gui.hideAttribute($element, 'data-remote');
+        gui.hideAttribute($element, 'data-type');
+        gui.hideAttribute($element, 'data-modal-size');
         gui.hideAttribute($element, 'data-method');
         gui.hideAttribute($element, 'data-confirm');
 
@@ -94,8 +95,10 @@ export class GuiDatatable {
 
             const query = $map.map(function(){ return $(this).val(); }).toArray().join(',');
 
-            if($element.data('remote')){
+            if($element.data('type') == 'remote'){
                 GuiDatatable.browse($element.data('url'), "#" + $element.data('target'), [$element.data('query') + '=' + query], $element.data('method'));
+            } else if($element.data('type') == 'modal'){
+                gui.openModal($element.data('url'), $element.data('modal-size'));
             } else {
                 const url = new URL($element.data('url'), window.location.origin);
                 url.searchParams.set($element.data('query'), query);
