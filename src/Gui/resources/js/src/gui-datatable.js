@@ -97,12 +97,15 @@ export class GuiDatatable {
 
             if($element.data('type') == 'remote'){
                 GuiDatatable.browse($element.data('url'), "#" + $element.data('target'), [$element.data('query') + '=' + query], $element.data('method'));
-            } else if($element.data('type') == 'modal'){
-                gui.openModal($element.data('url'), $element.data('modal-size'));
             } else {
                 const url = new URL($element.data('url'), window.location.origin);
                 url.searchParams.set($element.data('query'), query);
-                window.location.href = url.toString();
+
+                if($element.data('type') == 'modal'){
+                    gui.openModal(url.toString(), $element.data('modal-size'));
+                } else {
+                    window.location.href = url.toString();
+                }
             }
         })
     }
