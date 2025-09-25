@@ -7,20 +7,21 @@ use Gui\View\Components\Flash as FlashComponent;
 class Flash
 {
     /**
-     * Registers a flash message to be displayed in the session.
+     * Registers a flash message to be stored in the session.
      *
-     * @param string $name The name/key for the flash message entry.
+     * @param string $name The name or key under which the flash message will be stored.
      * @param string $message The content of the flash message.
-     * @param string $type The type of the flash message (e.g., success, error). Defaults to `FlashComponent::TYPE_SUCCESS`.
-     * @return void
-     * @throws InvalidArgumentException If the provided type is not valid.
+     * @param string $type The type of the flash message (e.g., success, error, etc.). Defaults to FlashComponent::TYPE_SUCCESS.
+     * @param bool $presistant Determines whether the flash message should persist across multiple requests. Defaults to true.
+     * @throws InvalidArgumentException If an invalid type is provided that is not in FlashComponent::VALID_TYPES.
      */
-    public static function registerFlash(string $name, string $message, string $type = FlashComponent::TYPE_SUCCESS): void
+    public static function registerFlash(string $name, string $message, string $type = FlashComponent::TYPE_SUCCESS, bool $presistant = true): void
     {
         if(!in_array($type, FlashComponent::VALID_TYPES)){
             throw new InvalidArgumentException('Type "' . $type . '" is not valid. Valid types are: ' . implode(', ', FlashComponent::VALID_TYPES));
         }
-
-        session()->flash($name, ['message' => $message, 'type' => $type]);
+        
+        $method = $presistant ? 'flash' : 'now';
+        session()->$method($name, ['message' => $message, 'type' => $type]);
     }
 }
