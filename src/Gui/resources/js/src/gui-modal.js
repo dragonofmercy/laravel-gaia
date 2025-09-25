@@ -44,7 +44,9 @@ export class GuiModal {
             focus: this.options.focus
         });
 
-        this.$modalElement.data('bs.modal', this._modal);
+        if(null === this.$modalElement.data('bs.modal')){
+            this.$modalElement.data('bs.modal', this._modal);
+        }
     }
 
     _addEventListeners(){
@@ -73,6 +75,8 @@ export class GuiModal {
 
         this.$modalDialogContent.html('');
         this._modal.dispose();
+
+        this.$modalElement.data('bs.modal', null);
     }
 
     _request(){
