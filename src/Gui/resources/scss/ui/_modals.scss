@@ -1,7 +1,7 @@
 .modal {
     &.loading-active {
         .modal-content {
-            min-height: 10rem;
+            min-height: 12rem;
 
             &:before {
                 @include absolute-pseudo();
@@ -12,7 +12,7 @@
 
             &:after {
                 @include absolute-pseudo();
-                margin: 3rem auto;
+                margin: 2rem auto;
                 @include loader-comet(8rem, var(--#{$prefix}primary));
                 position: absolute;
                 z-index: 11;
