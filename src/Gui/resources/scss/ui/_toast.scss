@@ -1,0 +1,26 @@
+.toast {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: var(--#{$prefix}spacer-1);
+    }
+}
+
+.toast-container {
+    display: flex;
+    flex-direction: column;
+    padding: var(--#{$prefix}spacer-2);
+    gap: var(--#{$prefix}spacer-2);
+
+    &[data-position="top-right"],
+    &[data-position="bottom-right"] {
+        right: 0;
+    }
+
+    &[data-position="top-right"]{
+        top: 0;
+    }
+
+    &[data-position="bottom-right"]{
+        bottom: 0;
+        flex-direction: column-reverse;
+    }
+}

@@ -417,6 +417,12 @@ $kbd-color: var(--#{$prefix}secondary) !default;
 $pre-color: #292d3e !default;
 $pre-border-color: light-dark(transparent, var(--#{$prefix}border-color)) !default;
 
+// toast
+$toast-font-size: var(--#{$prefix}font-size-sm) !default;
+$toast-spacing: 0 !default;
+$toast-max-width: 30rem !default;
+$toast-background-color: color-mix(in srgb, var(--#{$prefix}bg-surface) 90%, transparent) !default;
+
 // Loaders
 $loader-sizes: (
     "xl":  5rem,

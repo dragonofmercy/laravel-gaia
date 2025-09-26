@@ -137,6 +137,20 @@ export class Gui {
     }
 
     /**
+     * Displays a toast message within the application's toast container. Optionally, the toast element can be cloned before being displayed.
+     *
+     * @param {HTMLElement|string} toast - The toast element or selector for the toast to be displayed.
+     * @param {boolean} [copy=false] - Indicates whether the toast should be copied before being displayed. Defaults to false.
+     * @return {void} This method does not return a value.
+     */
+    toast(toast, copy = false){
+        const $toast = copy ? $(toast).clone() : $(toast);
+        $toast.appendTo('[data-gui-identity="toast-container"]');
+        $toast.on('hidden.bs.toast', () => { $toast.remove() });
+        Toast.getOrCreateInstance($toast[0])?.show();
+    }
+
+    /**
      * Initializes datatable components within a given context.
      *
      * @param {HTMLElement|jQuery} context The DOM element or jQuery object that contains the elements to initialize as datatables.
