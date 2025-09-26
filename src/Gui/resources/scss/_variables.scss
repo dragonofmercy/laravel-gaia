@@ -433,7 +433,8 @@ $pre-border-color: light-dark(transparent, var(--#{$prefix}border-color)) !defau
 $toast-font-size: var(--#{$prefix}font-size-sm) !default;
 $toast-spacing: 0 !default;
 $toast-max-width: 30rem !default;
-$toast-background-color: color-mix(in srgb, var(--#{$prefix}bg-surface) 90%, transparent) !default;
+$toast-border-color: light-dark(var(--#{$prefix}border-color-translucent), var(--#{$prefix}border-color)) !default;
+$toast-background-color: var(--#{$prefix}bg-surface) !default;
 
 // Loaders
 $loader-sizes: (
