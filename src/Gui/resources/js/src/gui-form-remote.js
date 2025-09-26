@@ -14,18 +14,18 @@ export class GuiFormRemote {
         const $target = $(this.$element.attr('data-target'));
         $.ajax({
             url: this.$element.attr('action'),
-            type: this.$element.attr('method'),
+            method: this.$element.attr('method'),
             data: this.$element.serialize(),
             success: (data) => {
                 $target.html(data);
             },
-            error: (xhr) => {
-                gui.printError(xhr.responseText, $target)
+            error: (x) => {
+                gui.printError(x.responseText, $target)
             },
             complete: () => {
                 gui.init($target);
             }
-        })
+        });
     }
 }
 
