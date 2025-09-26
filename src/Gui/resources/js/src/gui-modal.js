@@ -82,7 +82,6 @@ export class GuiModal {
 
         $.ajax({
             url: this.options.url,
-            dataType: 'text',
             success: (data) => {
                 this.$modalDialogContent.html(data);
             },
