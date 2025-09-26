@@ -6,7 +6,11 @@ return [
         'yes' => "Oui",
         'no' => "Non",
         'loading' => "Chargement...",
-        'choose' => "Veuillez choisir une valeur"
+        'choose' => "Veuillez choisir une valeur",
+        'success' => "Opération réussie !",
+        'danger' => "Oups... une erreur est survenue !",
+        'warning' => "Veuillez vérifier les informations",
+        'info' => "Informations complémentaires",
     ],
 
     'datatable' => [
