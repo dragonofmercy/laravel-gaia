@@ -9,6 +9,7 @@
     flex-direction: column;
     padding: var(--#{$prefix}spacer-2);
     gap: var(--#{$prefix}spacer-2);
+    position: fixed;
 
     &[data-position="top-right"],
     &[data-position="bottom-right"] {
