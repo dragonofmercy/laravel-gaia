@@ -1,4 +1,4 @@
-@props(['type' => 'success', 'dismissible' => true, 'icon' => 'circle-check', 'class' => null])
+@props(['type' => \Gui\View\Components\Flash::TYPE_SUCCESS, 'dismissible' => true, 'icon' => 'circle-check', 'class' => null])
 <div @class(['alert', 'alert-' . $type, $class => $class])>
     <div class="alert-icon">
         <x-gui::tabler-icon name="{{ $icon }}" />
