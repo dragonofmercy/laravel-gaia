@@ -46,14 +46,14 @@
         border-radius: var(--#{$prefix}border-radius-pill);
         box-shadow: 0 0 0 1px var(--#{$prefix}avatar-default-bg);
     }
+}
 
-    &.circle {
-        --#{$prefix}border-radius: var(--#{$prefix}border-radius-pill);
-    }
+.avatar-circle {
+    --#{$prefix}border-radius: var(--#{$prefix}border-radius-pill);
+}
 
-    &.square {
-        --#{$prefix}border-radius: 0;
-    }
+.avatar-square {
+    --#{$prefix}border-radius: 0;
 }
 
 @each $name, $size in $avatar-sizes {
