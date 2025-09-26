@@ -221,6 +221,18 @@ $avatar-sizes: (
     "xs":  1.25rem
 ) !default;
 
+// z-indexes
+$zindex-dropdown:                   1000 !default;
+$zindex-sticky:                     1020 !default;
+$zindex-fixed:                      1030 !default;
+$zindex-offcanvas-backdrop:         1040 !default;
+$zindex-offcanvas:                  1045 !default;
+$zindex-toast:                      1050 !default;
+$zindex-modal-backdrop:             1060 !default;
+$zindex-modal:                      1065 !default;
+$zindex-popover:                    1080 !default;
+$zindex-tooltip:                    1090 !default;
+
 // Icons
 $icon-stroke-width: 1.5 !default;
 $icon-sizes: $avatar-sizes !default;
