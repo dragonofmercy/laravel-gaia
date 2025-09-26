@@ -86,12 +86,7 @@ export class GuiModal {
                 this.$modalDialogContent.html(data);
             },
             error: (e) => {
-                if(e.status === 404){
-                    this._updateSize('modal-lg');
-                    this.$modalDialogContent.html(e.responseText);
-                } else {
-                    this._printError(e);
-                }
+                this._printError(e);
             },
             complete: () => {
                 clearTimeout(timeout);
