@@ -4,9 +4,18 @@
             min-height: 10rem;
 
             &:before {
-                content: "";
+                @include absolute-pseudo();
+                background-color: var(--#{$prefix}modal-bg);
+                @include border-radius(var(--#{$prefix}modal-border-radius));
+                z-index: 10;
+            }
+
+            &:after {
+                @include absolute-pseudo();
                 margin: 3rem auto;
                 @include loader-comet(8rem, var(--#{$prefix}primary));
+                position: absolute;
+                z-index: 11;
             }
         }
     }
