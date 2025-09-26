@@ -2,7 +2,7 @@
     {{ $decorator->buildStyles() }}
 </style>
 
-<x-gui::flash name="datatable_{{ $decorator->getDatatableUid() }}" class="m-3" />
+<x-gui::flash :toast="true" name="datatable_{{ $decorator->getDatatableUid() }}" class="m-3" />
 
 @if($decorator->hasSearchFilters())
 <div @class(['collapse', 'show' => $decorator->shouldDisplaySearch()]) id="datagrid_search_{{ $decorator->getDatatableUid() }}">
