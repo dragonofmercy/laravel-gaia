@@ -68,6 +68,6 @@ class Flash extends Component
             self::TYPE_INFO => "info-circle",
         };
 
-        return view('gui::components.flash', compact('name', 'icon', 'type', 'message', 'dismissible'));
+        return view('gui::components.' . ($this->toast ? 'toast' : 'alert'), compact('name', 'icon', 'type', 'message', 'dismissible'));
     }
 }
