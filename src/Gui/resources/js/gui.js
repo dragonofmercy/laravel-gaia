@@ -23,7 +23,8 @@ import './src/gui-theme-toggle.js';
 import GuiDatatable from "./src/gui-datatable.js";
 
 $.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '' }
+    headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '' },
+    dataType: 'text'
 });
 
 window.jQuery = $;
@@ -50,6 +51,8 @@ export class Gui {
         this._initModal(context);
         this._initCopy(context);
         this._initThemeToggle(context);
+
+        $(context).trigger('loaded.gui');
     }
 
     /**
@@ -104,8 +107,7 @@ export class Gui {
         $.ajax({
             url: url,
             data: data.join('&'),
-            type: method,
-            dataType: 'text',
+            method: method,
             success: data => {
                 $target.html(data);
             },
@@ -114,7 +116,6 @@ export class Gui {
             },
             complete: () => {
                 gui.init($target);
-                $target.trigger('loaded.gui');
             }
         });
     }
