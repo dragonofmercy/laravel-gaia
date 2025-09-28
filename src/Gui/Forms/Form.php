@@ -223,7 +223,17 @@ abstract class Form implements Htmlable
      */
     public function toHtml(): \Illuminate\Contracts\View\View|\Illuminate\View\View
     {
-        return (new Decorator($this))->render();
+        return $this->getDecorator()->render();
+    }
+
+    /**
+     * Retrieves the decorator instance associated with the current object.
+     *
+     * @return Decorator
+     */
+    public function getDecorator(): Decorator
+    {
+        return new Decorator($this);
     }
 
     /**
