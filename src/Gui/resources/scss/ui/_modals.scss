@@ -12,7 +12,7 @@
 
             &:after {
                 @include absolute-pseudo();
-                margin: 2rem auto;
+                margin: auto;
                 @include loader-comet(8rem, var(--#{$prefix}primary));
                 position: absolute;
                 z-index: 11;
