@@ -5,6 +5,10 @@
     min-height: 100%;
 }
 
+.page-center {
+    justify-content: center;
+}
+
 .page-header {
     --#{$prefix}page-header-margin-y: var(--#{$prefix}spacer-4);
 
