@@ -9,8 +9,8 @@ use Illuminate\View\Component;
 class Avatar extends Component
 {
     public function __construct(
-        public ?string $image,
-        public ?string $content
+        public ?string $image = null,
+        public ?string $content = null
     )
     {
         $this->content = $this->formatContent();
