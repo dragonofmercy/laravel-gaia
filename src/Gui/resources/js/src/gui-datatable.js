@@ -17,9 +17,9 @@ export class GuiDatatable {
     }
 
     _bindCheckboxSelectors(){
-        this.$element.find('thead th:first-child input[type=checkbox]').on('change', e => {
+        this.$element.find('thead th:first-child input[type=checkbox]:not(:disabled)').on('change', e => {
             const status = $(e.currentTarget).prop('checked');
-            this.$element.find('tbody tr td:first-child input[type=checkbox]').prop('checked', status).trigger('change.gui');
+            this.$element.find('tbody tr td:first-child input[type=checkbox]:not(:disabled)').prop('checked', status).trigger('change.gui');
         })
     }
 
@@ -81,7 +81,7 @@ export class GuiDatatable {
             e.preventDefault();
             Tooltip.getInstance(target)?.hide();
             $element.blur();
-            const $map = $('.gui-selector input[value]:checked', '#' + $element.data('target'));
+            const $map = $('.gui-selector input[value]:checked:not(:disabled)', '#' + $element.data('target'));
 
             if($map.length == 0){
                 return;
