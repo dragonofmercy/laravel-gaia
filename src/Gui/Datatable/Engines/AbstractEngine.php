@@ -404,7 +404,7 @@ abstract class AbstractEngine
         }
 
         if($this->options->get('selector', false)){
-            $this->columns->prepend($this->options->get('selector_type') === 'checkbox' ? $this->getSelectorInput() : 'gui::messages.generic.empty', self::SELECTOR_COLUMN_NAME);
+            $this->columns->prepend($this->options->get('selector_type') === 'checkbox' ? $this->getSelectorInput(false) : 'gui::messages.generic.empty', self::SELECTOR_COLUMN_NAME);
             $this->columnsOptions->prepend(Options::make()->css(self::SELECTOR_COLUMN_NAME)->sort(false), self::SELECTOR_COLUMN_NAME);
 
             $this->paginator->getCollection()->transform(function($item){
