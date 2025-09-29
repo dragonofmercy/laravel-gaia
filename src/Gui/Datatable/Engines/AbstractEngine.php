@@ -348,14 +348,21 @@ abstract class AbstractEngine
      */
     public function getSelectorInput($value = null): string
     {
-        $attributes = new ComponentAttributeBag([
+        $attributes = [
             'name' => $this->getUid() . '_selector',
             'type' => $this->options->get('selector_type'),
-            'class' => 'form-check-input',
-            'value' => $value
-        ]);
+            'class' => 'form-check-input'
+        ];
 
-        return '<input ' . $attributes . '/>';
+        if(null === $value){
+            $attributes['disabled'] = 'disabled';
+        } else {
+            $attributes['value'] = $value;
+        }
+
+        $attributesBag = new ComponentAttributeBag($attributes);
+
+        return '<input ' . $attributesBag . '/>';
     }
 
     /**
