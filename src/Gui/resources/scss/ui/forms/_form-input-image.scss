@@ -12,12 +12,7 @@
 
         background-color: var(--#{$prefix}bg-surface-secondary);
         background-position: center center;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-
-        padding: var(--#{$prefix}spacer-2);
+        background-clip: padding-box;
 
         &.loading-active {
             pointer-events: none;
@@ -31,11 +26,6 @@
                 z-index: 0;
             }
         }
-    }
-
-    .control {
-        display: flex;
-        justify-content: space-between;
     }
 
     .size {

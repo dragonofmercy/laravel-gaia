@@ -1,12 +1,15 @@
 <div class="gui-control-image">
     @include('gui::forms.elements.input')
-    <div class="thumbnail" style="{{ $sizeStyle }}">
-        <div class="control">
-            <x-gui::button class="btn-square btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('gui::messages.component.image.upload')" data-trigger="browse"><x-gui::tabler-icon name="upload" /></x-gui::button>
-            <x-gui::button class="btn-square btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="@lang('gui::messages.component.image.trash')" data-trigger="clear"><x-gui::tabler-icon name="eraser" /></x-gui::button>
+    <div class="d-flex gap-2">
+        <div class="text-center">
+            <div class="thumbnail" style="{{ $sizeStyle }}"></div>
+            <div class="size">{{ $sizeDisplay }}</div>
+        </div>
+        <div class="d-flex gap-2 flex-column">
+            <x-gui::button class="btn-square" data-bs-toggle="tooltip" data-bs-placement="right" title="@lang('gui::messages.component.image.upload')" data-trigger="browse"><x-gui::tabler-icon name="upload" /></x-gui::button>
+            <x-gui::button class="btn-square" data-bs-toggle="tooltip" data-bs-placement="right" title="@lang('gui::messages.component.image.trash')" data-trigger="clear"><x-gui::tabler-icon name="eraser" /></x-gui::button>
         </div>
     </div>
-    <div class="size">{{ $sizeDisplay }}</div>
     <x-gui::layouts.modal id="{{ $attr->get('id') }}_modal" modal-size="modal-xl">
         <div class="modal-body cropper-modal-loading">
             <div class="cropper-crop-container">
