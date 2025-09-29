@@ -1,7 +1,7 @@
-<div {{ $attributes->merge(['class' => 'avatar', 'style' => $renderAvatarImage()]) }}>
+<div {{ $attributes->merge(['class' => 'avatar', 'style' => $image]) }}>
     @if(strlen($slot))
         {{ $slot }}
-    @elseif(!$renderAvatarImage())
+    @elseif(!$image)
         {{ $content }}
     @endif
 </div>

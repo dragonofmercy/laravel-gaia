@@ -14,9 +14,10 @@ class Avatar extends Component
     )
     {
         $this->content = $this->formatContent();
+        $this->image = $this->renderAvatarImage();
     }
 
-    public function renderAvatarImage(): ?string
+    protected function renderAvatarImage(): ?string
     {
         if(!$this->image){
             return null;
