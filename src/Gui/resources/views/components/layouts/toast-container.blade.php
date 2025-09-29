@@ -1,1 +1,1 @@
-<div class="toast-container" data-position="{{ $position ?? 'top-right' }}" data-gui-identity="toast-container"></div>
+<div {{ $attributes->merge(['class' => 'toast-container'])->except(['position', 'data-position', 'data-gui-identity']) }} data-position="{{ $position ?? 'top-right' }}" data-gui-identity="toast-container"></div>
