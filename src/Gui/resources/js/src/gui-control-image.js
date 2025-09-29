@@ -8,6 +8,8 @@ export class GuiControlImage {
     static DEFAULTS = {
         fileTypes: 'image/png,image/jpeg',
         accepts: '.png,.jpg,.jpeg',
+        exportType: 'image/jpeg',
+        exportQuality: 1.0,
         height: 128,
         width: 128,
         viewMode: 1,
@@ -137,7 +139,7 @@ export class GuiControlImage {
 
             canvas.toBlob(blob => {
                 this._updatePreview(URL.createObjectURL(blob));
-                this.$element.val(canvas.toDataURL());
+                this.$element.val(canvas.toDataURL(this.options.exportType, this.options.exportQuality));
                 this.modal.hide();
             });
 
