@@ -12,6 +12,7 @@
             margin-left: 0;
             margin-right: 0;
             flex-direction: column;
+            gap: 0;
 
             .nav-link {
                 padding: .5rem;
@@ -122,10 +123,6 @@
             }
 
             @include media-breakpoint-up(breakpoint-next($breakpoint)) {
-                .navbar-nav {
-                    gap: #{$spacer * .25};
-                }
-
                 .nav-item.active {
                     position: relative;
 
@@ -146,7 +143,7 @@
 
 .navbar-nav {
     --#{$prefix}nav-link-hover-bg: var(--#{$prefix}hover-bg);
-
+    gap: #{$spacer * .25};
     margin: 0;
     padding: 0;
     align-items: stretch;
@@ -164,6 +161,8 @@
         min-width: 2.5rem;
         min-height: 2.5rem;
         border-radius: var(--#{$prefix}border-radius);
+        padding-right: var(--#{$prefix}navbar-nav-link-padding-x);
+        padding-left: var(--#{$prefix}navbar-nav-link-padding-x);
 
         .badge {
             position: absolute;
