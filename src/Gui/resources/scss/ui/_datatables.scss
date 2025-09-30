@@ -107,6 +107,10 @@
                             width: auto !important;
                             min-width: auto !important;
                             text-align: left !important;
+
+                            &.hidden-responsive {
+                                display: none;
+                            }
                         }
                     }
                 }

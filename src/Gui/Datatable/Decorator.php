@@ -197,6 +197,10 @@ class Decorator
             $attributes['class'] = Str::join($attributes->get('class', ""), static::$sortingColumnClass);
         }
 
+        if($options->sort() === false && $dataColumnName === false){
+            $attributes['class'] = Str::join($attributes->get('class', ""), 'hidden-responsive');
+        }
+
         return new ComponentAttributeBag($attributes->toArray());
     }
 
