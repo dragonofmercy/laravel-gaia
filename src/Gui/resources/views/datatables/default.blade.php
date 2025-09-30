@@ -35,7 +35,7 @@
 @endif
 
 <table class="table card-table" data-gui-behavior="datatable">
-    <thead>
+    <thead @class(['hidden-responsive' => $decorator->shouldHideHeadOnResponsive()])>
         <tr>
         @foreach($decorator->getColumns() as $name => $label)
             <th {{ $decorator->getColumnAttributes($name, $label, false) }}>

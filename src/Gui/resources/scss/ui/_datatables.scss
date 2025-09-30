@@ -103,6 +103,10 @@
                     thead {
                         display: block !important;
 
+                        &.hidden-responsive {
+                            display: none !important;
+                        }
+
                         th {
                             width: auto !important;
                             min-width: auto !important;
