@@ -12,7 +12,9 @@
             @foreach($decorator->getSearchFilters() as $filter)
                 <form-group>
                     <div class="{{ $filter->get('class') }}">
-                        <div class="control-label"><label>{{ $filter->get('label') }}</label></div>
+                        @if($filter->get('label') !== '')
+                            <div class="control-label"><label>{{ $filter->get('label') }}</label></div>
+                        @endif
                         <div class="control-field">{{ $filter->get('element') }}</div>
                     </div>
                 </form-group>
