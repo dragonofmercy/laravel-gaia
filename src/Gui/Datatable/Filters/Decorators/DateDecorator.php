@@ -16,6 +16,6 @@ class DateDecorator extends AbstractDecorator
     public function render(): string
     {
         $engine = $this->filter->getEngine();
-        return (new InputDate())->toHtml($this->formatFieldName($this->name), $engine->getSearchValues($this->name));
+        return (new InputDate(attributes: $this->filter->attributes()))->toHtml($this->formatFieldName($this->name), $engine->getSearchValues($this->name));
     }
 }

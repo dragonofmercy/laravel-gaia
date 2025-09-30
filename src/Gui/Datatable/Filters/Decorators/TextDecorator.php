@@ -16,6 +16,6 @@ class TextDecorator extends AbstractDecorator
     public function render(): string
     {
         $engine = $this->filter->getEngine();
-        return (new InputText())->toHtml($this->formatFieldName($this->name), $engine->getSearchValues($this->name));
+        return (new InputText(attributes: $this->filter->attributes()))->toHtml($this->formatFieldName($this->name), $engine->getSearchValues($this->name));
     }
 }

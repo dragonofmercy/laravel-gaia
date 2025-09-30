@@ -23,6 +23,7 @@ EOF;
      */
     public function render(): string
     {
+        $attributes = $this->filter->attributes();
         $engine = $this->filter->getEngine();
         $values = collect($engine->getSearchValues($this->name));
         $options = [
@@ -30,8 +31,8 @@ EOF;
         ];
 
         $replacements = [
-            '{from}' => (new InputDate($options))->toHtml($this->formatFieldName($this->name, 'from'), $values->get('from')),
-            '{to}' => (new InputDate($options))->toHtml($this->formatFieldName($this->name, 'to'), $values->get('to'))
+            '{from}' => (new InputDate($options, $attributes))->toHtml($this->formatFieldName($this->name, 'from'), $values->get('from')),
+            '{to}' => (new InputDate($options, $attributes))->toHtml($this->formatFieldName($this->name, 'to'), $values->get('to'))
         ];
 
         return str_replace(array_keys($replacements), array_values($replacements), $this->layout);

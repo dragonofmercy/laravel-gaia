@@ -16,18 +16,19 @@ class ChoicesDecorator extends AbstractDecorator
      */
     public function render(): string
     {
+        $attributes = $this->filter->attributes();
         $engine = $this->filter->getEngine();
 
         if($this->filter->multiple()){
             $element = new ChoiceToken([
                 'choices' => $this->filter->choices()
-            ]);
+            ], $attributes);
         } else {
             $element = new ChoiceSelect([
                 'choices' => $this->filter->choices(),
                 'addEmpty' => $this->filter->addEmpty(),
                 'multiple' => $this->filter->multiple()
-            ]);
+            ], $attributes);
         }
 
         return $element->toHtml($this->formatFieldName($this->name), $engine->getSearchValues($this->name));

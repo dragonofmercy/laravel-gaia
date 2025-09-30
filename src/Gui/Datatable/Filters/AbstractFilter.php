@@ -124,7 +124,7 @@ abstract class AbstractFilter
     {
         if(null === $label){
             if($this->options->has('label')){
-                return $this->options->get('label');
+                return $this->options->get('label', '');
             } else {
                 if(isset($this->engine)){
                     return $this->engine->getColumn($this->column);
@@ -134,6 +134,22 @@ abstract class AbstractFilter
             }
         } else {
             $this->options['label'] = $label;
+            return $this;
+        }
+    }
+
+    /**
+     * Get or set the attributes.
+     *
+     * @param array|null $attributes
+     * @return static|array
+     */
+    public function attributes(array|null $attributes = null): static|array
+    {
+        if(null === $attributes){
+            return $this->options->get('attributes', []);
+        } else {
+            $this->options['attributes'] = $attributes;
             return $this;
         }
     }
