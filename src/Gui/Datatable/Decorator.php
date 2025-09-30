@@ -205,23 +205,23 @@ class Decorator
     }
 
     /**
-     * Determines whether the table head should be hidden on responsive designs.
+     * Determines if the table's head should be hidden in a responsive view.
      *
-     * @return bool Returns true if the table head should be hidden on smaller screens;
-     *              returns false if any sortable columns are defined, indicating the head should remain visible.
+     * Iterates through all columns to check their options. If any column has sorting enabled,
+     * the table's head will not be hidden on responsive views. Otherwise, it will be hidden.
+     *
+     * @return bool True if the table head should be hidden on responsive views, false otherwise.
      */
     public function shouldHideHeadOnResponsive(): bool
     {
-        $shouldHide = true;
-
-        $this->engine->getColumns()->keys()->map(function($name) use (&$shouldHide){
+        foreach($this->engine->getColumns()->keys() as $name){
             $options = $this->engine->getColumnOptions($name);
             if($options->sort() === true){
-                $shouldHide = false;
+                return false;
             }
-        });
+        }
 
-        return $shouldHide;
+        return true;
     }
 
     /**
