@@ -1,6 +1,8 @@
 .form-separator {
     padding: var(--#{$prefix}spacer) 0;
-    flex-direction: column;
+    align-items: center;
+    gap: var(--#{$prefix}spacer-3);
+    flex-direction: row;
 
     .separator-title {
         display: flex;
@@ -12,7 +14,6 @@
     }
 
     .icon {
-        margin-right: var(--#{$prefix}spacer-2);
-        align-self: center;
+        margin-left: var(--#{$prefix}spacer-3);
     }
 }

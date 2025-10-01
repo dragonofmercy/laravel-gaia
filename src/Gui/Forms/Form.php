@@ -388,13 +388,15 @@ abstract class Form implements Htmlable
      * @param string $before
      * @param string $title
      * @param string|null $help
+     * @param string|null $icon
      * @return void
      */
-    public function setSeparator(string $before, string $title, string|null $help = null): void
+    public function setSeparator(string $before, string $title, string|null $help = null, string|null $icon = null): void
     {
         $separator = new Collection([
             'title' => new HtmlString(trans($title)),
-            'help' => null === $help ? null : new HtmlString(trans($help))
+            'help' => null === $help ? null : new HtmlString(trans($help)),
+            'icon' => null === $icon ? null : new HtmlString($icon),
         ]);
 
         $this->separators[$before] = $separator;
