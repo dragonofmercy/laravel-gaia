@@ -1,8 +1,8 @@
 <?php
 namespace Gui\View\Components;
 
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
+use Demeter\Support\Str;
 
 class TablerIcon extends Component
 {
@@ -18,9 +18,8 @@ class TablerIcon extends Component
     {
         $cache = static::getCache();
         $type = $this->filled ? 'filled' : 'outline';
-
         $svg = $cache[$this->name]['svg'][$type] ?? $cache['exclamation-circle']['svg'][$type];
-        $class = implode(' ', ['icon', $this->class]);
+        $class = Str::join('icon', $this->class);
 
         return Str::replace('class="icon"', 'class="' . $class . '"', $svg);
     }
