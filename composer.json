@@ -23,7 +23,10 @@
             "Demeter\\": "src/Demeter/",
             "Minerva\\": "src/Minerva/",
             "Gui\\": "src/Gui/"
-        }
+        },
+        "files": [
+            "src/Gui/helpers.php"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": false,
