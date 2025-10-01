@@ -16,6 +16,7 @@ class StringValidator extends AbstractValidator
         $this->addOption('minLength');
         $this->addOption('replaceWordChars', true);
         $this->addOption('removeHtml', true);
+        $this->addOption('implodeSeparator', '');
 
         $this->setOption('emptyValue', "");
         $this->setOption('trim', true);
@@ -30,7 +31,7 @@ class StringValidator extends AbstractValidator
     public function clean(mixed $v): mixed
     {
         if(is_array($v)){
-            $v = implode('', $v);
+            $v = implode($this->getOption('implodeSeparator'), $v);
         }
 
         return parent::clean($v);
