@@ -46,6 +46,9 @@ export class GuiControlAutocomplete extends Autocomplete {
     }
 
     _search(searchTerm){
+        if(this.options.provider === null){
+            return;
+        }
         const results = [];
         if(this.xhr !== undefined && this.xhr !== null){
             this.xhr.abort();
