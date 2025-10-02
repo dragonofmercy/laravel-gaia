@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Validators;
 
 class RegexValidator extends StringValidator

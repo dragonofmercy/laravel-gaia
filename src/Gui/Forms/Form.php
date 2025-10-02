@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms;
 
 use Illuminate\Contracts\Support\Htmlable;

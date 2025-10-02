@@ -1,4 +1,5 @@
 <?php
+
 namespace Demeter\Crypt\Rsa;
 
 use Countable;

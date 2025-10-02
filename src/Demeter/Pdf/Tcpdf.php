@@ -1,4 +1,5 @@
 <?php
+
 namespace Demeter\Pdf;
 
 use Closure;

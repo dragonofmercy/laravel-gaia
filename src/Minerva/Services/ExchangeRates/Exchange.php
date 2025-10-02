@@ -1,4 +1,5 @@
 <?php
+
 namespace Minerva\Services\ExchangeRates;
 
 use Minerva\Contracts\ExchangeRateProvider;

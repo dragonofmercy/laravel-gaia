@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Elements;
 
 class InputImage extends InputText

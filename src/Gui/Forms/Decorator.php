@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms;
 
 use Gui\Forms\Validators\Error;

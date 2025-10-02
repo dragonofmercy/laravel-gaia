@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Validators\Formatters;
 
 use Illuminate\Support\Str;

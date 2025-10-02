@@ -1,4 +1,5 @@
 <?php
+
 namespace Demeter\Support;
 
 use Illuminate\Support\Collection;

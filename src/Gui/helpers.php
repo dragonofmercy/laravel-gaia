@@ -1,4 +1,5 @@
 <?php
+
 if(!function_exists('tabler_icon')){
     /**
      * Renders a Tabler icon component with the specified name and attributes.

@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms;
 
 use Illuminate\Database\Eloquent\Model;

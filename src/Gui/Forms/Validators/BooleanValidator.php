@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Validators;
 
 class BooleanValidator extends AbstractValidator

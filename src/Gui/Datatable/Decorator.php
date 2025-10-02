@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Datatable;
 
 use Gui\Datatable\Filters\AbstractFilter;

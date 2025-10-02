@@ -1,4 +1,5 @@
 <?php
+
 namespace Demeter\Hashing;
 
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;

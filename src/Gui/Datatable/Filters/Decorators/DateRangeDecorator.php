@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Datatable\Filters\Decorators;
 
 use Gui\Forms\Elements\InputDate;

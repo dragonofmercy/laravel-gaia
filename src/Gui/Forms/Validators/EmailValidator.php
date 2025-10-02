@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Validators;
 
 use Egulias\EmailValidator\EmailValidator as BaseEmailValidator;

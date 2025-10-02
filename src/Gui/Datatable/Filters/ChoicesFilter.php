@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Datatable\Filters;
 
 use Gui\Datatable\Engines\ArrayEngine;

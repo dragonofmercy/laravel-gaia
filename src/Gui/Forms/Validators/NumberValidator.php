@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Validators;
 
 class NumberValidator extends AbstractValidator

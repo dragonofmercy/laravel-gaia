@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Interfaces;
 
 use Illuminate\View\View;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Providers;
 
 use Illuminate\Cookie\Middleware\EncryptCookies;

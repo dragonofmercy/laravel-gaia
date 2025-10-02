@@ -1,4 +1,5 @@
 <?php
+
 namespace Minerva\Providers;
 
 class MinervaServiceProvider extends \Illuminate\Support\ServiceProvider

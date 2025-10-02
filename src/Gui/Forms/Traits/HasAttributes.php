@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Traits;
 
 use Illuminate\Support\Collection;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Interfaces;
 
 interface ValidatorFormatterInterface

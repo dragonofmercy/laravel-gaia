@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Datatable\Engines;
 
 use Illuminate\Contracts\Database\Query\Builder;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Datatable\Filters;
 
 use Demeter\Support\Str;

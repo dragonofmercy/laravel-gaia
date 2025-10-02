@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Traits;
 
 trait HasFieldName

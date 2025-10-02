@@ -1,4 +1,5 @@
 <?php
+
 namespace Minerva\Services\ExchangeRates\Providers;
 
 use Illuminate\Cache\Repository;

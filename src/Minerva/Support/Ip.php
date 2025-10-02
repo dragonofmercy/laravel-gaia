@@ -1,4 +1,5 @@
 <?php
+
 namespace Minerva\Support;
 
 use Exception;

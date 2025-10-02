@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Datatable\Filters\Decorators;
 
 use Gui\Datatable\Engines\AbstractEngine;

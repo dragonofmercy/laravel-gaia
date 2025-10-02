@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Support;
 
 class Gui

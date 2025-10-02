@@ -1,4 +1,5 @@
 <?php
+
 namespace Minerva\Services\ExchangeRates;
 
 use Illuminate\Contracts\Cache\Factory as CacheFactory;

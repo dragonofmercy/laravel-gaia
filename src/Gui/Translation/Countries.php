@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Translation;
 
 use RuntimeException;

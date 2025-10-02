@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Abstracts\View\Components;
 
 use Illuminate\View\Component;

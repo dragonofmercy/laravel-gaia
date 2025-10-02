@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Elements;
 
 class InputSwitch extends ChoiceCheckbox

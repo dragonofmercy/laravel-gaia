@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\Forms\Traits;
 
 use Gui\Forms\Form as BaseForm;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Demeter\Support;
 
 class Image

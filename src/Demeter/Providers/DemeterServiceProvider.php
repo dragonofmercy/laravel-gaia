@@ -1,4 +1,5 @@
 <?php
+
 namespace Demeter\Providers;
 
 use Illuminate\Support\ServiceProvider;

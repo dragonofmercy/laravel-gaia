@@ -1,4 +1,5 @@
 <?php
+
 namespace Demeter\Crypt;
 
 use Demeter\Crypt\Rsa\Key;

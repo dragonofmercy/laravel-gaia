@@ -1,4 +1,5 @@
 <?php
+
 namespace Gui\View\Components;
 
 use Gui\Abstracts\View\Components\Button as ButtonBase;
