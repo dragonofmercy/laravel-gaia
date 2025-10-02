@@ -2,6 +2,7 @@
 namespace Minerva\Support;
 
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
@@ -56,6 +57,23 @@ class Ip
         } catch(Exception $e) {
             report($e);
             return false;
+        }
+    }
+
+    /**
+     * Retrieves the Autonomous System Number (ASN) for the specified IP address from an external service.
+     *
+     * @param string $ip The IP address for which the ASN is to be retrieved.
+     * @return int Returns the ASN as an integer on success, or 0 on failure.
+     */
+    public static function getAsn(string $ip): int
+    {
+        try {
+            $response = Http::connectTimeout(self::$timeout)->get('https://stat.ripe.net/data/network-info/data.json?resource='.urlencode($ip));
+            return Arr::first(Arr::get($response, 'data.asns'), default: 0);
+        } catch(Exception $e) {
+            report($e);
+            return 0;
         }
     }
 }
