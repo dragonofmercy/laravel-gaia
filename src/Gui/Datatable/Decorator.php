@@ -2,8 +2,6 @@
 
 namespace Gui\Datatable;
 
-use Gui\Datatable\Filters\AbstractFilter;
-use Gui\Datatable\Filters\Decorators\AbstractDecorator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -13,6 +11,9 @@ use Illuminate\Support\HtmlString;
 use Illuminate\View\ComponentAttributeBag;
 
 use Demeter\Support\Str;
+
+use Gui\Datatable\Filters\AbstractFilter;
+use Gui\Datatable\Filters\Decorators\AbstractDecorator;
 use Gui\Datatable\Engines\AbstractEngine;
 
 class Decorator
