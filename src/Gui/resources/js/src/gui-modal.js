@@ -32,9 +32,13 @@ export class GuiModal {
     }
 
     show(){
-        this._initBootstrapModal();
-        this._addEventListeners();
-        this._modal.show();
+        if(null !== this._modal && this._modal._isShown){
+            this._modalShow();
+        } else {
+            this._initBootstrapModal();
+            this._addEventListeners();
+            this._modal.show();
+        }
     }
 
     _initBootstrapModal(){
