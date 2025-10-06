@@ -13,7 +13,7 @@
                 <form-group>
                     <div class="{{ $filter->get('class') }}">
                         @if($filter->get('label') !== '')
-                            <div class="control-label"><label>{{ $filter->get('label') }}</label></div>
+                            <div class="control-label"><label>{{ __($filter->get('label')) }}</label></div>
                         @endif
                         <div class="control-field">{{ $filter->get('element') }}</div>
                     </div>
