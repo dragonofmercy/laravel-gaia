@@ -32,7 +32,7 @@ export class GuiModal {
     }
 
     show(){
-        if(null !== this._modal && this._modal._isShown){
+        if(this.$modalElement.data('bs.modal')){
             this._modalShow();
         } else {
             this._initBootstrapModal();
@@ -77,6 +77,8 @@ export class GuiModal {
 
         this.$modalDialogContent.html('');
         this._modal.dispose();
+
+        this.$modalElement.data('bs.modal', null);
     }
 
     _request(){
