@@ -1,7 +1,7 @@
 @use 'sass:map';
 
 .timeline {
-    --#{$prefix}timeline-icon-size: #{map.get($avatar-sizes, 'lg')};
+    --#{$prefix}timeline-icon-size: #{map.get($avatar-sizes, 'md')};
     position: relative;
     list-style: none;
     padding: 0;
@@ -26,8 +26,13 @@
     }
 }
 
-.timeline-event-icon {
+.timeline-event-icon,
+.timeline-event-avatar {
     position: absolute;
+    z-index: 5
+}
+
+.timeline-event-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +41,6 @@
     background: var(--#{$prefix}bg-surface-secondary);
     color: var(--#{$prefix}secondary);
     border-radius: var(--#{$prefix}border-radius);
-    z-index: 5
 }
 
 .timeline-event-card {
