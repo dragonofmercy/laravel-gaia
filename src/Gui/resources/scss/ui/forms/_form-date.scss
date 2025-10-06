@@ -140,3 +140,7 @@
         }
     }
 }
+
+.modal-open .gui-calendar .dp-menu {
+    z-index: $zindex-modal + $zindex-dropdown;
+}
