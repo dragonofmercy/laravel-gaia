@@ -1,7 +1,7 @@
 @use 'sass:map';
 
 .timeline {
-    --#{$prefix}timeline-icon-size: #{map.get($avatar-sizes, 'md')};
+    --#{$prefix}timeline-icon-size: #{map.get($avatar-sizes, 'sm')};
     position: relative;
     list-style: none;
     padding: 0;
@@ -41,6 +41,10 @@
     background: var(--#{$prefix}bg-surface-secondary);
     color: var(--#{$prefix}secondary);
     border-radius: var(--#{$prefix}border-radius);
+}
+
+.timeline-event-avatar {
+    --#{$prefix}avatar-size: var(--#{$prefix}timeline-icon-size);
 }
 
 .timeline-event-card {
