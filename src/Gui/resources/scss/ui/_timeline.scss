@@ -1,0 +1,44 @@
+@use 'sass:map';
+
+.timeline {
+    --#{$prefix}timeline-icon-size: #{map.get($avatar-sizes, 'lg')};
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.timeline-event {
+    position: relative;
+
+    &:not(:last-child) {
+        margin-bottom: var(--#{$prefix}page-padding);
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: var(--#{$prefix}timeline-icon-size);
+            left: calc(var(--#{$prefix}timeline-icon-size) / 2);
+            bottom: calc(-1 * var(--#{$prefix}page-padding));
+            width: var(--#{$prefix}border-width);
+            background-color: var(--#{$prefix}border-color);
+            border-radius: var(--#{$prefix}border-radius);
+        }
+    }
+}
+
+.timeline-event-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--#{$prefix}timeline-icon-size);
+    height: var(--#{$prefix}timeline-icon-size);
+    background: var(--#{$prefix}bg-surface-secondary);
+    color: var(--#{$prefix}secondary);
+    border-radius: var(--#{$prefix}border-radius);
+    z-index: 5
+}
+
+.timeline-event-card {
+    margin-left: calc(var(--#{$prefix}timeline-icon-size) + var(--#{$prefix}page-padding));
+}
