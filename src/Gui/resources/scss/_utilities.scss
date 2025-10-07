@@ -52,5 +52,16 @@ $utilities: (
             horizontal: horizontal,
             vertical: vertical,
         ),
+    ),
+    "whitespace": (
+        property: white-space,
+        class: whitespace,
+        values: (
+            normal: normal,
+            nowrap: nowrap,
+            pre: pre,
+            pre-line: pre-line,
+            pre-wrap: pre-wrap,
+        ),
     )
 ) !default;
