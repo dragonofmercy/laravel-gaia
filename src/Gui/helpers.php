@@ -33,11 +33,11 @@ if(!function_exists('content_tag')){
      * Generates an HTML element with the specified tag, content, and attributes.
      *
      * @param string $tag The HTML tag name to be generated.
-     * @param string $content The content to be placed inside the HTML element.
+     * @param string|null $content The content to be placed inside the HTML element.
      * @param array $attributes An associative array of attributes to be applied to the HTML element.
      * @return string The generated HTML element as a string.
      */
-    function content_tag(string $tag, string $content, array $attributes = []): string
+    function content_tag(string $tag, ?string $content, array $attributes = []): string
     {
         $attributesBag = new \Illuminate\View\ComponentAttributeBag($attributes);
         return '<' . $tag . ' ' . $attributesBag->toHtml() . '>' . $content . '</' . $tag . '>';
