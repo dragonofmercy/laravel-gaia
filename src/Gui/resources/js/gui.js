@@ -99,10 +99,10 @@ export class Gui {
      * @param {string} url - The URL to send the AJAX request to.
      * @param {string} target - The CSS selector of the target container where the response will be rendered.
      * @param {Array} [data=[]] - An optional array of data to send with the request, which will be joined into a query string.
-     * @param {string} [method='POST'] - The HTTP method to use for the request (e.g., 'POST', 'GET').
+     * @param {string} [method='GET'] - The HTTP method to use for the request (e.g., 'POST', 'GET').
      * @return {void} This method does not return a value.
      */
-    remote(url, target, data = [], method = 'POST'){
+    remote(url, target, data = [], method = 'GET'){
         const $target = $(target);
 
         $.ajax({
@@ -190,6 +190,7 @@ export class Gui {
             gui.hideAttribute($(this), 'onclick');
         }).on('click', function(e){
             e.preventDefault();
+            $(this).blur();
             Tooltip.getInstance(this)?.hide();
             const onclickAttr = $(this).data('onclick');
             if(onclickAttr){
