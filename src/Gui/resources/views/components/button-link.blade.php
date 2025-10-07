@@ -1,4 +1,4 @@
-<a {{ $attributes->merge(['class' => 'btn']) }}>
+<x-gui::link {{ $attributes->merge(['class' => 'btn']) }}>
     @if($attributes->has('data-loading-text'))
         <div data-loading-content>
             <div class="loader loader-{{ $loadingStyle }}"></div>
@@ -6,4 +6,4 @@
         </div>
     @endif
     {{ $slot }}
-</a>
+</x-gui::link>

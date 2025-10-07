@@ -1,1 +1,1 @@
-<a {{ $attributes }}>{{ $slot }}</a>
+<a {{ $attributes->except('confirm') }}>{{ $slot }}</a>

@@ -1,0 +1,1 @@
+<x-gui::link {{ $attributes->except(['size', 'data-gui-behavior']) }} data-gui-behavior="modal" data-size="modal-{{ $size ?? 'lg' }}">{{ $slot }}</x-gui::link>

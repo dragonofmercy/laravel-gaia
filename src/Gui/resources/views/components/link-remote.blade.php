@@ -1,0 +1,1 @@
+<x-gui::link {{ $attributes->except(['data-gui-behavior']) }} data-gui-behavior="link-remote">{{ $slot }}</x-gui::link>
