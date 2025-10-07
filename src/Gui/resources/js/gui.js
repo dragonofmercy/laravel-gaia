@@ -190,6 +190,7 @@ export class Gui {
             gui.hideAttribute($(this), 'onclick');
         }).on('click', function(e){
             e.preventDefault();
+            Tooltip.getInstance(this)?.hide();
             const onclickAttr = $(this).data('onclick');
             if(onclickAttr){
                 const onclickFunction = new Function(onclickAttr);
