@@ -178,17 +178,27 @@ export class Gui {
     }
 
     /**
-     * Initializes the link-remote behavior by attaching a click event listener to elements
-     * with the "link-remote" data-gui-behavior attribute within the given context.
-     * The click event prevents the default browser navigation and triggers a remote request
-     * using the href and data-target attributes of the clicked element.
+     * Initializes and sets up remote link functionality for elements with the attribute data-gui-behavior="link-remote".
+     * Links matching the behavior will have their "onclick" attribute hidden and replaced with custom functionality.
+     * When clicked, these links will execute custom JavaScript, if specified, and send a remote request.
      *
-     * @param {Object} context The DOM context within which the "link-remote" elements will be initialized.
-     * @return {void}
+     * @param {Object} context - The DOM context within which to search for elements with data-gui-behavior="link-remote".
+     * @return {void} This method does not return a value.
      */
     _initLinkRemote(context){
-        $('[data-gui-behavior="link-remote"]', context).on('click', function(e){
+        $('[data-gui-behavior="link-remote"]', context).each(function(){
+            gui.hideAttribute($(this), 'onclick');
+        }).on('click', function(e){
             e.preventDefault();
+            const onclickAttr = $(this).data('onclick');
+            if(onclickAttr){
+                const onclickFunction = new Function(onclickAttr);
+                const result = onclickFunction.call(this);
+                if(result === false){
+                    return false;
+                }
+            }
+
             gui.remote($(this).attr('href'), $(this).attr('data-target'), [], $(this).attr('data-method') ?? 'GET');
         });
     }
