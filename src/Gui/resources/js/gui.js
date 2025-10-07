@@ -189,7 +189,7 @@ export class Gui {
     _initLinkRemote(context){
         $('[data-gui-behavior="link-remote"]', context).on('click', function(e){
             e.preventDefault();
-            gui.remote($(this).attr('href'), $(this).attr('data-target'));
+            gui.remote($(this).attr('href'), $(this).attr('data-target'), [], $(this).attr('data-method') ?? 'GET');
         });
     }
 
