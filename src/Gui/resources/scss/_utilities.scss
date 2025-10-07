@@ -42,5 +42,15 @@ $utilities: (
             double: double,
             none: none,
         ),
+    ),
+    "resize": (
+        property: resize,
+        class: resize,
+        values: (
+            none: none,
+            both: both,
+            horizontal: horizontal,
+            vertical: vertical,
+        ),
     )
 ) !default;
