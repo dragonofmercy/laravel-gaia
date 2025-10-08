@@ -1,4 +1,4 @@
-@mixin overlay-backdrop($zindex, $backdrop-bg, $backdrop-opacity, $backdrop-filter: $modal-backdrop-filter) {
+@mixin overlay-backdrop($zindex, $backdrop-bg, $backdrop-opacity) {
     position: fixed;
     top: 0;
     left: 0;
@@ -6,10 +6,12 @@
     width: 100vw;
     height: 100vh;
     background-color: $backdrop-bg;
-    -webkit-backdrop-filter: #{$backdrop-filter};
-    backdrop-filter: #{$backdrop-filter};
 
-    // Fade for backdrop
+    @if($backdrop-bg == transparent){
+        -webkit-backdrop-filter: #{$modal-backdrop-filter};
+        backdrop-filter: #{$modal-backdrop-filter};
+    }
+
     &.fade { opacity: 0; }
     &.show { opacity: $backdrop-opacity; }
 }
