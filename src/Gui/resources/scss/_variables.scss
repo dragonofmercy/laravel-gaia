@@ -239,6 +239,13 @@ $avatar-sizes: (
     "xs":  1.25rem
 ) !default;
 
+// Underline styles
+$underline-styles: (
+    "solid": solid,
+    "dashed": dashed,
+    "dotted": dotted,
+) !default;
+
 // z-indexes
 $zindex-dropdown:                   1000 !default;
 $zindex-sticky:                     1020 !default;

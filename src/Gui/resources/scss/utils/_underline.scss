@@ -15,3 +15,10 @@
     --#{$prefix}text-decoration: none;
     --#{$prefix}text-decoration-hover: none;
 }
+
+@each $name, $value in $underline-styles {
+    .text-underline-#{$name} {
+        --#{$prefix}border-color: color-mix(in srgb, currentColor 50%, light-dark(#fff, #000));
+        border-bottom: var(--#{$prefix}border-width) #{$value} var(--#{$prefix}border-color);
+    }
+}
