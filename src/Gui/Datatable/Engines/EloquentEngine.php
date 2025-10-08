@@ -60,8 +60,12 @@ class EloquentEngine extends AbstractEngine
     protected function getRowColumnValues(string $column): Collection
     {
         $query = clone $this->getQuery();
-        return $query->get($column)->transform(function($value) use ($column){
-            return (string) $value[$column];
+        return $query->get($column)->transform(function(mixed $value) use ($column){
+            $v = $value[$column];
+            if($v instanceof \UnitEnum){
+                return (string) $v->value;
+            }
+            return (string) $v;
         })->flip()->flip();
     }
 }

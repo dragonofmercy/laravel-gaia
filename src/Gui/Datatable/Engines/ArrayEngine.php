@@ -69,7 +69,11 @@ class ArrayEngine extends AbstractEngine
     {
         $collection = clone $this->collection;
         return $collection->transform(function(mixed $value) use ($column){
-            return (string) $value[$column];
+            $v = $value[$column];
+            if($v instanceof \UnitEnum){
+                return (string) $v->value;
+            }
+            return (string) $v;
         })->flip()->flip();
     }
 }
