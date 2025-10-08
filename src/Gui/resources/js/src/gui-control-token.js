@@ -209,12 +209,10 @@ export class GuiControlToken extends Autocomplete {
             }
         });
 
-        if(hasReordering) {
-            this.$element.empty().append($fragment);
+        this.$element.empty().append($fragment);
 
-            if(triggerEvent){
-                this.$element.trigger('token_reordered');
-            }
+        if(hasReordering && triggerEvent){
+            this.$element.trigger('token_reordered');
         }
     }
 
