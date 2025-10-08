@@ -36,8 +36,6 @@ class InputToggle extends Input
     {
         parent::beforeRender();
 
-        $this->setAttribute('value', $this->getOption('value'));
-
         $this->setViewVar('right', trans($this->getOption('right')));
         $this->setViewVar('left', trans($this->getOption('left')));
     }
@@ -51,6 +49,6 @@ class InputToggle extends Input
             $this->setAttribute('checked', 'checked');
         }
 
-        return parent::render($name, $value, $error);
+        return parent::render($name, $this->getOption('value'), $error);
     }
 }
