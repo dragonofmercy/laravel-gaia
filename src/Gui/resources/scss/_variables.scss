@@ -367,7 +367,7 @@ $form-check-min-height: $form-check-input-width !default;
 $form-check-padding-start: 0 !default;
 $form-check-margin-bottom: 0 !default;
 
-$form-switch-width: 2rem !default;
+$form-switch-width: 2.5rem !default;
 $form-switch-height: 1.25rem !default;
 $form-switch-padding-start: 0 !default;
 $form-switch-focus-color: tint-color($component-active-bg, 50%) !default;
@@ -403,8 +403,8 @@ $modal-content-bg: var(--#{$prefix}bg-surface) !default;
 $modal-footer-bg: color-mix(in srgb, var(--#{$prefix}bg-surface) var(--#{$prefix}cap-color-mix), #000) !default;
 $modal-header-border-color: var(--#{$prefix}border-color-lt) !default;
 $modal-footer-border-color: var(--#{$prefix}border-color-lt) !default;
-$modal-backdrop-bg: transparent !default;
-$modal-backdrop-opacity: 1 !default;
+//$modal-backdrop-bg: transparent !default;
+$modal-backdrop-opacity: .65 !default;
 $modal-backdrop-filter: blur(16px) brightness(80%) !default;
 $modal-scale-transform: scale(1) !default;
 
