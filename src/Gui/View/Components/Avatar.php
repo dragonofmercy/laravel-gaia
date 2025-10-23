@@ -48,7 +48,7 @@ class Avatar extends Component
             $word = $words[0];
             return strlen($word) === 1 ? $word : $word[0] . $word[strlen($word) - 1];
         } else {
-            return implode('', array_map(fn($word) => $word[0], $words));
+            return $words[0][0] . $words[count($words) - 1][0];
         }
     }
 

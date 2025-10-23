@@ -722,7 +722,7 @@ abstract class AbstractEngine
     protected function filter(): void
     {
         $this->searchValues->map(function(mixed $value, string $column){
-            if($this->columns->has($column) && null !== $value && $value !== "" && (!is_array($value) || count(array_filter($value)) != 0)){
+            if(null !== $value && $value !== "" && (!is_array($value) || count(array_filter($value)) != 0)){
                 if($this->searchFilters->has($column)){
                     $filter = $this->searchFilters->get($column);
                     $filter->prepare()->filter($value);

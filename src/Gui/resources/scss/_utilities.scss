@@ -53,6 +53,17 @@ $utilities: (
             vertical: vertical,
         ),
     ),
+    "justify-self": (
+        property: justify-self,
+        class: justify-self,
+        values: (
+            auto: auto,
+            start: start,
+            end: end,
+            center: center,
+            stretch: stretch,
+        ),
+    ),
     "whitespace": (
         property: white-space,
         class: whitespace,

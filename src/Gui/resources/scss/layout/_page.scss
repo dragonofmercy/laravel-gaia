@@ -29,13 +29,23 @@
     flex-direction: column;
 }
 
-.page-title {
+.page-title,
+.page-description {
     margin: 0;
-    color: inherit;
     display: flex;
     align-items: center;
 
-    font-size: var(--#{$prefix}font-size-xl);
     line-height: var(--#{$prefix}line-height-h2);
+}
+
+.page-title {
+    color: inherit;
+    font-size: var(--#{$prefix}font-size-xl);
     font-weight: var(--#{$prefix}font-weight-headings);
+}
+
+.page-description {
+    color: var(--#{$prefix}secondary);
+    font-size: var(--#{$prefix}font-size-md);
+    font-weight: var(--#{$prefix}font-weight-normal);
 }

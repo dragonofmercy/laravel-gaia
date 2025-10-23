@@ -19,7 +19,7 @@ export class Autocomplete {
         this.options = $.extend({}, Autocomplete.DEFAULTS, options);
         this.popper = null;
 
-        this.$template = $('<div class="dropdown-menu show" />').on('mousedown touchstart', '[data-selectable]', e => {
+        this.$template = $('<div class="dropdown-menu autocomplete show" />').on('mousedown touchstart', '[data-selectable]', e => {
             e.preventDefault();
             e.stopPropagation();
 

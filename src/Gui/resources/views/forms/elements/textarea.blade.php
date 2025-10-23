@@ -1,1 +1,1 @@
-<textarea {{ $attr }}>{{ $value }}</textarea>
+<x-gui::forms.textarea :attributes="$attr">{{ $value }}</x-gui::forms.textarea>

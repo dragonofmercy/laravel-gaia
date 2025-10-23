@@ -5,7 +5,7 @@ import { isShiftPressed, Keycodes } from './lib/keycodes.js';
 export class GuiControlMultiFields {
 
     static DEFAULTS = {
-        max: 5,
+        max: null,
         sortable: true,
         newLineOnTab: true
     }
@@ -55,7 +55,7 @@ export class GuiControlMultiFields {
     }
 
     newLine(force = false){
-        if(this.count() >= this.options.max && !force){
+        if(this.options.max !== null && this.count() >= this.options.max && !force){
             return;
         }
 

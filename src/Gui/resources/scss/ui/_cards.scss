@@ -29,7 +29,7 @@
 }
 
 .card-title {
-    font-size: var(--#{$prefix}font-size-md);
+    font-size: var(--#{$prefix}font-size-lg);
     font-weight: var(--#{$prefix}font-weight-bold);
     line-height: var(--#{$prefix}line-height-md);
 
@@ -104,7 +104,7 @@
     justify-content: flex-end;
     align-self: end;
     gap: var(--#{$prefix}spacer-1);
-
+    margin-right: calc(var(--#{$prefix}card-cap-padding-x) * -.5);
 
     &>.vr {
         height: .75em;

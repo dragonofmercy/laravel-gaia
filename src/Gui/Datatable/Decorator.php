@@ -101,7 +101,7 @@ class Decorator
      */
     public function getCell(array|Collection $row, string $column): HtmlString
     {
-        return new HtmlString($row[$column] ?? trans('gui::messages.generic.empty'));
+        return new HtmlString($row[$column] ?? "");
     }
 
     /**

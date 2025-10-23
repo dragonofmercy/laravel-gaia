@@ -52,8 +52,9 @@ export class Gui {
         this._initModal(context);
         this._initCopy(context);
         this._initThemeToggle(context);
+        this._initHtmlFix(context);
 
-        $(context).trigger('loaded.gui');
+        $(context).trigger('loaded.gui', [context]);
     }
 
     /**
@@ -321,6 +322,18 @@ export class Gui {
                 placement: element.attr('data-bs-placement') ?? 'auto'
             };
             element.data('bs-popover', new Popover(element[0], options));
+        });
+    }
+
+    /**
+     * Initializes a fix for HTML elements to prevent them from remaining focused after being clicked.
+     *
+     * @param {Object} context - The DOM context within which the target elements will be queried and modified.
+     * @return {void}
+     */
+    _initHtmlFix(context){
+        $('[target="_blank"]', context).on('click.gui', function(){
+            $(this).blur();
         });
     }
 }

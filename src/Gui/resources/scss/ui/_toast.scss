@@ -25,7 +25,3 @@
         flex-direction: column-reverse;
     }
 }
-
-.modal-open .toast {
-    z-index: $zindex-modal + $zindex-toast;
-}

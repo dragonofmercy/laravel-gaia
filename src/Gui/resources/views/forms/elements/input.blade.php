@@ -1,1 +1,1 @@
-<input {{ $attr }} />
+<x-gui::forms.input :attributes="$attr" />

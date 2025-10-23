@@ -1,7 +1,7 @@
 @use 'sass:map';
 
 .avatar {
-    --#{$prefix}avatar-bg: var(--#{$prefix}bg-surface-tertiary);
+    --#{$prefix}avatar-bg: light-dark(var(--#{$prefix}bg-surface-tertiary), var(--#{$prefix}gray-850));
     --#{$prefix}avatar-size: #{map.get($avatar-sizes, 'lg')};
     --#{$prefix}avatar-font-size: calc(var(--#{$prefix}avatar-size) - (var(--#{$prefix}avatar-size) * .65));
     --#{$prefix}avatar-padding: calc(var(--#{$prefix}avatar-size) - (var(--#{$prefix}avatar-size) * .85));

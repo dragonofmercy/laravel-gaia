@@ -232,3 +232,10 @@
         opacity: var(--#{$prefix}btn-close-disabled-opacity);
     }
 }
+
+.btn-list {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: var(--#{$prefix}spacer-1);
+}
