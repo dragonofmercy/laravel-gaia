@@ -5,6 +5,8 @@ namespace Demeter\Pdf;
 use Closure;
 use Demeter\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class Tcpdf extends \TCPDF
 {
@@ -434,91 +436,73 @@ class Tcpdf extends \TCPDF
     }
 
     /**
-     * Render Pdf to browser
+     * Generates and returns a PDF response with the specified display mode and filename.
      *
-     * @param string $mode
-     * @param string $filename
-     * @return never
+     * @param string $mode The display mode for the PDF, defaulting to full page.
+     * @param string $filename The desired name for the PDF file, optional.
+     * @return Response The HTTP response containing the PDF content.
      */
-    public function renderPdf(string $mode = self::DISPLAY_FULLPAGE, string $filename = ''): never
+    public function displayPdf(string $mode = self::DISPLAY_FULLPAGE, string $filename = ''): Response
     {
         $filename = $this->buildFilename($filename);
 
         $this->setDisplayMode($mode);
         $this->Close();
 
-        if(headers_sent()){
-            throw new \RuntimeException('The PDF file cannot be sent because some data has already been output to the browser.');
-        }
-
         $rawpdf = $this->getBuffer();
 
-        header('Content-Type: application/pdf');
-        header('Cache-Control: private, must-revalidate, post-check=0, pre-check=0, max-age=1');
-        header('Pragma: public');
-        header('Expires: Sat, 01 Jan 2000 01:00:00 GMT');
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        header(
-            'Content-Disposition: inline; filename="' . $filename . '"; filename*=UTF-8\'\''
-            . $filename
-        );
-
-        if(empty($_SERVER['HTTP_ACCEPT_ENCODING'])){
-            header('Content-Length: ' . strlen($rawpdf));
-        }
-
-        echo $rawpdf;
-        exit(1);
+        return response($rawpdf, 200, [
+            'Content-Type' => 'application/pdf',
+            'Cache-Control' => 'private, must-revalidate, post-check=0, pre-check=0, max-age=1',
+            'Pragma' => 'public',
+            'Expires' => 'Sat, 01 Jan 2000 01:00:00 GMT',
+            'Last-Modified' => gmdate('D, d M Y H:i:s') . ' GMT',
+            'Content-Disposition' => 'inline; filename="' . $filename . '"; filename*=UTF-8\'\'' . $filename,
+        ]);
     }
 
     /**
-     * Force the download of the PDF in the browser
+     * Generate and download a PDF file as an HTTP response.
      *
-     * @param string $filename
-     * @return never
+     * @param string $filename Optional filename for the downloaded PDF.
+     * @return Response The HTTP response containing the PDF file.
      */
-    public function downloadPdf(string $filename = ""): never
+    public function downloadPdf(string $filename = ""): Response
     {
         $filename = $this->buildFilename($filename);
 
         $this->Close();
 
-        if(ob_get_contents()){
-            throw new \RuntimeException('The PDF file cannot be sent, some data has already been output to the browser.');
-        }
-
-        if(headers_sent()){
-            throw new \RuntimeException('The PDF file cannot be sent because some data has already been output to the browser.');
-        }
-
         $rawpdf = $this->getBuffer();
 
-        header('Content-Description: File Transfer');
-        header('Cache-Control: private, must-revalidate, post-check=0, pre-check=0, max-age=1');
-        header('Pragma: public');
-        header('Expires: Sat, 01 Jan 2000 01:00:00 GMT');
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        header('Content-Type: application/pdf');
+        return response($rawpdf, 200, [
+            'Content-Description' => 'File Transfer',
+            'Cache-Control' => 'private, must-revalidate, post-check=0, pre-check=0, max-age=1',
+            'Pragma' => 'public',
+            'Expires' => 'Sat, 01 Jan 2000 01:00:00 GMT',
+            'Last-Modified' => gmdate('D, d M Y H:i:s') . ' GMT',
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"; filename*=UTF-8\'\'' . $filename,
+            'Content-Transfer-Encoding' => 'binary',
+        ]);
+    }
 
-        if(!str_contains(PHP_SAPI, 'cgi')){
-            header('Content-Type: application/force-download', false);
-            header('Content-Type: application/octet-stream', false);
-            header('Content-Type: application/download', false);
-        }
+    /**
+     * Store the PDF file on a specified disk
+     *
+     * @param string|null $disk The name of the disk to store the PDF, or null to use the default disk
+     * @param string $filename The name of the file to save the PDF as
+     * @return string The full path to the stored PDF file
+     */
+    public function storePdf(?string $disk = null, string $filename = ""): string
+    {
+        $disk = app('filesystem')->disk($disk);
+        $filename = $this->buildFilename($filename);
+        $this->Close();
 
-        header(
-            'Content-Disposition: attachment; filename="' . $filename . '";'
-            . " filename*=UTF-8''" . $filename
-        );
+        $disk->put($filename, $this->getBuffer());
 
-        header('Content-Transfer-Encoding: binary');
-
-        if(empty($_SERVER['HTTP_ACCEPT_ENCODING'])){
-            header('Content-Length: ' . strlen($rawpdf));
-        }
-
-        echo $rawpdf;
-        exit(1);
+        return $disk->path($filename);
     }
 
     /**
