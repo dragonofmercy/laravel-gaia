@@ -283,7 +283,7 @@ $navbar-toggler-padding-x: 0 !default;
 $navbar-toggler-padding-y: 0 !default;
 $navbar-toggler-animation-time: 0.2s !default;
 $navbar-toggler-focus-width: 0 !default;
-$navbar-brand-height: 2rem !default;
+$navbar-brand-height: 2.125rem !default;
 $navbar-brand-padding-y: 0 !default;
 $navbar-brand-padding-x: 0 !default;
 
@@ -291,6 +291,8 @@ $navbar-brand-padding-x: 0 !default;
 $nav-link-color: var(--#{$prefix}gray-500) !default;
 $nav-link-hover-bg: var(--#{$prefix}hover-bg) !default;
 $nav-link-hover-color: var(--#{$prefix}active-color) !default;
+$nav-link-padding-x: .438rem !default;
+$nav-link-padding-y: .438rem !default;
 $nav-link-transition: none !default;
 
 // Alerts
@@ -307,6 +309,7 @@ $card-border-color: var(--#{$prefix}border-color) !default;
 $card-cap-bg: color-mix(in srgb, var(--#{$prefix}bg-surface) var(--#{$prefix}cap-color-mix), #000) !default;
 $card-cap-padding-y: var(--#{$prefix}spacer) !default;
 $card-cap-border-color: var(--#{$prefix}border-color-lt) !default;
+$card-title-min-height: calc(3rem + var(--#{$prefix}card-border-width)) !default;
 $cards-grid-gap: var(--#{$prefix}spacer) !default;
 
 // Caret
@@ -329,7 +332,9 @@ $table-striped-bg-factor: .015 !default;
 $table-striped-order: even !default;
 
 // Form group
-$form-text-margin-top: .5rem !default;
+$form-text-margin-top: .438rem !default;
+$form-text-font-size: var(--#{$prefix}font-size-md) !default;
+$form-text-color: var(--#{$prefix}body-color) !default;
 
 $form-group-border-width: var(--#{$prefix}border-width) !default;
 $form-group-border-style: var(--#{$prefix}border-style) !default;

@@ -158,8 +158,8 @@
 
     .nav-link {
         justify-content: center;
-        min-width: 2.5rem;
-        min-height: 2.5rem;
+        min-width: 2.125rem;
+        min-height: 2.125rem;
         border-radius: var(--#{$prefix}border-radius);
         padding-right: var(--#{$prefix}navbar-nav-link-padding-x);
         padding-left: var(--#{$prefix}navbar-nav-link-padding-x);
@@ -173,7 +173,7 @@
     }
 
     .dropdown-menu[data-bs-popper] {
-        --gui-dropdown-spacer: calc(.25rem + var(--gui-dropdown-border-width));
+        --gui-dropdown-spacer: calc(.313rem + var(--gui-dropdown-border-width));
     }
 }
 
@@ -184,8 +184,6 @@
 
     gap: var(--#{$prefix}navbar-brand-gap);
     height: var(--#{$prefix}navbar-brand-height);
-    margin-top: calc((var(--#{$prefix}navbar-height) - var(--#{$prefix}navbar-brand-height) - var(--#{$prefix}navbar-padding-y)) * .25);
-    margin-bottom: calc((var(--#{$prefix}navbar-height) - var(--#{$prefix}navbar-brand-height) - var(--#{$prefix}navbar-padding-y)) * .25);
 
     font-weight: var(--#{$prefix}navbar-brand-font-weight);
     display: inline-flex;
