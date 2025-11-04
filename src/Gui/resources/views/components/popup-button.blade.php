@@ -1,0 +1,1 @@
+<x-gui::button-link {{ $attributes->except(['data-gui-behavior']) }} data-gui-behavior="popup">{{ $slot }}</x-gui::button-link>
