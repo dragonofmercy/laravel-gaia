@@ -35,7 +35,7 @@ class Datatable extends Component
 
         $attributes = [
             'id' => $this->id,
-            'class' => Str::join('datatable', ['datatable-responsive-' . $this->breakpoint, $this->class])
+            'class' => Str::join('datatable', ['datatable-mobile-' . $this->breakpoint, $this->class])
         ];
 
         return '<div ' . (new ComponentAttributeBag($attributes))->toHtml() . '><div class="loading-container"></div><script>' . $action . '</script></div>';

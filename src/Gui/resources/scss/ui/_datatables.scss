@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 .datatable {
     .table {
         th {
@@ -33,7 +35,7 @@
         min-height: 12rem;
 
         &:before {
-            @include loader-circle(map-get($loader-sizes, 'xl'), var(--#{$prefix}primary));
+            @include loader-circle(map.get($loader-sizes, 'xl'), var(--#{$prefix}primary));
         }
     }
 
@@ -68,7 +70,7 @@
     }
 }
 
-.datatable-responsive {
+.datatable-mobile {
     @each $breakpoint, $breakpoint-max-widthin in $grid-breakpoints {
         &#{breakpoint-infix($breakpoint)} {
             @include media-breakpoint-up($breakpoint) {
@@ -97,7 +99,7 @@
             }
 
             table {
-                @extend .table-responsive-#{$breakpoint} !optional;
+                @extend .table-mobile-#{$breakpoint} !optional;
 
                 @include media-breakpoint-down($breakpoint) {
                     thead {

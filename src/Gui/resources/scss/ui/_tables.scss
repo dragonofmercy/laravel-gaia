@@ -37,7 +37,7 @@
     }
 }
 
-.table-responsive {
+.table-mobile {
     @each $breakpoint, $breakpoint-max-widthin in $grid-breakpoints {
         &#{breakpoint-infix($breakpoint)} {
             @include media-breakpoint-down($breakpoint) {
