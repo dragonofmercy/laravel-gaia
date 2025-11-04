@@ -46,6 +46,7 @@ export class Gui {
         this._initDatatables(context);
         this._initFormRemote(context);
         this._initLinkRemote(context);
+        this._initPopup(context);
         this._initRange(context);
         this._initTabs(context);
         this._initButtonLoading(context);
@@ -136,6 +137,27 @@ export class Gui {
         }
 
         $('<a />').attr($attr).GuiModal().data('gui.modal').show();
+    }
+
+    /**
+     * Opens a popup window with the specified URL, dimensions, and configuration settings.
+     *
+     * @param {string} url - The URL to load in the popup window.
+     * @param {string} name - The name of the popup window. Used as the target name for the new window.
+     * @param {number} w - The width of the popup window.
+     * @param {number} h - The height of the popup window.
+     * @param {string} [config='toolbar=no,resizable=yes,scrollbars=yes,menubar=no,location=no,directories=no,status=no'] - A string representing additional window features for the popup.
+     * @return {Window|null} Returns a reference to the newly created window, or null if the popup could not be opened.
+     */
+    openPopup(url, name, w, h, config = 'toolbar=no,resizable=yes,scrollbars=yes,menubar=no,location=no,directories=no,status=no') {
+        const dualScreenLeft = window.screenLeft ?? screen.left;
+        const dualScreenTop = window.screenTop ?? screen.top;
+        const width = window.innerWidth ?? document.documentElement.clientWidth ?? screen.width;
+        const height = window.innerHeight ?? document.documentElement.clientHeight ?? screen.height;
+        const left = ((width / 2) - (w / 2)) + dualScreenLeft;
+        const top = ((height / 2) - (h / 2)) + dualScreenTop;
+        const newWindow = window.open(url, name, `${config},width=${w},height=${h},top=${top},left=${left}`);
+        newWindow?.focus();
     }
 
     /**
@@ -263,7 +285,29 @@ export class Gui {
         $('[data-gui-behavior="modal"]:not(.disabled):not(:disabled)', context).on('click.gui.modal', function(e){
             e.preventDefault();
             Tooltip.getInstance(this)?.hide();
-            $(this).GuiModal().data('gui.modal').show();
+            $(this).blur().GuiModal().data('gui.modal').show();
+        });
+    }
+
+    /**
+     * Initializes modal functionality within the given context by attaching a click event listener
+     * to elements marked with a specific data attribute. The event triggers the modal display logic.
+     *
+     * @param {Object} context - The DOM context in which the modal initialization should occur.
+     * @return {void}
+     */
+    _initPopup(context){
+        $('[data-gui-behavior="popup"]:not(.disabled):not(:disabled)', context).on('click.gui.popup', function(e){
+            e.preventDefault();
+            const $this = $(this);
+            $this.blur();
+            gui.openPopup(
+                $this.attr('href'),
+                $this.attr('data-popup-name'),
+                $this.attr('data-popup-width'),
+                $this.attr('data-popup-height'),
+                $this.attr('data-popup-config')
+            );
         });
     }
 
