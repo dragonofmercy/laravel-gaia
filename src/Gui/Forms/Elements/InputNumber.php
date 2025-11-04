@@ -11,10 +11,11 @@ class InputNumber extends InputText
     {
         parent::initialize();
 
-        $this->addOption('min', 0);
-        $this->addOption('max', 100);
+        $this->addOption('min', null);
+        $this->addOption('max', null);
         $this->addOption('step', 1);
         $this->addOption('unlimitedValue');
+        $this->addOption('displayButtons', true);
     }
 
     /**
@@ -40,9 +41,10 @@ class InputNumber extends InputText
             'min' => $this->getOption('min'),
             'max' => $this->getOption('max'),
             'step' => $this->getOption('step'),
-            'unlimitedValue' => $this->getOption('unlimitedValue')
+            'unlimitedValue' => $this->getOption('unlimitedValue'),
         ];
 
+        $this->setViewVar('displayButtons', $this->getOption('displayButtons'));
         $this->setViewVar('componentConfig', json_encode($componentConfig));
     }
 }
