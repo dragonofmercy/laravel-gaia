@@ -3,6 +3,26 @@
         --#{$prefix}card-border-width: 0;
         --#{$prefix}card-box-shadow: var(--#{$prefix}box-shadow-sm);
     }
+
+    &.loading-active {
+        min-height: 12rem;
+        overflow: hidden;
+
+        &:before {
+            @include absolute-pseudo();
+            background-color: var(--#{$prefix}card-bg);
+            @include border-radius(var(--#{$prefix}modal-border-radius));
+            z-index: 10;
+        }
+
+        &:after {
+            @include absolute-pseudo();
+            margin: auto;
+            @include loader-comet(8rem, var(--#{$prefix}primary));
+            position: absolute;
+            z-index: 11;
+        }
+    }
 }
 
 .card-header {
@@ -13,6 +33,10 @@
     gap: var(--#{$prefix}spacer);
     justify-content: space-between;
     background: 0 0;
+
+    &:not(.h-auto){
+        min-height: $card-title-min-height;
+    }
 }
 
 .card-header-tabs {
@@ -224,6 +248,8 @@
 }
 
 .card-table {
+    --#{$prefix}table-bg: transparent;
+
     margin-bottom: 0;
 
     tr {
