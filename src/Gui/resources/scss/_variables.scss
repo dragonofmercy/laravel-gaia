@@ -175,7 +175,7 @@ $extra-colors: (
 $theme-colors: map.merge($theme-colors, map.merge($extra-colors, ()));
 
 $link-color: $primary !default;
-$link-shade-percentage: 40% !default;
+$link-shade-percentage: 60% !default;
 
 $border-color: var(--#{$prefix}gray-250) !default;
 $border-color-lt: var(--#{$prefix}gray-150) !default;
