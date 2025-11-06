@@ -2,9 +2,8 @@
 
 namespace Gui\Forms\Elements;
 
-use Illuminate\View\View;
-
 use Gui\Forms\Validators\Error;
+use Illuminate\View\View;
 
 class Textarea extends AbstractElement
 {

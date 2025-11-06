@@ -2,11 +2,10 @@
 
 namespace Gui\Forms\Elements;
 
+use Gui\Forms\Validators\Error;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
-
-use Gui\Forms\Validators\Error;
 
 class InputCode extends AbstractElement
 {

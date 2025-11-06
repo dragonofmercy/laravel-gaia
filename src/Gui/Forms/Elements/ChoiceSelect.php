@@ -3,13 +3,12 @@
 namespace Gui\Forms\Elements;
 
 use ErrorException;
+use Gui\Forms\Validators\Error;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Str;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
-
-use Gui\Forms\Validators\Error;
 
 class ChoiceSelect extends AbstractElement
 {

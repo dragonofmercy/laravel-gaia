@@ -2,13 +2,12 @@
 
 namespace Gui\Forms;
 
-use Gui\Forms\Validators\Error;
-use Illuminate\Support\Collection;
-use Illuminate\Support\HtmlString;
-use Illuminate\Contracts\View\View;
-
 use Gui\Forms\Elements\AbstractElement;
 use Gui\Forms\Elements\InputHidden;
+use Gui\Forms\Validators\Error;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Illuminate\Support\HtmlString;
 
 class Decorator
 {

@@ -2,11 +2,10 @@
 
 namespace Gui\View\Components;
 
-use InvalidArgumentException;
-
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use InvalidArgumentException;
 
 class Flash extends Component
 {

@@ -2,8 +2,8 @@
 
 namespace Gui\View\Components;
 
-use Illuminate\View\Component;
 use Demeter\Support\Str;
+use Illuminate\View\Component;
 
 class TablerIcon extends Component
 {

@@ -2,8 +2,8 @@
 
 namespace Gui\Forms\Validators\Formatters;
 
-use Illuminate\Support\Str;
 use Gui\Interfaces\ValidatorFormatterInterface;
+use Illuminate\Support\Str;
 
 class UcWords implements ValidatorFormatterInterface
 {

@@ -3,11 +3,10 @@
 namespace Gui\Forms\Elements;
 
 use Carbon\Carbon;
+use Gui\Forms\Validators\Error;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\ComponentAttributeBag;
-
-use Gui\Forms\Validators\Error;
 
 class ChoiceDate extends AbstractElement
 {

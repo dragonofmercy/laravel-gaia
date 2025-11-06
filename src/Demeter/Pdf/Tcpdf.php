@@ -4,9 +4,8 @@ namespace Demeter\Pdf;
 
 use Closure;
 use Demeter\Support\Str;
-use Illuminate\Support\Collection;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
 
 class Tcpdf extends \TCPDF
 {

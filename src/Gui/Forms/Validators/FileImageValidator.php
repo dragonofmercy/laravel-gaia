@@ -2,8 +2,8 @@
 
 namespace Gui\Forms\Validators;
 
-use Illuminate\Http\UploadedFile;
 use Gui\Dto\ImageDimensions;
+use Illuminate\Http\UploadedFile;
 
 class FileImageValidator extends FileValidator
 {

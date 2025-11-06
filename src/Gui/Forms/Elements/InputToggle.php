@@ -2,8 +2,8 @@
 
 namespace Gui\Forms\Elements;
 
-use Illuminate\Contracts\View\View;
 use Gui\Forms\Validators\Error;
+use Illuminate\Contracts\View\View;
 
 class InputToggle extends Input
 {

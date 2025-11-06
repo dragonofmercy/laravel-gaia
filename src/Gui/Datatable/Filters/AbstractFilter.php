@@ -2,11 +2,10 @@
 
 namespace Gui\Datatable\Filters;
 
-use Illuminate\Support\Collection;
-
 use Gui\Datatable\Engines\AbstractEngine;
 use Gui\Datatable\Engines\EloquentEngine;
 use Gui\Datatable\Filters\Decorators\AbstractDecorator;
+use Illuminate\Support\Collection;
 
 abstract class AbstractFilter
 {

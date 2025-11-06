@@ -2,8 +2,8 @@
 
 namespace Gui\Forms\Validators;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class RuleValidator extends AbstractValidator

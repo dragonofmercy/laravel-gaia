@@ -2,17 +2,16 @@
 
 namespace Gui\Forms\Elements;
 
+use Gui\Forms\Traits\HasAttributes;
+use Gui\Forms\Traits\HasFieldName;
+use Gui\Forms\Traits\HasFormInstance;
+use Gui\Forms\Traits\HasOptions;
+use Gui\Forms\Validators\Error;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
-
-use Gui\Forms\Traits\HasFieldName;
-use Gui\Forms\Traits\HasFormInstance;
-use Gui\Forms\Traits\HasOptions;
-use Gui\Forms\Traits\HasAttributes;
-use Gui\Forms\Validators\Error;
 
 abstract class AbstractElement
 {

@@ -2,12 +2,11 @@
 
 namespace Gui\Forms\Elements;
 
-use InvalidArgumentException;
+use Gui\Forms\Validators\Error;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\ComponentAttributeBag;
-
-use Gui\Forms\Validators\Error;
+use InvalidArgumentException;
 
 class EloquentSuggest extends InputAutocomplete
 {

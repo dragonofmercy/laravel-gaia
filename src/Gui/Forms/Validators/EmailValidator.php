@@ -7,10 +7,8 @@ use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\Extra\SpoofCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\RFCValidation;
-
-use Illuminate\Validation\Concerns\FilterEmailValidation;
-
 use Gui\Forms\Validators\Formatters\LowerCase;
+use Illuminate\Validation\Concerns\FilterEmailValidation;
 
 class EmailValidator extends StringValidator
 {

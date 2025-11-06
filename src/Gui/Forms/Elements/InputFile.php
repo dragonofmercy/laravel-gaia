@@ -2,12 +2,11 @@
 
 namespace Gui\Forms\Elements;
 
+use Gui\Forms\Validators\Error;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
-
-use Gui\Forms\Validators\Error;
 
 class InputFile extends InputGroup
 {

@@ -2,15 +2,14 @@
 
 namespace Gui\Forms\Validators;
 
-use InvalidArgumentException;
-use Illuminate\Support\Collection;
-
 use Gui\Forms\Traits\HasFieldName;
 use Gui\Forms\Traits\HasFlags;
+use Gui\Forms\Traits\HasFormInstance;
 use Gui\Forms\Traits\HasMessages;
 use Gui\Forms\Traits\HasOptions;
-use Gui\Forms\Traits\HasFormInstance;
 use Gui\Interfaces\ValidatorFormatterInterface;
+use Illuminate\Support\Collection;
+use InvalidArgumentException;
 
 abstract class AbstractValidator
 {

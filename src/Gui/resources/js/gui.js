@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { Dropdown, Tooltip, Popover, Toast, Modal } from 'bootstrap';
+import { Dropdown, Modal, Popover, Toast, Tooltip } from 'bootstrap';
 
 import './src/gui-calendar.js';
 import './src/gui-control-autocomplete.js';

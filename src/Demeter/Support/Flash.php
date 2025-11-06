@@ -2,8 +2,8 @@
 
 namespace Demeter\Support;
 
-use InvalidArgumentException;
 use Gui\View\Components\Flash as FlashComponent;
+use InvalidArgumentException;
 
 class Flash
 {

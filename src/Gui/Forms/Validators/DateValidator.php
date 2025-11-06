@@ -2,8 +2,8 @@
 
 namespace Gui\Forms\Validators;
 
-use Throwable;
 use Carbon\Carbon;
+use Throwable;
 
 class DateValidator extends AbstractValidator
 {
