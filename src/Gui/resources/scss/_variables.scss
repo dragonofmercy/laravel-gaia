@@ -309,7 +309,7 @@ $card-border-color: var(--#{$prefix}border-color) !default;
 $card-cap-bg: color-mix(in srgb, var(--#{$prefix}bg-surface) var(--#{$prefix}cap-color-mix), #000) !default;
 $card-cap-padding-y: var(--#{$prefix}spacer) !default;
 $card-cap-border-color: var(--#{$prefix}border-color-lt) !default;
-$card-title-min-height: calc(3.125rem + var(--#{$prefix}card-border-width)) !default;
+$card-header-min-height: calc(3.125rem + var(--#{$prefix}card-border-width)) !default;
 $cards-grid-gap: var(--#{$prefix}spacer) !default;
 
 // Caret

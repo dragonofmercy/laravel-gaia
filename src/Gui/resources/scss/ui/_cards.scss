@@ -35,7 +35,7 @@
     background: 0 0;
 
     &:not(.h-auto){
-        min-height: $card-title-min-height;
+        min-height: $card-header-min-height;
     }
 }
 
