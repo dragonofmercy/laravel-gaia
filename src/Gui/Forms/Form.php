@@ -2,6 +2,7 @@
 
 namespace Gui\Forms;
 
+use BackedEnum;
 use Gui\Forms\Elements\AbstractElement;
 use Gui\Forms\Validators\AbstractValidator;
 use Gui\Forms\Validators\Error;
@@ -536,6 +537,10 @@ abstract class Form implements Htmlable
      */
     public function setDefault(string $name, mixed $default): void
     {
+        if($default instanceof BackedEnum){
+            $default = $default->value;
+        }
+
         $this->defaults[$name] = $default;
     }
 
