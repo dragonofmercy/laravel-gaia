@@ -11,6 +11,7 @@ export class GuiControlToken extends Autocomplete {
         max: null,
         sortable: false,
         delimiters: [],
+        openOnFocus: false,
         searchConjunction: 'and',
         searchRespectWordBoundaries: false
     }

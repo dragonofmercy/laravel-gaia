@@ -17,6 +17,7 @@ class ChoiceToken extends ChoiceSelect
         $this->addOption('delimiters', [188]);
         $this->addOption('max', null);
         $this->addOption('limit', 10);
+        $this->addOption('minLength', 1);
         $this->addOption('sortable', false);
         $this->addOption('openOnFocus', false);
         $this->addOption('reference', 'self');
@@ -47,6 +48,7 @@ class ChoiceToken extends ChoiceSelect
         $componentConfig = [
             'max' => $this->getOption('max'),
             'limit' => $this->getOption('limit'),
+            'minLength' => $this->getOption('minLength'),
             'sortable' => $this->getOption('sortable'),
             'reference' => $this->getOption('reference'),
             'delimiters' => $this->getOption('delimiters'),
