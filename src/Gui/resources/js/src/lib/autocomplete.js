@@ -41,12 +41,6 @@ export class Autocomplete {
         }).on('blur.gui', () => {
             this._dropdownClose();
         });
-
-        if(this.options.openOnFocus){
-            this._getSearchElement().on('focus.gui', () => {
-                this._input();
-            });
-        }
     }
 
     _getSearchElement(){

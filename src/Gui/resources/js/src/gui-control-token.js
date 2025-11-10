@@ -9,9 +9,9 @@ export class GuiControlToken extends Autocomplete {
 
     static DEFAULTS = {
         max: null,
+        mode: 'row',
         sortable: false,
         delimiters: [],
-        openOnFocus: false,
         searchConjunction: 'and',
         searchRespectWordBoundaries: false
     }
@@ -25,13 +25,14 @@ export class GuiControlToken extends Autocomplete {
         this.sifter = new Sifter({}, { diacritics: true });
 
         this.$container = this.$element.parent().find('.token-container');
+        this.$container.addClass('layout-' + this.options.mode);
+
         this.$input = $('<input class="search" type="text" autocomplete="off" />');
         this.$input.on('input.gui blur.gui', () => {
             this._resizeInput();
         });
         this.$input.appendTo(this.$container);
-
-        super._bindEvents();
+        this._bindEvents();
 
         this.$element.on('token_add.gui, token_remove.gui', () => {
             this._setSearchVisiblity(!this._limitReached())
@@ -39,7 +40,7 @@ export class GuiControlToken extends Autocomplete {
             this.insertToken($(option).attr('value'), $(option).html(), false);
         });
 
-        this.$container.on('click', '.btn-close', e => {
+        this.$container.on('click.gui', '.btn-close', e => {
             e.preventDefault();
             this.removeToken($(e.currentTarget).parents('.token').attr('data-value'));
         }).on('focusout', () => {

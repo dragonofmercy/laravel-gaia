@@ -93,16 +93,4 @@
             }
         }
     }
-
-    &.layout-single {
-        .token, .search {
-            width: 100%;
-            padding-left: #{$input-padding-x - ($input-padding-y * .75)};
-            padding-right: #{$input-padding-x - ($input-padding-y * .75)};
-
-            &>span {
-                flex-grow: 1;
-            }
-        }
-    }
 }

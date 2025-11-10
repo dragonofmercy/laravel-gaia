@@ -19,11 +19,10 @@ class ChoiceToken extends ChoiceSelect
         $this->addOption('limit', 10);
         $this->addOption('minLength', 1);
         $this->addOption('sortable', false);
-        $this->addOption('openOnFocus', false);
         $this->addOption('reference', 'self');
         $this->addOption('searchConjunction', 'and');
         $this->addOption('searchRespectWordBoundaries', false);
-        $this->addOption('layoutDirection', 'row');
+        $this->addOption('mode', 'row');
     }
 
     /**
@@ -41,25 +40,22 @@ class ChoiceToken extends ChoiceSelect
     {
         parent::beforeRender();
 
-        if(null === $this->getOption('max') || $this->getOption('max') > 1){
-            $this->setOption('multiple', true);
-        }
+        $this->setOption('multiple', true);
 
         $componentConfig = [
             'max' => $this->getOption('max'),
+            'mode' => $this->getOption('mode'),
             'limit' => $this->getOption('limit'),
-            'minLength' => $this->getOption('minLength'),
             'sortable' => $this->getOption('sortable'),
             'reference' => $this->getOption('reference'),
+            'minLength' => $this->getOption('minLength'),
             'delimiters' => $this->getOption('delimiters'),
-            'openOnFocus' => $this->getOption('openOnFocus'),
             'searchConjunction' => $this->getOption('searchConjunction'),
             'searchRespectWordBoundaries' >= $this->getOption('searchRespectWordBoundaries')
         ];
 
         $this->appendAttribute('class', 'form-control');
         $this->appendAttribute('class', 'token-container');
-        $this->appendAttribute('class', 'layout-' . $this->getOption('layoutDirection'));
 
         $attributes = [
             'class' => str_replace('form-select ', '', $this->getAttribute('class'))
