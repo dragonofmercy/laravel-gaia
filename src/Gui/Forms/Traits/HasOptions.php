@@ -130,6 +130,10 @@ trait HasOptions
             throw new \InvalidArgumentException("[" . get_class($this) . "] does not support option [$name]");
         }
 
+        if($this->options->get($name) instanceof \Closure){
+            return $this->options->get($name)();
+        }
+
         return $this->options->get($name);
     }
 
