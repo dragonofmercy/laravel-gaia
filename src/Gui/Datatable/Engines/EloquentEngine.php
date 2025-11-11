@@ -14,14 +14,16 @@ class EloquentEngine extends AbstractEngine
     protected Builder $query;
 
     /**
-     * Constructor.
+     * Constructor method for initializing the class with a query and an optional UID.
      *
-     * @param string|Builder $query
+     * @param string|Builder $query The query parameter, can be a string representing a class name or an instance of Builder.
+     * @param string|null $uid Optional unique identifier for the instance.
+     * @return void
      */
-    public function __construct(string|Builder $query)
+    public function __construct(string|Builder $query, ?string $uid = null)
     {
         $this->query = is_string($query) ? call_user_func($query . '::query') : $query;
-        parent::__construct();
+        parent::__construct($uid);
     }
 
     /**

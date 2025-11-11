@@ -108,9 +108,12 @@ abstract class AbstractEngine
     protected bool $built = false;
 
     /**
-     * Constructor.
+     * Constructor
+     *
+     * @param string|null $uid Optional unique identifier
+     * @return void
      */
-    public function __construct()
+    public function __construct(?string $uid = null)
     {
         $this->columns = new Collection();
         $this->columnsOptions = new Collection();
@@ -125,7 +128,7 @@ abstract class AbstractEngine
             'row_limit' => 25,
         ]);
 
-        $this->uid = RequestFacade::get(self::PARAM_UID);
+        $this->uid = RequestFacade::get(self::PARAM_UID, $uid);
         $this->currentPage = RequestFacade::get(self::PARAM_PAGE, 1);
         $this->sortBy = RequestFacade::get(self::PARAM_SORT_BY);
         $this->sortDirection = RequestFacade::get(self::PARAM_SORT_DIRECTION);

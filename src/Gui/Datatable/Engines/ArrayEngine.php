@@ -13,14 +13,16 @@ class ArrayEngine extends AbstractEngine
     protected Collection $collection;
 
     /**
-     * Constructor.
+     * Constructor method to initialize the object with a collection and optional unique identifier.
      *
-     * @param Collection|array $collection
+     * @param Collection|array $collection The collection of items or an array to be converted into a collection.
+     * @param string|null $uid An optional unique identifier for the object.
+     * @return void
      */
-    public function __construct(Collection|array $collection)
+    public function __construct(Collection|array $collection, ?string $uid = null)
     {
         $this->collection = $collection instanceof Collection ? $collection : Collection::make($collection);
-        parent::__construct();
+        parent::__construct($uid);
     }
 
     /**
