@@ -11,7 +11,7 @@ export class GuiCalendar {
         min: null,
         max: null,
         initialDate: null,
-        useMask: true,
+        useMask: false,
         displayMask: true,
         withTime: false,
         timeOnly: false,
