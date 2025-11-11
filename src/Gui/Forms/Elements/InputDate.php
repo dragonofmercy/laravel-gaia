@@ -32,7 +32,7 @@ class InputDate extends InputGroup
         $this->addOption('startAt');
         $this->addOption('endAt');
         $this->addOption('disabledDates');
-        $this->addOption('useMask', true);
+        $this->addOption('useMask', false);
         $this->addOption('displayMask', true);
     }
 
