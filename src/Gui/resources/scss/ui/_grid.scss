@@ -8,6 +8,8 @@
 }
 
 .row {
+    --#{$prefix}gutter-x: #{$spacer};
+
     &>* {
         min-width: 0;
     }
