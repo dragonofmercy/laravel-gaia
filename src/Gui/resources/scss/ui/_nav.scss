@@ -49,6 +49,8 @@
 
 .nav-tabs {
     .nav-link {
+        --#{$prefix}nav-link-padding-x: #{$nav-tabs-padding-x};
+
         &.nav-link-error, &.nav-link-error:hover, &.nav-link-error.active {
             --#{$prefix}nav-link-font-weight: var(--#{$prefix}font-weight-bold);
 

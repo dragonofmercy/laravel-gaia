@@ -42,6 +42,8 @@
 .card-header-tabs {
     background: var(--#{$prefix}card-cap-bg);
     flex: 1;
+    align-self: stretch;
+    align-items: end;
     margin: calc(var(--#{$prefix}card-cap-padding-y) * -1) calc(var(--#{$prefix}card-cap-padding-x) * -1) calc(var(--#{$prefix}card-cap-padding-y) * -1);
     padding: var(--#{$prefix}card-cap-padding-y) calc(var(--#{$prefix}card-cap-padding-x) * .5) 0;
     border-radius: var(--#{$prefix}card-border-radius) var(--#{$prefix}card-border-radius) 0 0;
@@ -166,8 +168,8 @@
 
 .card-tabs {
     .nav-tabs {
-        position: relative;
         z-index: 1;
+        position: relative;
         border-bottom: 0;
 
         .nav-link {
