@@ -1,13 +1,9 @@
-<div class="input-group input-group-flat gui-control-number">
-    @if($displayButtons)
-    <div class="input-group-text">
-        <a class="link-secondary" data-trigger="down"><x-gui::tabler-icon name="minus" /></a>
-    </div>
-    @endif
+<div class="input-group input-group-flat form-spin">
     @include('gui::forms.elements.input')
     @if($displayButtons)
     <div class="input-group-text">
-        <a class="link-secondary" data-trigger="up"><x-gui::tabler-icon name="plus" /></a>
+        <a data-trigger="up"></a>
+        <a data-trigger="down"></a>
     </div>
     @endif
 </div>

@@ -1,0 +1,45 @@
+.form-spin {
+    .input-group-text {
+        background-color: var(--#{$prefix}border-color);
+        display: flex;
+        flex-direction: column;
+        gap: $input-border-width;
+        padding: 0 0 0 $input-border-width !important;
+        overflow: hidden;
+
+        a {
+            background-color: $input-bg;
+            width: 1.5rem;
+            height: 50%;
+            position: relative;
+
+            &:hover {
+                background-color: var(--#{$prefix}primary-bg-subtle);
+            }
+
+            &::before {
+                background-image: var(--#{$prefix}form-spin-bg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: .5rem;
+                content: "";
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            &[data-trigger=up] {
+                &::before {
+                    --#{$prefix}form-spin-bg: #{escape-svg($form-spin-caret-up)};
+                }
+            }
+
+            &[data-trigger=down] {
+                &::before {
+                    --#{$prefix}form-spin-bg: #{escape-svg($form-spin-caret-down)};
+                }
+            }
+        }
+    }
+}
+

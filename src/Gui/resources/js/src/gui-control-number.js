@@ -37,6 +37,7 @@ export class GuiControlNumber {
         this.$btns = this.$element.parent().find('[data-trigger]');
 
         this.$btns.on('mousedown touchstart', e => {
+            e.preventDefault();
             this._mouseDown(e);
         }).on('mouseup mouseout touchend touchcancel', () => {
             this._stopTimer();

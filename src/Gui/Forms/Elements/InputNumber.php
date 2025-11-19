@@ -33,7 +33,6 @@ class InputNumber extends InputText
     {
         parent::beforeRender();
 
-        $this->appendAttribute('class', 'text-center');
         $this->setAttribute('autocomplete', 'off');
         $this->setAttribute('inputmode', 'numeric');
 
