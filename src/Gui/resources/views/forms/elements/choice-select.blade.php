@@ -11,3 +11,8 @@
     @endif
 @endforeach
 </select>
+@isset($plugin)
+    <x-gui::javascript-ready>
+        $('#{{ $attr->get('id') }}').{{ $plugin }}();
+    </x-gui::javascript-ready>
+@endif

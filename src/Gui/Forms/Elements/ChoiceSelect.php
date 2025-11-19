@@ -33,6 +33,7 @@ class ChoiceSelect extends AbstractElement
         $this->addOption('multiple', false);
         $this->addOption('addEmpty', false);
         $this->addOption('optionsAttributes', []);
+        $this->addOption('plugin');
     }
 
     /**
@@ -127,6 +128,7 @@ class ChoiceSelect extends AbstractElement
         $choices = $this->getChoices();
 
         $this->setViewVar('options', $choices);
+        $this->setViewVar('plugin', $this->getOption('plugin'));
         $this->setViewVar('optionsAttributes', $this->getOptionsAttributes($value, $choices));
     }
 }
