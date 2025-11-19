@@ -6,8 +6,7 @@
     --#{$prefix}avatar-font-size: calc(var(--#{$prefix}avatar-size) - (var(--#{$prefix}avatar-size) * .65));
     --#{$prefix}avatar-padding: calc(var(--#{$prefix}avatar-size) - (var(--#{$prefix}avatar-size) * .85));
     --#{$prefix}avatar-icon-size: calc(var(--#{$prefix}avatar-size) - (var(--#{$prefix}avatar-size) * .4));
-    --#{$prefix}avatar-box-shadow-color: var(--#{$prefix}border-color-translucent);
-    --#{$prefix}avatar-box-shadow: inset 0 0 0 var(--#{$prefix}border-width) var(--#{$prefix}avatar-box-shadow-color);
+    --#{$prefix}avatar-box-shadow: var(--#{$prefix}shadow-border);
     --#{$prefix}avatar-default-bg: var(--#{$prefix}card-bg, var(--#{$prefix}modal-bg), var(--#{$prefix}body-bg));
 
     width: var(--#{$prefix}avatar-size);
@@ -58,9 +57,6 @@
 @each $name, $size in $avatar-sizes {
     .avatar-#{$name} {
         --#{$prefix}avatar-size: #{$size};
-        --#{$prefix}avatar-font-size: #{$size - ($size * .65)};
-        --#{$prefix}avatar-padding: #{$size - ($size * .85)};
-        --#{$prefix}avatar-icon-size: #{$size - ($size * .4)};
     }
 }
 
