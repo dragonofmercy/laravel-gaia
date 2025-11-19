@@ -2,6 +2,6 @@
     @if(strlen($slot))
         {{ $slot }}
     @elseif(!$image)
-        {{ $content }}
+        <span class="initial">{{ $content }}</span>
     @endif
 </span>
