@@ -38,6 +38,10 @@
         --#{$prefix}#{$name}-darken: color-mix(in oklab, var(--#{$prefix}#{$name}), #000 10%);
         --#{$prefix}#{$name}-darker: color-mix(in oklab, var(--#{$prefix}#{$name}), #000 20%);
     }
+
+    @each $name, $value in $box-shadows {
+        --#{$prefix}shadow#{if($name, '-#{$name}', '')}: #{$value};
+    }
 }
 
 :focus-visible {

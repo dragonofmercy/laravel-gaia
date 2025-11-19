@@ -248,6 +248,25 @@ $underline-styles: (
     "dotted": dotted,
 ) !default;
 
+// Shadows
+$box-shadow: rgba(var(--#{$prefix}body-color-rgb), 0.04) 0 2px 4px 0 !default;
+$box-shadow-transparent: 0 0 0 0 transparent !default;
+$box-shadow-border: inset 0 0 0 1px var(--#{$prefix}border-color-translucent) !default;
+$box-shadow-input: 0 1px 1px rgba(var(--#{$prefix}body-color-rgb), 0.06) !default;
+$box-shadow-card: 0 0 4px rgba(var(--#{$prefix}body-color-rgb), 0.04) !default;
+$box-shadow-card-hover: rgba(var(--#{$prefix}body-color-rgb), 0.16) 0 2px 16px 0 !default;
+$box-shadow-dropdown: 0 16px 24px 2px rgba(0, 0, 0, 0.07), 0 6px 30px 5px rgba(0, 0, 0, 0.06), 0 8px 10px -5px rgba(0, 0, 0, 0.1) !default;
+
+$box-shadows: (
+    null: $box-shadow,
+    border: $box-shadow-border,
+    transparent: $box-shadow-transparent,
+    input: $box-shadow-input,
+    card: $box-shadow-card,
+    card-hover: $box-shadow-card-hover,
+    dropdown: $box-shadow-dropdown,
+) !default;
+
 // z-indexes
 $zindex-dropdown:                   1000 !default;
 $zindex-sticky:                     1020 !default;
