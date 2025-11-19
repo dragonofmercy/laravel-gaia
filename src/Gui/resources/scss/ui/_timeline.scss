@@ -41,6 +41,7 @@
     background: var(--#{$prefix}bg-surface-secondary);
     color: var(--#{$prefix}secondary);
     border-radius: var(--#{$prefix}border-radius);
+    box-shadow: var(--#{$prefix}shadow-border);
 }
 
 .timeline-event-avatar {
