@@ -279,6 +279,9 @@ $zindex-modal:                      1065 !default;
 $zindex-popover:                    1080 !default;
 $zindex-tooltip:                    1090 !default;
 
+// Button
+$btn-box-shadow: none !default;
+
 // Icons
 $icon-stroke-width: 1.5 !default;
 $icon-sizes: $avatar-sizes !default;
@@ -419,10 +422,6 @@ $form-select-indicator-color: $gray-800 !default;
 $form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='#{$form-select-indicator-color}' d='M4.22 6.53a.75.75 0 0 0 1.06 0L8 3.81l2.72 2.72a.75.75 0 1 0 1.06-1.06L8.53 2.22a.75.75 0 0 0-1.06 0L4.22 5.47a.75.75 0 0 0 0 1.06m0 2.94a.75.75 0 0 1 1.06 0L8 12.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0l-3.25-3.25a.75.75 0 0 1 0-1.06' /></svg>") !default;
 $form-select-indicator-color-dark: $gray-300 !default;
 $form-select-indicator-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='#{$form-select-indicator-color-dark}' d='M4.22 6.53a.75.75 0 0 0 1.06 0L8 3.81l2.72 2.72a.75.75 0 1 0 1.06-1.06L8.53 2.22a.75.75 0 0 0-1.06 0L4.22 5.47a.75.75 0 0 0 0 1.06m0 2.94a.75.75 0 0 1 1.06 0L8 12.19l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0l-3.25-3.25a.75.75 0 0 1 0-1.06' /></svg>") !default;
-
-// Form Spin
-$form-spin-caret-up: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 189 95'><path fill='#{$gray-500}' d='M187.011 88.228 96.605.438c0-1.514-3.93-1.514-5.896 0L.303 88.228v4.54c1.966 1.514 1.966 1.514 3.931 1.514h180.812c1.965 0 1.965 0 3.93-1.513 0-1.514 0-3.028-1.965-4.541Z'/></svg>") !default;
-$form-spin-caret-down: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 189 95'><path fill='#{$gray-500}' d='m1.965 6.26 90.406 87.79c0 1.514 3.93 1.514 5.896 0l90.406-87.79V1.72c-1.965-1.514-1.965-1.514-3.93-1.514H3.93c-1.965 0-1.965 0-3.93 1.513C0 3.233 0 4.747 1.965 6.26Z'/></svg>") !default;
 
 // Dropdown
 $dropdown-min-width: 12rem !default;
