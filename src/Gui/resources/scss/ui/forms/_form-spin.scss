@@ -1,42 +1,20 @@
 .form-spin {
     .input-group-text {
-        background-color: var(--#{$prefix}border-color);
-        display: flex;
-        flex-direction: column;
-        gap: $input-border-width;
-        padding: 0 0 0 $input-border-width !important;
-        overflow: hidden;
+        padding: 0;
 
-        a {
-            background-color: $input-bg;
-            width: 1.5rem;
-            height: 50%;
-            position: relative;
+        .btn-group-vertical {
+            height: calc(100% + (var(--#{$prefix}border-width) * 2));
+            margin: 0 calc(var(--#{$prefix}border-width) * -1);
 
-            &:hover {
-                background-color: var(--#{$prefix}primary-bg-subtle);
-            }
+            a {
+                --#{$prefix}btn-icon-size: .825rem;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
 
-            &::before {
-                background-image: var(--#{$prefix}form-spin-bg);
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: .5rem;
-                content: "";
-                display: block;
-                width: 100%;
-                height: 100%;
-            }
-
-            &[data-trigger=up] {
-                &::before {
-                    --#{$prefix}form-spin-bg: #{escape-svg($form-spin-caret-up)};
-                }
-            }
-
-            &[data-trigger=down] {
-                &::before {
-                    --#{$prefix}form-spin-bg: #{escape-svg($form-spin-caret-down)};
+                .icon {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
             }
         }

@@ -1,9 +1,15 @@
-<div class="input-group input-group-flat form-spin">
+<div class="input-group form-spin">
     @include('gui::forms.elements.input')
     @if($displayButtons)
     <div class="input-group-text">
-        <a data-trigger="up"></a>
-        <a data-trigger="down"></a>
+        <div class="btn-group-vertical">
+            <a class="btn btn-addon" data-trigger="up">
+                <x-gui::tabler-icon name="caret-up" :filled="true" />
+            </a>
+            <a class="btn btn-addon" data-trigger="down">
+                <x-gui::tabler-icon name="caret-down" :filled="true" />
+            </a>
+        </div>
     </div>
     @endif
 </div>
