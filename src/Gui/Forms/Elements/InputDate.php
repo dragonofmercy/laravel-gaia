@@ -21,7 +21,7 @@ class InputDate extends InputGroup
         parent::initialize();
 
         $this->addOption('icon', '<x-gui::tabler-icon name="calendar-search" />');
-        $this->addOption('iconPosition', 'suffix');
+        $this->addOption('iconPosition', 'prefix');
         $this->addOption('locale', app()->currentLocale());
         $this->addOption('displayToday', true);
         $this->addOption('withTime', false);
