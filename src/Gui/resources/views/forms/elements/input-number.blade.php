@@ -4,10 +4,10 @@
     <div class="input-group-text">
         <div class="btn-group-vertical">
             <a class="btn btn-addon" data-trigger="up">
-                <x-gui::tabler-icon name="caret-up" :filled="true" />
+                <x-gui::tabler-icon name="caret-up" />
             </a>
             <a class="btn btn-addon" data-trigger="down">
-                <x-gui::tabler-icon name="caret-down" :filled="true" />
+                <x-gui::tabler-icon name="caret-down" />
             </a>
         </div>
     </div>
