@@ -3,6 +3,7 @@
         position: relative;
         align-items: start;
         color: var(--#{$prefix}tertiary);
+        padding: $input-group-addon-padding-y ($input-group-addon-padding-x * .75);
         text-align: right;
         user-select: none;
     }
