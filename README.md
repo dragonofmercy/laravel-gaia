@@ -23,7 +23,7 @@ return [
 Don't forget to publish assets
 
 ````bash
-php artisan vendor:publish 
+php artisan vendor:publish --tag=gui
 ````
 
 This is a home package no support will be provided!  
