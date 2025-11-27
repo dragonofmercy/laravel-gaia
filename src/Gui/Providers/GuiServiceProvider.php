@@ -18,12 +18,8 @@ class GuiServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if(app()->runningInConsole()){
-
             $this->publishes([
-                __DIR__ . '/../../../config/gui.php' => config_path('gui.php')
-            ], 'gui-config');
-
-            $this->publishes([
+                __DIR__ . '/../../../config/gui.php' => $this->app->configPath('gui.php'),
                 __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/gui'),
             ], 'gui');
         }
