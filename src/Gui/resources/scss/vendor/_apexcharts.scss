@@ -1,10 +1,26 @@
-.apexcharts-tooltip {
+.apexcharts-tooltip,
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
     color: $tooltip-color !important;
     background: $tooltip-bg !important;
     font-size: $tooltip-font-size !important;
-    padding: var(--#{$prefix}spacer-1) !important;
     box-shadow: none !important;
     border: 0 !important;
+    border-radius: var(--#{$prefix}border-radius-sm) !important;
+}
+
+.apexcharts-tooltip {
+    padding: var(--#{$prefix}spacer-1) !important;
+}
+
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
+    padding: var(--#{$prefix}spacer-2) !important;
+
+    &:before,
+    &:after {
+        border-bottom-color: $tooltip-bg !important;
+    }
 }
 
 .apexcharts-tooltip-title {
@@ -36,10 +52,6 @@
         height: 100% !important;
         border: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color) !important;
     }
-}
-
-.apexcharts-text {
-    fill: var(--#{$prefix}body-color) !important;
 }
 
 .apexcharts-gridline {

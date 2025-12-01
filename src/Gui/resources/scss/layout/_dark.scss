@@ -14,9 +14,9 @@
     --#{$prefix}active-color: var(--#{$prefix}white);
 
     --#{$prefix}border-color: var(--#{$prefix}gray-700);
+    --#{$prefix}border-color-lt: var(--#{$prefix}gray-750);
     --#{$prefix}border-color-darken: var(--#{$prefix}gray-600);
     --#{$prefix}border-color-darker: var(--#{$prefix}gray-500);
-    --#{$prefix}border-color-lt: var(--#{$prefix}gray-750);
     --#{$prefix}border-color-translucent: #{$border-color-translucent-dark};
 
     --#{$prefix}form-invalid-border-color: var(--#{$prefix}danger);
