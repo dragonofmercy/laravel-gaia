@@ -1,0 +1,55 @@
+.mention {
+    --#{$prefix}mention-bg: var(--#{$prefix}bg-surface-secondary);
+    --#{$prefix}mention-color: var(--#{$prefix}body-color);
+
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--#{$prefix}spacer-1);
+    box-shadow: var(--#{$prefix}shadow-border);
+    border-radius: var(--#{$prefix}border-radius-pill);
+    font-weight: var(--#{$prefix}font-weight-medium);
+    line-height: 1em;
+    color: var(--#{$prefix}mention-color);
+    padding: var(--#{$prefix}spacer-1) var(--#{$prefix}spacer-2);
+    margin: calc(var(--#{$prefix}spacer-1) * -1) 0;
+    background-color: var(--#{$prefix}mention-bg);
+    white-space: nowrap;
+
+    .icon {
+        --#{$prefix}icon-size: 1em;
+    }
+
+    @at-root a#{&} {
+        --#{$prefix}text-decoration-hover: underline;
+        cursor: pointer;
+    }
+}
+
+.mention-app,
+.mention-avatar,
+.mention-color {
+    width: 1em;
+    height: 1em;
+    border-radius: var(--#{$prefix}border-radius-pill);
+    box-shadow: var(--#{$prefix}shadow-border);
+    margin-left: calc(var(--#{$prefix}spacer-1) * -1);
+    background-position: center center;
+    background-size: 100%;
+    align-self: center;
+}
+
+.mention-app {
+    box-shadow: none;
+    margin-left: 0;
+}
+
+.mention-avatar {
+    --#{$prefix}avatar-size: 1em;
+}
+
+@each $color, $value in $theme-colors {
+    .mention-#{$color} {
+        --#{$prefix}mention-bg: var(--#{$prefix}#{$color}-lt);
+        --#{$prefix}mention-color: var(--#{$prefix}#{$color});
+    }
+}
