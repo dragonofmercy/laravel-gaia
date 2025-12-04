@@ -80,9 +80,8 @@
     }
 
     .btn-outline-#{$color} {
-        --#{$prefix}btn-bg: transparent;
+        --#{$prefix}btn-bg: var(--#{$prefix}bg-surface);
         --#{$prefix}btn-color: var(--#{$prefix}#{$color});
-        //--#{$prefix}btn-border-color: var(--#{$prefix}#{$color});
 
         --#{$prefix}btn-hover-bg: color-mix(in srgb, var(--#{$prefix}#{$color}-darken) var(--#{$prefix}button-color-mix), #000);
         --#{$prefix}btn-hover-color: var(--#{$prefix}#{$color}-fg);
