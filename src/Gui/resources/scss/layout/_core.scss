@@ -17,7 +17,7 @@ body {
 .layout-boxed {
     @include media-breakpoint-up(md) {
         background: var(--#{$prefix}bg-surface-dark) linear-gradient(to right, rgba(#fff, .1), transparent) fixed;
-        padding: var(--#{$prefix}spacer);
+        padding: 0 var(--#{$prefix}spacer);
     }
 
     .page {
@@ -26,17 +26,6 @@ body {
         @include media-breakpoint-up(md){
             border: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
             background: var(--#{$prefix}body-bg);
-            border-radius: var(--#{$prefix}border-radius);
-
-            > .navbar:first-child {
-                border-top-left-radius: var(--#{$prefix}border-radius);
-                border-top-right-radius: var(--#{$prefix}border-radius);
-            }
-
-            > .footer {
-                border-bottom-left-radius: var(--#{$prefix}border-radius);
-                border-bottom-right-radius: var(--#{$prefix}border-radius);
-            }
         }
 
         @include media-breakpoint-up(xl) {
