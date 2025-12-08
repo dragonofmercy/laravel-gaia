@@ -24,7 +24,8 @@ body {
         margin: 0 auto;
 
         @include media-breakpoint-up(md){
-            border: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
+            border-left: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
+            border-right: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
             background: var(--#{$prefix}body-bg);
         }
 
