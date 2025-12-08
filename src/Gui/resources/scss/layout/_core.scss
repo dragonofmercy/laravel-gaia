@@ -16,17 +16,27 @@ body {
 
 .layout-boxed {
     @include media-breakpoint-up(lg) {
-        background: var(--#{$prefix}bg-surface-dark) linear-gradient(to bottom, rgba(#fff, .1), transparent) fixed;
-        padding: 0 var(--#{$prefix}spacer);
+        background: var(--#{$prefix}bg-surface-dark) linear-gradient(to top, rgba(#fff, .1), transparent) fixed;
+        padding: var(--#{$prefix}spacer);
+        padding-bottom: 0;
     }
 
     .page {
         margin: 0 auto;
 
         @include media-breakpoint-up(lg){
-            border-left: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
-            border-right: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
+            max-width: #{map.get($container-max-widths, lg)};
+            border: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
+            border-bottom: none;
             background: var(--#{$prefix}body-bg);
+
+            border-top-left-radius: var(--#{$prefix}border-radius);
+            border-top-right-radius: var(--#{$prefix}border-radius);
+
+            > .navbar:first-child {
+                border-top-left-radius: var(--#{$prefix}border-radius);
+                border-top-right-radius: var(--#{$prefix}border-radius);
+            }
         }
 
         @include media-breakpoint-up(xl) {
