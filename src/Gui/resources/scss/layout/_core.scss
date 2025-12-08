@@ -15,15 +15,15 @@ body {
 }
 
 .layout-boxed {
-    @include media-breakpoint-up(md) {
-        background: var(--#{$prefix}bg-surface-dark) linear-gradient(to right, rgba(#fff, .1), transparent) fixed;
+    @include media-breakpoint-up(lg) {
+        background: var(--#{$prefix}bg-surface-dark) linear-gradient(to bottom, rgba(#fff, .1), transparent) fixed;
         padding: 0 var(--#{$prefix}spacer);
     }
 
     .page {
         margin: 0 auto;
 
-        @include media-breakpoint-up(md){
+        @include media-breakpoint-up(lg){
             border-left: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
             border-right: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
             background: var(--#{$prefix}body-bg);
