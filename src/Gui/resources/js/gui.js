@@ -27,9 +27,6 @@ $.ajaxSetup({
     dataType: 'text'
 });
 
-window.jQuery = $;
-window.$ = $;
-
 window.GuiDatatable = GuiDatatable;
 window.bootstrap = { Dropdown, Tooltip, Popover, Toast, Modal };
 
