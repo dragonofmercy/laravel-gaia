@@ -1,5 +1,6 @@
 .pagination {
     display: flex;
+    gap: var(--#{$prefix}spacer-1);
 }
 
 .page-item {
