@@ -501,3 +501,9 @@ $loader-sizes: (
     "sm":  2rem,
     "xs":  1.25rem
 ) !default;
+
+// Steps
+$steps-border-width: 2px !default;
+$steps-color: var(--#{$prefix}primary) !default;
+$steps-inactive-color: var(--#{$prefix}border-color) !default;
+$steps-margin: 2rem 0 !default;
