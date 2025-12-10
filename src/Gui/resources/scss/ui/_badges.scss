@@ -46,6 +46,10 @@
     border-color: color-mix(in oklab, currentColor 40%, transparent);
 }
 
+.badge-disabled {
+    opacity: .5;
+}
+
 .badge-notification {
     position: absolute !important;
     top: 0 !important;
