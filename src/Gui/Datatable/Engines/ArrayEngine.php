@@ -3,6 +3,7 @@
 namespace Gui\Datatable\Engines;
 
 use Illuminate\Support\Collection;
+use function Illuminate\Support\enum_value;
 
 class ArrayEngine extends AbstractEngine
 {
@@ -73,7 +74,7 @@ class ArrayEngine extends AbstractEngine
         return $collection->transform(function(mixed $value) use ($column){
             $v = $value[$column];
             if($v instanceof \UnitEnum){
-                return (string) $v->value;
+                return (string) enum_value($v);
             }
             return (string) $v;
         })->flip()->flip();

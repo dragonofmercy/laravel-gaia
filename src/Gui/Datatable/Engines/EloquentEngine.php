@@ -4,6 +4,7 @@ namespace Gui\Datatable\Engines;
 
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Support\Collection;
+use function Illuminate\Support\enum_value;
 
 class EloquentEngine extends AbstractEngine
 {
@@ -65,7 +66,7 @@ class EloquentEngine extends AbstractEngine
         return $query->get($column)->transform(function(mixed $value) use ($column){
             $v = $value[$column];
             if($v instanceof \UnitEnum){
-                return (string) $v->value;
+                return (string) enum_value($v);
             }
             return (string) $v;
         })->flip()->flip();
