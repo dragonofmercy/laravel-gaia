@@ -54,7 +54,7 @@ export class GuiDatatable {
             Collapse.getOrCreateInstance($collapse[0], { toggle: false }).hide();
         });
 
-        $searchContainer.find(':input[id^=dt_f]').on('keydown', e => {
+        $searchContainer.find(':input[id^=dt_f]').on('keydown.gui', e => {
             if(e.keyCode === Keycodes.ENTER){
                 $searchContainer.find('[data-trigger=search]').click();
             }
