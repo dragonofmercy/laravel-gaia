@@ -9,6 +9,10 @@
             }
         }
     }
+
+    tbody tr:has(.gui-selector > .form-check-input:checked){
+        background-color: var(--#{$prefix}hover-bg);
+    }
 }
 
 .table-transparent {
