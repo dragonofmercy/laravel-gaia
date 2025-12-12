@@ -1,10 +1,35 @@
 form-group.layout-grid {
+    --#{$prefix}form-group-border-top-width: #{$form-group-border-top-width};
+    --#{$prefix}form-group-border-top-style: #{$form-group-border-top-style};
+    --#{$prefix}form-group-border-top-color: #{$form-group-border-top-color};
+
+    --#{$prefix}form-group-border-left-width: #{$form-group-border-left-width};
+    --#{$prefix}form-group-border-left-style: #{$form-group-border-left-style};
+    --#{$prefix}form-group-border-left-color: #{$form-group-border-left-color};
+
+    --#{$prefix}form-hint-border-width: #{$form-hint-border-width};
+    --#{$prefix}form-hint-border-style: #{$form-hint-border-style};
+    --#{$prefix}form-hint-border-color: #{$form-hint-border-color};
+
     --#{$prefix}form-group-spacer-y: #{$grid-gutter-width * .5};
     --#{$prefix}form-group-spacer-x: #{$grid-gutter-width * .5};
 
     &+form-group {
-        border-top: var(--#{$prefix}form-group-border-width) var(--#{$prefix}form-group-border-style) var(--#{$prefix}form-group-border-color);
+        border-top: var(--#{$prefix}form-group-border-top-width) var(--#{$prefix}form-group-border-top-style) var(--#{$prefix}form-group-border-top-color);
     }
+
+    .invalid-feedback + .form-hint {
+        border-top: var(--#{$prefix}form-hint-border-width) var(--#{$prefix}form-hint-border-style) var(--#{$prefix}form-hint-border-color);
+        margin-top: var(--#{$prefix}spacer-1);
+        padding-top: var(--#{$prefix}spacer-1);
+    }
+}
+
+.form-separator.layout-grid,
+.form-separator.layout-grid + form-group.layout-grid {
+    --#{$prefix}form-group-border-top-width: .125rem;
+    --#{$prefix}form-group-border-top-style: dashed;
+    --#{$prefix}form-group-border-top-color: var(--#{$prefix}border-color);
 }
 
 @each $breakpoint, $size in $grid-breakpoints {
@@ -19,7 +44,7 @@ form-group.layout-grid {
             .control-field {
                 flex-grow: 1;
                 padding-left: var(--#{$prefix}form-group-spacer-x);
-                border-left: var(--#{$prefix}form-group-border-width) var(--#{$prefix}form-group-border-style) var(--#{$prefix}form-group-border-color);
+                border-left: var(--#{$prefix}form-group-border-left-width) var(--#{$prefix}form-group-border-left-style) var(--#{$prefix}form-group-border-left-color);
             }
 
             .control-label {

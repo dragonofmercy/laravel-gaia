@@ -361,9 +361,18 @@ $form-text-margin-top: .438rem !default;
 $form-text-font-size: var(--#{$prefix}font-size-md) !default;
 $form-text-color: var(--#{$prefix}body-color) !default;
 
-$form-group-border-width: var(--#{$prefix}border-width) !default;
-$form-group-border-style: var(--#{$prefix}border-style) !default;
-$form-group-border-color: var(--#{$prefix}border-color-lt) !default;
+$form-group-border-top-width: var(--#{$prefix}border-width) !default;
+$form-group-border-top-style: var(--#{$prefix}border-style) !default;
+$form-group-border-top-color: var(--#{$prefix}border-color-lt) !default;
+
+$form-group-border-left-width: var(--#{$prefix}border-width) !default;
+$form-group-border-left-style: var(--#{$prefix}border-style) !default;
+$form-group-border-left-color: var(--#{$prefix}border-color-lt) !default;
+
+$form-hint-border-width: var(--#{$prefix}border-width) !default;
+$form-hint-border-style: dashed !default;
+$form-hint-border-color: var(--#{$prefix}border-color-lt) !default;
+
 $form-group-label-font-weight: var(--#{$prefix}font-weight-medium) !default;
 $form-group-field-sizes: (
     1: 5rem,
