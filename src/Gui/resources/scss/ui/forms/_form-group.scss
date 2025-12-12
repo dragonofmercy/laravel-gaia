@@ -1,8 +1,4 @@
 form-group {
-    --#{$prefix}form-group-border-width: #{$form-group-border-width};
-    --#{$prefix}form-group-border-style: #{$form-group-border-style};
-    --#{$prefix}form-group-border-color: #{$form-group-border-color};
-
     --#{$prefix}form-group-spacer-y: #{$grid-gutter-width * .25};
     --#{$prefix}form-group-spacer-x: 0;
 
@@ -59,12 +55,6 @@ form-group {
     font-size: var(--#{$prefix}font-size-sm);
     color: var(--#{$prefix}secondary);
     margin-top: #{$form-text-margin-top};
-}
-
-.invalid-feedback + .form-hint {
-    border-top: var(--#{$prefix}form-group-border-width) dashed var(--#{$prefix}form-group-border-color);
-    margin-top: var(--#{$prefix}spacer-1);
-    padding-top: var(--#{$prefix}spacer-1);
 }
 
 .has-error {
