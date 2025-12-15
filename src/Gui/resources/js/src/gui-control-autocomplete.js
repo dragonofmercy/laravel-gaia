@@ -42,7 +42,7 @@ export class GuiControlAutocomplete extends Autocomplete {
     }
 
     _validateValue(value, text){
-        this._getSearchElement().val(text).trigger('change');
+        this._getSearchElement().val(text).trigger('change', [value]);
     }
 
     _search(searchTerm){
