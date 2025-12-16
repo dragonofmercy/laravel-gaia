@@ -36,8 +36,8 @@ export class Autocomplete {
             this._keyDown(e);
         }).on('input.gui', () => {
             this._input();
-        }).on('validate.gui', (e, value, text) => {
-            this._validateValue(value, text);
+        }).on('valueSelected.gui', (e, value, text, extra = null) => {
+            this._valueSelected(value, text, extra);
         }).on('blur.gui', () => {
             this._dropdownClose();
         });
@@ -143,6 +143,7 @@ export class Autocomplete {
         for(let i = 0; i < numResults; i++){
             const $item = $('<a class="dropdown-item" />');
             $item.html(results[i].text);
+            $item.data('extra', results[i].extra ?? null);
             $item.attr('data-value', escapeHtml(results[i].value));
             $item.attr('data-selectable', '');
             this.$template.append($item);
@@ -184,7 +185,7 @@ export class Autocomplete {
     _dropdownSelect($target){
         const text = this._extractValue($target.data('value'), $target.html());
 
-        this._getSearchElement().trigger('validate.gui', [$target.data('value'), text]);
+        this._getSearchElement().trigger('valueSelected.gui', [$target.data('value'), text, $target.data('extra')]);
         this._dropdownClose();
     }
 
@@ -209,14 +210,16 @@ export class Autocomplete {
 
 
     /**
-     * Validates the provided value and text. This method is intended to be overridden by a subclass.
+     * Handles the selection of a value, performing necessary operations
+     * when a value is chosen.
      *
-     * @abstract
-     * @param {*} value - The value to be validated.
-     * @param {string} text - The accompanying text to be validated.
-     * @return {void} This method does not return a value if implemented correctly, but throws an error if not overridden.
+     * @param {any} value - The selected value.
+     * @param {string} text - The text representation of the selected value.
+     * @param {Object} extra - Additional data associated with the selection.
+     * @return {void} This method does not return a value.
+     * @throws {Error} Throws an error if the method is not implemented by a subclass.
      */
-    _validateValue(value, text){
+    _valueSelected(value, text, extra){
         throw new Error('Method _validateValue() must be implemented by subclass');
     }
 

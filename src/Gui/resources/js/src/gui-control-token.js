@@ -222,7 +222,7 @@ export class GuiControlToken extends Autocomplete {
         return text ?? value;
     }
 
-    _validateValue(value, text){
+    _valueSelected(value, text, extra){
         this._getSearchElement().val("");
 
         const $option = this.$element.find('[value="' + value + '"]');

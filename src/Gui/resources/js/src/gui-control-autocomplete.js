@@ -8,7 +8,8 @@ export class GuiControlAutocomplete extends Autocomplete {
         providerQueryParameter: 'term',
         cache: false,
         valueField: 'value',
-        textField: 'text'
+        textField: 'text',
+        objectField: 'extra'
     }
 
     constructor(element, options){
@@ -41,8 +42,8 @@ export class GuiControlAutocomplete extends Autocomplete {
         }
     }
 
-    _validateValue(value, text){
-        this._getSearchElement().val(text).trigger('change', [value]);
+    _valueSelected(value, text, extra){
+        this._getSearchElement().val(text).trigger('change');
     }
 
     _search(searchTerm){
@@ -61,12 +62,14 @@ export class GuiControlAutocomplete extends Autocomplete {
             success: data => {
                 if(data.length > 0){
                     $.each(data, (_, item) => {
-                        const entry = { value: item[this.options.valueField], text: "" };
+                        const entry = {
+                            value: item[this.options.valueField],
+                            text: item[this.options.textField],
+                            extra: item[this.options.objectField]
+                        };
 
-                        if(item[this.options.textField] !== undefined){
-                            entry.text = item[this.options.textField];
-                        } else {
-                            entry.text = item[this.options.valueField];
+                        if(entry.text === undefined){
+                            entry.text = entry.value;
                         }
 
                         results.push(entry);
