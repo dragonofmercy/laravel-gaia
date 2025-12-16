@@ -15,6 +15,7 @@ class InputAutocomplete extends InputText
         $this->addOption('minLength', 1);
         $this->addOption('valueField', 'value');
         $this->addOption('textField', 'text');
+        $this->addOption('extraField', 'extra');
         $this->addOption('limit', 10);
         $this->addOption('reference', 'self');
     }
@@ -39,6 +40,7 @@ class InputAutocomplete extends InputText
             'minLength' => $this->getOption('minLength'),
             'valueField' => $this->getOption('valueField'),
             'textField' => $this->getOption('textField'),
+            'extraField' => $this->getOption('extraField'),
             'limit' => $this->getOption('limit'),
             'reference' => $this->getOption('reference')
         ];
