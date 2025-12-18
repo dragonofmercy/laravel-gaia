@@ -43,7 +43,7 @@
                 min-width: 0;
                 display: flex;
                 width: auto;
-                padding-left: add(.5rem, 1.75rem);
+                padding-left: calc(.5rem + 1.75rem);
                 color: inherit;
 
                 &.disabled {
@@ -85,12 +85,12 @@
     --#{$prefix}navbar-active-border-color: #{$primary};
     --#{$prefix}navbar-active-bg: rgba(0, 0, 0, 0.2);
     --#{$prefix}navbar-active-color: inherit;
-    --#{$prefix}navbar-height: 3rem;
+    --#{$prefix}navbar-height: #{$navbar-min-height};
 
     background: var(--#{$prefix}navbar-bg);
     box-shadow: inset 0 calc(-1 * var(--#{$prefix}navbar-border-width)) 0 0 var(--#{$prefix}navbar-border-color);
     display: flex;
-    align-items: center;
+    align-items: start;
     min-height: var(--#{$prefix}navbar-height);
 
     .navbar-collapse & {
@@ -174,7 +174,7 @@
     }
 
     .dropdown-menu[data-bs-popper] {
-        --gui-dropdown-spacer: calc(.313rem + var(--gui-dropdown-border-width));
+        --gui-dropdown-spacer: calc(var(--#{$prefix}navbar-padding-y) - var(--#{$prefix}dropdown-border-width));
     }
 }
 
