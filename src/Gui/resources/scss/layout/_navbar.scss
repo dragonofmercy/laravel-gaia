@@ -118,6 +118,7 @@
                     --#{$prefix}navbar-brand-margin-end: 0;
                     position: absolute;
                     left: 50%;
+                    top: var(--#{$prefix}navbar-padding-y);
                     transform: translateX(-50%);
                 }
             }
