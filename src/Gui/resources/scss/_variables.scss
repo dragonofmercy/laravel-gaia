@@ -215,6 +215,14 @@ $spacers: (
     12: $spacer * 5.5,
 ) !default;
 
+$container-max-widths: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
 // Focus ring
 $focus-ring-width:      .25rem !default;
 $focus-ring-opacity:    .25 !default;
