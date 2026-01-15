@@ -12,7 +12,7 @@ export class GuiCalendar {
         max: null,
         initialDate: null,
         useMask: false,
-        displayMask: true,
+        lazyMask: false,
         withTime: false,
         timeOnly: false,
         dateFormat: 'yyyy-MM-dd',
@@ -94,13 +94,13 @@ export class GuiCalendar {
             if(this._canUseMask()){
                 this.mask = IMask(this.$element[0], {
                     mask: this._prepareFormat(),
-                    overwrite: true,
-                    lazy: true,
+                    overwrite: false,
+                    lazy: this.options.lazyMask,
                     autofix: 'pad',
                     blocks: this.options.maskBlocks
                 });
 
-                if(this.options.displayMask){
+                if(this.options.lazyMask){
                     this.$element.on('blur.gui', () => {
                         this.mask.updateOptions({lazy: true});
                     }).on('focus.gui', () => {
