@@ -55,6 +55,10 @@
         --#{$prefix}badge-box-shadow-color: var(--#{$prefix}btn-bg);
     }
 
+    &.btn-ghost {
+        --#{$prefix}btn-border-color: transparent;
+    }
+
     &.loading-active {
         pointer-events: none;
     }
