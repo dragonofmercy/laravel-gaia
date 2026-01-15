@@ -93,6 +93,23 @@
         --#{$prefix}btn-disabled-color: var(--#{$prefix}#{$color}-fg);
         --#{$prefix}btn-disabled-border-color: var(--#{$prefix}#{$color}-fg);
     }
+
+    .btn-ghost-#{$color} {
+        --#{$prefix}btn-color: var(--#{$prefix}#{$color});
+        --#{$prefix}btn-bg: transparent;
+        --#{$prefix}btn-border-color: transparent;
+        --#{$prefix}btn-hover-color: var(--#{$prefix}#{$color}-fg);
+        --#{$prefix}btn-hover-bg: color-mix(in srgb, var(--#{$prefix}#{$color}-darken) var(--#{$prefix}button-color-mix), #000);
+        --#{$prefix}btn-hover-border-color: light-dark(var(--#{$prefix}btn-hover-bg), color-mix(in srgb, var(--#{$prefix}#{$color}-darken) 80%, #000));
+        --#{$prefix}btn-active-color: var(--#{$prefix}#{$color}-fg);
+        --#{$prefix}btn-active-bg: color-mix(in srgb, var(--#{$prefix}#{$color}-darker) var(--#{$prefix}button-color-mix), #000);
+        --#{$prefix}btn-active-border-color: light-dark(var(--#{$prefix}btn-active-bg), color-mix(in srgb, var(--#{$prefix}#{$color}-darken) 80%, #000));
+        --#{$prefix}btn-disabled-color: color-mix(in srgb, var(--#{$prefix}#{$color}) var(--#{$prefix}button-color-mix), #000);
+        --#{$prefix}btn-disabled-bg: transparent;
+        --#{$prefix}btn-disabled-border-color: transparent;
+        --#{$prefix}gradient: none;
+        --#{$prefix}btn-box-shadow: none;
+    }
 }
 
 .btn-icon,
