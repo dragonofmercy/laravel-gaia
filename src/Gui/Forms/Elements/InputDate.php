@@ -33,7 +33,6 @@ class InputDate extends InputGroup
         $this->addOption('endAt');
         $this->addOption('disabledDates');
         $this->addOption('useMask', true);
-        $this->addOption('lazyMask', false);
     }
 
     /**
@@ -76,7 +75,7 @@ class InputDate extends InputGroup
             'timeFormat' => $format['picker_time_format'],
             'minutesStep' => $this->getOption('minutesStep'),
             'useMask' => $this->getOption('useMask'),
-            'lazyMask' => $this->getOption('lazyMask'),
+            'lazyMask' => true,
             'trigger' => ['selector' => '#' . $this->getAttribute('id'), 'chain' => [
                 ['method' => 'parent'],
                 ['method' => 'find', 'args' => ['[data-trigger=pick]']]
