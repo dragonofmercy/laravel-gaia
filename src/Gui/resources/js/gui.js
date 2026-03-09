@@ -210,7 +210,7 @@ export class Gui {
             gui.hideAttribute($(this), 'onclick');
         }).on('click', function(e){
             e.preventDefault();
-            $(this).blur();
+            $(this).trigger("blur");
             Tooltip.getInstance(this)?.hide();
             const onclickAttr = $(this).data('onclick');
             if(onclickAttr){
@@ -282,7 +282,7 @@ export class Gui {
         $('[data-gui-behavior="modal"]:not(.disabled):not(:disabled)', context).on('click.gui.modal', function(e){
             e.preventDefault();
             Tooltip.getInstance(this)?.hide();
-            $(this).blur().GuiModal().data('gui.modal').show();
+            $(this).trigger("blur").GuiModal().data('gui.modal').show();
         });
     }
 
@@ -297,7 +297,7 @@ export class Gui {
         $('[data-gui-behavior="popup"]:not(.disabled):not(:disabled)', context).on('click.gui.popup', function(e){
             e.preventDefault();
             const $this = $(this);
-            $this.blur();
+            $this.trigger("blur");
             gui.openPopup(
                 $this.attr('href'),
                 $this.attr('data-popup-name'),
@@ -374,7 +374,7 @@ export class Gui {
      */
     _initHtmlFix(context){
         $('[target="_blank"]', context).on('click.gui', function(){
-            $(this).blur();
+            $(this).trigger("blur");
         });
     }
 }

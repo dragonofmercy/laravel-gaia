@@ -41,7 +41,7 @@ export class GuiControlCode {
         } else {
             if(this.$map.filter(function(){ return $(this).val() }).length === mapLength){
                 this.$element.trigger('complete.gui');
-                $target.blur();
+                $target.trigger("blur");
             }
         }
     }

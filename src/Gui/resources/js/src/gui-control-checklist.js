@@ -46,7 +46,7 @@ export class GuiControlChecklist {
             index += step;
         }
 
-        $checkbox.blur();
+        $checkbox.trigger("blur");
     }
 }
 

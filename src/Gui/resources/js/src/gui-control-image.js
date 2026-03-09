@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import Cropper from 'cropperjs';
-import CanevaScale from './lib/caneva-scale.js';
 import { Modal } from 'bootstrap';
 
 export class GuiControlImage {
@@ -32,7 +31,7 @@ export class GuiControlImage {
 
     clear(event){
         if(event){
-            $(event.currentTarget).blur().data('bs-tooltip').hide();
+            $(event.currentTarget).trigger("blur").data('bs-tooltip')?.hide();
         }
 
         this.$element.val('');
@@ -41,7 +40,7 @@ export class GuiControlImage {
 
     browse(event){
         if(event){
-            $(event.currentTarget).blur().data('bs-tooltip').hide();
+            $(event.currentTarget).trigger("blur").data('bs-tooltip')?.hide();
         }
 
         $('<input type="file" />').attr('accept', this.options.accepts).on('change', e => this._loadImage(e.currentTarget)).trigger('click');
@@ -116,41 +115,28 @@ export class GuiControlImage {
         this.$thumbnail.removeClass('loading-active');
     }
 
-    _updatePreview(blob){
-        const imageValue = blob ?? this.$element.val();
-        this.$thumbnail.css('background-image', imageValue ? 'url(' + imageValue + ')' : '');
+    _updatePreview(url){
+        if(this._previewUrl && this._previewUrl.startsWith('blob:')){
+            URL.revokeObjectURL(this._previewUrl);
+        }
+        this._previewUrl = url ?? this.$element.val();
+        this.$thumbnail.css('background-image', this._previewUrl ? 'url(' + this._previewUrl + ')' : '');
     }
 
     _crop(){
-        let img = new Image();
+        const croppedCanvas = this.cropper.getCroppedCanvas({
+            width: this.options.width,
+            height: this.options.height,
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high',
+        });
 
-        img.onload = () => {
-            let canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const scale = this.options.height / img.height;
-
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-            if(scale < 1){
-                canvas = (new CanevaScale(canvas)).scale(scale);
-            }
-
-            canvas.toBlob(blob => {
-                this._updatePreview(URL.createObjectURL(blob));
-                this.$element.val(canvas.toDataURL(this.options.exportType, this.options.exportQuality));
-                this.modal.hide();
-            });
-
-            img = null;
-        }
-
-        this.cropper.getCroppedCanvas().toBlob(blob => {
-            img.src = URL.createObjectURL(blob);
+        croppedCanvas.toBlob(blob => {
+            this._updatePreview(URL.createObjectURL(blob));
+            this.$element.val(croppedCanvas.toDataURL(this.options.exportType, this.options.exportQuality));
+            this.modal.hide();
         });
     }
-
 }
 
 $.fn.GuiControlImage = function(option){

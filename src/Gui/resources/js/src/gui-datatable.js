@@ -9,7 +9,7 @@ export class GuiDatatable {
 
         this.$element.find('a[data-gui-url]').on('click', e => {
             e.preventDefault();
-            GuiDatatable.browse($(e.currentTarget).blur().data('gui-url'), this.$element)
+            GuiDatatable.browse($(e.currentTarget).trigger("blur").data('gui-url'), this.$element)
         });
 
         this._bindSearch();
@@ -80,7 +80,7 @@ export class GuiDatatable {
         $element.on('click', e => {
             e.preventDefault();
             Tooltip.getInstance(target)?.hide();
-            $element.blur();
+            $element.trigger("blur");
             const $map = $('.gui-selector input[value]:checked:not(:disabled)', '#' + $element.data('target'));
 
             if($map.length == 0){
@@ -119,7 +119,7 @@ export class GuiDatatable {
         $element.on('click', e => {
             e.preventDefault();
             Tooltip.getInstance(target)?.hide();
-            $element.blur();
+            $element.trigger("blur");
             GuiDatatable.browse($element.data('url'), "#" + $element.data('target'), ['dt_c=1']);
         })
     }
