@@ -9,13 +9,13 @@
     "homepage" : "https://github.com/dragonofmercy/laravel-gaia",
     "license" : "MIT",
     "require": {
-        "ext-openssl": "*",
         "laravel/framework": "^12.0",
         "petercoles/multilingual-country-list": ">=1.2.11"
     },
     "suggest" : {
-        "ext-imagick": "*",
-        "intervention/image" : "Require to use image manipulation functions",
+        "ext-openssl": "Required if you want to use the SSL encryption",
+        "ext-imagick": "Required if you want to use imagick manipulation functions instead of GD",
+        "intervention/image" : "Required to use image manipulation functions",
         "tecnickcom/tcpdf" : "PDF Library"
     },
     "autoload": {
