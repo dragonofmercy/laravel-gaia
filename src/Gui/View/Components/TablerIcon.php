@@ -21,20 +21,6 @@ class TablerIcon extends Component
     }
 
     /**
-     * Reloads the cache by reading a JSON file from the specified path and decoding its content.
-     *
-     * @return void
-     */
-    protected static function reloadCache(): void
-    {
-        $jsonPath = __DIR__ . '/../../resources/icons/';
-        self::$cache = [
-            'outline' => json_decode(file_get_contents($jsonPath . 'tabler-nodes-outline.json'), true),
-            'filled' => json_decode(file_get_contents($jsonPath . 'tabler-nodes-filled.json'), true)
-        ];
-    }
-
-    /**
      * Renders an SVG icon based on given parameters.
      *
      * @param string $name The name of the icon to render.
@@ -81,10 +67,12 @@ class TablerIcon extends Component
      */
     public static function getCache(): array
     {
-        if(null === self::$cache){
-            static::reloadCache();
-        }
-
-        return self::$cache;
+        return once(function(){
+            $jsonPath = __DIR__ . '/../../resources/icons/';
+            return [
+                'outline' => json_decode(file_get_contents($jsonPath . 'tabler-nodes-outline.json'), true),
+                'filled' => json_decode(file_get_contents($jsonPath . 'tabler-nodes-filled.json'), true)
+            ];
+        });
     }
 }
