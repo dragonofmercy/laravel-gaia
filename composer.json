@@ -28,12 +28,5 @@
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": false,
-    "extra": {
-        "laravel": {
-            "dont-discover": [
-                "petercoles/multilingual-country-list"
-            ]
-        }
-    }
+    "prefer-stable": false
 }
