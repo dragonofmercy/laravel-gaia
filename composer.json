@@ -9,8 +9,7 @@
     "homepage" : "https://github.com/dragonofmercy/laravel-gaia",
     "license" : "MIT",
     "require": {
-        "laravel/framework": ">=12.0",
-        "petercoles/multilingual-country-list": ">=1.2.11"
+        "laravel/framework": ">=12.0"
     },
     "suggest" : {
         "ext-openssl": "Required if you want to use the SSL encryption",

@@ -9,7 +9,7 @@ use RuntimeException;
 
 class Countries
 {
-    const PATH = '/vendor/petercoles/multilingual-country-list/data/{locale}.php';
+    const PATH = 'vendor/dragonofmercy/gaia/src/Gui/resources/data/countries/{locale}.php';
 
     /**
      * Countries instances
